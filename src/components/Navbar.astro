@@ -36,55 +36,47 @@
 
 <script is:inline>
   (function() {
-    // Función para obtener idioma
-    function getLanguage() {
-      const saved = localStorage.getItem('language');
-      if (saved === 'es' || saved === 'en') return saved;
-      // Idioma por defecto: inglés
-      return 'en';
-    }
-
-    // Función para cambiar idioma
-    function setLanguage(lang) {
-      localStorage.setItem('language', lang);
-      document.documentElement.lang = lang;
-      window.dispatchEvent(new CustomEvent('languagechange'));
-    }
-
-    // Inicializar
-    function initLanguage() {
-      const currentLang = getLanguage();
-      document.documentElement.lang = currentLang;
-      const langElement = document.getElementById('current-language');
-      if (langElement) {
-        langElement.textContent = currentLang.toUpperCase();
-      } else {
-        // Si el elemento aún no existe, intentar de nuevo después de un pequeño delay
-        setTimeout(() => {
-          const el = document.getElementById('current-language');
-          if (el) el.textContent = currentLang.toUpperCase();
-        }, 100);
+    // Initialize language toggle using unified i18n system
+    // i18n is initialized in Layout.astro head, so it's available when this executes
+    function initLanguageToggle() {
+      if (!window.i18n) {
+        // Only initialize if i18n system is available (should always be the case)
+        return;
       }
 
-      // Toggle de idioma
+      // Set initial language indicator (updateTranslations in Layout already does this, but ensure it's set)
+      const langElement = document.getElementById('current-language');
+      if (langElement) {
+        const currentLang = window.i18n.getLanguage();
+        langElement.textContent = currentLang.toUpperCase();
+      }
+
+      // Setup language toggle button
       const toggle = document.getElementById('language-toggle');
       if (toggle) {
         toggle.addEventListener('click', () => {
-          const current = getLanguage();
+          const current = window.i18n.getLanguage();
           const newLang = current === 'es' ? 'en' : 'es';
-          setLanguage(newLang);
-          const langEl = document.getElementById('current-language');
-          if (langEl) {
-            langEl.textContent = newLang.toUpperCase();
-          }
+          window.i18n.setLanguage(newLang);
+          // updateTranslations already updates the indicator via languagechange event
         });
       }
+
+      // Listen for language change events (from unified system)
+      window.addEventListener('languagechange', function(event) {
+        const langElement = document.getElementById('current-language');
+        if (langElement && window.i18n) {
+          const currentLang = window.i18n.getLanguage();
+          langElement.textContent = currentLang.toUpperCase();
+        }
+      });
     }
 
+    // Initialize when DOM is ready (i18n is already initialized in head)
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initLanguage);
+      document.addEventListener('DOMContentLoaded', initLanguageToggle);
     } else {
-      initLanguage();
+      initLanguageToggle();
     }
   })();
 </script>

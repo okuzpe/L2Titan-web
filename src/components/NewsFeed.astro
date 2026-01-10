@@ -1,33 +1,5 @@
 ---
-const news = [
-  {
-    title: "Gran Apertura: L2Titan",
-    titleKey: "news.items.opening.title",
-    date: "23 Nov 2025",
-    summary:
-      "Prepárate para la experiencia definitiva. Servidor Interlude x30 con características únicas.",
-    summaryKey: "news.items.opening.summary",
-    image: "/images/news-1.png",
-  },
-  {
-    title: "Evento: Asedio al Castillo",
-    titleKey: "news.items.siege.title",
-    date: "25 Nov 2025",
-    summary:
-      "El primer asedio está programado. ¿Quién conquistará Aden? Recompensas exclusivas para los ganadores.",
-    summaryKey: "news.items.siege.summary",
-    image: "/images/news-2.png",
-  },
-  {
-    title: "Actualización de Balance",
-    titleKey: "news.items.balance.title",
-    date: "20 Nov 2025",
-    summary:
-      "Ajustes en clases de dagueros y arqueros para mejorar el PvP competitivo.",
-    summaryKey: "news.items.balance.summary",
-    image: "/images/news-3.png",
-  },
-];
+import { news } from '../data/news';
 ---
 
 <section class="py-16">
@@ -40,7 +12,7 @@ const news = [
       Últimas Noticias
     </h2>
 
-    <div class="grid md:grid-cols-3 gap-8">
+    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
       {
         news.map((item) => (
           <article class="bg-slate-900/50 rounded-xl overflow-hidden border border-white/10 hover:border-yellow-500/50 transition-all duration-300 group hover:shadow-2xl hover:shadow-yellow-500/10">
@@ -62,7 +34,7 @@ const news = [
                 {item.summaryKey ? <span data-i18n={item.summaryKey}>{item.summary}</span> : item.summary}
               </p>
               <a
-                href="#"
+                href={`/news/${item.slug}`}
                 class="inline-block mt-4 text-yellow-500 hover:text-white text-sm font-bold uppercase tracking-wider transition-colors"
                 data-i18n="news.readMore"
               >

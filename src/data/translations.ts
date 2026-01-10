@@ -104,18 +104,17 @@ export const translations = {
     news: {
       title: 'Últimas Noticias',
       readMore: 'Leer más →',
+      backButton: 'Volver',
       items: {
         opening: {
           title: 'Gran Apertura: L2Titan',
-          summary: 'Prepárate para la experiencia definitiva. Servidor Interlude x30 con características únicas.'
-        },
-        siege: {
-          title: 'Evento: Asedio al Castillo',
-          summary: 'El primer asedio está programado. ¿Quién conquistará Aden? Recompensas exclusivas para los ganadores.'
+          summary: 'Prepárate para la experiencia definitiva. Servidor Interlude x30 con características únicas.',
+          content: 'L2Titan está listo para lanzarse. El 24 de enero de 2026 abriremos nuestras puertas a todos los jugadores. Servidor Interlude x30 con un sistema único de subclases acumulativas que te permitirá combinar habilidades de diferentes clases en un mismo personaje. Contaremos con protección DDoS robusta, eventos diarios, sistema de Olympiad y mucho más. ¡No te lo pierdas!'
         },
         balance: {
           title: 'Actualización de Balance',
-          summary: 'Ajustes en clases de dagueros y arqueros para mejorar el PvP competitivo.'
+          summary: 'Ajustes en clases de dagueros y arqueros para mejorar el PvP competitivo.',
+          content: 'Hemos realizado ajustes importantes en las clases de dagueros y arqueros para mejorar el balance del PvP competitivo. Estos cambios incluyen modificaciones en los tiempos de reutilización de habilidades, daño base y efectos especiales. El objetivo es crear un entorno más equilibrado donde todas las clases tengan oportunidades justas en combate.'
         }
       }
     },
@@ -228,18 +227,17 @@ export const translations = {
     news: {
       title: 'Latest News',
       readMore: 'Read more →',
+      backButton: 'Back',
       items: {
         opening: {
           title: 'Grand Opening: L2Titan',
-          summary: 'Get ready for the ultimate experience. Interlude x30 server with unique features.'
-        },
-        siege: {
-          title: 'Event: Castle Siege',
-          summary: 'The first siege is scheduled. Who will conquer Aden? Exclusive rewards for the winners.'
+          summary: 'Get ready for the ultimate experience. Interlude x30 server with unique features.',
+          content: 'L2Titan is ready to launch. On January 24, 2026 we will open our doors to all players. Interlude x30 server with a unique cumulative subclasses system that will allow you to combine skills from different classes in the same character. We will have robust DDoS protection, daily events, Olympiad system and much more. Don\'t miss it!'
         },
         balance: {
           title: 'Balance Update',
-          summary: 'Adjustments to dagger and archer classes to improve competitive PvP.'
+          summary: 'Adjustments to dagger and archer classes to improve competitive PvP.',
+          content: 'We have made important adjustments to the dagger and archer classes to improve competitive PvP balance. These changes include modifications to skill cooldowns, base damage and special effects. The goal is to create a more balanced environment where all classes have fair opportunities in combat.'
         }
       }
     },
