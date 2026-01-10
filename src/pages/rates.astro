@@ -1,0 +1,198 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const rates = [
+  { label: "Experiencia (XP)", value: "x30", key: "rates.rates.experience" },
+  { label: "Skill Points (SP)", value: "x25", key: "rates.rates.skillPoints" },
+  { label: "Party XP", value: "x2", key: "rates.rates.partyXP" },
+  { label: "Party SP", value: "x2", key: "rates.rates.partySP" },
+  { label: "Adena", value: "x10", key: "rates.rates.adena" },
+  { label: "Drop Items", value: "x10", key: "rates.rates.dropItems" },
+  { label: "Spoil", value: "x15", key: "rates.rates.spoil" },
+  { label: "Seal Stones", value: "x10", key: "rates.rates.sealStones" },
+  { label: "Manor", value: "x10", key: "rates.rates.manor" },
+];
+
+const features = [
+  { text: "Crónica: Interlude", key: "rates.features.chronicle" },
+  { text: "Anti-Bot: SmartGuard", key: "rates.features.antiBot" },
+  { text: "Geodata: Premium", key: "rates.features.geodata" },
+  { text: "Sieges: Semanales", key: "rates.features.sieges" },
+  { text: "Olympiad: Cada 2 semanas", key: "rates.features.olympiad" },
+  { text: "SubStack: Clase base +1", key: "rates.features.subStack" },
+];
+---
+
+<Layout title="Información">
+  <div class="container mx-auto px-4 py-24">
+    <h1
+      class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-600 mb-16 text-center font-display tracking-widest drop-shadow-lg"
+      data-i18n="rates.title"
+    >
+      INFORMACIÓN DEL SERVIDOR
+    </h1>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+      <!-- Rates Section -->
+      <div
+        class="bg-slate-900/50 p-10 rounded-xl border border-white/10 hover:border-yellow-500/30 transition-all duration-300 shadow-lg"
+      >
+        <h2
+          class="text-3xl font-bold text-white mb-8 border-b border-yellow-500/30 pb-4 font-display flex items-center gap-3"
+        >
+          <span class="text-yellow-500" data-i18n="rates.serverRates">SERVER RATES</span>
+        </h2>
+        <div class="grid grid-cols-1 gap-4">
+          {
+            rates.map((rate) => (
+              <div class="flex justify-between items-center p-4 bg-black/40 rounded border border-white/5 hover:border-yellow-500/20 transition-colors">
+                <span class="text-gray-300 font-medium uppercase tracking-wide text-sm" data-i18n={rate.key}>
+                  {rate.label}
+                </span>
+                <span class="text-yellow-400 font-bold text-xl font-display">
+                  {rate.value}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Features Section -->
+      <div
+        class="bg-slate-900/50 p-10 rounded-xl border border-white/10 hover:border-yellow-500/30 transition-all duration-300 shadow-lg"
+      >
+        <h2
+          class="text-3xl font-bold text-white mb-8 border-b border-yellow-500/30 pb-4 font-display flex items-center gap-3"
+        >
+          <span class="text-yellow-500" data-i18n="rates.gameFeatures">GAME FEATURES</span>
+        </h2>
+        <ul class="space-y-6">
+          {
+            features.map((feature) => (
+              <li class="flex items-center text-gray-300 group">
+                <div class="w-8 h-8 rounded-full bg-yellow-500/10 flex items-center justify-center mr-4 group-hover:bg-yellow-500/20 transition-colors">
+                  <svg
+                    class="w-4 h-4 text-yellow-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                <span class="text-lg font-light" data-i18n={feature.key}>{feature.text}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div
+          class="mt-10 p-6 bg-gradient-to-r from-yellow-900/20 to-transparent border-l-4 border-yellow-500 rounded-r-lg"
+        >
+          <h3
+            class="text-yellow-500 font-bold mb-2 font-display uppercase tracking-wider"
+            data-i18n="rates.philosophy.title"
+          >
+            Filosofía L2Titan
+          </h3>
+          <p class="text-sm text-gray-400 leading-relaxed" data-i18n="rates.philosophy.description">
+            Es un modelo de subclases acumulativas en el que por cada clase
+            puedes combinar tus skills con otras clases.
+          </p>
+        </div>
+      </div>
+
+      <!-- Enchant Rates Section -->
+      <div
+        class="bg-slate-900/50 p-10 rounded-xl border border-white/10 hover:border-yellow-500/30 transition-all duration-300 shadow-lg lg:col-span-1"
+      >
+        <h2
+          class="text-3xl font-bold text-white mb-8 border-b border-yellow-500/30 pb-4 font-display flex items-center gap-3"
+        >
+          <span class="text-yellow-500" data-i18n="rates.enchantRates">ENCHANT RATES</span>
+        </h2>
+        
+        <div class="space-y-6">
+          <!-- Normal Scrolls -->
+          <div class="p-4 bg-black/40 rounded border border-white/5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-2xl">📜</span>
+              <h3 class="text-yellow-400 font-bold text-lg font-display" data-i18n="rates.enchant.normalScrolls">Normal Scrolls</h3>
+            </div>
+            <div class="text-sm text-gray-300 space-y-1">
+              <p><span class="text-yellow-500 font-semibold" data-i18n="rates.enchant.weaponArmor">Weapon/Armor:</span> ~15% a +25</p>
+              <p><span class="text-yellow-500 font-semibold" data-i18n="rates.enchant.jewelry">Jewelry:</span> ~8% a +25</p>
+            </div>
+          </div>
+
+          <!-- Blessed Scrolls -->
+          <div class="p-4 bg-black/40 rounded border border-white/5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-2xl">📜</span>
+              <h3 class="text-yellow-400 font-bold text-lg font-display" data-i18n="rates.enchant.blessedScrolls">Blessed Scrolls</h3>
+            </div>
+            <div class="text-sm text-gray-300 space-y-1">
+              <p><span class="text-yellow-500 font-semibold" data-i18n="rates.enchant.weaponArmor">Weapon/Armor:</span> ~35% a +25</p>
+              <p><span class="text-yellow-500 font-semibold" data-i18n="rates.enchant.jewelry">Jewelry:</span> ~20% a +25</p>
+            </div>
+          </div>
+
+          <!-- Crystal Scrolls -->
+          <div class="p-4 bg-black/40 rounded border border-white/5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-2xl">💎</span>
+              <h3 class="text-yellow-400 font-bold text-lg font-display" data-i18n="rates.enchant.crystalScrolls">Crystal Scrolls</h3>
+            </div>
+            <div class="text-sm text-gray-300 space-y-1">
+              <p><span class="text-yellow-500 font-semibold" data-i18n="rates.enchant.weaponArmor">Weapon/Armor:</span> 100% a +25</p>
+              <p><span class="text-yellow-500 font-semibold" data-i18n="rates.enchant.jewelry">Jewelry:</span> 100% a +25</p>
+            </div>
+          </div>
+
+          <!-- Config Info -->
+          <div class="mt-6 p-4 bg-gradient-to-r from-yellow-900/20 to-transparent border-l-4 border-yellow-500 rounded-r-lg">
+            <p class="text-xs text-gray-400 leading-relaxed">
+              <span class="text-yellow-500 font-semibold" data-i18n="rates.enchant.maxEnchant">Max Enchant:</span> <span data-i18n="rates.enchant.maxEnchantDesc">+25 para todos los tipos (Weapon, Armor, Jewelry)</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discord Section -->
+    <div class="max-w-4xl mx-auto mt-16">
+      <div class="bg-gradient-to-r from-indigo-900/50 via-purple-900/50 to-indigo-900/50 p-10 rounded-xl border border-indigo-500/30 hover:border-indigo-400/50 transition-all duration-300 shadow-lg">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 bg-indigo-600/20 rounded-full flex items-center justify-center">
+              <svg class="h-10 w-10 text-indigo-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.5328-9.748-2.312-13.7083a.0765.0765 0 00-.0303-.0277zM6.4544 14.7698c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9355-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.9281 2.451-2.152 2.451zm6.585 0c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9354-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.928 2.451-2.152 2.451z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-white mb-2 font-display" data-i18n="rates.discord.title">Únete a nuestra Comunidad</h3>
+              <p class="text-gray-300 text-sm" data-i18n="rates.discord.description">Conéctate con otros jugadores, obtén soporte y mantente al día con las últimas noticias</p>
+            </div>
+          </div>
+          <a
+            href="https://discord.gg/GunamUdGaQ"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-indigo-500/50 flex items-center gap-2 whitespace-nowrap"
+          >
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.5328-9.748-2.312-13.7083a.0765.0765 0 00-.0303-.0277zM6.4544 14.7698c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9355-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.9281 2.451-2.152 2.451zm6.585 0c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9354-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.928 2.451-2.152 2.451z"></path>
+            </svg>
+            <span data-i18n="rates.discord.joinButton">Unirse a Discord</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

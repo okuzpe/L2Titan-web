@@ -7,23 +7,24 @@ const { targetDate } = Astro.props;
 ---
 
 <div class="countdown-container text-center p-8 rounded-xl bg-slate-800/50 backdrop-blur border border-white/10 shadow-2xl max-w-3xl mx-auto mt-10">
-  <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-8 uppercase tracking-widest">Gran Apertura</h2>
+  <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-4 uppercase tracking-widest" data-i18n="countdown.title">Open Beta Now</h2>
+  <p class="text-xl md:text-2xl text-gray-300 mb-8 uppercase tracking-wide" data-i18n="countdown.subtitle">Open Server In</p>
   <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
     <div class="flex flex-col p-4 bg-slate-900/80 rounded-lg border border-yellow-500/20">
       <span class="text-4xl md:text-6xl font-bold text-white" id="days">00</span>
-      <span class="text-sm text-gray-400 uppercase tracking-wider mt-2">Días</span>
+      <span class="text-sm text-gray-400 uppercase tracking-wider mt-2" data-i18n="countdown.days">Días</span>
     </div>
     <div class="flex flex-col p-4 bg-slate-900/80 rounded-lg border border-yellow-500/20">
       <span class="text-4xl md:text-6xl font-bold text-white" id="hours">00</span>
-      <span class="text-sm text-gray-400 uppercase tracking-wider mt-2">Horas</span>
+      <span class="text-sm text-gray-400 uppercase tracking-wider mt-2" data-i18n="countdown.hours">Horas</span>
     </div>
     <div class="flex flex-col p-4 bg-slate-900/80 rounded-lg border border-yellow-500/20">
       <span class="text-4xl md:text-6xl font-bold text-white" id="minutes">00</span>
-      <span class="text-sm text-gray-400 uppercase tracking-wider mt-2">Minutos</span>
+      <span class="text-sm text-gray-400 uppercase tracking-wider mt-2" data-i18n="countdown.minutes">Minutos</span>
     </div>
     <div class="flex flex-col p-4 bg-slate-900/80 rounded-lg border border-yellow-500/20">
       <span class="text-4xl md:text-6xl font-bold text-white" id="seconds">00</span>
-      <span class="text-sm text-gray-400 uppercase tracking-wider mt-2">Segundos</span>
+      <span class="text-sm text-gray-400 uppercase tracking-wider mt-2" data-i18n="countdown.seconds">Segundos</span>
     </div>
   </div>
 </div>

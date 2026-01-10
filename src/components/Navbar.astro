@@ -10,11 +10,81 @@
       </div>
       <div class="hidden md:block">
         <div class="ml-10 flex items-baseline space-x-4">
-          <a href="/" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-all">Home</a>
-          <a href="/downloads" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-all">Descargas</a>
-          <a href="/about" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-all">About</a>
+          <a href="/" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-all" data-i18n="navbar.home">Home</a>
+          <a href="/downloads" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-all" data-i18n="navbar.downloads">Downloads</a>
+          <a href="/rates" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-all" data-i18n="navbar.rates">Rates</a>
+          <a href="#vote-section" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-all" data-i18n="navbar.vote">Vote</a>
+          <a href="https://discord.gg/GunamUdGaQ" target="_blank" rel="noopener noreferrer" class="text-yellow-500 hover:text-yellow-400 hover:bg-yellow-500/10 px-3 py-2 rounded-md text-sm font-medium transition-all flex items-center gap-2">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.5328-9.748-2.312-13.7083a.0765.0765 0 00-.0303-.0277zM6.4544 14.7698c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9355-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.9281 2.451-2.152 2.451zm6.585 0c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9354-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.928 2.451-2.152 2.451z"></path>
+            </svg>
+            <span data-i18n="navbar.discord">Discord</span>
+          </a>
+          <div class="relative">
+            <button id="language-toggle" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-all flex items-center gap-2" aria-label="Change language">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+              </svg>
+              <span id="current-language" class="uppercase">EN</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </nav>
+
+<script is:inline>
+  (function() {
+    // Función para obtener idioma
+    function getLanguage() {
+      const saved = localStorage.getItem('language');
+      if (saved === 'es' || saved === 'en') return saved;
+      // Idioma por defecto: inglés
+      return 'en';
+    }
+
+    // Función para cambiar idioma
+    function setLanguage(lang) {
+      localStorage.setItem('language', lang);
+      document.documentElement.lang = lang;
+      window.dispatchEvent(new CustomEvent('languagechange'));
+    }
+
+    // Inicializar
+    function initLanguage() {
+      const currentLang = getLanguage();
+      document.documentElement.lang = currentLang;
+      const langElement = document.getElementById('current-language');
+      if (langElement) {
+        langElement.textContent = currentLang.toUpperCase();
+      } else {
+        // Si el elemento aún no existe, intentar de nuevo después de un pequeño delay
+        setTimeout(() => {
+          const el = document.getElementById('current-language');
+          if (el) el.textContent = currentLang.toUpperCase();
+        }, 100);
+      }
+
+      // Toggle de idioma
+      const toggle = document.getElementById('language-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const current = getLanguage();
+          const newLang = current === 'es' ? 'en' : 'es';
+          setLanguage(newLang);
+          const langEl = document.getElementById('current-language');
+          if (langEl) {
+            langEl.textContent = newLang.toUpperCase();
+          }
+        });
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLanguage);
+    } else {
+      initLanguage();
+    }
+  })();
+</script>

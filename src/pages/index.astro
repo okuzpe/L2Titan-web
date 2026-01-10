@@ -5,8 +5,13 @@ import ServerStats from "../components/ServerStats.astro";
 import NewsFeed from "../components/NewsFeed.astro";
 import FeatureCard from "../components/FeatureCard.astro";
 
-// Fecha objetivo: 7 días desde hoy para demo
-const targetDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+// Fecha objetivo: Viernes 2 de enero de 2026 (hora España, UTC+1)
+const targetDate = new Date('2026-01-02T23:59:59+01:00').toISOString();
+const now = new Date();
+const showCountdown = now < new Date(targetDate);
+
+// Variable para mostrar/ocultar información del servidor
+const showServerInfo = false;
 ---
 
 <Layout title="Inicio">
@@ -27,7 +32,7 @@ const targetDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
 			</div>
 		</div>
 
-		<div class="relative z-10 container mx-auto px-4 text-center mt-20">
+		<div class="relative z-30 container mx-auto px-4 text-center mt-20">
 			<h1
 				class="text-6xl md:text-9xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 via-yellow-500 to-yellow-700 mb-4 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)] font-display tracking-tighter animate-fade-in-down"
 			>
@@ -36,17 +41,17 @@ const targetDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
 			<p
 				class="text-2xl md:text-3xl text-gray-300 mb-12 max-w-3xl mx-auto font-light tracking-wide"
 			>
-				La era de los héroes ha comenzado. <span
+				<span data-i18n="home.hero">La era de los héroes ha comenzado.</span> <span
 					class="text-yellow-500 font-bold">Interlude x30</span
 				>
 			</p>
 
-			<Countdown targetDate={targetDate} />
+			{showCountdown && <Countdown targetDate={targetDate} />}
 
-			<div class="mt-16 flex flex-col md:flex-row gap-6 justify-center">
+			<div class="mt-16 mb-32 md:mb-40 flex flex-col md:flex-row gap-6 justify-center relative z-30">
 				<a
 					href="/downloads"
-					class="group relative px-8 py-4 bg-gradient-to-r from-yellow-700 to-yellow-500 text-white font-bold rounded-lg overflow-hidden shadow-[0_0_20px_rgba(234,179,8,0.3)] transition-all hover:shadow-[0_0_40px_rgba(234,179,8,0.6)] hover:scale-105"
+					class="group relative px-8 py-4 bg-gradient-to-r from-yellow-700 to-yellow-500 text-white font-bold rounded-lg overflow-hidden shadow-[0_0_20px_rgba(234,179,8,0.3)] transition-all hover:shadow-[0_0_40px_rgba(234,179,8,0.6)] hover:scale-105 z-30"
 				>
 					<div
 						class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"
@@ -67,42 +72,49 @@ const targetDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
 								d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
 							></path></svg
 						>
-						Descargar Cliente
+						<span data-i18n="home.downloadClient">Descargar Cliente</span>
 					</span>
 				</a>
 				<a
-					href="https://discord.gg/your-invite-link"
+					href="https://discord.gg/GunamUdGaQ"
 					target="_blank"
-					class="group relative px-8 py-4 bg-[#5865F2] text-white font-bold rounded-lg overflow-hidden shadow-[0_0_20px_rgba(88,101,242,0.3)] transition-all hover:shadow-[0_0_40px_rgba(88,101,242,0.6)] hover:scale-105 flex items-center gap-2"
+					rel="noopener noreferrer"
+					class="group relative px-8 py-4 bg-[#5865F2] text-white font-bold rounded-lg overflow-hidden shadow-[0_0_20px_rgba(88,101,242,0.3)] transition-all hover:shadow-[0_0_40px_rgba(88,101,242,0.6)] hover:scale-105 flex items-center gap-2 z-30"
 				>
 					<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"
 						><path
 							d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.5328-9.748-2.312-13.7083a.0765.0765 0 00-.0303-.0277zM6.4544 14.7698c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9355-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.9281 2.451-2.152 2.451zm6.585 0c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9354-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.928 2.451-2.152 2.451z"
 						></path></svg
 					>
-					Unirse a Discord
+					<span data-i18n="home.joinDiscord">Unirse a Discord</span>
 				</a>
 			</div>
 		</div>
 	</div>
 
-	<ServerStats />
+	{showServerInfo && <ServerStats />}
 
 	<div class="container mx-auto px-4 py-20">
-		<div class="grid md:grid-cols-3 gap-8 -mt-32 relative z-20">
+		<div class="grid md:grid-cols-3 gap-8 -mt-32 relative z-10">
 			<FeatureCard
 				title="Subclases Acumulativas"
+				titleKey="home.features.cumulative.title"
 				description="Base Interlude x30. Sistema único donde puedes combinar skills de diferentes clases en un mismo personaje."
+				descriptionKey="home.features.cumulative.description"
 				icon="⚔️"
 			/>
 			<FeatureCard
 				title="Protección DDoS"
+				titleKey="home.features.ddos.title"
 				description="Infraestructura robusta para garantizar 99.9% de uptime y juego sin lag."
+				descriptionKey="home.features.ddos.description"
 				icon="🛡️"
 			/>
 			<FeatureCard
 				title="Eventos Diarios"
+				titleKey="home.features.events.title"
 				description="TvT, CTF, Deathmatch y eventos automáticos cada 2 horas con recompensas únicas."
+				descriptionKey="home.features.events.description"
 				icon="🏆"
 			/>
 		</div>

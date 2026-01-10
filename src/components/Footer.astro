@@ -4,10 +4,69 @@ const year = new Date().getFullYear();
 
 <footer class="bg-slate-900 border-t border-white/10 mt-auto">
   <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <!-- Sección de banners de votación -->
+    <div id="vote-section" class="mb-8 pb-8 border-b border-white/10">
+      <h3 class="text-sm font-semibold text-yellow-500 uppercase tracking-wider mb-4 text-center font-display" data-i18n="footer.voteForUs">
+        Vota por nosotros
+      </h3>
+      <div class="flex flex-wrap justify-center items-center gap-4">
+        <!-- Banner HopZone -->
+        <a 
+          href="https://l2.hopzone.net/site/vote/107098/1" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-block hover:opacity-80 transition-opacity"
+          title="L2.HOPZONE.NET – Lineage 2 Servers ranking"
+        >
+          <img 
+            src="https://l2.hopzone.net/assets/img/banners/vote_banners/banner_5.png" 
+            alt="Vote for L2-TITAN.COM" 
+            class="border-0"
+            style="width: 140px; height: 120px;"
+            loading="lazy"
+          />
+        </a>
+        
+        <!-- Banner l2topzone -->
+        <a 
+          href="https://l2topzone.com/vote/id/13387" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-block hover:opacity-80 transition-opacity"
+          title="l2topzone"
+        >
+          <img 
+            src="https://l2topzone.com/vb/l2topzone-Lineage2-vote-banner-bottom-right-2.gif" 
+            alt="l2topzone.com" 
+            class="border-0"
+            loading="lazy"
+          />
+        </a>
+        
+        <!-- Banner L2Network -->
+        <a 
+          href="https://l2network.eu/index.php?a=in&u=l2-titan" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-block hover:opacity-80 transition-opacity"
+          title="L2Network"
+        >
+          <img 
+            src="https://l2network.eu/images/sidebanner.png" 
+            alt="L2Network" 
+            class="border-0"
+            style="width: 145px; height: 122px;"
+            loading="lazy"
+          />
+        </a>
+      </div>
+    </div>
+
+    <!-- Copyright y Discord -->
     <div class="flex flex-col md:flex-row justify-between items-center">
       <div class="text-gray-400 text-sm">&copy; 2025 L2Titan.com.</div>
       <div class="flex space-x-6 mt-4 md:mt-0">
-        <a href="#" class="text-gray-400 hover:text-gray-300">
+        <a href="https://discord.gg/GunamUdGaQ" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-yellow-500 transition-colors">
           <span class="sr-only">Discord</span>
           <!-- Icono de Discord simplificado -->
           <svg

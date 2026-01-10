@@ -2,41 +2,113 @@
 import Layout from '../layouts/Layout.astro';
 
 const downloads = [
-  { name: 'Cliente Completo', size: '12 GB', link: '#', type: 'Torrent' },
-  { name: 'Cliente Completo', size: '12 GB', link: '#', type: 'Google Drive' },
-  { name: 'Cliente Completo', size: '12 GB', link: '#', type: 'Mega' },
-  { name: 'System Patch', size: '150 MB', link: '#', type: 'Direct' },
-  { name: 'Updater', size: '5 MB', link: '#', type: 'Direct' },
+  { 
+    name: 'Cliente Completo', 
+    nameKey: 'downloads.fileNames.fullClient',
+    size: '2.8 GB', 
+    link: 'https://drive.google.com/file/d/12kuIp38V9BqX4MfRVMA_Kq7S5_MCIAp0/view?usp=sharing', 
+    type: 'Google Drive',
+    icon: { 
+      class: 'w-6 h-6 text-yellow-500', 
+      path: 'M7.71 3.5L1.15 15l3.42 5.91L12 15l-4.29-7.5L7.71 3.5M12 15l3.42 5.91L22.85 15l-3.42-5.91L12 15m0 0L8.58 9.09 12 3.5l3.42 5.59L12 15z',
+      fill: true
+    }
+  },
+  { 
+    name: 'Cliente Completo', 
+    nameKey: 'downloads.fileNames.fullClient',
+    size: '2.8 GB', 
+    link: 'https://mega.nz/file/ANUhyLCa#WZGTUG1Vepl7raHnNNzYZE12oUZf_oAp0XWRB1uMVpk', 
+    type: 'Mega',
+    icon: { 
+      class: 'w-6 h-6 text-yellow-500', 
+      path: 'M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.895 8.104l-6.895 6.895-6.895-6.895L12 5.21l6.895 2.894z',
+      fill: true
+    }
+  },
+  { 
+    name: 'Cliente Completo', 
+    nameKey: 'downloads.fileNames.fullClient',
+    size: '2.8 GB', 
+    link: 'https://downloads.l2-titan.com/zip/Lineage2.zip', 
+    type: 'Direct', 
+    filename: 'Lineage2.zip',
+    icon: { 
+      class: 'w-6 h-6 text-yellow-500', 
+      path: 'M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4',
+      fill: false
+    }
+  },
+  { 
+    name: 'Launcher', 
+    nameKey: 'downloads.fileNames.launcher',
+    size: '74 MB', 
+    link: 'https://downloads.l2-titan.com/zip/L2TitanLauncher.zip', 
+    type: 'Direct', 
+    filename: 'L2TitanLauncher.exe',
+    icon: { 
+      class: 'w-6 h-6 text-yellow-500', 
+      path: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4',
+      fill: false
+    }
+  },
 ];
+
+// Función helper para determinar si es un enlace directo
+const isDirectDownload = (type: string) => type === 'Direct';
+
+// Función helper para obtener el nombre del archivo
+const getDownloadFilename = (file: typeof downloads[0]) => {
+  if (file.filename) return file.filename;
+  const url = new URL(file.link);
+  const pathname = url.pathname;
+  const filename = pathname.split('/').pop() || '';
+  return filename || `${file.name.replace(/\s+/g, '')}.${file.link.match(/\.(\w+)$/)?.[1] || 'exe'}`;
+};
+
 ---
 
 <Layout title="Descargas">
   <div class="container mx-auto px-4 py-24">
-    <h1 class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-600 mb-12 text-center font-display tracking-widest drop-shadow-lg">CENTRO DE DESCARGAS</h1>
+    <h1 class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-600 mb-12 text-center font-display tracking-widest drop-shadow-lg" data-i18n="downloads.title">CENTRO DE DESCARGAS</h1>
     
     <div class="max-w-5xl mx-auto bg-slate-900/80 backdrop-blur-md rounded-xl border border-yellow-500/20 overflow-hidden mb-16 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
       <div class="overflow-x-auto">
         <table class="w-full text-left">
           <thead class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-yellow-500 uppercase text-sm font-display tracking-wider border-b border-yellow-500/20">
             <tr>
-              <th class="px-8 py-6 font-bold">Archivo</th>
-              <th class="px-8 py-6 font-bold">Tamaño</th>
-              <th class="px-8 py-6 font-bold">Tipo</th>
-              <th class="px-8 py-6 font-bold text-right">Acción</th>
+              <th class="px-8 py-6 font-bold" data-i18n="downloads.table.file">Archivo</th>
+              <th class="px-8 py-6 font-bold" data-i18n="downloads.table.size">Tamaño</th>
+              <th class="px-8 py-6 font-bold" data-i18n="downloads.table.type">Tipo</th>
+              <th class="px-8 py-6 font-bold text-right" data-i18n="downloads.table.action">Acción</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-white/5">
             {downloads.map((file) => (
               <tr class="hover:bg-yellow-500/5 transition-colors group">
                 <td class="px-8 py-6 font-medium text-white group-hover:text-yellow-200 transition-colors flex items-center gap-3">
-                  <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                  {file.name}
+                  {file.icon.fill ? (
+                    <svg class={file.icon.class} fill="currentColor" viewBox="0 0 24 24">
+                      <path d={file.icon.path} />
+                    </svg>
+                  ) : (
+                    <svg class={file.icon.class} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={file.icon.path} />
+                    </svg>
+                  )}
+                  {file.nameKey ? <span data-i18n={file.nameKey}>{file.name}</span> : file.name}
                 </td>
                 <td class="px-8 py-6 text-gray-400 font-mono">{file.size}</td>
                 <td class="px-8 py-6 text-gray-400">{file.type}</td>
                 <td class="px-8 py-6 text-right">
-                  <a href={file.link} class="inline-block px-6 py-2 bg-yellow-600/20 hover:bg-yellow-500 text-yellow-500 hover:text-black border border-yellow-500/50 hover:border-yellow-500 text-sm font-bold rounded transition-all uppercase tracking-wider">
-                    Descargar
+                  <a 
+                    href={file.link} 
+                    download={isDirectDownload(file.type) ? getDownloadFilename(file) : undefined}
+                    target={file.link !== '#' ? '_blank' : undefined} 
+                    rel={file.link !== '#' ? 'noopener noreferrer' : undefined}
+                    class="inline-block px-6 py-2 bg-yellow-600/20 hover:bg-yellow-500 text-yellow-500 hover:text-black border border-yellow-500/50 hover:border-yellow-500 text-sm font-bold rounded transition-all uppercase tracking-wider"
+                  >
+                    <span data-i18n="downloads.download">Descargar</span>
                   </a>
                 </td>
               </tr>
@@ -49,7 +121,7 @@ const downloads = [
     <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
       <div class="bg-slate-900/50 p-8 rounded-xl border border-white/10 hover:border-yellow-500/30 transition-colors">
         <h3 class="text-2xl font-bold text-white mb-6 font-display flex items-center gap-2">
-          <span class="text-yellow-500">MINIMOS</span> REQUISITOS
+          <span class="text-yellow-500" data-i18n="downloads.requirements.minimum">MINIMOS</span> <span data-i18n="downloads.requirements.requirements">REQUISITOS</span>
         </h3>
         <ul class="space-y-3 text-gray-400 text-sm">
           <li class="flex justify-between border-b border-white/5 pb-2"><span>OS:</span> <span class="text-gray-200">Windows 7/8/10</span></li>
@@ -61,7 +133,7 @@ const downloads = [
       </div>
       <div class="bg-slate-900/50 p-8 rounded-xl border border-white/10 hover:border-yellow-500/30 transition-colors">
         <h3 class="text-2xl font-bold text-white mb-6 font-display flex items-center gap-2">
-          <span class="text-yellow-500">RECOMENDADOS</span> REQUISITOS
+          <span class="text-yellow-500" data-i18n="downloads.requirements.recommended">RECOMENDADOS</span> <span data-i18n="downloads.requirements.requirements">REQUISITOS</span>
         </h3>
         <ul class="space-y-3 text-gray-400 text-sm">
           <li class="flex justify-between border-b border-white/5 pb-2"><span>OS:</span> <span class="text-gray-200">Windows 10/11</span></li>
