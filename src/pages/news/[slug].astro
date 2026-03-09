@@ -19,12 +19,45 @@ const newsItem = getNewsBySlug(slug || '');
 if (!newsItem) {
   return Astro.redirect('/');
 }
+
+const articleImageURL = new URL(newsItem.image, Astro.site || 'https://l2-titan.com').toString();
+
+const articleLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": newsItem.title,
+  "description": newsItem.summary,
+  "image": articleImageURL,
+  "datePublished": newsItem.date,
+  "author": {
+    "@type": "Organization",
+    "name": "L2Titan",
+    "url": "https://l2-titan.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "L2Titan",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://l2-titan.com/favicon.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": new URL(`/news/${slug}`, Astro.site || 'https://l2-titan.com').toString()
+  }
+};
 ---
 
-<Layout title={newsItem.title}>
+<Layout
+  title={newsItem.title}
+  description={newsItem.summary}
+  ogType="article"
+  articlePublishedTime={newsItem.date}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
   <div class="min-h-screen bg-gradient-to-b from-black via-slate-900 to-black">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <!-- Botón Volver -->
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <a
         href="/"
         class="inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 mb-8 transition-colors group"
@@ -45,29 +78,29 @@ if (!newsItem) {
         <span data-i18n="news.backButton">Volver</span>
       </a>
 
-      <!-- Fecha -->
-      <div class="text-yellow-500 text-sm font-bold uppercase tracking-wider mb-4">
-        {newsItem.date}
-      </div>
+      <header>
+        <time datetime={newsItem.date} class="text-yellow-500 text-sm font-bold uppercase tracking-wider mb-4 block">
+          {newsItem.date}
+        </time>
+        <h1
+          class="text-4xl md:text-5xl font-bold text-white mb-6 font-display"
+          data-i18n={newsItem.titleKey}
+        >
+          {newsItem.title}
+        </h1>
+      </header>
 
-      <!-- Título -->
-      <h1
-        class="text-4xl md:text-5xl font-bold text-white mb-6 font-display"
-        data-i18n={newsItem.titleKey}
-      >
-        {newsItem.title}
-      </h1>
-
-      <!-- Imagen -->
       <div class="mb-8 rounded-xl overflow-hidden border border-white/10 shadow-2xl">
         <img
           src={newsItem.image}
-          alt={newsItem.title}
-          class="w-full h-96 object-cover"
+          alt={`${newsItem.title} - L2Titan Lineage 2 Interlude`}
+          width="896"
+          height="384"
+          loading="lazy"
+          class="w-full h-48 sm:h-72 md:h-96 object-cover"
         />
       </div>
 
-      <!-- Contenido -->
       <div class="prose prose-invert prose-lg max-w-none">
         <div class="text-gray-300 leading-relaxed space-y-4 text-lg">
           <p data-i18n={newsItem.contentKey}>
@@ -76,8 +109,7 @@ if (!newsItem) {
         </div>
       </div>
 
-      <!-- Botón Volver al final -->
-      <div class="mt-12 pt-8 border-t border-white/10">
+      <footer class="mt-12 pt-8 border-t border-white/10">
         <a
           href="/"
           class="inline-flex items-center gap-2 px-6 py-3 bg-yellow-600 hover:bg-yellow-500 text-white font-bold rounded-lg transition-all hover:scale-105 group"
@@ -97,8 +129,8 @@ if (!newsItem) {
           </svg>
           <span data-i18n="news.backButton">Volver</span>
         </a>
-      </div>
-    </div>
+      </footer>
+    </article>
   </div>
 </Layout>
 

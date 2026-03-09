@@ -1,0 +1,122 @@
+---
+import { eventSchedule } from '../../data/serverInfo';
+
+const eventColors: Record<string, string> = {
+  TvT: 'bg-red-500/20 text-red-400 border-red-500/30',
+  CTF: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+  DM: 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+};
+---
+
+<!-- Schedule -->
+<div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-8">
+  <h3 class="text-2xl font-bold text-yellow-500 mb-2 font-display" data-i18n="info.eventsTab.schedule">Horario Completo</h3>
+  <p class="text-gray-500 text-sm mb-4" data-i18n="info.eventsTab.scheduleNote">Cada hora hay un evento, 24/7</p>
+  <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-2">
+    {eventSchedule.map((ev) => (
+      <div class={`p-2 rounded border text-center ${eventColors[ev.type]}`}>
+        <div class="text-xs font-mono opacity-70">{ev.hour}</div>
+        <div class="font-bold text-sm">{ev.type}</div>
+      </div>
+    ))}
+  </div>
+  <div class="flex gap-4 mt-4 text-xs">
+    <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-red-500/40"></span> TvT</span>
+    <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-blue-500/40"></span> CTF</span>
+    <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-orange-500/40"></span> DM</span>
+  </div>
+</div>
+
+<!-- Commands -->
+<div class="bg-slate-900/50 p-4 rounded-xl border border-white/10 mb-8">
+  <div class="flex flex-wrap gap-3 items-center">
+    <span class="text-gray-400 text-sm font-bold uppercase tracking-wider" data-i18n="info.eventsTab.joinCommands">Comandos:</span>
+    <code class="bg-yellow-500/10 text-yellow-400 px-3 py-1 rounded font-mono text-sm">.join</code>
+    <span class="text-gray-500 text-sm" data-i18n="info.commandsTab.cmdJoin">Unirse al evento activo</span>
+    <span class="text-gray-700">|</span>
+    <code class="bg-yellow-500/10 text-yellow-400 px-3 py-1 rounded font-mono text-sm">.leave</code>
+    <span class="text-gray-500 text-sm" data-i18n="info.commandsTab.cmdLeave">Abandonar el evento</span>
+  </div>
+</div>
+
+<!-- Event Details -->
+<div class="grid md:grid-cols-2 gap-8">
+  <!-- TvT -->
+  <div class="bg-slate-900/50 p-6 rounded-xl border border-red-500/20">
+    <h3 class="text-xl font-bold text-red-400 mb-4 font-display" data-i18n="info.eventsTab.tvt">TvT (Team vs Team)</h3>
+    <div class="space-y-2 text-sm">
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.format">Formato</span><span class="text-gray-200" data-i18n="info.eventsTab.tvtFormat">Blue vs Red (aleatorio)</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.level">Nivel</span><span class="text-gray-200">1 - 81</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.players">Jugadores</span><span class="text-gray-200">2 - 50</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.duration">Duración</span><span class="text-gray-200" data-i18n="info.eventsTab.tvtDuration">5+5 min</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.location">Ubicación</span><span class="text-gray-200" data-i18n="info.eventsTab.tvtLocation">Aden Colosseum</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.potions">Pociones</span><span class="text-green-400" data-i18n="info.eventsTab.allowed">Permitidas</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.summons">Summons</span><span class="text-red-400" data-i18n="info.eventsTab.notAllowed">No permitidos</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.revive">Revive</span><span class="text-gray-200" data-i18n="info.eventsTab.tvtRevive">Full, 5s delay</span></div>
+      <div class="mt-3 p-3 bg-red-500/10 rounded border border-red-500/20">
+        <p class="text-xs font-bold text-red-400 uppercase tracking-wider mb-2" data-i18n="info.eventsTab.rewards">Recompensas</p>
+        <p class="text-gray-300 text-xs" data-i18n="info.eventsTab.tvtWin">Ganador: 25 Event Medals</p>
+        <p class="text-gray-300 text-xs" data-i18n="info.eventsTab.tvtLose">Perdedor: 15 Event Medals</p>
+        <p class="text-yellow-400 text-xs" data-i18n="info.eventsTab.tvtTop">Top Killer: +15 Event Medals</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTF -->
+  <div class="bg-slate-900/50 p-6 rounded-xl border border-blue-500/20">
+    <h3 class="text-xl font-bold text-blue-400 mb-4 font-display" data-i18n="info.eventsTab.ctf">CTF (Capture the Flag)</h3>
+    <div class="space-y-2 text-sm">
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.format">Formato</span><span class="text-gray-200" data-i18n="info.eventsTab.tvtFormat">Blue vs Red (aleatorio)</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.level">Nivel</span><span class="text-gray-200">1 - 80</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.players">Jugadores</span><span class="text-gray-200">2 - 50</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.duration">Duración</span><span class="text-gray-200" data-i18n="info.eventsTab.ctfDuration">5+5 min</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.npcRegister">NPC registro</span><span class="text-gray-200" data-i18n="info.eventsTab.appearsGiran">Giran</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.potions">Pociones</span><span class="text-red-400" data-i18n="info.eventsTab.notAllowed">No permitidas</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.summons">Summons</span><span class="text-red-400" data-i18n="info.eventsTab.notAllowed">No permitidos</span></div>
+      <div class="mt-3 p-3 bg-blue-500/10 rounded border border-blue-500/20">
+        <p class="text-xs font-bold text-blue-400 uppercase tracking-wider mb-2" data-i18n="info.eventsTab.rewards">Recompensas</p>
+        <p class="text-gray-300 text-xs" data-i18n="info.eventsTab.ctfWin">Ganador: 25 Event Medals</p>
+        <p class="text-gray-300 text-xs" data-i18n="info.eventsTab.ctfLose">Perdedor: 10 Event Medals</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DM -->
+  <div class="bg-slate-900/50 p-6 rounded-xl border border-orange-500/20">
+    <h3 class="text-xl font-bold text-orange-400 mb-4 font-display" data-i18n="info.eventsTab.dm">DM (Death Match)</h3>
+    <div class="space-y-2 text-sm">
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.format">Formato</span><span class="text-gray-200" data-i18n="info.eventsTab.dmFormat">Free-for-all</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.level">Nivel</span><span class="text-gray-200">1 - 81</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.players">Jugadores</span><span class="text-gray-200">2 - 50</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.duration">Duración</span><span class="text-gray-200" data-i18n="info.eventsTab.dmDuration">5+5 min</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.potions">Pociones</span><span class="text-green-400" data-i18n="info.eventsTab.allowed">Permitidas</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.healers">Healers</span><span class="text-green-400" data-i18n="info.eventsTab.allowed">Permitidos</span></div>
+      <div class="flex justify-between p-2 bg-black/30 rounded"><span class="text-gray-400" data-i18n="info.eventsTab.revive">Revive</span><span class="text-gray-200" data-i18n="info.eventsTab.dmRevive">Full, 10s delay</span></div>
+      <div class="mt-3 p-3 bg-orange-500/10 rounded border border-orange-500/20">
+        <p class="text-xs font-bold text-orange-400 uppercase tracking-wider mb-2" data-i18n="info.eventsTab.rewards">Recompensas</p>
+        <p class="text-gray-300 text-xs" data-i18n="info.eventsTab.dmKill">1 Event Medal por kill</p>
+        <p class="text-yellow-400 text-xs" data-i18n="info.eventsTab.dmTop">Top Killer: +15 Event Medals</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- General Rules -->
+<div class="mt-8 bg-slate-900/50 p-6 rounded-xl border border-white/10">
+  <h3 class="text-xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.eventsTab.generalRules">Reglas generales</h3>
+  <ul class="space-y-2">
+    <li class="flex items-center gap-2 text-gray-400 text-sm">
+      <svg class="w-4 h-4 text-yellow-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+      <span data-i18n="info.eventsTab.rule1">No se puede participar si estás en Olympiad u otro evento</span>
+    </li>
+    <li class="flex items-center gap-2 text-gray-400 text-sm">
+      <svg class="w-4 h-4 text-yellow-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+      <span data-i18n="info.eventsTab.rule2">Restricción de dual-box en eventos</span>
+    </li>
+    <li class="flex items-center gap-2 text-gray-400 text-sm">
+      <svg class="w-4 h-4 text-yellow-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+      <span data-i18n="info.eventsTab.rule3">Los eventos no se ejecutan durante asedios de castillo</span>
+    </li>
+  </ul>
+</div>

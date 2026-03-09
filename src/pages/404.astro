@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 - Page Not Found" noindex={true}>
+  <div class="min-h-screen bg-gradient-to-b from-black via-slate-900 to-black flex items-center justify-center px-4">
+    <div class="text-center max-w-lg">
+      <h1 class="text-8xl md:text-9xl font-bold text-yellow-500 font-display mb-4">404</h1>
+      <p class="text-2xl md:text-3xl text-white font-bold mb-4" data-i18n="error.notFoundTitle">
+        Página no encontrada
+      </p>
+      <p class="text-gray-400 text-lg mb-8" data-i18n="error.notFoundDescription">
+        La página que buscas no existe o ha sido movida.
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 px-8 py-3 bg-yellow-600 hover:bg-yellow-500 text-white font-bold rounded-lg transition-all hover:scale-105 group"
+      >
+        <svg
+          class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"
+          ></path>
+        </svg>
+        <span data-i18n="error.backHome">Volver al inicio</span>
+      </a>
+    </div>
+  </div>
+</Layout>

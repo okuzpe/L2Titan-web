@@ -1,0 +1,44 @@
+---
+import { commands } from '../../data/serverInfo';
+
+const categories = [
+  { key: 'vip', icon: '⭐' },
+  { key: 'instances', icon: '🏛️' },
+  { key: 'events', icon: '⚔️' },
+  { key: 'rankings', icon: '🏆' },
+  { key: 'vote', icon: '🗳️' },
+  { key: 'bank', icon: '💰' },
+  { key: 'marriage', icon: '💍' },
+];
+
+const catTranslationKeys: Record<string, string> = {
+  vip: 'catVip',
+  instances: 'catInstances',
+  events: 'catEvents',
+  rankings: 'catRankings',
+  vote: 'catVote',
+  teleport: 'catTeleport',
+  bank: 'catBank',
+  marriage: 'catMarriage',
+  utilities: 'catUtilities',
+};
+---
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {categories.map((cat) => (
+    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 hover:border-yellow-500/20 transition-colors">
+      <h3 class="text-lg font-bold text-yellow-500 mb-4 font-display flex items-center gap-2">
+        <span>{cat.icon}</span>
+        <span data-i18n={`info.commandsTab.${catTranslationKeys[cat.key]}`}>{cat.key}</span>
+      </h3>
+      <div class="space-y-2">
+        {commands[cat.key].map((cmd) => (
+          <div class="flex flex-col gap-1 p-2 bg-black/40 rounded border border-white/5">
+            <code class="text-yellow-400 font-mono text-sm">{cmd.cmd}</code>
+            <span class="text-gray-500 text-xs" data-i18n={`info.commandsTab.${cmd.key}`}>{cmd.key}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>

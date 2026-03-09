@@ -1,0 +1,113 @@
+---
+import { fortressList, castleList } from '../../data/serverInfo';
+---
+
+<div class="grid md:grid-cols-2 gap-8">
+  <!-- Fortresses -->
+  <div>
+    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-6">
+      <h3 class="text-2xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.siegesTab.fortresses">Fortalezas</h3>
+
+      <!-- Info -->
+      <div class="space-y-2 text-sm mb-6">
+        {[
+          { key: 'fortressCount', icon: '🏰' },
+          { key: 'fortressDuration', icon: '⏱️' },
+          { key: 'fortressClanLevel', icon: '⚔️' },
+          { key: 'fortressCost', icon: '💰' },
+        ].map((item) => (
+          <div class="flex items-center gap-3 p-2 bg-black/30 rounded">
+            <span class="shrink-0">{item.icon}</span>
+            <span class="text-gray-300" data-i18n={`info.siegesTab.${item.key}`}>{item.key}</span>
+          </div>
+        ))}
+      </div>
+
+      <!-- How it works -->
+      <h4 class="text-sm font-bold text-yellow-500 uppercase tracking-wider mb-3" data-i18n="info.siegesTab.howItWorks">Cómo funciona el asedio</h4>
+      <div class="space-y-2 mb-6">
+        {['siege1', 'siege2', 'siege3', 'siege4', 'siege5', 'siege6'].map((key, i) => (
+          <div class="flex items-start gap-3 text-sm">
+            <div class="w-6 h-6 rounded-full bg-yellow-500/20 flex items-center justify-center shrink-0 mt-0.5">
+              <span class="text-yellow-500 font-bold text-xs">{i + 1}</span>
+            </div>
+            <span class="text-gray-400" data-i18n={`info.siegesTab.${key}`}>{key}</span>
+          </div>
+        ))}
+      </div>
+
+      <!-- Rewards -->
+      <h4 class="text-sm font-bold text-yellow-500 uppercase tracking-wider mb-3" data-i18n="info.siegesTab.conquestRewards">Recompensas</h4>
+      <div class="space-y-2 mb-6">
+        {['reward1', 'reward2', 'reward3'].map((key) => (
+          <div class="flex items-center gap-2 p-2 bg-black/30 rounded text-sm">
+            <svg class="w-4 h-4 text-yellow-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-gray-300" data-i18n={`info.siegesTab.${key}`}>{key}</span>
+          </div>
+        ))}
+      </div>
+
+      <!-- Owner Benefits -->
+      <h4 class="text-sm font-bold text-yellow-500 uppercase tracking-wider mb-3" data-i18n="info.siegesTab.ownerBenefits">Beneficios del dueño</h4>
+      <div class="space-y-2">
+        {['benefit2', 'benefit3'].map((key) => (
+          <div class="flex items-center gap-2 p-2 bg-black/30 rounded text-sm">
+            <svg class="w-4 h-4 text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span class="text-gray-300" data-i18n={`info.siegesTab.${key}`}>{key}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Fortress List -->
+    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
+      <h4 class="text-sm font-bold text-yellow-500 uppercase tracking-wider mb-3" data-i18n="info.siegesTab.fortressList">Lista de Fortalezas (21)</h4>
+      <div class="flex flex-wrap gap-2">
+        {fortressList.map((fort) => (
+          <span class="px-3 py-1 bg-black/40 rounded border border-white/10 text-gray-300 text-xs">{fort}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Castle Sieges -->
+  <div>
+    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-6">
+      <h3 class="text-2xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.siegesTab.castleSieges">Asedios de Castillo</h3>
+      <div class="space-y-2 text-sm">
+        {[
+          { label: 'castleDuration', val: 'castleDurationVal' },
+          { label: 'castleFlags', val: 'castleFlagsVal' },
+          { label: 'castleClanLevel', val: 'castleClanLevelVal' },
+          { label: 'castleAttackerRespawn', val: 'castleAttackerRespawnVal' },
+          { label: 'castleDefenderRespawn', val: 'castleDefenderRespawnVal' },
+          { label: 'castleTeleport', val: 'castleTeleportVal' },
+        ].map((item) => (
+          <div class="flex justify-between p-3 bg-black/40 rounded border border-white/5">
+            <span class="text-gray-400" data-i18n={`info.siegesTab.${item.label}`}>{item.label}</span>
+            <span class="text-gray-200 font-medium" data-i18n={`info.siegesTab.${item.val}`}>{item.val}</span>
+          </div>
+        ))}
+      </div>
+
+      <!-- Castle Conquest Rewards -->
+      <h4 class="text-sm font-bold text-yellow-500 uppercase tracking-wider mb-3 mt-6" data-i18n="info.siegesTab.castleConquestRewards">Recompensas por conquista</h4>
+      <div class="space-y-2">
+        <div class="flex items-center gap-2 p-2 bg-black/30 rounded text-sm">
+          <svg class="w-4 h-4 text-yellow-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-300" data-i18n="info.siegesTab.castleReward1">150 Titan Coins para el líder del clan conquistador</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Castle List -->
+    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
+      <h4 class="text-sm font-bold text-yellow-500 uppercase tracking-wider mb-3" data-i18n="info.siegesTab.castleList">Castillos</h4>
+      <div class="flex flex-wrap gap-2">
+        {castleList.map((castle) => (
+          <span class="px-3 py-1 bg-black/40 rounded border border-yellow-500/20 text-yellow-400 text-xs font-medium">{castle}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>

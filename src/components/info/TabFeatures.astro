@@ -1,0 +1,110 @@
+---
+---
+
+<!-- Custom NPCs -->
+<div class="mb-8">
+  <h3 class="text-2xl font-bold text-yellow-500 mb-6 font-display" data-i18n="info.featuresTab.customNpcs">NPCs Custom</h3>
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Buffer NPC -->
+    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
+      <h4 class="text-lg font-bold text-yellow-400 mb-3 font-display" data-i18n="info.featuresTab.bufferNpc">Buffer NPC</h4>
+      <ul class="space-y-2 text-sm text-gray-400">
+        {['bufferDesc1', 'bufferDesc2', 'bufferDesc3', 'bufferDesc4', 'bufferDesc5', 'bufferDesc6'].map((key) => (
+          <li class="flex items-start gap-2">
+            <span class="text-yellow-500 mt-1 shrink-0">•</span>
+            <span data-i18n={`info.featuresTab.${key}`}>{key}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Substack Manager -->
+    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
+      <h4 class="text-lg font-bold text-yellow-400 mb-3 font-display" data-i18n="info.featuresTab.substackManager">Substack Manager</h4>
+      <ul class="space-y-2 text-sm text-gray-400">
+        {['substackDesc1', 'substackDesc2', 'substackDesc3', 'substackDesc4'].map((key) => (
+          <li class="flex items-start gap-2">
+            <span class="text-yellow-500 mt-1 shrink-0">•</span>
+            <span data-i18n={`info.featuresTab.${key}`}>{key}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Raidboss Announcement -->
+    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 md:col-span-2 lg:col-span-1">
+      <h4 class="text-lg font-bold text-yellow-400 mb-3 font-display" data-i18n="info.featuresTab.raidbossInfo">Raidboss Announcement</h4>
+      <ul class="space-y-2 text-sm text-gray-400">
+        {['raidbossDesc1', 'raidbossDesc2'].map((key) => (
+          <li class="flex items-start gap-2">
+            <span class="text-yellow-500 mt-1 shrink-0">•</span>
+            <span data-i18n={`info.featuresTab.${key}`}>{key}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- PvP System -->
+<div class="grid md:grid-cols-2 gap-8 mb-8">
+  <div class="bg-slate-900/50 p-6 rounded-xl border border-green-500/20">
+    <h3 class="text-xl font-bold text-green-400 mb-4 font-display" data-i18n="info.featuresTab.pvpRewards">Recompensas PvP</h3>
+    <div class="space-y-2 text-sm">
+      <div class="p-3 bg-black/40 rounded border border-white/5 text-gray-300" data-i18n="info.featuresTab.pvpReward1">1 PVP Coin por cada PvP kill</div>
+      <div class="p-3 bg-black/40 rounded border border-white/5 text-gray-300" data-i18n="info.featuresTab.pvpReward2">Sistema anti-farm activo: verifica party, IP, clan y alianza</div>
+    </div>
+  </div>
+
+  <div class="bg-slate-900/50 p-6 rounded-xl border border-red-500/20">
+    <h3 class="text-xl font-bold text-red-400 mb-4 font-display" data-i18n="info.featuresTab.pkPenalties">Penalidades PK</h3>
+    <p class="text-gray-400 text-sm mb-3" data-i18n="info.featuresTab.pkDesc1">No se dropean items al morir en PvP normal</p>
+    <p class="text-red-400 text-sm font-bold mb-2" data-i18n="info.featuresTab.pkDesc2">Solo los PKs (con Karma) dropean items:</p>
+    <div class="space-y-1 text-sm">
+      {['pkLimit', 'pkChanceGeneral', 'pkChanceNormal', 'pkChanceEquip', 'pkChanceWeapon', 'pkMinKills'].map((key) => (
+        <div class="flex items-center gap-2 p-2 bg-black/30 rounded">
+          <span class="text-red-400 shrink-0">•</span>
+          <span class="text-gray-400" data-i18n={`info.featuresTab.${key}`}>{key}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<!-- Olympiad -->
+<div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-8">
+  <h3 class="text-2xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.featuresTab.olympiad">Olympiad</h3>
+  <div class="grid sm:grid-cols-2 gap-2 text-sm">
+    {[
+      { label: 'olyStartTime', val: 'olyStartTimeVal' },
+      { label: 'olyDuration', val: 'olyDurationVal' },
+      { label: 'olyPeriod', val: 'olyPeriodVal' },
+      { label: 'olyClassed', val: 'olyClassedVal' },
+      { label: 'olyNonClassed', val: 'olyNonClassedVal' },
+      { label: 'olyReward', val: 'olyRewardVal' },
+      { label: 'olyMaxEnchant', val: 'olyMaxEnchantVal' },
+      { label: 'olyAugment', val: 'olyAugmentVal' },
+      { label: 'olyRestricted', val: 'olyRestrictedVal' },
+      { label: 'olyCountdown', val: 'olyCountdownVal' },
+      { label: 'olySkills', val: 'olySkillsVal' },
+    ].map((item) => (
+      <div class="flex justify-between p-3 bg-black/40 rounded border border-white/5">
+        <span class="text-gray-400" data-i18n={`info.featuresTab.${item.label}`}>{item.label}</span>
+        <span class="text-gray-200 font-medium text-right" data-i18n={`info.featuresTab.${item.val}`}>{item.val}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<!-- Other Features -->
+<div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
+  <h3 class="text-xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.featuresTab.otherFeatures">Otras Features</h3>
+  <div class="grid sm:grid-cols-2 gap-3">
+    {['autoLearn', 'subclassNoQuest', 'offlineShop', 'antiFarm', 'weight', 'shiftClick'].map((key) => (
+      <div class="flex items-start gap-2 p-3 bg-black/40 rounded border border-white/5 text-sm">
+        <svg class="w-4 h-4 text-green-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span class="text-gray-300" data-i18n={`info.featuresTab.${key}`}>{key}</span>
+      </div>
+    ))}
+  </div>
+</div>

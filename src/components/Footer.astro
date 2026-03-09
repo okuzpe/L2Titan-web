@@ -38,17 +38,18 @@ const year = new Date().getFullYear();
           <img 
             src="https://l2topzone.com/vb/l2topzone-Lineage2-vote-banner-bottom-right-2.gif" 
             alt="l2topzone.com" 
+            width="140"
+            height="120"
             class="border-0"
             loading="lazy"
           />
         </a>
         
         <!-- Banner L2Network -->
-        <a 
-          href="https://l2network.eu/index.php?a=in&u=l2-titan" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          class="inline-block hover:opacity-80 transition-opacity"
+        <button
+          id="l2network-btn"
+          type="button"
+          class="inline-block hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-0 p-0"
           title="L2Network"
         >
           <img 
@@ -58,13 +59,175 @@ const year = new Date().getFullYear();
             style="width: 145px; height: 122px;"
             loading="lazy"
           />
+        </button>
+
+      </div>
+      <!-- Banner Top100Arena + L2JBrasil -->
+      <div class="flex flex-wrap justify-center items-center gap-4 mt-4">
+        <button
+          id="top100arena-btn"
+          type="button"
+          class="inline-block hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-0 p-0"
+          title="Top100Arena"
+        >
+          <img src="https://www.top100arena.com/rankbadge/102116" alt="Lineage 2 private server" loading="lazy" />
+        </button>
+
+        <a
+          id="top-l2jbrasil-legacy"
+          href="https://top.l2jbrasil.com/index.php?a=in&u=Titan"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block hover:opacity-80 transition-opacity"
+          title="Top L2JBrasil de Servidores de Lineage2"
+        >
+          <img
+            src="https://top.l2jbrasil.com/button.php?u=Titan"
+            alt="Top L2JBrasil de Servidores de Lineage2"
+            class="border-0"
+            loading="lazy"
+          />
         </a>
       </div>
     </div>
 
+    <!-- Top100Arena Vote Modal -->
+    <div id="top100arena-modal" class="fixed inset-0 z-100 hidden items-center justify-center">
+      <div id="top100arena-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+      <div class="relative bg-slate-900 border border-yellow-500/30 rounded-xl shadow-2xl shadow-black/50 p-6 w-full max-w-sm mx-4">
+        <button id="top100arena-close" type="button" class="absolute top-3 right-3 text-gray-500 hover:text-white transition-colors" aria-label="Close">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+        <div class="text-center mb-5">
+          <img src="https://www.top100arena.com/rankbadge/102116" alt="Top100Arena" width="200" height="40" class="mx-auto mb-3" />
+          <h4 class="text-lg font-bold text-yellow-500 font-display uppercase tracking-wider">Top100Arena</h4>
+        </div>
+        <form id="top100arena-form">
+          <label for="top100arena-name" class="block text-sm text-gray-400 mb-2" data-i18n="footer.enterCharName">Enter your character name</label>
+          <input
+            id="top100arena-name"
+            type="text"
+            required
+            maxlength="25"
+            placeholder="Character name"
+            data-i18n="footer.characterName"
+            class="w-full px-4 py-3 bg-black/60 border border-white/10 rounded-lg text-sm text-gray-200 placeholder-gray-500 focus:border-yellow-500/50 focus:outline-none transition-colors mb-4"
+          />
+          <button
+            type="submit"
+            class="w-full px-4 py-3 bg-yellow-600/20 hover:bg-yellow-500 text-yellow-500 hover:text-black border border-yellow-500/50 hover:border-yellow-500 text-sm font-bold rounded-lg transition-all uppercase tracking-wider"
+          >
+            Vote
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- L2Network Vote Modal -->
+    <div id="l2network-modal" class="fixed inset-0 z-100 hidden items-center justify-center">
+      <div id="l2network-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+      <div class="relative bg-slate-900 border border-yellow-500/30 rounded-xl shadow-2xl shadow-black/50 p-6 w-full max-w-sm mx-4">
+        <button id="l2network-close" type="button" class="absolute top-3 right-3 text-gray-500 hover:text-white transition-colors" aria-label="Close">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+        <div class="text-center mb-5">
+          <img src="https://l2network.eu/images/sidebanner.png" alt="L2Network" style="width: 145px; height: 122px;" class="mx-auto mb-3" />
+          <h4 class="text-lg font-bold text-yellow-500 font-display uppercase tracking-wider">L2Network</h4>
+        </div>
+        <form id="l2network-form">
+          <label for="l2network-name" class="block text-sm text-gray-400 mb-2" data-i18n="footer.enterCharName">Enter your character name</label>
+          <input
+            id="l2network-name"
+            type="text"
+            required
+            maxlength="25"
+            placeholder="Character name"
+            data-i18n="footer.characterName"
+            class="w-full px-4 py-3 bg-black/60 border border-white/10 rounded-lg text-sm text-gray-200 placeholder-gray-500 focus:border-yellow-500/50 focus:outline-none transition-colors mb-4"
+          />
+          <button
+            type="submit"
+            class="w-full px-4 py-3 bg-yellow-600/20 hover:bg-yellow-500 text-yellow-500 hover:text-black border border-yellow-500/50 hover:border-yellow-500 text-sm font-bold rounded-lg transition-all uppercase tracking-wider"
+          >
+            Vote
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script is:inline>
+      (function() {
+        function initVoteModal(prefix, baseUrl, paramBuilder) {
+          var btn = document.getElementById(prefix + '-btn');
+          var modal = document.getElementById(prefix + '-modal');
+          var backdrop = document.getElementById(prefix + '-backdrop');
+          var closeBtn = document.getElementById(prefix + '-close');
+          var form = document.getElementById(prefix + '-form');
+          var nameInput = document.getElementById(prefix + '-name');
+          if (!btn || !modal || !form || !nameInput) return;
+
+          function openModal() {
+            nameInput.value = '';
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            nameInput.focus();
+          }
+
+          function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+          }
+
+          btn.addEventListener('click', openModal);
+          backdrop.addEventListener('click', closeModal);
+          closeBtn.addEventListener('click', closeModal);
+
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+              closeModal();
+            }
+          });
+
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var name = nameInput.value.trim();
+            if (!name) return;
+            window.open(baseUrl + paramBuilder(name), '_blank');
+            setTimeout(closeModal, 100);
+          });
+        }
+
+        function init() {
+          initVoteModal('top100arena', 'https://www.top100arena.com/listing/102116/vote?incentive=', function(n) { return encodeURIComponent(n); });
+          initVoteModal('l2network', 'https://l2network.eu/index.php?a=in&u=l2-titan&id=', function(n) { return encodeURIComponent(n); });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init);
+        } else {
+          init();
+        }
+      })();
+    </script>
+
+    <img
+      src="https://top.l2jbrasil.com/pixel.php?u=Titan"
+      alt=""
+      width="1"
+      height="1"
+      class="pointer-events-none opacity-0 select-none"
+      loading="lazy"
+      decoding="async"
+      aria-hidden="true"
+    />
+
     <!-- Copyright y Discord -->
     <div class="flex flex-col md:flex-row justify-between items-center">
-      <div class="text-gray-400 text-sm">&copy; 2025 L2Titan.com.</div>
+      <div class="text-gray-400 text-sm">&copy; {year} L2Titan.com.</div>
       <div class="flex space-x-6 mt-4 md:mt-0">
         <a href="https://discord.gg/GunamUdGaQ" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-yellow-500 transition-colors">
           <span class="sr-only">Discord</span>

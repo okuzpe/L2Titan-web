@@ -1,0 +1,169 @@
+---
+import { weaponCrystalScrolls, armorCrystalScrolls, eventMedalShop, shirts, raidTokenDrops } from '../../data/serverInfo';
+---
+
+<!-- Currencies -->
+<div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-8">
+  <h3 class="text-2xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.economyTab.currencies">Monedas del Servidor</h3>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+    {[
+      { name: 'pvpCoin', source: 'pvpCoinSource', icon: '⚔️', color: 'border-red-500/20' },
+      { name: 'eventMedal', source: 'eventMedalSource', icon: '🏅', color: 'border-blue-500/20' },
+      { name: 'raidToken', source: 'raidTokenSource', icon: '💀', color: 'border-purple-500/20' },
+      { name: 'voteCoin', source: 'voteCoinSource', icon: '🗳️', color: 'border-green-500/20' },
+      { name: 'titanCoin', source: 'titanCoinSource', icon: '🏰', color: 'border-yellow-500/20' },
+      { name: 'vipToken', source: 'vipTokenSource', icon: '⭐', color: 'border-amber-500/20' },
+    ].map((c) => (
+      <div class={`p-4 bg-black/40 rounded border ${c.color}`}>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-lg">{c.icon}</span>
+          <span class="text-yellow-400 font-bold text-sm" data-i18n={`info.economyTab.${c.name}`}>{c.name}</span>
+        </div>
+        <p class="text-gray-500 text-xs" data-i18n={`info.economyTab.${c.source}`}>{c.source}</p>
+      </div>
+    ))}
+  </div>
+</div>
+
+<!-- Crystal Scroll Shop + Raid Tokens -->
+<div class="grid md:grid-cols-2 gap-8 mb-8">
+  <!-- Crystal Scrolls -->
+  <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
+    <h3 class="text-xl font-bold text-yellow-500 mb-2 font-display" data-i18n="info.economyTab.crystalScrollShop">Tienda de Crystal Scrolls</h3>
+    <p class="text-gray-500 text-xs mb-4" data-i18n="info.economyTab.crystalScrollNote">100% éxito al encantar. Requiere Vote Coins + Raid Tokens + Adena.</p>
+
+    <!-- Weapon -->
+    <h4 class="text-sm font-bold text-gray-300 mb-2 uppercase tracking-wider" data-i18n="info.economyTab.weaponScrolls">Crystal Scrolls de Arma</h4>
+    <div class="overflow-x-auto mb-4">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="text-gray-500 text-xs uppercase">
+            <th class="text-left p-2" data-i18n="info.economyTab.grade">Grade</th>
+            <th class="text-right p-2">Vote Coins</th>
+            <th class="text-right p-2">Raid Tokens</th>
+            <th class="text-right p-2">Adena</th>
+          </tr>
+        </thead>
+        <tbody>
+          {weaponCrystalScrolls.map((item, i) => (
+            <tr class={i % 2 === 0 ? 'bg-black/20' : 'bg-black/40'}>
+              <td class="p-2 text-yellow-400 font-bold">{item.grade}</td>
+              <td class="p-2 text-right text-gray-300">{item.voteCoins}</td>
+              <td class="p-2 text-right text-gray-300">{item.raidTokens}</td>
+              <td class="p-2 text-right text-gray-300">{item.adena}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Armor -->
+    <h4 class="text-sm font-bold text-gray-300 mb-2 uppercase tracking-wider" data-i18n="info.economyTab.armorScrolls">Crystal Scrolls de Armadura</h4>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="text-gray-500 text-xs uppercase">
+            <th class="text-left p-2" data-i18n="info.economyTab.grade">Grade</th>
+            <th class="text-right p-2">Vote Coins</th>
+            <th class="text-right p-2">Raid Tokens</th>
+            <th class="text-right p-2">Adena</th>
+          </tr>
+        </thead>
+        <tbody>
+          {armorCrystalScrolls.map((item, i) => (
+            <tr class={i % 2 === 0 ? 'bg-black/20' : 'bg-black/40'}>
+              <td class="p-2 text-yellow-400 font-bold">{item.grade}</td>
+              <td class="p-2 text-right text-gray-300">{item.voteCoins}</td>
+              <td class="p-2 text-right text-gray-300">{item.raidTokens}</td>
+              <td class="p-2 text-right text-gray-300">{item.adena}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Raid Tokens -->
+  <div class="space-y-6">
+    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
+      <h3 class="text-xl font-bold text-yellow-500 mb-2 font-display" data-i18n="info.economyTab.raidTokens">Raid Tokens por Boss</h3>
+      <p class="text-gray-500 text-xs mb-4" data-i18n="info.economyTab.raidTokensDesc">Todos los Raid Bosses y Grand Bosses dropean Raid Tokens.</p>
+      <div class="space-y-2">
+        {raidTokenDrops.map((rb) => (
+          <div class="flex justify-between items-center p-2 bg-black/30 rounded text-sm">
+            <span class="text-gray-300" data-i18n={`info.economyTab.${rb.key}`}>{rb.key}</span>
+            <span class={`font-bold font-mono ${rb.tokens >= 50 ? 'text-yellow-400' : rb.tokens >= 10 ? 'text-blue-400' : 'text-gray-400'}`}>{rb.tokens}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Special Shop -->
+    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
+      <h3 class="text-xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.economyTab.specialShop">Tienda Especial</h3>
+
+      <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2" data-i18n="info.economyTab.withTitanCoins">Con Titan Coins</h4>
+      <div class="p-2 bg-black/30 rounded text-sm mb-4">
+        <span class="text-gray-300">VIP Token</span>
+        <span class="text-yellow-400 font-bold float-right">20 Titan Coins</span>
+      </div>
+
+      <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2" data-i18n="info.economyTab.withEventMedals">Con Event Medals</h4>
+      <div class="space-y-1">
+        {eventMedalShop.map((item) => (
+          <div class="flex justify-between p-2 bg-black/30 rounded text-sm">
+            <span class="text-gray-300" data-i18n={`info.economyTab.${item.key}`}>{item.key}</span>
+            <span class="text-blue-400 font-bold">{item.cost.toLocaleString()}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Shirts System -->
+<div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-8">
+  <h3 class="text-xl font-bold text-yellow-500 mb-2 font-display" data-i18n="info.economyTab.shirtsTitle">Sistema de Shirts (Camisas)</h3>
+  <p class="text-gray-500 text-xs mb-4" data-i18n="info.economyTab.shirtsDesc">Items equipables que dan bonificaciones progresivas de P.Atk, M.Atk y PvP Damage.</p>
+  <div class="overflow-x-auto">
+    <table class="w-full text-xs md:text-sm min-w-[500px]">
+      <thead>
+        <tr class="text-gray-500 text-xs uppercase border-b border-white/10">
+          <th class="text-left p-2 md:p-3">Lvl</th>
+          <th class="text-center p-2 md:p-3">P.Atk</th>
+          <th class="text-center p-2 md:p-3">M.Atk</th>
+          <th class="text-center p-2 md:p-3">PvP Dmg</th>
+          <th class="text-right p-2 md:p-3">PVP Coins</th>
+          <th class="text-right p-2 md:p-3">Adena</th>
+          <th class="text-center p-2 md:p-3">+Prev</th>
+        </tr>
+      </thead>
+      <tbody>
+        {shirts.map((shirt, i) => (
+          <tr class={`${i % 2 === 0 ? 'bg-black/20' : 'bg-black/40'} hover:bg-yellow-500/5 transition-colors`}>
+            <td class="p-2 md:p-3 text-yellow-400 font-bold">{shirt.level}</td>
+            <td class="p-2 md:p-3 text-center text-green-400">+{shirt.pAtk}%</td>
+            <td class="p-2 md:p-3 text-center text-blue-400">+{shirt.mAtk}%</td>
+            <td class="p-2 md:p-3 text-center text-red-400">+{shirt.pvp}%</td>
+            <td class="p-2 md:p-3 text-right text-gray-300">{shirt.pvpCoins}</td>
+            <td class="p-2 md:p-3 text-right text-gray-300">{shirt.adena}</td>
+            <td class="p-2 md:p-3 text-center">{shirt.requiresPrev ? <span class="text-yellow-500">✓</span> : <span class="text-gray-600">—</span>}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Economy Flow -->
+<div class="bg-gradient-to-r from-yellow-900/20 to-transparent p-6 rounded-xl border-l-4 border-yellow-500">
+  <h3 class="text-xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.economyTab.flowTitle">Flujo Económico</h3>
+  <div class="space-y-2">
+    {['flow1', 'flow2', 'flow3', 'flow4', 'flow5'].map((key) => (
+      <div class="flex items-center gap-2 text-sm">
+        <span class="text-yellow-500">→</span>
+        <span class="text-gray-300" data-i18n={`info.economyTab.${key}`}>{key}</span>
+      </div>
+    ))}
+  </div>
+</div>

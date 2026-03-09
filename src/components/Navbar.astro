@@ -8,11 +8,12 @@
           L2TITAN
         </a>
       </div>
+      <!-- Desktop nav -->
       <div class="hidden md:block">
         <div class="ml-10 flex items-baseline space-x-4">
           <a href="/" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-all" data-i18n="navbar.home">Home</a>
           <a href="/downloads" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-all" data-i18n="navbar.downloads">Downloads</a>
-          <a href="/rates" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-all" data-i18n="navbar.rates">Rates</a>
+          <a href="/rates" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-all" data-i18n="navbar.info">Info</a>
           <a href="#vote-section" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-all" data-i18n="navbar.vote">Vote</a>
           <a href="https://discord.gg/GunamUdGaQ" target="_blank" rel="noopener noreferrer" class="text-yellow-500 hover:text-yellow-400 hover:bg-yellow-500/10 px-3 py-2 rounded-md text-sm font-medium transition-all flex items-center gap-2">
             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -28,51 +29,191 @@
               <span id="current-language" class="uppercase">EN</span>
             </button>
           </div>
+          <div class="flex items-center gap-3 px-3 py-2 rounded-md border border-white/5 bg-white/5">
+            <div class="flex items-center gap-1.5">
+              <span id="status-game-dot" class="inline-block w-2 h-2 rounded-full bg-gray-500 transition-colors"></span>
+              <span class="text-xs text-gray-400 uppercase tracking-wider" data-i18n="status.game">Game</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span id="status-login-dot" class="inline-block w-2 h-2 rounded-full bg-gray-500 transition-colors"></span>
+              <span class="text-xs text-gray-400 uppercase tracking-wider" data-i18n="status.login">Login</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile hamburger button -->
+      <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white p-2 rounded-md transition-colors" aria-label="Toggle menu" aria-expanded="false">
+        <svg id="hamburger-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="close-icon" class="h-6 w-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile menu panel -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-white/10">
+    <div class="px-4 py-3 space-y-1">
+      <a href="/" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-md text-base font-medium transition-all" data-i18n="navbar.home">Home</a>
+      <a href="/downloads" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-md text-base font-medium transition-all" data-i18n="navbar.downloads">Downloads</a>
+      <a href="/rates" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-md text-base font-medium transition-all" data-i18n="navbar.info">Info</a>
+      <a href="#vote-section" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-md text-base font-medium transition-all" data-i18n="navbar.vote">Vote</a>
+      <a href="https://discord.gg/GunamUdGaQ" target="_blank" rel="noopener noreferrer" class="mobile-nav-link text-yellow-500 hover:text-yellow-400 hover:bg-yellow-500/10 px-3 py-3 rounded-md text-base font-medium transition-all flex items-center gap-2">
+        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.5328-9.748-2.312-13.7083a.0765.0765 0 00-.0303-.0277zM6.4544 14.7698c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9355-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.9281 2.451-2.152 2.451zm6.585 0c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9354-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.928 2.451-2.152 2.451z"></path>
+        </svg>
+        <span data-i18n="navbar.discord">Discord</span>
+      </a>
+      <div class="flex items-center justify-between px-3 py-3 border-t border-white/10 mt-2 pt-3">
+        <button id="language-toggle-mobile" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-all flex items-center gap-2" aria-label="Change language">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+          </svg>
+          <span id="current-language-mobile" class="uppercase">EN</span>
+        </button>
+        <div class="flex items-center gap-3 px-3 py-2 rounded-md border border-white/5 bg-white/5">
+          <div class="flex items-center gap-1.5">
+            <span id="status-game-dot-mobile" class="inline-block w-2 h-2 rounded-full bg-gray-500 transition-colors"></span>
+            <span class="text-xs text-gray-400 uppercase tracking-wider" data-i18n="status.game">Game</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span id="status-login-dot-mobile" class="inline-block w-2 h-2 rounded-full bg-gray-500 transition-colors"></span>
+            <span class="text-xs text-gray-400 uppercase tracking-wider" data-i18n="status.login">Login</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </nav>
 
+<style>
+  @keyframes status-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .status-online {
+    background-color: #4ade80;
+    box-shadow: 0 0 6px rgba(74, 222, 128, 0.6);
+    animation: status-pulse 2s ease-in-out infinite;
+  }
+  .status-offline {
+    background-color: #f87171;
+    box-shadow: 0 0 6px rgba(248, 113, 113, 0.6);
+  }
+</style>
+
 <script is:inline>
   (function() {
-    // Initialize language toggle using unified i18n system
-    // i18n is initialized in Layout.astro head, so it's available when this executes
-    function initLanguageToggle() {
-      if (!window.i18n) {
-        // Only initialize if i18n system is available (should always be the case)
-        return;
-      }
+    function initMobileMenu() {
+      var btn = document.getElementById('mobile-menu-btn');
+      var menu = document.getElementById('mobile-menu');
+      var hamburgerIcon = document.getElementById('hamburger-icon');
+      var closeIcon = document.getElementById('close-icon');
+      if (!btn || !menu || !hamburgerIcon || !closeIcon) return;
 
-      // Set initial language indicator (updateTranslations in Layout already does this, but ensure it's set)
-      const langElement = document.getElementById('current-language');
-      if (langElement) {
-        const currentLang = window.i18n.getLanguage();
-        langElement.textContent = currentLang.toUpperCase();
-      }
+      btn.addEventListener('click', function() {
+        var isOpen = !menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        hamburgerIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
 
-      // Setup language toggle button
-      const toggle = document.getElementById('language-toggle');
-      if (toggle) {
-        toggle.addEventListener('click', () => {
-          const current = window.i18n.getLanguage();
-          const newLang = current === 'es' ? 'en' : 'es';
-          window.i18n.setLanguage(newLang);
-          // updateTranslations already updates the indicator via languagechange event
+      var mobileLinks = menu.querySelectorAll('.mobile-nav-link');
+      mobileLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          menu.classList.add('hidden');
+          hamburgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
         });
-      }
-
-      // Listen for language change events (from unified system)
-      window.addEventListener('languagechange', function(event) {
-        const langElement = document.getElementById('current-language');
-        if (langElement && window.i18n) {
-          const currentLang = window.i18n.getLanguage();
-          langElement.textContent = currentLang.toUpperCase();
-        }
       });
     }
 
-    // Initialize when DOM is ready (i18n is already initialized in head)
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMobileMenu);
+    } else {
+      initMobileMenu();
+    }
+  })();
+</script>
+
+<script is:inline>
+  (function() {
+    var dotBase = 'inline-block w-2 h-2 rounded-full transition-colors ';
+
+    function applyStatus(id, statusClass) {
+      var el = document.getElementById(id);
+      if (el) el.className = dotBase + statusClass;
+    }
+
+    function fetchServerStatus() {
+      var gameDot = document.getElementById('status-game-dot');
+      var loginDot = document.getElementById('status-login-dot');
+      if (!gameDot || !loginDot) return;
+
+      fetch('/status')
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          var gameClass = data.game === 'online' ? 'status-online' : 'status-offline';
+          var loginClass = data.login === 'online' ? 'status-online' : 'status-offline';
+          applyStatus('status-game-dot', gameClass);
+          applyStatus('status-game-dot-mobile', gameClass);
+          applyStatus('status-login-dot', loginClass);
+          applyStatus('status-login-dot-mobile', loginClass);
+        })
+        .catch(function() {
+          var fallback = 'bg-gray-500';
+          applyStatus('status-game-dot', fallback);
+          applyStatus('status-game-dot-mobile', fallback);
+          applyStatus('status-login-dot', fallback);
+          applyStatus('status-login-dot-mobile', fallback);
+        });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fetchServerStatus);
+    } else {
+      fetchServerStatus();
+    }
+    setInterval(fetchServerStatus, 60000);
+  })();
+</script>
+
+<script is:inline>
+  (function() {
+    function initLanguageToggle() {
+      if (!window.i18n) return;
+
+      var langElements = ['current-language', 'current-language-mobile'];
+      var currentLang = window.i18n.getLanguage();
+      langElements.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = currentLang.toUpperCase();
+      });
+
+      function toggleLanguage() {
+        var current = window.i18n.getLanguage();
+        var newLang = current === 'es' ? 'en' : 'es';
+        window.i18n.setLanguage(newLang);
+      }
+
+      var toggleDesktop = document.getElementById('language-toggle');
+      var toggleMobile = document.getElementById('language-toggle-mobile');
+      if (toggleDesktop) toggleDesktop.addEventListener('click', toggleLanguage);
+      if (toggleMobile) toggleMobile.addEventListener('click', toggleLanguage);
+
+      window.addEventListener('languagechange', function() {
+        if (!window.i18n) return;
+        var lang = window.i18n.getLanguage().toUpperCase();
+        langElements.forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el) el.textContent = lang;
+        });
+      });
+    }
+
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initLanguageToggle);
     } else {

@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Disallow: /_astro/
+Disallow: /api/
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+Sitemap: https://l2-titan.com/sitemap-index.xml
+
+Host: https://l2-titan.com

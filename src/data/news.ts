@@ -10,16 +10,6 @@ export interface NewsItem {
   image: string;
 }
 
-// Función para formatear fecha actual en formato corto (ej: "15 ene 2026")
-function getCurrentDateFormatted(): string {
-  const now = new Date();
-  const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
-  const day = now.getDate();
-  const month = months[now.getMonth()];
-  const year = now.getFullYear();
-  return `${day} ${month} ${year}`;
-}
-
 export const news: NewsItem[] = [
   {
     slug: 'gran-opening-2026',
@@ -36,7 +26,7 @@ export const news: NewsItem[] = [
     slug: 'balance-update',
     title: 'Actualización de Balance',
     titleKey: 'news.items.balance.title',
-    date: getCurrentDateFormatted(),
+    date: '19 Feb 2026',
     summary: 'Ajustes en clases de dagueros y arqueros para mejorar el PvP competitivo.',
     summaryKey: 'news.items.balance.summary',
     content: 'Hemos realizado ajustes importantes en las clases de dagueros y arqueros para mejorar el balance del PvP competitivo. Estos cambios incluyen modificaciones en los tiempos de reutilización de habilidades, daño base y efectos especiales. El objetivo es crear un entorno más equilibrado donde todas las clases tengan oportunidades justas en combate.',

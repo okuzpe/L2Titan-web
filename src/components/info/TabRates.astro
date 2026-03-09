@@ -1,0 +1,45 @@
+---
+import { baseRates, bossRates, vipBonus } from '../../data/serverInfo';
+---
+
+<div class="grid md:grid-cols-3 gap-8">
+  <!-- Base Rates -->
+  <div class="bg-slate-900/50 p-8 rounded-xl border border-white/10 hover:border-yellow-500/30 transition-all duration-300">
+    <h3 class="text-2xl font-bold text-yellow-500 mb-6 font-display border-b border-yellow-500/30 pb-3" data-i18n="info.ratesTab.baseRates">Rates Base</h3>
+    <div class="space-y-3">
+      {baseRates.map((rate) => (
+        <div class="flex justify-between items-center p-3 bg-black/40 rounded border border-white/5 hover:border-yellow-500/20 transition-colors">
+          <span class="text-gray-300 text-sm uppercase tracking-wide" data-i18n={`info.ratesTab.${rate.key}`}>{rate.key}</span>
+          <span class="text-yellow-400 font-bold text-lg font-display">{rate.value}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Boss Rates -->
+  <div class="bg-slate-900/50 p-8 rounded-xl border border-white/10 hover:border-yellow-500/30 transition-all duration-300">
+    <h3 class="text-2xl font-bold text-yellow-500 mb-6 font-display border-b border-yellow-500/30 pb-3" data-i18n="info.ratesTab.bossRates">Rates de Bosses</h3>
+    <div class="space-y-3">
+      {bossRates.map((rate) => (
+        <div class="flex justify-between items-center p-3 bg-black/40 rounded border border-white/5 hover:border-yellow-500/20 transition-colors">
+          <span class="text-gray-300 text-sm uppercase tracking-wide" data-i18n={`info.ratesTab.${rate.key}`}>{rate.key}</span>
+          <span class="text-yellow-400 font-bold text-lg font-display">{rate.value}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- VIP Bonus -->
+  <div class="bg-slate-900/50 p-8 rounded-xl border border-white/10 hover:border-yellow-500/30 transition-all duration-300">
+    <h3 class="text-2xl font-bold text-yellow-500 mb-2 font-display border-b border-yellow-500/30 pb-3" data-i18n="info.ratesTab.vipBonus">Bonus VIP</h3>
+    <p class="text-xs text-gray-500 mb-6" data-i18n="info.ratesTab.vipBonusNote">Multiplicador adicional sobre las rates base</p>
+    <div class="space-y-3">
+      {vipBonus.map((bonus) => (
+        <div class="flex justify-between items-center p-3 bg-black/40 rounded border border-white/5 hover:border-yellow-500/20 transition-colors">
+          <span class="text-gray-300 text-sm uppercase tracking-wide" data-i18n={`info.ratesTab.${bonus.key}`}>{bonus.key}</span>
+          <span class="text-green-400 font-bold text-lg font-display">{bonus.value}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

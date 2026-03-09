@@ -1,0 +1,75 @@
+---
+---
+
+<div class="grid md:grid-cols-2 gap-8">
+  <!-- How to activate -->
+  <div class="bg-slate-900/50 p-8 rounded-xl border border-white/10">
+    <h3 class="text-2xl font-bold text-yellow-500 mb-6 font-display border-b border-yellow-500/30 pb-3" data-i18n="info.vipTab.howToActivate">Cómo activar VIP</h3>
+    <div class="space-y-4">
+      <div class="flex items-start gap-4">
+        <div class="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center shrink-0 mt-0.5">
+          <span class="text-yellow-500 font-bold text-sm">1</span>
+        </div>
+        <p class="text-gray-300" data-i18n="info.vipTab.step1">Obtener un VIP Token (se compra con 20 Titan Coins en la tienda NPC)</p>
+      </div>
+      <div class="flex items-start gap-4">
+        <div class="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center shrink-0 mt-0.5">
+          <span class="text-yellow-500 font-bold text-sm">2</span>
+        </div>
+        <p class="text-gray-300"><span data-i18n="info.vipTab.step2">Escribir .vip en el chat del juego</span> <code class="bg-black/40 text-yellow-400 px-2 py-0.5 rounded text-sm">.vip</code></p>
+      </div>
+      <div class="flex items-start gap-4">
+        <div class="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center shrink-0 mt-0.5">
+          <span class="text-yellow-500 font-bold text-sm">3</span>
+        </div>
+        <p class="text-gray-300" data-i18n="info.vipTab.step3">El token se consume automáticamente y se activa el estado VIP por 7 días</p>
+      </div>
+    </div>
+
+    <!-- How to get -->
+    <div class="mt-8 p-4 bg-gradient-to-r from-yellow-900/20 to-transparent border-l-4 border-yellow-500 rounded-r-lg">
+      <h4 class="text-yellow-500 font-bold mb-2 font-display uppercase tracking-wider text-sm" data-i18n="info.vipTab.howToGet">Cómo obtener el VIP Token</h4>
+      <ul class="text-gray-400 text-sm space-y-1">
+        <li data-i18n="info.vipTab.howToGetDesc1">Comprar con 20 Titan Coins en la tienda NPC</li>
+        <li data-i18n="info.vipTab.howToGetDesc2">Los Titan Coins se obtienen conquistando Fortalezas (2 por conquista)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Benefits -->
+  <div class="bg-slate-900/50 p-8 rounded-xl border border-yellow-500/30">
+    <h3 class="text-2xl font-bold text-yellow-500 mb-6 font-display border-b border-yellow-500/30 pb-3" data-i18n="info.vipTab.benefits">Beneficios VIP</h3>
+    <div class="space-y-3">
+      {[
+        { key: 'benefitXpSp', icon: '⚡', color: 'text-green-400' },
+        { key: 'benefitAdena', icon: '💰', color: 'text-green-400' },
+        { key: 'benefitDrop', icon: '🎁', color: 'text-green-400' },
+        { key: 'benefitSpoil', icon: '🔧', color: 'text-green-400' },
+        { key: 'benefitDropAmount', icon: '📦', color: 'text-blue-400' },
+        { key: 'benefitSpoilAmount', icon: '📦', color: 'text-blue-400' },
+        { key: 'benefitBuffs', icon: '✨', color: 'text-purple-400' },
+        { key: 'benefitFreya', icon: '🌹', color: 'text-pink-400' },
+      ].map((benefit) => (
+        <div class="flex items-start gap-3 p-3 bg-black/40 rounded border border-white/5">
+          <span class="text-lg shrink-0">{benefit.icon}</span>
+          <span class={`text-sm ${benefit.color}`} data-i18n={`info.vipTab.${benefit.key}`}>{benefit.key}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<!-- VIP Commands -->
+<div class="mt-8 bg-slate-900/50 p-6 rounded-xl border border-white/10">
+  <h3 class="text-xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.vipTab.commands">Comandos VIP</h3>
+  <div class="grid sm:grid-cols-2 gap-3">
+    <div class="flex items-center gap-3 p-3 bg-black/40 rounded border border-white/5">
+      <code class="bg-yellow-500/10 text-yellow-400 px-3 py-1 rounded font-mono text-sm">.vip</code>
+      <span class="text-gray-400 text-sm" data-i18n="info.commandsTab.cmdVipActivate">Activar VIP (consume 1 VIP Token)</span>
+    </div>
+    <div class="flex items-center gap-3 p-3 bg-black/40 rounded border border-white/5">
+      <code class="bg-yellow-500/10 text-yellow-400 px-3 py-1 rounded font-mono text-sm">.vipinfo</code>
+      <span class="text-gray-400 text-sm" data-i18n="info.commandsTab.cmdVipInfo">Ver tiempo restante de VIP</span>
+    </div>
+  </div>
+</div>

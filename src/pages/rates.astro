@@ -1,167 +1,116 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import TabRates from "../components/info/TabRates.astro";
+import TabEnchant from "../components/info/TabEnchant.astro";
+import TabVip from "../components/info/TabVip.astro";
+import TabEvents from "../components/info/TabEvents.astro";
+import TabInstances from "../components/info/TabInstances.astro";
+import TabSieges from "../components/info/TabSieges.astro";
+import TabEconomy from "../components/info/TabEconomy.astro";
+import TabFeatures from "../components/info/TabFeatures.astro";
+import TabCommands from "../components/info/TabCommands.astro";
 
-const rates = [
-  { label: "Experiencia (XP)", value: "x30", key: "rates.rates.experience" },
-  { label: "Skill Points (SP)", value: "x25", key: "rates.rates.skillPoints" },
-  { label: "Party XP", value: "x2", key: "rates.rates.partyXP" },
-  { label: "Party SP", value: "x2", key: "rates.rates.partySP" },
-  { label: "Adena", value: "x10", key: "rates.rates.adena" },
-  { label: "Drop Items", value: "x10", key: "rates.rates.dropItems" },
-  { label: "Spoil", value: "x15", key: "rates.rates.spoil" },
-  { label: "Seal Stones", value: "x10", key: "rates.rates.sealStones" },
-  { label: "Manor", value: "x10", key: "rates.rates.manor" },
-];
-
-const features = [
-  { text: "Crónica: Interlude", key: "rates.features.chronicle" },
-  { text: "Anti-Bot: SmartGuard", key: "rates.features.antiBot" },
-  { text: "Geodata: Premium", key: "rates.features.geodata" },
-  { text: "Sieges: Semanales", key: "rates.features.sieges" },
-  { text: "Olympiad: Cada 2 semanas", key: "rates.features.olympiad" },
-  { text: "SubStack: Clase base +1", key: "rates.features.subStack" },
+const tabs = [
+  { id: 'rates', icon: '📊' },
+  { id: 'enchant', icon: '📜' },
+  { id: 'vip', icon: '⭐' },
+  { id: 'events', icon: '⚔️' },
+  { id: 'instances', icon: '🏛️' },
+  { id: 'sieges', icon: '🏰' },
+  { id: 'economy', icon: '💰' },
+  { id: 'features', icon: '🔧' },
+  { id: 'commands', icon: '💬' },
 ];
 ---
 
-<Layout title="Información">
-  <div class="container mx-auto px-4 py-24">
+<Layout
+	title="Informacion del Servidor"
+	description="Informacion completa de L2Titan: rates x30, enchant, sistema VIP, eventos automaticos TvT/CTF/Deathmatch, instancias, asedios, economia, subclases acumulativas y comandos del servidor Lineage 2 Interlude."
+	keywords="l2 titan rates, lineage 2 interlude rates x30, l2 server info, lineage 2 enchant rates, l2 vip system, lineage 2 events, l2 instances, lineage 2 siege, l2 economy, lineage 2 subclass system, l2 server commands, lineage 2 private server info, l2 interlude features, servidor lineage 2 informacion"
+>
+  <div class="container mx-auto px-4 py-12 md:py-24">
+    <!-- Title -->
     <h1
-      class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-600 mb-16 text-center font-display tracking-widest drop-shadow-lg"
-      data-i18n="rates.title"
+      class="text-3xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-600 mb-6 md:mb-10 text-center font-display tracking-widest drop-shadow-lg"
+      data-i18n="info.title"
     >
       INFORMACIÓN DEL SERVIDOR
     </h1>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
-      <!-- Rates Section -->
-      <div
-        class="bg-slate-900/50 p-10 rounded-xl border border-white/10 hover:border-yellow-500/30 transition-all duration-300 shadow-lg"
-      >
-        <h2
-          class="text-3xl font-bold text-white mb-8 border-b border-yellow-500/30 pb-4 font-display flex items-center gap-3"
+    <!-- Tab Navigation -->
+    <div class="sticky top-16 z-40 -mx-4 px-4 pb-4 pt-2 bg-gradient-to-b from-black via-black/95 to-transparent">
+      <div class="max-w-5xl mx-auto relative">
+        <!-- Left arrow -->
+        <button
+          id="tab-arrow-left"
+          aria-label="Scroll tabs left"
+          class="tab-arrow tab-arrow-left absolute left-0 top-0 bottom-1 z-10 flex items-center justify-center w-8 rounded-l-lg opacity-0 pointer-events-none transition-opacity duration-200"
         >
-          <span class="text-yellow-500" data-i18n="rates.serverRates">SERVER RATES</span>
-        </h2>
-        <div class="grid grid-cols-1 gap-4">
-          {
-            rates.map((rate) => (
-              <div class="flex justify-between items-center p-4 bg-black/40 rounded border border-white/5 hover:border-yellow-500/20 transition-colors">
-                <span class="text-gray-300 font-medium uppercase tracking-wide text-sm" data-i18n={rate.key}>
-                  {rate.label}
-                </span>
-                <span class="text-yellow-400 font-bold text-xl font-display">
-                  {rate.value}
-                </span>
-              </div>
-            ))
-          }
-        </div>
+          <svg class="w-5 h-5 text-yellow-400 drop-shadow-lg" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <nav id="tab-nav" class="flex gap-1 overflow-x-auto scrollbar-hide pb-1 px-2" role="tablist">
+          {tabs.map((tab, i) => (
+            <button
+              role="tab"
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-controls={`panel-${tab.id}`}
+              data-tab={tab.id}
+              class={`tab-btn flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 cursor-pointer shrink-0 ${
+                i === 0
+                  ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/40'
+                  : 'text-gray-400 hover:text-gray-200 hover:bg-white/5 border border-transparent'
+              }`}
+            >
+              <span class="text-base">{tab.icon}</span>
+              <span data-i18n={`info.tabs.${tab.id}`}>{tab.id}</span>
+            </button>
+          ))}
+        </nav>
+
+        <!-- Right arrow -->
+        <button
+          id="tab-arrow-right"
+          aria-label="Scroll tabs right"
+          class="tab-arrow tab-arrow-right absolute right-0 top-0 bottom-1 z-10 flex items-center justify-center w-8 rounded-r-lg opacity-0 pointer-events-none transition-opacity duration-200"
+        >
+          <svg class="w-5 h-5 text-yellow-400 drop-shadow-lg" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
       </div>
+    </div>
 
-      <!-- Features Section -->
-      <div
-        class="bg-slate-900/50 p-10 rounded-xl border border-white/10 hover:border-yellow-500/30 transition-all duration-300 shadow-lg"
-      >
-        <h2
-          class="text-3xl font-bold text-white mb-8 border-b border-yellow-500/30 pb-4 font-display flex items-center gap-3"
-        >
-          <span class="text-yellow-500" data-i18n="rates.gameFeatures">GAME FEATURES</span>
-        </h2>
-        <ul class="space-y-6">
-          {
-            features.map((feature) => (
-              <li class="flex items-center text-gray-300 group">
-                <div class="w-8 h-8 rounded-full bg-yellow-500/10 flex items-center justify-center mr-4 group-hover:bg-yellow-500/20 transition-colors">
-                  <svg
-                    class="w-4 h-4 text-yellow-500"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <span class="text-lg font-light" data-i18n={feature.key}>{feature.text}</span>
-              </li>
-            ))
-          }
-        </ul>
-
-        <div
-          class="mt-10 p-6 bg-gradient-to-r from-yellow-900/20 to-transparent border-l-4 border-yellow-500 rounded-r-lg"
-        >
-          <h3
-            class="text-yellow-500 font-bold mb-2 font-display uppercase tracking-wider"
-            data-i18n="rates.philosophy.title"
-          >
-            Filosofía L2Titan
-          </h3>
-          <p class="text-sm text-gray-400 leading-relaxed" data-i18n="rates.philosophy.description">
-            Es un modelo de subclases acumulativas en el que por cada clase
-            puedes combinar tus skills con otras clases.
-          </p>
-        </div>
+    <!-- Tab Panels -->
+    <div class="max-w-7xl mx-auto mt-6">
+      <div id="panel-rates" role="tabpanel" class="tab-panel">
+        <TabRates />
       </div>
-
-      <!-- Enchant Rates Section -->
-      <div
-        class="bg-slate-900/50 p-10 rounded-xl border border-white/10 hover:border-yellow-500/30 transition-all duration-300 shadow-lg lg:col-span-1"
-      >
-        <h2
-          class="text-3xl font-bold text-white mb-8 border-b border-yellow-500/30 pb-4 font-display flex items-center gap-3"
-        >
-          <span class="text-yellow-500" data-i18n="rates.enchantRates">ENCHANT RATES</span>
-        </h2>
-        
-        <div class="space-y-6">
-          <!-- Normal Scrolls -->
-          <div class="p-4 bg-black/40 rounded border border-white/5">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-2xl">📜</span>
-              <h3 class="text-yellow-400 font-bold text-lg font-display" data-i18n="rates.enchant.normalScrolls">Normal Scrolls</h3>
-            </div>
-            <div class="text-sm text-gray-300 space-y-1">
-              <p><span class="text-yellow-500 font-semibold" data-i18n="rates.enchant.weaponArmor">Weapon/Armor:</span> ~15% a +25</p>
-              <p><span class="text-yellow-500 font-semibold" data-i18n="rates.enchant.jewelry">Jewelry:</span> ~8% a +25</p>
-            </div>
-          </div>
-
-          <!-- Blessed Scrolls -->
-          <div class="p-4 bg-black/40 rounded border border-white/5">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-2xl">📜</span>
-              <h3 class="text-yellow-400 font-bold text-lg font-display" data-i18n="rates.enchant.blessedScrolls">Blessed Scrolls</h3>
-            </div>
-            <div class="text-sm text-gray-300 space-y-1">
-              <p><span class="text-yellow-500 font-semibold" data-i18n="rates.enchant.weaponArmor">Weapon/Armor:</span> ~35% a +25</p>
-              <p><span class="text-yellow-500 font-semibold" data-i18n="rates.enchant.jewelry">Jewelry:</span> ~20% a +25</p>
-            </div>
-          </div>
-
-          <!-- Crystal Scrolls -->
-          <div class="p-4 bg-black/40 rounded border border-white/5">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="text-2xl">💎</span>
-              <h3 class="text-yellow-400 font-bold text-lg font-display" data-i18n="rates.enchant.crystalScrolls">Crystal Scrolls</h3>
-            </div>
-            <div class="text-sm text-gray-300 space-y-1">
-              <p><span class="text-yellow-500 font-semibold" data-i18n="rates.enchant.weaponArmor">Weapon/Armor:</span> 100% a +25</p>
-              <p><span class="text-yellow-500 font-semibold" data-i18n="rates.enchant.jewelry">Jewelry:</span> 100% a +25</p>
-            </div>
-          </div>
-
-          <!-- Config Info -->
-          <div class="mt-6 p-4 bg-gradient-to-r from-yellow-900/20 to-transparent border-l-4 border-yellow-500 rounded-r-lg">
-            <p class="text-xs text-gray-400 leading-relaxed">
-              <span class="text-yellow-500 font-semibold" data-i18n="rates.enchant.maxEnchant">Max Enchant:</span> <span data-i18n="rates.enchant.maxEnchantDesc">+25 para todos los tipos (Weapon, Armor, Jewelry)</span>
-            </p>
-          </div>
-        </div>
+      <div id="panel-enchant" role="tabpanel" class="tab-panel hidden">
+        <TabEnchant />
+      </div>
+      <div id="panel-vip" role="tabpanel" class="tab-panel hidden">
+        <TabVip />
+      </div>
+      <div id="panel-events" role="tabpanel" class="tab-panel hidden">
+        <TabEvents />
+      </div>
+      <div id="panel-instances" role="tabpanel" class="tab-panel hidden">
+        <TabInstances />
+      </div>
+      <div id="panel-sieges" role="tabpanel" class="tab-panel hidden">
+        <TabSieges />
+      </div>
+      <div id="panel-economy" role="tabpanel" class="tab-panel hidden">
+        <TabEconomy />
+      </div>
+      <div id="panel-features" role="tabpanel" class="tab-panel hidden">
+        <TabFeatures />
+      </div>
+      <div id="panel-commands" role="tabpanel" class="tab-panel hidden">
+        <TabCommands />
       </div>
     </div>
 
@@ -176,8 +125,8 @@ const features = [
               </svg>
             </div>
             <div>
-              <h3 class="text-2xl font-bold text-white mb-2 font-display" data-i18n="rates.discord.title">Únete a nuestra Comunidad</h3>
-              <p class="text-gray-300 text-sm" data-i18n="rates.discord.description">Conéctate con otros jugadores, obtén soporte y mantente al día con las últimas noticias</p>
+              <h3 class="text-2xl font-bold text-white mb-2 font-display" data-i18n="info.discord.title">Únete a nuestra Comunidad</h3>
+              <p class="text-gray-300 text-sm" data-i18n="info.discord.description">Conéctate con otros jugadores, obtén soporte y mantente al día con las últimas noticias</p>
             </div>
           </div>
           <a
@@ -189,10 +138,189 @@ const features = [
             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.5328-9.748-2.312-13.7083a.0765.0765 0 00-.0303-.0277zM6.4544 14.7698c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9355-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.9281 2.451-2.152 2.451zm6.585 0c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9354-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.928 2.451-2.152 2.451z"></path>
             </svg>
-            <span data-i18n="rates.discord.joinButton">Unirse a Discord</span>
+            <span data-i18n="info.discord.joinButton">Unirse a Discord</span>
           </a>
         </div>
       </div>
     </div>
   </div>
 </Layout>
+
+<style>
+  /* Hide scrollbar for tab nav on all browsers */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Tab panel fade animation */
+  .tab-panel {
+    animation: fadeIn 0.2s ease-in;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Tab arrow buttons */
+  .tab-arrow {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+  }
+  .tab-arrow-left {
+    background: linear-gradient(to right, rgba(0,0,0,0.95) 40%, transparent);
+    padding-right: 8px;
+  }
+  .tab-arrow-right {
+    background: linear-gradient(to left, rgba(0,0,0,0.95) 40%, transparent);
+    padding-left: 8px;
+  }
+  .tab-arrow.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .tab-arrow:hover svg {
+    transform: scale(1.2);
+    transition: transform 0.15s ease;
+  }
+</style>
+
+<script is:inline>
+  (function() {
+    function initTabs() {
+      const buttons = document.querySelectorAll('.tab-btn');
+      const panels = document.querySelectorAll('.tab-panel');
+
+      function activateTab(tabId) {
+        // Update buttons
+        buttons.forEach(function(btn) {
+          var isActive = btn.getAttribute('data-tab') === tabId;
+          btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          if (isActive) {
+            btn.className = btn.className
+              .replace('text-gray-400', 'text-yellow-400')
+              .replace('hover:text-gray-200', '')
+              .replace('hover:bg-white/5', '')
+              .replace('border-transparent', 'border-yellow-500/40');
+            if (!btn.className.includes('bg-yellow-500/20')) {
+              btn.className = btn.className.replace('border border-transparent', 'border border-yellow-500/40');
+              btn.classList.add('bg-yellow-500/20');
+            }
+            // Ensure the border class is correct
+            btn.className = btn.className.replace('border-transparent', 'border-yellow-500/40');
+          } else {
+            btn.classList.remove('bg-yellow-500/20');
+            btn.className = btn.className
+              .replace('text-yellow-400', 'text-gray-400')
+              .replace('border-yellow-500/40', 'border-transparent');
+            if (!btn.className.includes('hover:text-gray-200')) {
+              btn.classList.add('hover:text-gray-200', 'hover:bg-white/5');
+            }
+          }
+        });
+
+        // Update panels
+        panels.forEach(function(panel) {
+          var panelId = panel.id.replace('panel-', '');
+          if (panelId === tabId) {
+            panel.classList.remove('hidden');
+            // Re-trigger animation
+            panel.style.animation = 'none';
+            panel.offsetHeight; // force reflow
+            panel.style.animation = '';
+          } else {
+            panel.classList.add('hidden');
+          }
+        });
+
+        // Update URL hash
+        history.replaceState(null, '', '#' + tabId);
+
+        // Scroll active tab button into view
+        var activeBtn = document.querySelector('[data-tab="' + tabId + '"]');
+        if (activeBtn) {
+          activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      }
+
+      // Click handlers
+      buttons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var tabId = btn.getAttribute('data-tab');
+          if (tabId) activateTab(tabId);
+        });
+      });
+
+      // Check URL hash on load
+      var hash = window.location.hash.replace('#', '');
+      var validTabs = Array.from(buttons).map(function(b) { return b.getAttribute('data-tab'); });
+      if (hash && validTabs.indexOf(hash) !== -1) {
+        activateTab(hash);
+      }
+    }
+
+    // --- Tab arrow navigation ---
+    function initArrows() {
+      var nav = document.getElementById('tab-nav');
+      var leftArrow = document.getElementById('tab-arrow-left');
+      var rightArrow = document.getElementById('tab-arrow-right');
+      if (!nav || !leftArrow || !rightArrow) return;
+
+      var scrollAmount = 150;
+
+      function updateArrows() {
+        var scrollLeft = nav.scrollLeft;
+        var maxScroll = nav.scrollWidth - nav.clientWidth;
+
+        if (maxScroll <= 2) {
+          // No overflow — hide both arrows
+          leftArrow.classList.remove('visible');
+          rightArrow.classList.remove('visible');
+          return;
+        }
+
+        if (scrollLeft > 4) {
+          leftArrow.classList.add('visible');
+        } else {
+          leftArrow.classList.remove('visible');
+        }
+
+        if (scrollLeft < maxScroll - 4) {
+          rightArrow.classList.add('visible');
+        } else {
+          rightArrow.classList.remove('visible');
+        }
+      }
+
+      leftArrow.addEventListener('click', function() {
+        nav.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      });
+
+      rightArrow.addEventListener('click', function() {
+        nav.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      });
+
+      nav.addEventListener('scroll', updateArrows);
+      window.addEventListener('resize', updateArrows);
+
+      // Initial check
+      updateArrows();
+      // Re-check after a moment (fonts may load, changing widths)
+      setTimeout(updateArrows, 300);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        initTabs();
+        initArrows();
+      });
+    } else {
+      initTabs();
+      initArrows();
+    }
+  })();
+</script>
