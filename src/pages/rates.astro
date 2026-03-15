@@ -9,6 +9,9 @@ import TabSieges from "../components/info/TabSieges.astro";
 import TabEconomy from "../components/info/TabEconomy.astro";
 import TabFeatures from "../components/info/TabFeatures.astro";
 import TabCommands from "../components/info/TabCommands.astro";
+import ActionButton from "../components/ui/ActionButton.astro";
+import CardSurface from "../components/ui/CardSurface.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
 
 const tabs = [
   { id: 'rates', icon: '📊' },
@@ -21,24 +24,20 @@ const tabs = [
   { id: 'features', icon: '🔧' },
   { id: 'commands', icon: '💬' },
 ];
+
 ---
 
 <Layout
 	title="Informacion del Servidor"
-	description="Informacion completa de L2Titan: rates x30, enchant, sistema VIP, eventos automaticos TvT/CTF/Deathmatch, instancias, asedios, economia, subclases acumulativas y comandos del servidor Lineage 2 Interlude."
-	keywords="l2 titan rates, lineage 2 interlude rates x30, l2 server info, lineage 2 enchant rates, l2 vip system, lineage 2 events, l2 instances, lineage 2 siege, l2 economy, lineage 2 subclass system, l2 server commands, lineage 2 private server info, l2 interlude features, servidor lineage 2 informacion"
+	description="Informacion completa de L2Titan: rates x25, enchant, sistema VIP, TvT activo, instancias, asedios, economia, subclases acumulativas y comandos del servidor Lineage 2 Interlude."
+	keywords="l2 titan rates, lineage 2 interlude rates x25, l2 server info, lineage 2 enchant rates, l2 vip system, l2 events, l2 instances, lineage 2 siege, l2 economy, lineage 2 subclass system, l2 server commands, lineage 2 private server info, l2 interlude features, servidor lineage 2 informacion"
 >
   <div class="container mx-auto px-4 py-12 md:py-24">
     <!-- Title -->
-    <h1
-      class="text-3xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-600 mb-6 md:mb-10 text-center font-display tracking-widest drop-shadow-lg"
-      data-i18n="info.title"
-    >
-      INFORMACIÓN DEL SERVIDOR
-    </h1>
+    <SectionHeading text="INFORMACIÓN DEL SERVIDOR" i18nKey="info.title" className="mb-6 md:mb-10" />
 
     <!-- Tab Navigation -->
-    <div class="sticky top-16 z-40 -mx-4 px-4 pb-4 pt-2 bg-gradient-to-b from-black via-black/95 to-transparent">
+    <div class="sticky top-16 z-40 -mx-4 px-4 pb-4 pt-2 bg-linear-to-b from-black via-black/95 to-transparent">
       <div class="max-w-5xl mx-auto relative">
         <!-- Left arrow -->
         <button
@@ -58,10 +57,10 @@ const tabs = [
               aria-selected={i === 0 ? 'true' : 'false'}
               aria-controls={`panel-${tab.id}`}
               data-tab={tab.id}
-              class={`tab-btn flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 cursor-pointer shrink-0 ${
+              class={`tab-btn flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 cursor-pointer shrink-0 border ${
                 i === 0
-                  ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/40'
-                  : 'text-gray-400 hover:text-gray-200 hover:bg-white/5 border border-transparent'
+                  ? 'tab-btn-active'
+                  : 'tab-btn-inactive'
               }`}
             >
               <span class="text-base">{tab.icon}</span>
@@ -116,7 +115,7 @@ const tabs = [
 
     <!-- Discord Section -->
     <div class="max-w-4xl mx-auto mt-16">
-      <div class="bg-gradient-to-r from-indigo-900/50 via-purple-900/50 to-indigo-900/50 p-10 rounded-xl border border-indigo-500/30 hover:border-indigo-400/50 transition-all duration-300 shadow-lg">
+      <CardSurface className="bg-linear-to-r from-indigo-900/50 via-purple-900/50 to-indigo-900/50 p-10 border-indigo-500/30 hover:border-indigo-400/50 transition-all duration-300 shadow-lg">
         <div class="flex flex-col md:flex-row items-center justify-between gap-6">
           <div class="flex items-center gap-4">
             <div class="w-16 h-16 bg-indigo-600/20 rounded-full flex items-center justify-center">
@@ -129,19 +128,20 @@ const tabs = [
               <p class="text-gray-300 text-sm" data-i18n="info.discord.description">Conéctate con otros jugadores, obtén soporte y mantente al día con las últimas noticias</p>
             </div>
           </div>
-          <a
+          <ActionButton
             href="https://discord.gg/GunamUdGaQ"
             target="_blank"
             rel="noopener noreferrer"
-            class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-indigo-500/50 flex items-center gap-2 whitespace-nowrap"
+            variant="discord"
+            className="py-3 px-8 whitespace-nowrap"
           >
             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.5328-9.748-2.312-13.7083a.0765.0765 0 00-.0303-.0277zM6.4544 14.7698c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9355-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.9281 2.451-2.152 2.451zm6.585 0c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9354-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.928 2.451-2.152 2.451z"></path>
             </svg>
             <span data-i18n="info.discord.joinButton">Unirse a Discord</span>
-          </a>
+          </ActionButton>
         </div>
-      </div>
+      </CardSurface>
     </div>
   </div>
 </Layout>
@@ -159,6 +159,19 @@ const tabs = [
   /* Tab panel fade animation */
   .tab-panel {
     animation: fadeIn 0.2s ease-in;
+  }
+  .tab-btn-active {
+    background: rgba(234, 179, 8, 0.2);
+    color: #facc15;
+    border-color: rgba(234, 179, 8, 0.45);
+  }
+  .tab-btn-inactive {
+    color: #9ca3af;
+    border-color: transparent;
+  }
+  .tab-btn-inactive:hover {
+    color: #e5e7eb;
+    background: rgba(255, 255, 255, 0.05);
   }
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(4px); }
@@ -201,25 +214,11 @@ const tabs = [
           var isActive = btn.getAttribute('data-tab') === tabId;
           btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
           if (isActive) {
-            btn.className = btn.className
-              .replace('text-gray-400', 'text-yellow-400')
-              .replace('hover:text-gray-200', '')
-              .replace('hover:bg-white/5', '')
-              .replace('border-transparent', 'border-yellow-500/40');
-            if (!btn.className.includes('bg-yellow-500/20')) {
-              btn.className = btn.className.replace('border border-transparent', 'border border-yellow-500/40');
-              btn.classList.add('bg-yellow-500/20');
-            }
-            // Ensure the border class is correct
-            btn.className = btn.className.replace('border-transparent', 'border-yellow-500/40');
+            btn.classList.add('tab-btn-active');
+            btn.classList.remove('tab-btn-inactive');
           } else {
-            btn.classList.remove('bg-yellow-500/20');
-            btn.className = btn.className
-              .replace('text-yellow-400', 'text-gray-400')
-              .replace('border-yellow-500/40', 'border-transparent');
-            if (!btn.className.includes('hover:text-gray-200')) {
-              btn.classList.add('hover:text-gray-200', 'hover:bg-white/5');
-            }
+            btn.classList.remove('tab-btn-active');
+            btn.classList.add('tab-btn-inactive');
           }
         });
 

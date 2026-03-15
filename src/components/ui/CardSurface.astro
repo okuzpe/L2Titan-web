@@ -1,0 +1,14 @@
+---
+interface Props {
+  id?: string;
+  className?: string;
+  variant?: 'default' | 'strong';
+}
+
+const { id, className = '', variant = 'default' } = Astro.props;
+const variantClass = variant === 'strong' ? 'df-surface-strong' : 'df-surface';
+---
+
+<div id={id} class={`${variantClass} ${className}`.trim()}>
+  <slot />
+</div>

@@ -1,0 +1,14 @@
+---
+description: Convenciones de datos tipados para contenido del sitio
+globs: src/data/*.ts
+alwaysApply: false
+---
+
+# Content Data Models
+
+- Define y conserva interfaces/tipos explícitos para estructuras públicas de datos.
+- Mantén estables `slug`, `key` y nombres de campos usados por páginas/componentes.
+- Evita cambios de forma incompatibles sin actualizar de forma atómica los consumidores en `src/pages` y `src/components`.
+- Si agregas items en listas de contenido, respeta formato y convenciones existentes (fechas, claves, paths de imágenes).
+- En utilidades de ordenamiento o parsing, prioriza cambios deterministas y sin efectos colaterales.
+- No mezcles lógica de UI en `src/data/*.ts`; limítalo a datos y helpers de dominio.

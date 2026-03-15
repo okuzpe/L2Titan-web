@@ -16,8 +16,8 @@ interface Props {
 
 const {
 	title,
-	description = "L2Titan - Servidor Privado de Lineage 2 Interlude x30 con subclases acumulativas. Eventos diarios, PvP intenso, proteccion DDoS y comunidad activa. Juega gratis ahora.",
-	keywords = "lineage 2 private server, l2 private server, lineage 2 interlude, l2 interlude server, servidor privado lineage 2, l2 titan, lineage 2 subclass, l2 server x30, lineage 2 free server, best lineage 2 private server, lineage 2 interlude x30, l2 pvp server, lineage 2 gratis, l2 interlude private server, cumulative subclass lineage 2, lineage 2 eventos, l2 interlude x30, servidor l2, jugar lineage 2, lineage 2 download",
+	description = "L2Titan Interlude x25 sobre base L2JFrozen con SubStack, AutoFarm configurable, TvT activo, instancias diarias y comandos in-game para progresar con claridad.",
+	keywords = "lineage 2 private server x25, l2 interlude private server, l2 titan, l2 substack, lineage 2 cumulative subclasses, l2 interlude pvp server, l2 events tvt, l2 daily instances, l2 ranking .top",
 	ogImage = "/images/background.jpg",
 	ogType = "website",
 	articlePublishedTime,
@@ -48,7 +48,7 @@ const jsonLd = {
 	"name": "L2Titan",
 	"alternateName": ["L2 Titan", "Lineage 2 Titan", "L2Titan 30x", "L2Titan SubStack"],
 	"url": "https://l2-titan.com",
-	"description": "Servidor Privado de Lineage 2 Interlude x30 SubStack con subclases acumulativas, eventos diarios y PvP intenso.",
+	"description": "Servidor privado de Lineage 2 Interlude x25 con SubStack, TvT activo, instancias diarias y comandos in-game claros.",
 	"inLanguage": ["es", "en"]
 };
 
@@ -62,7 +62,7 @@ const organizationLd = {
 	"sameAs": [
 		"https://discord.gg/GunamUdGaQ"
 	],
-	"description": "L2Titan - Servidor Privado de Lineage 2 Interlude x30 SubStack con subclases acumulativas, eventos diarios y comunidad PvP activa."
+	"description": "L2Titan - Servidor privado de Lineage 2 Interlude x25 con SubStack, TvT activo y comunidad PvP activa."
 };
 
 const gameServerLd = {
@@ -70,7 +70,7 @@ const gameServerLd = {
 	"@type": "VideoGame",
 	"name": "L2Titan 30x - Lineage 2 Interlude SubStack",
 	"alternateName": ["L2Titan", "L2 Titan 30x", "L2Titan SubStack"],
-	"description": "Servidor privado de Lineage 2 Interlude con rates x30, subclases acumulativas (SubStack), eventos automaticos cada 2 horas (TvT, CTF, Deathmatch), proteccion DDoS y sistema VIP.",
+	"description": "Servidor privado de Lineage 2 Interlude con rates x25, SubStack, TvT activo, instancias diarias y sistema VIP.",
 	"gamePlatform": "PC",
 	"applicationCategory": "Game",
 	"operatingSystem": "Windows",
@@ -200,15 +200,11 @@ const breadcrumbLd = {
 				// Make functions globally available
 				window.i18n = {
 					getLanguage: function() {
-						if (typeof localStorage === 'undefined') return 'en';
+						if (typeof localStorage === 'undefined') return 'es';
 						const saved = localStorage.getItem('language');
 						if (saved === 'es' || saved === 'en') return saved;
-						// Detect browser language as default
-						if (typeof navigator !== 'undefined' && navigator.language) {
-							const browserLang = navigator.language.split('-')[0];
-							return browserLang === 'es' ? 'es' : 'en';
-						}
-						return 'en';
+						// Default language for first visit
+						return 'es';
 					},
 					getTranslation: function(key, lang) {
 						const currentLang = lang || window.i18n.getLanguage();
@@ -311,7 +307,7 @@ const breadcrumbLd = {
 		class="min-h-screen flex flex-col bg-black text-slate-200 overflow-x-hidden"
 	>
 		<Navbar />
-		<main class="flex-grow">
+		<main class="grow">
 			<slot />
 		</main>
 		<Footer />

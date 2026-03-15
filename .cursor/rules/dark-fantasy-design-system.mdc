@@ -1,0 +1,16 @@
+---
+description: Guía de identidad Dark Fantasy híbrida para UI de L2Titan.
+globs: src/**/*.{astro,css}
+alwaysApply: false
+---
+
+# L2Titan Dark Fantasy Design System
+
+- Mantén estética Dark Fantasy premium: superficies oscuras, acentos dorados, alto contraste y jerarquía clara.
+- Reutiliza primitivas antes de crear markup nuevo: `ActionButton`, `CardSurface`, `BadgePill`, `SectionHeading`.
+- Prioriza tokens/clases del sistema (`df-*`) en vez de combinaciones ad-hoc repetidas.
+- Conserva consistencia de radios: paneles grandes `rounded-2xl`, cards/botones `rounded-lg`.
+- CTA principal: estilo dorado; CTA comunidad: variante Discord; evita más de 2 estilos de CTA por sección.
+- Usa títulos con `font-display`, uppercase y tracking amplio; texto de soporte más legible y sin exceso de mayúsculas.
+- En tabs/estados interactivos, usa clases explícitas de estado (`*-active`, `*-inactive`), no reemplazos frágiles de strings.
+- No modifiques artefactos generados (`dist/`, `.astro/`, `node_modules/`).

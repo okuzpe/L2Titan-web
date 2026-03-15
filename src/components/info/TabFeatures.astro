@@ -1,4 +1,5 @@
 ---
+import { classBalance } from '../../data/serverInfo';
 ---
 
 <!-- Custom NPCs -->
@@ -31,8 +32,21 @@
       </ul>
     </div>
 
+    <!-- AutoFarm -->
+    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
+      <h4 class="text-lg font-bold text-yellow-400 mb-3 font-display" data-i18n="info.featuresTab.autoFarm">AutoFarm avanzado</h4>
+      <ul class="space-y-2 text-sm text-gray-400">
+        {['autoFarmDesc1', 'autoFarmDesc2', 'autoFarmDesc3', 'autoFarmDesc4'].map((key) => (
+          <li class="flex items-start gap-2">
+            <span class="text-yellow-500 mt-1 shrink-0">•</span>
+            <span data-i18n={`info.featuresTab.${key}`}>{key}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
     <!-- Raidboss Announcement -->
-    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 md:col-span-2 lg:col-span-1">
+    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
       <h4 class="text-lg font-bold text-yellow-400 mb-3 font-display" data-i18n="info.featuresTab.raidbossInfo">Raidboss Announcement</h4>
       <ul class="space-y-2 text-sm text-gray-400">
         {['raidbossDesc1', 'raidbossDesc2'].map((key) => (
@@ -96,11 +110,32 @@
   </div>
 </div>
 
+<!-- PvP Class Balance -->
+<div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-8">
+  <h3 class="text-2xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.featuresTab.classBalanceTitle">Balance PvP v1.1.1</h3>
+  <div class="grid md:grid-cols-2 gap-3">
+    {classBalance.map((item) => (
+      <div class="p-3 bg-black/40 rounded border border-white/5 text-sm flex items-center justify-between gap-3">
+        <span class="text-gray-300" data-i18n={`info.featuresTab.${item.key}`}>{item.key}</span>
+        <span class="text-yellow-400 font-semibold">{item.value}</span>
+      </div>
+    ))}
+  </div>
+  <div class="mt-4 grid sm:grid-cols-2 gap-3">
+    <div class="p-3 bg-black/40 rounded border border-white/5 text-sm text-gray-300" data-i18n="info.featuresTab.totemRework">
+      Totems rework: bonus completo con Fist/Dual Fist y reducido con otras armas
+    </div>
+    <div class="p-3 bg-black/40 rounded border border-white/5 text-sm text-gray-300" data-i18n="info.featuresTab.classMaster3rd">
+      Class Master habilita 3ra clase con costo y recompensa configurada
+    </div>
+  </div>
+</div>
+
 <!-- Other Features -->
 <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
   <h3 class="text-xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.featuresTab.otherFeatures">Otras Features</h3>
   <div class="grid sm:grid-cols-2 gap-3">
-    {['autoLearn', 'subclassNoQuest', 'offlineShop', 'antiFarm', 'weight', 'shiftClick'].map((key) => (
+    {['expToggle', 'topRanking', 'dropCommand', 'balanceUpdates', 'globalGkUpdate', 'autoLearn', 'subclassNoQuest', 'offlineShop', 'antiFarm', 'weight', 'shiftClick'].map((key) => (
       <div class="flex items-start gap-2 p-3 bg-black/40 rounded border border-white/5 text-sm">
         <svg class="w-4 h-4 text-green-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
         <span class="text-gray-300" data-i18n={`info.featuresTab.${key}`}>{key}</span>

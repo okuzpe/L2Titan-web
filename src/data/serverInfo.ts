@@ -5,13 +5,13 @@
 // ─── RATES ──────────────────────────────────────────────────────────
 
 export const baseRates = [
-  { key: 'xp', value: 'x30' },
+  { key: 'xp', value: 'x25' },
   { key: 'sp', value: 'x25' },
   { key: 'adena', value: 'x10' },
   { key: 'drop', value: 'x10' },
   { key: 'spoil', value: 'x15' },
   { key: 'partyXpSp', value: 'x2' },
-  { key: 'quest', value: 'x1' },
+  { key: 'quest', value: 'x1.20' },
   { key: 'petXp', value: 'x20' },
 ];
 
@@ -95,16 +95,28 @@ export const augmentation = [
 
 // ─── EVENTS ─────────────────────────────────────────────────────────
 
-export const eventSchedule = [
-  { hour: '00:00', type: 'TvT' }, { hour: '01:00', type: 'CTF' }, { hour: '02:00', type: 'DM' },
-  { hour: '03:00', type: 'TvT' }, { hour: '04:00', type: 'CTF' }, { hour: '05:00', type: 'DM' },
-  { hour: '06:00', type: 'TvT' }, { hour: '07:00', type: 'CTF' }, { hour: '08:00', type: 'DM' },
-  { hour: '09:00', type: 'TvT' }, { hour: '10:00', type: 'CTF' }, { hour: '11:00', type: 'DM' },
-  { hour: '12:00', type: 'TvT' }, { hour: '13:00', type: 'CTF' }, { hour: '14:00', type: 'DM' },
-  { hour: '15:00', type: 'TvT' }, { hour: '16:00', type: 'CTF' }, { hour: '17:00', type: 'DM' },
-  { hour: '18:00', type: 'TvT' }, { hour: '19:00', type: 'CTF' }, { hour: '20:00', type: 'DM' },
-  { hour: '21:00', type: 'TvT' }, { hour: '22:00', type: 'CTF' }, { hour: '23:00', type: 'DM' },
+export interface EventSlot {
+  hour: string;
+  type: 'TvT' | 'CTF' | 'DM';
+  active: boolean;
+}
+
+export const eventSchedule: EventSlot[] = [
+  { hour: '00:00', type: 'TvT', active: true }, { hour: '01:00', type: 'CTF', active: false }, { hour: '02:00', type: 'DM', active: false },
+  { hour: '03:00', type: 'TvT', active: true }, { hour: '04:00', type: 'CTF', active: false }, { hour: '05:00', type: 'DM', active: false },
+  { hour: '06:00', type: 'TvT', active: true }, { hour: '07:00', type: 'CTF', active: false }, { hour: '08:00', type: 'DM', active: false },
+  { hour: '09:00', type: 'TvT', active: true }, { hour: '10:00', type: 'CTF', active: false }, { hour: '11:00', type: 'DM', active: false },
+  { hour: '12:00', type: 'TvT', active: true }, { hour: '13:00', type: 'CTF', active: false }, { hour: '14:00', type: 'DM', active: false },
+  { hour: '15:00', type: 'TvT', active: true }, { hour: '16:00', type: 'CTF', active: false }, { hour: '17:00', type: 'DM', active: false },
+  { hour: '18:00', type: 'TvT', active: true }, { hour: '19:00', type: 'CTF', active: false }, { hour: '20:00', type: 'DM', active: false },
+  { hour: '21:00', type: 'TvT', active: true }, { hour: '22:00', type: 'CTF', active: false }, { hour: '23:00', type: 'DM', active: false },
 ];
+
+export const eventStatus = {
+  tvt: true,
+  ctf: false,
+  dm: false,
+};
 
 // ─── ECONOMY: SHOPS ─────────────────────────────────────────────────
 
@@ -125,14 +137,38 @@ export const armorCrystalScrolls = [
 ];
 
 export const eventMedalShop = [
-  { key: 'soulCrystal11', cost: 500 },
+  { key: 'soulCrystal11', cost: 400 },
   { key: 'soulCrystal12', cost: 1000 },
-  { key: 'soulCrystal13', cost: 1500 },
-  { key: 'redPipetteKnife', cost: 1500 },
+  { key: 'soulCrystal13', cost: 1800 },
+  { key: 'redPipetteKnife', cost: 600 },
+  { key: 'proofOfBlood', cost: 250 },
+  { key: 'proofOfAlliance', cost: 700 },
+  { key: 'proofOfAspiration', cost: 6000 },
   { key: 'lifeStone52', cost: 15 },
   { key: 'lifeStone61', cost: 25 },
   { key: 'lifeStone67', cost: 35 },
   { key: 'lifeStone76', cost: 50 },
+];
+
+export const voteCoinShop = [
+  { key: 'freyaRosePotion', cost: 3 },
+];
+
+export const titansBoxRewards = [
+  { itemName: 'Scroll: Enchant Armor (Grade B)', chance: 14 },
+  { itemName: 'Scroll: Enchant Weapon (Grade B)', chance: 11 },
+  { itemName: 'Blessed Scroll: Enchant Armor (Grade B)', chance: 8 },
+  { itemName: 'Blessed Scroll: Enchant Weapon (Grade B)', chance: 6 },
+  { itemName: 'Scroll: Enchant Armor (Grade A)', chance: 11 },
+  { itemName: 'Scroll: Enchant Weapon (Grade A)', chance: 8 },
+  { itemName: 'Blessed Scroll: Enchant Armor (Grade A)', chance: 7 },
+  { itemName: 'Blessed Scroll: Enchant Weapon (Grade A)', chance: 5 },
+  { itemName: 'Scroll: Enchant Armor (Grade S)', chance: 8 },
+  { itemName: 'Scroll: Enchant Weapon (Grade S)', chance: 5 },
+  { itemName: 'Blessed Scroll: Enchant Armor (Grade S)', chance: 4 },
+  { itemName: 'Blessed Scroll: Enchant Weapon (Grade S)', chance: 3 },
+  { itemName: 'High-Grade Life Stone: level 76', chance: 6 },
+  { itemName: 'Top-Grade Life Stone: level 76', chance: 4 },
 ];
 
 export const shirts = [
@@ -144,13 +180,13 @@ export const shirts = [
 ];
 
 export const raidTokenDrops = [
-  { key: 'normalRB', tokens: 1 },
-  { key: 'queenAnt', tokens: 10 },
-  { key: 'orfen', tokens: 15 },
-  { key: 'zaken', tokens: 20 },
-  { key: 'baium', tokens: 50 },
-  { key: 'antharas', tokens: 200 },
-  { key: 'valakas', tokens: 200 },
+  { key: 'normalRB', total: 10, distribution: '2 drops de 5' },
+  { key: 'queenAnt', total: 50, distribution: '10 drops de 5' },
+  { key: 'orfen', total: 180, distribution: '36 drops de 5' },
+  { key: 'zaken', total: 100, distribution: '20 drops de 5' },
+  { key: 'baium', total: 200, distribution: '10 drops de 20' },
+  { key: 'antharas', total: 500, distribution: '20 drops de 25' },
+  { key: 'valakas', total: 600, distribution: '20 drops de 30' },
 ];
 
 // ─── SIEGES ──────────────────────────────────────────────────────────
@@ -202,4 +238,42 @@ export const commands: Record<string, Command[]> = {
     { cmd: '.divorce', key: 'cmdDivorce' },
     { cmd: '.gotolove', key: 'cmdGotolove' },
   ],
+  utilities: [
+    { cmd: '.exp', key: 'cmdExp' },
+    { cmd: '.offline_shop', key: 'cmdOfflineShop' },
+  ],
 };
+
+export const patchStatus = [
+  { key: 'xpRate', value: 'x25', state: 'updated' },
+  { key: 'questDropRate', value: 'x1.20', state: 'updated' },
+  { key: 'eventsTvt', value: 'ON', state: 'active' },
+  { key: 'eventsCtf', value: 'OFF', state: 'inactive' },
+  { key: 'eventsDm', value: 'OFF', state: 'inactive' },
+  { key: 'globalGk', value: 'ON', state: 'active' },
+  { key: 'substackNoMorph', value: 'ON', state: 'active' },
+];
+
+export const classBalance = [
+  { key: 'tankVsFighter', value: '+30% PvP dmg' },
+  { key: 'tankVsMage', value: '+25% PvP dmg' },
+  { key: 'heavyVsMage', value: '+20% PvP dmg' },
+  { key: 'daggerArcherVsMage', value: '+15% PvP dmg' },
+  { key: 'magicCritCap', value: '350' },
+  { key: 'magicCritPower', value: '2.8x' },
+  { key: 'magicFailures', value: 'disabled' },
+];
+
+export const neutralZoneHighlights = [
+  'neutralIdentity',
+  'neutralMonsters',
+  'neutralFlow',
+  'neutralFlag',
+  'neutralDrops',
+];
+
+export const dailyRewards = [
+  { key: 'rewardAdena', value: 'Adena' },
+  { key: 'rewardFreyaRose', value: 'Freya Rose Red Potion' },
+  { key: 'rewardTitansBox', value: "Titan's Box" },
+];

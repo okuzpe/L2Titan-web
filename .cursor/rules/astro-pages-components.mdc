@@ -1,0 +1,14 @@
+---
+description: Convenciones para paginas y componentes Astro
+globs: src/**/*.astro
+alwaysApply: false
+---
+
+# Astro Pages And Components
+
+- Ordena el frontmatter: imports, tipos/interfaces, props, constantes derivadas y luego template.
+- Reutiliza componentes en `src/components` y layout en `src/layouts` antes de duplicar markup.
+- Mantén imports relativos consistentes con el estilo existente del repositorio.
+- Evita scripts inline largos; solo usarlos cuando sea necesario para SEO, i18n o inicialización temprana.
+- Si agregas scripts en cliente, protégelos para SSR cuando aplique (`typeof window !== 'undefined'`).
+- Conserva metadatos SEO y estructura semántica (`title`, `description`, canonical, headings) al editar páginas.

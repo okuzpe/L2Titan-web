@@ -1,134 +1,239 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Countdown from "../components/Countdown.astro";
 import ServerStats from "../components/ServerStats.astro";
-import NewsFeed from "../components/NewsFeed.astro";
 import FeatureCard from "../components/FeatureCard.astro";
-
-// Fecha objetivo: sábado 21 de febrero de 2026, 6 PM hora España (UTC+1)
-const targetDate = new Date('2026-02-21T18:00:00+01:00').toISOString();
+import NewsFeed from "../components/NewsFeed.astro";
+import ActionButton from "../components/ui/ActionButton.astro";
+import BadgePill from "../components/ui/BadgePill.astro";
+import CardSurface from "../components/ui/CardSurface.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
 
 // Variable para mostrar/ocultar información del servidor
 const showServerInfo = false;
+
+const overviewItems = [
+	['f1Title', 'f1Desc'],
+	['f2Title', 'f2Desc'],
+	['f3Title', 'f3Desc'],
+	['f4Title', 'f4Desc'],
+	['f5Title', 'f5Desc'],
+	['f6Title', 'f6Desc'],
+	['f7Title', 'f7Desc'],
+	['f8Title', 'f8Desc'],
+	['f9Title', 'f9Desc'],
+	['f10Title', 'f10Desc'],
+];
 ---
 
 <Layout
 	title="Inicio"
-	description="L2Titan - Servidor Privado de Lineage 2 Interlude x30. Subclases acumulativas, eventos diarios TvT/CTF/Deathmatch cada 2 horas, PvP intenso, proteccion DDoS y comunidad activa. Descarga gratis y juega ahora."
-	keywords="l2titan 30x, l2 titan 30x, l2titan substack, lineage 2 interlude substack, l2 interlude 30x substack, lineage 2 private server, l2 private server, lineage 2 interlude, l2 interlude server, servidor privado lineage 2, l2 titan, lineage 2 subclass, cumulative subclass lineage 2, l2 server x30, lineage 2 free server, best lineage 2 private server, lineage 2 interlude x30, l2 pvp server, lineage 2 gratis, l2 interlude private server, lineage 2 eventos, servidor l2, jugar lineage 2, lineage 2 download, l2 free to play, mmorpg pvp gratis"
+	description="L2Titan Interlude x25 sobre base L2JFrozen con SubStack, AutoFarm configurable, Daily Instances, ranking .top y sistemas actualizados para progresar y competir."
+	keywords="l2titan 25x, l2 titan interlude x25, l2 substack, lineage 2 interlude substack, l2 interlude pvp server, lineage 2 private server x25, l2 daily instances, l2 events tvt, l2 .top ranking, l2 autofarm interlude"
 >
-	<!-- Hero Section -->
-	<div
-		class="relative min-h-screen flex flex-col justify-center overflow-hidden"
-	>
-		<!-- Background Video/Image -->
+	<section class="relative min-h-screen flex flex-col justify-center overflow-hidden">
 		<div class="absolute inset-0 z-0">
 			<img
 				src="/images/background.jpg"
-				alt="L2Titan - Servidor Privado Lineage 2 Interlude x30 SubStack con PvP intenso"
+				alt="L2Titan - Servidor Privado Lineage 2 Interlude x25 SubStack con PvP intenso"
 				width="1920"
 				height="1080"
 				fetchpriority="high"
-				class="w-full h-full object-cover opacity-50"
+				class="w-full h-full object-cover opacity-70"
 			/>
-			<div
-				class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black"
-			>
-			</div>
+			<div class="absolute inset-0 bg-linear-to-b from-black/45 via-black/20 to-black/75"></div>
 		</div>
 
-		<div class="relative z-30 container mx-auto px-4 text-center mt-20">
-			<h1
-				class="text-4xl sm:text-6xl md:text-9xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 via-yellow-500 to-yellow-700 mb-4 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)] font-display tracking-tighter animate-fade-in-down"
-			>
-				L2TITAN
-			</h1>
-			<p
-				class="text-lg sm:text-2xl md:text-3xl text-gray-300 mb-12 max-w-3xl mx-auto font-light tracking-wide"
-			>
-				<span data-i18n="home.hero">La era de los héroes ha comenzado.</span> <span
-					class="text-yellow-500 font-bold">Interlude x30</span
-				>
-			</p>
-
-			<Countdown targetDate={targetDate} />
-
-			<div class="mt-16 mb-16 md:mb-40 flex flex-col md:flex-row gap-6 justify-center relative z-30">
-				<a
-					href="/downloads"
-					class="group relative px-8 py-4 bg-gradient-to-r from-yellow-700 to-yellow-500 text-white font-bold rounded-lg overflow-hidden shadow-[0_0_20px_rgba(234,179,8,0.3)] transition-all hover:shadow-[0_0_40px_rgba(234,179,8,0.6)] hover:scale-105 z-30"
-				>
-					<div
-						class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"
-					>
+		<div class="relative z-30 container mx-auto px-4 mt-20">
+			<div class="mx-auto max-w-6xl df-surface-strong p-6 md:p-10 animate-hero-pulse">
+				<div class="grid lg:grid-cols-[1.25fr_1fr] gap-6 lg:gap-10 items-center">
+					<div class="text-center lg:text-left">
+						<p class="inline-block text-[11px] uppercase tracking-[0.24em] text-yellow-400/90 font-semibold border border-yellow-500/30 rounded-full px-3 py-1 mb-3" data-i18n="home.heroPromo.badge">Temporada activa</p>
+						<h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-yellow-400 mb-2 drop-shadow-[0_3px_4px_rgba(0,0,0,0.7)] font-display tracking-widest">
+							L2TITAN
+						</h1>
+						<h2 class="text-xl sm:text-2xl md:text-3xl text-yellow-300 font-extrabold mb-2 uppercase tracking-wider font-display" data-i18n="home.heroPromo.title">
+							Para clanes que quieren progreso real
+						</h2>
+						<p class="text-base sm:text-2xl md:text-3xl text-yellow-500/90 font-bold mb-4 tracking-wide uppercase">
+							<span data-i18n="home.hero">Interlude x25</span>
+						</p>
+						<p class="text-sm md:text-base text-gray-300 max-w-xl mx-auto lg:mx-0 leading-relaxed" data-i18n="home.heroPromo.desc">
+							SubStack, AutoFarm, eventos y economía activa en un servidor pensado para durar. Entra con toda la información clara desde el día uno.
+						</p>
+						<div class="mt-4 flex flex-wrap gap-2 justify-center lg:justify-start">
+							<BadgePill text="SubStack" />
+							<BadgePill text="AutoFarm" />
+							<BadgePill text="Daily Instances" />
+							<BadgePill text="TvT" />
+						</div>
 					</div>
-					<span
-						class="relative flex items-center gap-2 uppercase tracking-wider"
-					>
-						<svg
-							class="w-5 h-5"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-							><path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-							></path></svg
+
+					<div class="space-y-3 lg:pl-2">
+						<ActionButton
+							href="/downloads"
+							variant="primary"
+							className="group relative w-full px-7 py-4 rounded-lg overflow-hidden text-base"
 						>
-						<span data-i18n="home.downloadClient">Descargar Cliente</span>
-					</span>
-				</a>
-				<a
-					href="https://discord.gg/GunamUdGaQ"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="group relative px-8 py-4 bg-[#5865F2] text-white font-bold rounded-lg overflow-hidden shadow-[0_0_20px_rgba(88,101,242,0.3)] transition-all hover:shadow-[0_0_40px_rgba(88,101,242,0.6)] hover:scale-105 flex items-center gap-2 z-30"
-				>
-					<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"
-						><path
-							d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.5328-9.748-2.312-13.7083a.0765.0765 0 00-.0303-.0277zM6.4544 14.7698c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9355-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.9281 2.451-2.152 2.451zm6.585 0c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9354-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.928 2.451-2.152 2.451z"
-						></path></svg
-					>
-					<span data-i18n="home.joinDiscord">Unirse a Discord</span>
-				</a>
+							<div class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"></div>
+							<svg class="relative w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+							<span class="relative uppercase tracking-wider" data-i18n="home.downloadClient">Descargar Cliente</span>
+						</ActionButton>
+						<p class="text-xs text-gray-400 px-1" data-i18n="home.heroPromo.primaryHint">
+							Cliente completo y launcher oficial con instalación rápida.
+						</p>
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+							<ActionButton
+								href="https://discord.gg/GunamUdGaQ"
+								target="_blank"
+								rel="noopener noreferrer"
+								variant="discord"
+								className="w-full px-6 py-3 rounded-lg text-sm"
+							>
+								<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.5328-9.748-2.312-13.7083a.0765.0765 0 00-.0303-.0277zM6.4544 14.7698c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9355-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.9281 2.451-2.152 2.451zm6.585 0c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9354-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.928 2.451-2.152 2.451z"></path></svg>
+								<span class="uppercase tracking-wider" data-i18n="home.joinDiscord">Unirse a Discord</span>
+							</ActionButton>
+							<ActionButton
+								href="/rates"
+								variant="ghost"
+								className="w-full px-6 py-3 rounded-lg border border-yellow-300/45 text-sm"
+							>
+								<span data-i18n="home.heroPromo.cta">Ver Info completa</span>
+								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+							</ActionButton>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
-	</div>
+	</section>
 
 	{showServerInfo && <ServerStats />}
 
-	<div class="container mx-auto px-4 py-20">
-		<div class="grid md:grid-cols-3 gap-8 -mt-16 md:-mt-32 relative z-10">
-			<FeatureCard
-				title="Subclases Acumulativas"
-				titleKey="home.features.cumulative.title"
-				description="Base Interlude x30. Sistema único donde puedes combinar skills de diferentes clases en un mismo personaje."
-				descriptionKey="home.features.cumulative.description"
-				icon="⚔️"
-			/>
-			<FeatureCard
-				title="Protección DDoS"
-				titleKey="home.features.ddos.title"
-				description="Infraestructura robusta para garantizar 99.9% de uptime y juego sin lag."
-				descriptionKey="home.features.ddos.description"
-				icon="🛡️"
-			/>
-			<FeatureCard
-				title="Eventos Diarios"
-				titleKey="home.features.events.title"
-				description="TvT, CTF, Deathmatch y eventos automáticos cada 2 horas con recompensas únicas."
-				descriptionKey="home.features.events.description"
-				icon="🏆"
-			/>
-		</div>
+	<div class="container mx-auto px-4 py-14 md:py-18 space-y-10 md:space-y-14">
+		<section class="relative z-10 mt-0">
+			<div class="grid md:grid-cols-3 gap-5 md:gap-6">
+				<FeatureCard
+					title="SubStack real"
+					titleKey="home.features.cumulative.title"
+					description="Subclases acumulativas para armar builds mas flexibles y competitivas."
+					descriptionKey="home.features.cumulative.description"
+					icon="⚔️"
+				/>
+				<FeatureCard
+					title="AutoFarm configurable"
+					titleKey="home.features.events.title"
+					description="Modos, assist, filtros y radio para farmear con control total."
+					descriptionKey="home.features.events.description"
+					icon="🛡️"
+				/>
+				<FeatureCard
+					title="Anti DDoS"
+					titleKey="home.features.ddos.title"
+					description="Proteccion activa para mantener estabilidad durante picos de trafico."
+					descriptionKey="home.features.ddos.description"
+					icon="🏆"
+				/>
+			</div>
+		</section>
+
+		<NewsFeed />
+
+		<section id="server-info" class="max-w-6xl mx-auto scroll-mt-24">
+			<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+				<SectionHeading text="INFORMACIÓN DEL SERVIDOR" i18nKey="info.title" className="text-left md:text-3xl" />
+			</div>
+
+			<div class="space-y-5">
+				<CardSurface className="p-6 md:p-7">
+					<h3 class="text-2xl md:text-3xl font-bold text-yellow-400 mb-3 font-display" data-i18n="info.overview.title">
+						L2Titan Interlude x25 - Info clara, parche activo
+					</h3>
+					<p class="text-gray-300 text-sm md:text-base" data-i18n="info.overview.intro1">
+						Interlude x25 sobre base L2JFrozen para avanzar rapido sin perder estrategia.
+					</p>
+					<p class="text-gray-400 text-sm md:text-base mt-2" data-i18n="info.overview.intro2">
+						Sistemas utiles dentro del juego para farmear mejor, organizarte y competir sin vueltas.
+					</p>
+				</CardSurface>
+
+				<div>
+					<h3 class="text-xl md:text-2xl font-bold text-yellow-500 mb-4 font-display uppercase tracking-wide" data-i18n="info.overview.sectionTitle">
+						Lo mas importante para jugar mejor
+					</h3>
+					<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+						{overviewItems.map(([titleKey, descKey], idx) => (
+							<article class="df-surface p-4 hover:border-yellow-500/30 transition-colors">
+								<div class="flex items-center gap-2 mb-1">
+									<span class="inline-flex h-6 min-w-6 items-center justify-center px-1 rounded-full bg-yellow-500/15 text-yellow-400 text-xs font-bold">{idx + 1}</span>
+									<h4 class="text-yellow-400 font-semibold text-sm md:text-base" data-i18n={`info.overview.${titleKey}`}>{titleKey}</h4>
+								</div>
+								<p class="text-gray-400 text-sm leading-relaxed" data-i18n={`info.overview.${descKey}`}>{descKey}</p>
+							</article>
+						))}
+					</div>
+					<p class="text-xs text-gray-500 mt-3">
+						Si quieres numeros exactos y reglas puntuales, revisa cada tab debajo.
+					</p>
+				</div>
+
+				<CardSurface className="p-6 md:p-7">
+					<h3 class="text-xl font-bold text-yellow-500 mb-3 font-display" data-i18n="info.overview.whyTitle">Por que jugar aqui</h3>
+					<ul class="space-y-2 text-sm text-gray-300">
+						{['why1', 'why2', 'why3'].map((key) => (
+							<li class="flex items-start gap-2">
+								<span class="text-yellow-500 mt-0.5">•</span>
+								<span data-i18n={`info.overview.${key}`}>{key}</span>
+							</li>
+						))}
+					</ul>
+					<div class="mt-5 border-t border-white/10 pt-4">
+						<h4 class="text-lg font-bold text-white mb-1" data-i18n="info.overview.ctaTitle">Listo para entrar?</h4>
+						<p class="text-sm text-gray-400 mb-4" data-i18n="info.overview.ctaDesc">
+							Unite al Discord para novedades y soporte. Descarga el cliente y empeza hoy.
+						</p>
+						<div class="flex flex-wrap gap-3">
+							<ActionButton
+								href="https://discord.gg/GunamUdGaQ"
+								target="_blank"
+								rel="noopener noreferrer"
+								variant="discord"
+								className="px-4 py-2 text-xs md:text-sm"
+							>
+								Discord
+							</ActionButton>
+							<ActionButton
+								href="/downloads"
+								variant="ghost"
+								className="px-4 py-2 text-xs md:text-sm"
+							>
+								Descargas
+							</ActionButton>
+						</div>
+					</div>
+					<ActionButton href="/rates" variant="primary" className="mt-4 px-4 py-2 text-black border-yellow-300/40">
+						Abrir Info completa en tabs
+						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+					</ActionButton>
+				</CardSurface>
+			</div>
+		</section>
 	</div>
 
-	<NewsFeed />
 </Layout>
 
 <style>
+	@keyframes heroPulse {
+		0%, 100% {
+			box-shadow: 0 0 0 rgba(234, 179, 8, 0);
+		}
+		50% {
+			box-shadow: 0 0 18px rgba(234, 179, 8, 0.12);
+		}
+	}
+	.animate-hero-pulse {
+		animation: heroPulse 6s ease-in-out infinite;
+	}
 	@keyframes shimmer {
 		100% {
 			transform: translateX(100%);

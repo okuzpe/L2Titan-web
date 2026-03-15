@@ -1,0 +1,14 @@
+---
+description: Flujo i18n para traducciones y textos visibles
+globs: "{src/**/*.astro,src/data/translations.ts,src/utils/i18n.ts}"
+alwaysApply: false
+---
+
+# I18n And Translations
+
+- No hardcodees texto visible en componentes cuando exista flujo por `data-i18n` y `translations`.
+- Toda clave nueva en `translations.es` debe existir también en `translations.en` con la misma estructura.
+- Reutiliza claves existentes antes de crear nuevas para evitar duplicaciones semánticas.
+- Si agregas `data-i18n-*` (`title`, `alt`, etc.), valida que la clave exista en ambos idiomas.
+- Mantén nombres de claves estables para no romper referencias en `src/utils/i18n.ts` o componentes.
+- Si cambias copy de una noticia o sección, actualiza también sus `titleKey/summaryKey/contentKey` relacionados.

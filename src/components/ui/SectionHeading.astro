@@ -1,0 +1,13 @@
+---
+interface Props {
+  text: string;
+  i18nKey?: string;
+  className?: string;
+}
+
+const { text, i18nKey, className = '' } = Astro.props;
+---
+
+<h2 class={`df-section-title ${className}`.trim()}>
+  {i18nKey ? <span data-i18n={i18nKey}>{text}</span> : text}
+</h2>

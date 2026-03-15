@@ -1,0 +1,14 @@
+---
+description: Guías de estilo con Tailwind 4 y theme tokens
+globs: "{src/**/*.astro,src/styles/**/*.css}"
+alwaysApply: false
+---
+
+# Tailwind Theme Styling
+
+- Reutiliza tokens del `@theme` central en `src/styles/global.css` antes de introducir nuevos valores.
+- Prioriza utilidades Tailwind para estilos de componentes; usa CSS adicional solo cuando aporte claridad.
+- Evita estilos inline salvo casos puntuales (por ejemplo, comportamiento crítico de render inicial).
+- Mantén consistencia visual con la identidad actual: fondo oscuro, acentos dorados y tipografías definidas.
+- Cuando agregues clases utilitarias, conserva legibilidad y evita combinaciones excesivamente largas si se pueden extraer.
+- Si modificas tipografía o color base, valida impacto global en layout, contraste y legibilidad.

@@ -1,88 +1,156 @@
 ---
+import { neutralZoneHighlights } from '../../data/serverInfo';
 ---
 
-<!-- How it works -->
-<div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-8">
-  <h3 class="text-2xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.instancesTab.howItWorks">Cómo funciona</h3>
-  <div class="grid sm:grid-cols-2 gap-3">
-    {[
-      { key: 'desc1', icon: '⏱️' },
-      { key: 'desc2', icon: '⏸️' },
-      { key: 'desc3', icon: '🔄' },
-      { key: 'desc4', icon: '👥' },
-    ].map((item) => (
-      <div class="flex items-start gap-3 p-3 bg-black/40 rounded border border-white/5">
-        <span class="text-lg shrink-0">{item.icon}</span>
-        <span class="text-gray-300 text-sm" data-i18n={`info.instancesTab.${item.key}`}>{item.key}</span>
-      </div>
-    ))}
+<!-- Daily Instances block -->
+<div class="bg-slate-900/50 p-6 rounded-xl border border-purple-500/20 mb-8">
+  <div class="mb-4">
+    <h2 class="text-xl md:text-2xl uppercase tracking-wide text-purple-300 font-display font-bold" data-i18n="info.instancesTab.instancesSectionTitle">Instancias diarias</h2>
+    <p class="text-sm text-gray-400 mt-1" data-i18n="info.instancesTab.instancesSectionDesc">Contenido con tiempo y reglas de instancia.</p>
   </div>
-</div>
 
-<!-- Pagan Temple -->
-<div class="grid md:grid-cols-2 gap-8">
-  <div class="bg-slate-900/50 p-6 rounded-xl border border-purple-500/20">
-    <h3 class="text-xl font-bold text-purple-400 mb-4 font-display" data-i18n="info.instancesTab.paganTemple">Instancia: Pagan Temple</h3>
-    <div class="space-y-2 text-sm">
-      <div class="flex justify-between p-2 bg-black/30 rounded">
-        <span class="text-gray-400" data-i18n="info.instancesTab.maxTime">Tiempo máximo/día</span>
-        <span class="text-gray-200" data-i18n="info.instancesTab.maxTimeVal">60 minutos</span>
-      </div>
-      <div class="flex justify-between p-2 bg-black/30 rounded">
-        <span class="text-gray-400" data-i18n="info.instancesTab.maxEntries">Entradas/día</span>
-        <span class="text-gray-200" data-i18n="info.instancesTab.maxEntriesVal">3</span>
-      </div>
-      <div class="flex justify-between p-2 bg-black/30 rounded">
-        <span class="text-gray-400" data-i18n="info.instancesTab.levelRange">Rango de nivel</span>
-        <span class="text-gray-200" data-i18n="info.instancesTab.levelRangeVal">1 - 85</span>
-      </div>
-    </div>
-    <div class="mt-3 p-3 bg-purple-500/10 rounded border border-purple-500/20">
-      <p class="text-xs text-gray-400" data-i18n="info.instancesTab.mobTypes">Tipos de mobs</p>
-      <p class="text-gray-300 text-xs mt-1" data-i18n="info.instancesTab.mobTypesVal">Chapel Guard, Triol's Layperson, Triol's Believer, Triol's Priest, Ritual Offering</p>
+  <!-- How it works -->
+  <div class="bg-black/30 p-4 rounded-xl border border-white/10 mb-5">
+    <h3 class="text-xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.instancesTab.howItWorks">Cómo funciona</h3>
+    <div class="grid sm:grid-cols-2 gap-3">
+      {[
+        { key: 'desc1', icon: '⏱️' },
+        { key: 'desc2', icon: '⏸️' },
+        { key: 'desc3', icon: '🔄' },
+        { key: 'desc4', icon: '👥' },
+      ].map((item) => (
+        <div class="flex items-start gap-3 p-3 bg-black/40 rounded border border-white/5">
+          <span class="text-lg shrink-0">{item.icon}</span>
+          <span class="text-gray-300 text-sm" data-i18n={`info.instancesTab.${item.key}`}>{item.key}</span>
+        </div>
+      ))}
     </div>
   </div>
 
-  <div class="space-y-8">
-    <!-- Drops -->
-    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
-      <h3 class="text-xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.instancesTab.drops">Drops de la instancia</h3>
-      <div class="space-y-3">
-        <div class="p-3 bg-black/40 rounded border border-white/5">
-          <span class="text-yellow-400 text-sm" data-i18n="info.instancesTab.adena">Adena: 130,000 - 170,000 por mob (70% chance)</span>
+  <div class="grid md:grid-cols-2 gap-6">
+    <div class="bg-black/30 p-5 rounded-xl border border-white/10">
+      <h3 class="text-xl font-bold text-purple-400 mb-4 font-display" data-i18n="info.instancesTab.paganTemple">Instancia: Pagan Temple</h3>
+      <div class="rounded-xl overflow-hidden border border-white/10 bg-black/40 mb-4">
+        <div class="aspect-video">
+          <img
+            src="/images/Instance.jpg"
+            alt="Pagan Temple instance"
+            class="w-full h-full object-cover object-center"
+            loading="lazy"
+          />
         </div>
-        <div class="p-3 bg-black/40 rounded border border-white/5">
-          <span class="text-pink-400 text-sm" data-i18n="info.instancesTab.freyaRose">Freya Rose Red Potion: 1-2 unidades (65% normal / 91% VIP)</span>
+      </div>
+      <div class="space-y-2 text-sm">
+        <div class="flex justify-between p-2 bg-black/30 rounded">
+          <span class="text-gray-400" data-i18n="info.instancesTab.maxTime">Tiempo máximo/día</span>
+          <span class="text-gray-200" data-i18n="info.instancesTab.maxTimeVal">60 minutos</span>
         </div>
+        <div class="flex justify-between p-2 bg-black/30 rounded">
+          <span class="text-gray-400" data-i18n="info.instancesTab.maxEntries">Entradas/día</span>
+          <span class="text-gray-200" data-i18n="info.instancesTab.maxEntriesVal">1</span>
+        </div>
+        <div class="flex justify-between p-2 bg-black/30 rounded">
+          <span class="text-gray-400" data-i18n="info.instancesTab.levelRange">Rango de nivel</span>
+          <span class="text-gray-200" data-i18n="info.instancesTab.levelRangeVal">1 - 80</span>
+        </div>
+      </div>
+      <div class="mt-3 p-3 bg-purple-500/10 rounded border border-purple-500/20">
+        <p class="text-xs text-gray-400" data-i18n="info.instancesTab.mobTypes">Tipos de mobs</p>
+        <p class="text-gray-300 text-xs mt-1" data-i18n="info.instancesTab.mobTypesVal">Chapel Guard, Triol's Layperson, Triol's Believer, Triol's Priest, Ritual Offering</p>
       </div>
     </div>
 
-    <!-- Commands -->
-    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
-      <h3 class="text-xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.instancesTab.commands">Comandos</h3>
-      <div class="space-y-2">
-        {[
-          { cmd: '.daily', key: 'cmdDaily' },
-        ].map((c) => (
-          <div class="flex items-center gap-3 p-2 bg-black/30 rounded text-sm">
-            <code class="bg-yellow-500/10 text-yellow-400 px-2 py-0.5 rounded font-mono text-xs shrink-0">{c.cmd}</code>
-            <span class="text-gray-400" data-i18n={`info.commandsTab.${c.key}`}>{c.key}</span>
+    <div class="space-y-5">
+      <div class="bg-black/30 p-5 rounded-xl border border-white/10">
+        <h3 class="text-xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.instancesTab.drops">Drops de la instancia</h3>
+        <div class="space-y-3">
+          <div class="p-3 bg-black/40 rounded border border-white/5">
+            <span class="text-yellow-400 text-sm" data-i18n="info.instancesTab.adena">Adena: 130,000 - 170,000 por mob (70% chance)</span>
           </div>
-        ))}
+          <div class="p-3 bg-black/40 rounded border border-white/5">
+            <span class="text-pink-400 text-sm" data-i18n="info.instancesTab.freyaRose">Freya Rose Red Potion: 1-2 unidades (65% normal / 91% VIP)</span>
+          </div>
+          <div class="p-3 bg-black/40 rounded border border-white/5">
+            <span class="text-indigo-300 text-sm" data-i18n="info.instancesTab.titansBoxDrop">Titan's Box: 10% normal / 14% VIP</span>
+          </div>
+          <p class="text-xs text-gray-500" data-i18n="info.instancesTab.titansBoxExtractable">
+            Titan's Box fue añadido al sistema de extractables del servidor.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-black/30 p-5 rounded-xl border border-white/10">
+        <h3 class="text-xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.instancesTab.commands">Comandos</h3>
+        <div class="space-y-2">
+          {[
+            { cmd: '.daily', key: 'cmdDaily' },
+            { cmd: '.daily watch', key: 'cmdDailyWatch' },
+            { cmd: '.daily enter', key: 'cmdDailyEnter' },
+            { cmd: '.daily exit', key: 'cmdDailyExit' },
+          ].map((c) => (
+            <div class="flex items-center gap-3 p-2 bg-black/30 rounded text-sm">
+              <code class="bg-yellow-500/10 text-yellow-400 px-2 py-0.5 rounded font-mono text-xs shrink-0">{c.cmd}</code>
+              <span class="text-gray-400" data-i18n={`info.commandsTab.${c.key}`}>{c.key}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </div>
+
+  <div class="mt-6 bg-black/30 p-5 rounded-xl border border-red-500/20">
+    <h3 class="text-lg font-bold text-red-400 mb-4 font-display" data-i18n="info.instancesTab.restrictions">Restricciones</h3>
+    <ul class="space-y-2">
+      {['restrict1', 'restrict2', 'restrict3', 'restrict4'].map((key) => (
+        <li class="flex items-center gap-2 text-gray-400 text-sm">
+          <svg class="w-4 h-4 text-red-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <span data-i18n={`info.instancesTab.${key}`}>{key}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
 </div>
 
-<!-- Restrictions -->
-<div class="mt-8 bg-slate-900/50 p-6 rounded-xl border border-red-500/20">
-  <h3 class="text-xl font-bold text-red-400 mb-4 font-display" data-i18n="info.instancesTab.restrictions">Restricciones</h3>
-  <ul class="space-y-2">
-    {['restrict1', 'restrict2', 'restrict3', 'restrict4'].map((key) => (
-      <li class="flex items-center gap-2 text-gray-400 text-sm">
-        <svg class="w-4 h-4 text-red-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        <span data-i18n={`info.instancesTab.${key}`}>{key}</span>
-      </li>
-    ))}
-  </ul>
+<!-- Custom Zone block -->
+<div class="bg-slate-900/50 p-6 rounded-xl border border-yellow-500/20">
+  <div class="mb-4">
+    <h2 class="text-xl md:text-2xl uppercase tracking-wide text-yellow-300 font-display font-bold" data-i18n="info.instancesTab.customZoneSectionTitle">Zona custom</h2>
+    <p class="text-sm text-gray-400 mt-1" data-i18n="info.instancesTab.customZoneSectionDesc">Zona abierta de farmeo/PvP con balance propio.</p>
+  </div>
+  <h3 class="text-lg md:text-xl font-bold text-yellow-400 mb-1 font-display" data-i18n="info.instancesTab.neutralZoneTitle">Neutral Zone (rework)</h3>
+  <p class="text-sm text-gray-400 mb-4" data-i18n="info.instancesTab.neutralZoneIntro">Zona PvP activa con ajustes de flujo, mobs y economía.</p>
+  <div class="grid lg:grid-cols-2 gap-5">
+    <div class="rounded-xl overflow-hidden border border-white/10 bg-black/40">
+      <div class="aspect-video">
+        <img
+          src="/images/NeutralZone.jpg"
+          alt="Neutral Zone"
+          class="w-full h-full object-cover object-center"
+          loading="lazy"
+        />
+      </div>
+    </div>
+    <div class="space-y-2">
+      {neutralZoneHighlights.map((key) => (
+        <div class="flex items-start gap-2 p-3 bg-black/30 rounded border border-white/5 text-sm">
+          <svg class="w-4 h-4 text-yellow-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span class="text-gray-300" data-i18n={`info.instancesTab.${key}`}>{key}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="mt-4 bg-black/30 rounded-xl border border-white/10 p-4">
+    <h4 class="text-base font-bold text-yellow-400 mb-2 uppercase tracking-wider font-display" data-i18n="info.instancesTab.neutralDropSummaryTitle">Drops (Neutral Zone)</h4>
+    <div class="space-y-2 text-sm">
+      <p class="text-gray-300" data-i18n="info.instancesTab.neutralDropSummaryDrop">
+        Drop: Adena + materiales de crafteo (Mold Glue/Lubricant/Hardener, Enria, Asofe, Thons, Varnish of Purity, Synthetic Cokes, Compound Braid, Mithril Alloy, Durable Metal Plate, Blacksmith's Frame, High Grade Suede, Oriharukon Ore, Mithril Ore, Adamantite Nugget, Oriharukon).
+      </p>
+      <p class="text-gray-300" data-i18n="info.instancesTab.neutralDropSummarySpoil">
+        Spoil: Sealed gear/jewelry A-S (Draconic Leather, Imperial Crusader, Major Arcana).
+      </p>
+      <p class="text-xs text-gray-500" data-i18n="info.instancesTab.neutralDropSummaryMobs">
+        Referencia rápida útil para guía de farmeo por mobs 23100-23103.
+      </p>
+    </div>
+  </div>
 </div>

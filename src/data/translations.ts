@@ -6,39 +6,69 @@ export const translations = {
       info: 'Info',
       vote: 'Vote',
       discord: 'Discord',
+      socialMedia: 'Redes',
       language: 'Idioma'
     },
     home: {
-      hero: 'La era de los héroes ha comenzado.',
+      hero: 'Interlude x25',
       downloadClient: 'Descargar Cliente',
       joinDiscord: 'Unirse a Discord',
+      heroPromo: {
+        badge: 'Temporada activa',
+        title: 'Para clanes que quieren progreso real',
+        desc: 'SubStack, AutoFarm, eventos y economía activa en un servidor pensado para durar. Entra con toda la información clara desde el día uno.',
+        cta: 'Ver Info completa',
+        primaryHint: 'Cliente completo y launcher oficial con instalación rápida.',
+        trust: {
+          noWipe: 'No wipe',
+          antiDdos: 'Anti-DDoS',
+          autoAccount: 'Auto Create Account',
+          activeDiscord: 'Discord activo'
+        }
+      },
+      infoStrip: {
+        title: 'Quieres todo el detalle del servidor?',
+        description: 'Rates, comandos, eventos, daily, economy, VIP y reglas claras en una sola pagina.',
+        cta: 'Ver Info completa'
+      },
       features: {
         cumulative: {
-          title: 'Subclases Acumulativas',
-          description: 'Base Interlude x30. Sistema único donde puedes combinar skills de diferentes clases en un mismo personaje.'
+          title: 'SubStack real',
+          description: 'Subclases acumulativas para armar builds mas flexibles y competitivas.'
         },
         ddos: {
-          title: 'Protección DDoS',
-          description: 'Infraestructura robusta para garantizar 99.9% de uptime y juego sin lag.'
+          title: 'Anti DDoS',
+          description: 'Proteccion activa para mantener estabilidad durante picos de trafico.'
         },
         events: {
-          title: 'Eventos Diarios',
-          description: 'TvT, CTF, Deathmatch y eventos automáticos cada hora con recompensas únicas.'
+          title: 'AutoFarm configurable',
+          description: 'Modos, assist, filtros y radio para farmear con control total.'
         }
       }
     },
     countdown: {
-      title: 'Open Beta Now',
-      subtitle: 'Open Server In',
+      title: 'Servidor en linea',
+      subtitle: 'Temporada activa',
       days: 'Días',
       hours: 'Horas',
       minutes: 'Minutos',
       seconds: 'Segundos',
-      serverOpen: '¡Servidor Abierto!',
-      playNow: '¡Entra a jugar ahora!'
+      serverOpen: 'Servidor abierto',
+      playNow: 'Trae a tus amigos, arma tu clan y salgan a competir.'
     },
     downloads: {
       title: 'CENTRO DE DESCARGAS',
+      accountNotice: {
+        title: 'Auto Create Account activado',
+        description: 'No necesitas registrarte en una web. Tu cuenta se crea automaticamente cuando entras al juego por primera vez.'
+      },
+      quickStart: {
+        title: 'Pasos rapidos para jugar',
+        step1: 'Descarga el Cliente Completo o el Launcher.',
+        step2: 'Descomprime el juego y abre L2TitanLauncher.',
+        step3: 'Inicia sesion en el juego con el usuario y clave que quieras.',
+        step4: 'Tu cuenta se crea automaticamente al primer login (Auto Create Account).'
+      },
       table: {
         file: 'Archivo',
         size: 'Tamaño',
@@ -60,6 +90,7 @@ export const translations = {
       voteForUs: 'Vota por nosotros',
       characterName: 'Nombre del personaje',
       enterCharName: 'Ingresa el nombre de tu personaje',
+      l2jbrasilExactNameRule: 'El nombre debe coincidir exactamente con el que usaras en .vote.',
       copyright: 'L2Titan.com.'
     },
     // Keep old rates.* keys for backward compat
@@ -114,11 +145,20 @@ export const translations = {
         enchant: 'Enchant',
         vip: 'VIP',
         events: 'Eventos',
-        instances: 'Instancias',
+        instances: 'Zonas',
         sieges: 'Asedios',
         economy: 'Economía',
         features: 'Features',
         commands: 'Comandos',
+      },
+      patchStatus: {
+        xpRate: 'XP actual',
+        questDropRate: 'Drop de quest actual',
+        eventsTvt: 'Estado TvT',
+        eventsCtf: 'Estado CTF',
+        eventsDm: 'Estado DM',
+        globalGk: 'Global GK',
+        substackNoMorph: 'Substack no-morph',
       },
       // ── Rates tab ──
       ratesTab: {
@@ -213,7 +253,11 @@ export const translations = {
       // ── Events tab ──
       eventsTab: {
         schedule: 'Horario Completo',
-        scheduleNote: 'Cada hora hay un evento, 24/7',
+        scheduleNote: 'TvT activo por horario. CTF y DM quedan temporalmente en pausa.',
+        eventActive: 'ACTIVO',
+        eventInactive: 'PAUSADO',
+        ctfPaused: 'CTF automático desactivado temporalmente',
+        dmPaused: 'DM automático desactivado temporalmente',
         hour: 'Hora',
         event: 'Evento',
         joinCommands: 'Comandos para participar',
@@ -262,9 +306,13 @@ export const translations = {
       // ── Instances tab ──
       instancesTab: {
         title: 'Instancias Diarias',
+        instancesSectionTitle: 'Instancias diarias',
+        instancesSectionDesc: 'Contenido con tiempo y reglas de instancia.',
+        customZoneSectionTitle: 'Zona custom',
+        customZoneSectionDesc: 'Zona abierta de farmeo/PvP con balance propio.',
         howItWorks: 'Cómo funciona',
         desc1: 'Zonas de farmeo con tiempo limitado que se resetean cada día',
-        desc2: 'El tiempo se pausa cuando el jugador sale, muere o se desconecta',
+        desc2: 'El tiempo se pausa cuando el jugador sale o se desconecta',
         desc3: 'Reset diario a las 06:30 AM (hora del servidor)',
         desc4: 'Los jugadores en la misma instancia comparten la zona y pueden hacer party',
         paganTemple: 'Instancia: Pagan Temple',
@@ -283,12 +331,29 @@ export const translations = {
         drops: 'Drops de la instancia',
         adena: 'Adena: 130,000 - 170,000 por mob (70% chance)',
         freyaRose: 'Freya Rose Red Potion: 1-2 unidades (65% normal / 91% VIP)',
+        titansBoxDrop: "Titan's Box: 10% normal / 14% VIP",
         commands: 'Comandos',
         restrictions: 'Restricciones',
         restrict1: 'No se puede usar Scroll of Escape ni /unstuck (usar .daily exit)',
-        restrict2: 'Si mueres: el tiempo se pausa y respawneas en la ciudad',
+        restrict2: 'Si mueres: respawneas en la ciudad',
         restrict3: 'Si te desconectas: el tiempo se pausa y al reconectar apareces en Giran',
         restrict4: 'No se puede entrar si ya estás dentro de otra instancia',
+        neutralZoneTitle: 'Neutral Zone (rework)',
+        neutralZoneIntro: 'Zona PvP activa con ajustes de flujo, mobs y economía.',
+        neutralIdentity: 'Zona con identidad PvP más clara y consistente.',
+        neutralMonsters: 'Población renovada con monstruos custom.',
+        neutralFlow: 'Ajustes de presión de combate y ritmo de farmeo.',
+        neutralFlag: 'Comportamiento de PvP flag más confiable.',
+        neutralDrops: 'Drops y spoils reajustados para progresión crafteo.',
+        neutralDropSummaryTitle: 'Drops (Neutral Zone)',
+        neutralDropSummaryDrop: "Drop: Adena + materiales de crafteo (Mold Glue/Lubricant/Hardener, Enria, Asofe, Thons, Varnish of Purity, Synthetic Cokes, Compound Braid, Mithril Alloy, Durable Metal Plate, Blacksmith's Frame, High Grade Suede, Oriharukon Ore, Mithril Ore, Adamantite Nugget, Oriharukon).",
+        neutralDropSummarySpoil: 'Spoil: Sealed gear/jewelry A-S (Draconic Leather, Imperial Crusader, Major Arcana).',
+        neutralDropSummaryMobs: 'Referencia rápida útil para guía de farmeo por mobs 23100-23103.',
+        dailyRewardsTitle: 'Rewards diarios actualizados',
+        rewardAdena: 'Adena',
+        rewardFreyaRose: 'Freya Rose Red Potion',
+        rewardTitansBox: "Titan's Box",
+        titansBoxExtractable: "Titan's Box fue añadido al sistema de extractables del servidor.",
       },
       // ── Sieges tab ──
       siegesTab: {
@@ -337,7 +402,7 @@ export const translations = {
         pvpCoin: 'PVP Coin',
         pvpCoinSource: '1 por cada PvP kill',
         eventMedal: 'Event Medal',
-        eventMedalSource: 'En eventos TvT, CTF, DM y Town War',
+        eventMedalSource: 'En TvT activo y Town War',
         raidToken: 'Raid Token',
         raidTokenSource: 'Drop de todos los Raid Bosses y Grand Bosses',
         voteCoin: 'Vote Coin',
@@ -347,21 +412,33 @@ export const translations = {
         vipToken: 'VIP Token',
         vipTokenSource: 'Comprando con 20 Titan Coins',
         crystalScrollShop: 'Tienda de Crystal Scrolls',
-        crystalScrollNote: '100% de éxito al encantar. Requiere Vote Coins + Raid Tokens + Adena.',
+        crystalScrollNote: 'Si falla no baja ni destruye el item; solo se consume el scroll. Requiere Vote Coins + Raid Tokens + Adena.',
         weaponScrolls: 'Crystal Scrolls de Arma',
         armorScrolls: 'Crystal Scrolls de Armadura',
         grade: 'Grade',
         specialShop: 'Tienda Especial',
         withTitanCoins: 'Con Titan Coins',
         withEventMedals: 'Con Event Medals',
+        withVoteCoins: 'Con Vote Coins',
         soulCrystal11: 'Soul Crystal Lv. 11',
         soulCrystal12: 'Soul Crystal Lv. 12',
         soulCrystal13: 'Soul Crystal Lv. 13',
         redPipetteKnife: 'Red Pipette Knife',
+        proofOfBlood: 'Proof of Blood',
+        proofOfAlliance: 'Proof of Alliance',
+        proofOfAspiration: 'Proof of Aspiration',
         lifeStone52: 'Life Stone Top-Grade Lv. 52',
         lifeStone61: 'Life Stone Top-Grade Lv. 61',
         lifeStone67: 'Life Stone Top-Grade Lv. 67',
         lifeStone76: 'Life Stone Top-Grade Lv. 76',
+        freyaRosePotion: 'Freya Rose Red Potion',
+        titansBoxTitle: "Titan's Box Rewards",
+        titansBoxDesc: "Chance oficial de rewards por apertura de Titan's Box.",
+        titansBoxItemId: 'Item ID',
+        titansBoxItemName: 'Reward',
+        titansBoxQty: 'Qty',
+        titansBoxChance: '%',
+        titansBoxTotal: 'Total: 100%',
         shirtsTitle: 'Sistema de Shirts (Camisas)',
         shirtsDesc: 'Items equipables que dan bonificaciones progresivas de P.Atk, M.Atk y PvP Damage. Para subir de nivel hay que entregar la camisa anterior.',
         shirtLevel: 'Nivel',
@@ -369,6 +446,9 @@ export const translations = {
         shirtPrice: 'Precio',
         raidTokens: 'Raid Tokens por Boss',
         raidTokensDesc: 'Todos los Raid Bosses y Grand Bosses dropean Raid Tokens.',
+        raidBoss: 'Boss',
+        raidTotalFinal: 'Total final',
+        raidDistribution: 'Distribución final',
         normalRB: 'Raid Bosses normales',
         queenAnt: 'Queen Ant',
         orfen: 'Orfen',
@@ -388,6 +468,11 @@ export const translations = {
       // ── Features tab ──
       featuresTab: {
         customNpcs: 'NPCs Custom',
+        autoFarm: 'AutoFarm avanzado',
+        autoFarmDesc1: 'Modos disponibles: Auto / Fighter / Mage',
+        autoFarmDesc2: 'Assist, Assist Leader Strict y Summon Assist para juego en party',
+        autoFarmDesc3: 'Filtros: only attacked targets y respectful hunting',
+        autoFarmDesc4: 'Ajuste de radio y cooldowns por categoria (attack/debuff/buff)',
         bufferNpc: 'Buffer NPC',
         bufferDesc1: 'Categorías: Prophet, Chants, Prophecies, Summons, Resistances, Pa\'agrio, Dances, Songs',
         bufferDesc2: 'Gratis para nivel 52 o menos y para jugadores VIP',
@@ -399,10 +484,10 @@ export const translations = {
         substackDesc1: 'Permite agregar otra clase sobre la clase actual o subclass',
         substackDesc2: 'Nivel mínimo: 76',
         substackDesc3: 'Quest gestionada por el SubStack Manager en Giran',
-        substackDesc4: 'Nivel después de agregar substack: 40',
-        noblesseTrader: 'Noblesse Trader',
-        noblesseDesc1: 'Otorga status Noblesse por 2 Gold Bars',
-        noblesseDesc2: 'Requisitos: nivel 70+ y subclass activa',
+        substackDesc4: 'Modo no-morph activo: no cambia cuerpo/visual al aplicar substack',
+        noblesseTrader: 'Noblesse flexible',
+        noblesseDesc1: 'Disponible por ruta de quest completa o por kill de Barakiel según config.',
+        noblesseDesc2: 'Se mantiene la vía clásica y se habilita progreso alternativo.',
         clanManager: 'Clan Manager',
         clanDesc1: 'Otorga Clan Level 8 y 3,000,000 de reputación por Gold Bars',
         clanDesc2: 'Requisito: líder Noble',
@@ -445,11 +530,26 @@ export const translations = {
         olyCountdownVal: '60 segundos',
         olySkills: 'Skills recargados',
         olySkillsVal: 'Sí (antes y después del combate)',
+        classBalanceTitle: 'Balance PvP v1.1.1',
+        tankVsFighter: 'Tanques vs Fighters: +30% daño',
+        tankVsMage: 'Tanques vs Mages: +25% daño',
+        heavyVsMage: 'Duelist/Dreadnought/Titan/GK/FS/Maestro vs Mages: hasta +20%',
+        daggerArcherVsMage: 'Daggers/Archers/BD-SWS line vs Mages: +15%',
+        magicCritCap: 'M.Crit Rate máximo: 350',
+        magicCritPower: 'Magic Critical Power: 2.8x',
+        magicFailures: 'MagicFailures desactivado para casteo más consistente',
+        totemRework: 'Totems rework: bonus completo con Fist/Dual Fist y reducido con otras armas',
+        classMaster3rd: 'Class Master habilita 3ra clase con costo y recompensa configurada',
+        globalGkUpdate: 'Global GK activo con menú renovado y utilidades/farm zones nuevas',
         heroCustom: 'Hero Custom',
         heroDesc1: 'Existe un item consumible que otorga Hero temporal por días (configurable)',
         heroDesc2: 'Los Heroes pueden elegir 1 arma Hero en los Monumentos de Heroes',
         heroDesc3: 'Los Heroes reciben automáticamente el Wings of Destiny Circlet',
         otherFeatures: 'Otras Features',
+        expToggle: 'Control de EXP: usa .exp para activar o pausar ganancia segun tu objetivo',
+        topRanking: 'Ranking in-game: .top muestra PvP/PK paginado para seguir tu progreso',
+        dropCommand: 'Vista de drops: con target + Ctrl+Shift ves drop/spoil al momento',
+        balanceUpdates: 'Balance y asedios con ajustes frecuentes para mantener el meta activo',
         autoLearn: 'Auto Learn Skills: Los skills se aprenden automáticamente al subir de nivel',
         subclassNoQuest: 'Subclass sin Quests: Se puede cambiar de subclass sin hacer las quests originales (excepto 3ra clase)',
         offlineShop: 'Offline Shop: Al montar una tienda y salir del juego, la tienda permanece abierta',
@@ -478,8 +578,8 @@ export const translations = {
         cmdJoin: 'Unirse al evento activo (TvT, CTF o DM)',
         cmdLeave: 'Abandonar el evento',
         cmdTop: 'Menú de rankings',
-        cmdTopPvp: 'Top jugadores por PvP kills',
-        cmdTopPk: 'Top jugadores por PK kills',
+        cmdTopPvp: 'Top jugadores por PvP kills (paginado)',
+        cmdTopPk: 'Top jugadores por PK kills (paginado)',
         cmdVote: 'Votar en las páginas de tops (HopZone, TopZone, L2Network)',
         cmdVotePoints: 'Ver puntos de voto acumulados',
         cmdGetVoteReward: 'Canjear puntos de voto por recompensas',
@@ -498,9 +598,43 @@ export const translations = {
         cmdAway: 'Activar estado AFK (con mensaje opcional)',
         cmdBack: 'Desactivar estado AFK',
         cmdOfflineShop: 'Convertir tienda privada en tienda offline',
+        cmdExp: 'Activar o desactivar ganancia de EXP',
+        cmdDrop: 'Ver drop y spoil con target + Ctrl+Shift',
         cmdRepair: 'Reparar personaje buggeado (lo mueve a Floran Village)',
         cmdStat: 'Ver estadísticas del jugador seleccionado',
         cmdStats: 'Ver kills en eventos del jugador seleccionado',
+      },
+      overview: {
+        title: 'L2Titan Interlude x25 - Parche 1.3 activo',
+        intro1: 'Un servidor pensado para jugadores que valoran una buena experiencia en Lineage 2.',
+        intro2: 'Comunidad activa, herramientas utiles y un entorno competitivo para jugar en equipo.',
+        sectionTitle: 'Lo mas importante para jugar mejor',
+        f1Title: 'SubStack',
+        f1Desc: 'Subclases acumulativas para ampliar tu build y adaptarte a PvP, farmeo y eventos.',
+        f2Title: 'AutoFarm avanzado',
+        f2Desc: 'Configura modos, assist, filtros y radio para que el personaje actue como vos queres.',
+        f3Title: '.exp',
+        f3Desc: 'Activa o pausa la EXP para controlar tu rango, objetivos y ritmo de progreso.',
+        f4Title: 'Eventos con .join/.leave',
+        f4Desc: 'TvT activo con entrada rapida. CTF y DM quedan temporalmente en pausa.',
+        f5Title: 'Daily Instances',
+        f5Desc: 'Con .daily ves info, tiempo restante y gestionas entrada/salida sin perder ciclos.',
+        f6Title: 'Ranking .top',
+        f6Desc: 'Consulta ranking PvP/PK paginado in-game y segui tu posicion competitiva.',
+        f7Title: 'Vista de drops',
+        f7Desc: 'Con target + Ctrl+Shift revisas drop/spoil al instante para decidir mejor donde farmear.',
+        f8Title: 'VIP',
+        f8Desc: 'Gestiona estado y tiempo con .vip/.vipinfo y aprovecha beneficios definidos.',
+        f9Title: 'Buffer Manager',
+        f9Desc: 'Presets Fighter/Mage, restore HP/CP/MP, cancel y schemes para prepararte rapido.',
+        f10Title: 'Balance y siege',
+        f10Desc: 'Updates frecuentes para mantener peleas y asedios en movimiento.',
+        whyTitle: 'Por que jugar aqui',
+        why1: 'Herramientas claras que ahorran tiempo sin quitar profundidad.',
+        why2: 'Comandos utiles para progreso, eventos y competencia en un solo lugar.',
+        why3: 'Proyecto activo con ajustes frecuentes de balance y siege.',
+        ctaTitle: 'Listo para entrar?',
+        ctaDesc: 'Unite al Discord para novedades y soporte. Descarga el cliente y empeza hoy.',
       },
       // ── Discord CTA (reused) ──
       discord: {
@@ -514,15 +648,40 @@ export const translations = {
       readMore: 'Leer más →',
       backButton: 'Volver',
       items: {
-        opening: {
-          title: 'Gran Apertura: L2Titan',
-          summary: 'Prepárate para la experiencia definitiva. Servidor Interlude x30 con características únicas.',
-          content: 'L2Titan está listo para lanzarse. El 24 de enero de 2026 abriremos nuestras puertas a todos los jugadores. Servidor Interlude x30 con un sistema único de subclases acumulativas que te permitirá combinar habilidades de diferentes clases en un mismo personaje. Contaremos con protección DDoS robusta, eventos diarios, sistema de Olympiad y mucho más. ¡No te lo pierdas!'
+        patchV1: {
+          title: 'Patch v1 - Combate, offline shop y estabilidad',
+          summary: 'Se aplicaron fixes de combate, tienda offline persistente, ajustes de Olympiad, pets y mejoras anti-crash/anti-bot.',
+          content: 'El patch v1 corrige interacciones críticas de combate (heal, lethal, CP, MP reflect, revive en asedio y cancel), habilita offline shop con persistencia en DB y suma mejoras de estabilidad de servidor, anti-DoS y geodata base.'
         },
-        balance: {
-          title: 'Actualización de Balance',
-          summary: 'Ajustes en clases de dagueros y arqueros para mejorar el PvP competitivo.',
-          content: 'Hemos realizado ajustes importantes en las clases de dagueros y arqueros para mejorar el balance del PvP competitivo. Estos cambios incluyen modificaciones en los tiempos de reutilización de habilidades, daño base y efectos especiales. El objetivo es crear un entorno más equilibrado donde todas las clases tengan oportunidades justas en combate.'
+        patchV1Qol: {
+          title: 'Patch v1 QoL - Drop, voto, Buffer y Substack UI',
+          summary: 'Mejoras en .drop, sistema de voto, RateDropQuest x1.20, Global GK y ajustes de movimiento/geodata.',
+          content: 'Se optimizó el flujo de progreso con .drop más claro, voto más justo por plataforma, mejoras de UI en Buffer/Substack, CTF/DM en pausa temporal (TvT activo), y ajustes de estabilidad para movimientos inválidos.'
+        },
+        patch13: {
+          title: 'Patch 1.3 - Neutral Zone y Titan Box',
+          summary: 'Global GK mejorado, Neutral Zone rework, rewards diarios actualizados y progresión Noblesse flexible.',
+          content: 'Gameplay update activo: Global GK con navegación simplificada, menú de utilidades y farm zones (Neutral Zone/Beast Farm), además de navegador de Raid Boss por rangos (sin épicos). Neutral Zone recibió rework de flujo PvP, mobs custom y economía drop/spoil ajustada. Daily ahora recompensa Adena, Freya Rose y Titan’s Box (integrada a extractables). Noblesse ahora soporta ruta de quest completa o progresión alternativa por Barakiel según configuración del servidor.'
+        },
+        patch111: {
+          title: 'Patch 1.3.1 - Balance PvP y magia',
+          summary: 'Se aplicó tuning por matchups PvP, ajustes de totems, cap de magic crit y casteo más confiable.',
+          content: 'Tanques y líneas melee recibieron ajustes específicos contra ciertos arquetipos. Totems de Grand Khavatari ya no quedan bloqueados fuera de fist, con bonus escalado. También se ajustó M.Crit (cap 350, power 2.8x) y se desactivaron fallos mágicos para mejorar consistencia.'
+        },
+        patchQol: {
+          title: 'Patch QoL - Economy, voto y sistemas',
+          summary: 'Drop Viewer, sistema de voto, Buffer/Substack UI y economía fueron actualizados para mejorar progresión y claridad.',
+          content: 'La temporada incorpora mejoras de QoL: .drop más claro, voto con validación más justa, shop Event/Vote/Titan reequilibrada, Class Master para 3ra clase y más fixes de estabilidad en movimiento/geodata.'
+        },
+        castleConquest: {
+          title: 'Conquista de castillo - sábado pasado',
+          summary: 'Resumen de la conquista del castillo del sábado pasado con impacto en la economía del servidor.',
+          content: 'La conquista del castillo del sábado pasado quedó registrada con recompensas de Titan Coins para el líder del clan ganador. Este logro impacta el ciclo de progresión VIP y el control estratégico de la temporada.'
+        },
+        baiumEvent: {
+          title: 'Próximo evento: Baium',
+          summary: 'Se viene evento especial de Baium. Publicaremos hora exacta, reglas y rewards en el próximo anuncio.',
+          content: 'Evento en preparación: Baium. Apenas nos compartas la imagen oficial y horario final, actualizamos esta noticia con el arte definitivo, ventana de registro y reglas completas.'
         }
       }
     },
@@ -548,39 +707,69 @@ export const translations = {
       info: 'Info',
       vote: 'Vote',
       discord: 'Discord',
+      socialMedia: 'Social Media',
       language: 'Language'
     },
     home: {
-      hero: 'The age of heroes has begun.',
+      hero: 'Interlude x25',
       downloadClient: 'Download Client',
       joinDiscord: 'Join Discord',
+      heroPromo: {
+        badge: 'Season live',
+        title: 'For clans that want real progression',
+        desc: 'SubStack, AutoFarm, events and an active economy in a server built to last. Join with clear information from day one.',
+        cta: 'View Full Info',
+        primaryHint: 'Full client and official launcher with quick setup.',
+        trust: {
+          noWipe: 'No wipe',
+          antiDdos: 'Anti-DDoS',
+          autoAccount: 'Auto Create Account',
+          activeDiscord: 'Active Discord'
+        }
+      },
+      infoStrip: {
+        title: 'Want the full server breakdown?',
+        description: 'Rates, commands, events, daily, economy, VIP and clear rules in one place.',
+        cta: 'View Full Info'
+      },
       features: {
         cumulative: {
-          title: 'Cumulative Subclasses',
-          description: 'Interlude x30 base. Unique system where you can combine skills from different classes in the same character.'
+          title: 'Real SubStack',
+          description: 'Cumulative subclasses to build more flexible and competitive setups.'
         },
         ddos: {
-          title: 'DDoS Protection',
-          description: 'Robust infrastructure to guarantee 99.9% uptime and lag-free gameplay.'
+          title: 'Anti-DDoS',
+          description: 'Active protection to keep the server stable during traffic spikes.'
         },
         events: {
-          title: 'Daily Events',
-          description: 'TvT, CTF, Deathmatch and automatic events every hour with unique rewards.'
+          title: 'Configurable AutoFarm',
+          description: 'Modes, assist, filters and radius controls for full farming control.'
         }
       }
     },
     countdown: {
-      title: 'Open Beta Now',
-      subtitle: 'Open Server In',
+      title: 'Server Online',
+      subtitle: 'Season Active',
       days: 'Days',
       hours: 'Hours',
       minutes: 'Minutes',
       seconds: 'Seconds',
-      serverOpen: 'Server is Open!',
-      playNow: 'Join the battle now!'
+      serverOpen: 'Server Open',
+      playNow: 'Bring your friends, rally your clan and jump into the fight.'
     },
     downloads: {
       title: 'DOWNLOAD CENTER',
+      accountNotice: {
+        title: 'Auto Create Account enabled',
+        description: 'No website registration is required. Your account is created automatically the first time you log into the game.'
+      },
+      quickStart: {
+        title: 'Quick start steps',
+        step1: 'Download the Full Client or the Launcher.',
+        step2: 'Extract the game files and open L2TitanLauncher.',
+        step3: 'Log into the game with any username and password you want.',
+        step4: 'Your account is created automatically on first login (Auto Create Account).'
+      },
       table: {
         file: 'File',
         size: 'Size',
@@ -602,6 +791,7 @@ export const translations = {
       voteForUs: 'Vote for us',
       characterName: 'Character name',
       enterCharName: 'Enter your character name',
+      l2jbrasilExactNameRule: 'Name must match exactly the same character used in .vote.',
       copyright: 'L2Titan.com.'
     },
     rates: {
@@ -655,11 +845,20 @@ export const translations = {
         enchant: 'Enchant',
         vip: 'VIP',
         events: 'Events',
-        instances: 'Instances',
+        instances: 'Zones',
         sieges: 'Sieges',
         economy: 'Economy',
         features: 'Features',
         commands: 'Commands',
+      },
+      patchStatus: {
+        xpRate: 'Current XP',
+        questDropRate: 'Current quest drop',
+        eventsTvt: 'TvT status',
+        eventsCtf: 'CTF status',
+        eventsDm: 'DM status',
+        globalGk: 'Global GK',
+        substackNoMorph: 'Substack no-morph',
       },
       ratesTab: {
         baseRates: 'Base Rates',
@@ -750,7 +949,11 @@ export const translations = {
       },
       eventsTab: {
         schedule: 'Full Schedule',
-        scheduleNote: 'One event every hour, 24/7',
+        scheduleNote: 'TvT remains active by schedule. CTF and DM are temporarily paused.',
+        eventActive: 'ACTIVE',
+        eventInactive: 'PAUSED',
+        ctfPaused: 'Automatic CTF temporarily disabled',
+        dmPaused: 'Automatic DM temporarily disabled',
         hour: 'Hour',
         event: 'Event',
         joinCommands: 'Commands to participate',
@@ -798,9 +1001,13 @@ export const translations = {
       },
       instancesTab: {
         title: 'Daily Instances',
+        instancesSectionTitle: 'Daily instances',
+        instancesSectionDesc: 'Instanced content with timer and fixed rules.',
+        customZoneSectionTitle: 'Custom zone',
+        customZoneSectionDesc: 'Open farming/PvP zone with its own balance.',
         howItWorks: 'How it works',
         desc1: 'Time-limited farming zones that reset every day',
-        desc2: 'Time pauses when the player leaves, dies or disconnects',
+        desc2: 'Time pauses when the player leaves or disconnects',
         desc3: 'Daily reset at 06:30 AM (server time)',
         desc4: 'Players in the same instance share the zone and can party',
         paganTemple: 'Instance: Pagan Temple',
@@ -819,12 +1026,29 @@ export const translations = {
         drops: 'Instance Drops',
         adena: 'Adena: 130,000 - 170,000 per mob (70% chance)',
         freyaRose: 'Freya Rose Red Potion: 1-2 units (65% normal / 91% VIP)',
+        titansBoxDrop: "Titan's Box: 10% normal / 14% VIP",
         commands: 'Commands',
         restrictions: 'Restrictions',
         restrict1: 'Cannot use Scroll of Escape or /unstuck (use .daily exit)',
-        restrict2: 'On death: time pauses and you respawn in town',
+        restrict2: 'On death: you respawn in town',
         restrict3: 'On disconnect: time pauses and you respawn in Giran',
         restrict4: 'Cannot enter if already inside another instance',
+        neutralZoneTitle: 'Neutral Zone (rework)',
+        neutralZoneIntro: 'Active PvP zone with tuned flow, mobs and economy.',
+        neutralIdentity: 'Zone now has a clearer PvP identity.',
+        neutralMonsters: 'Population refreshed with custom monsters.',
+        neutralFlow: 'Combat pressure and farming flow were adjusted.',
+        neutralFlag: 'PvP-flag behavior is now more reliable.',
+        neutralDrops: 'Drops and spoils rebalanced for crafting progression.',
+        neutralDropSummaryTitle: 'Drops (Neutral Zone)',
+        neutralDropSummaryDrop: "Drop: Adena + crafting materials (Mold Glue/Lubricant/Hardener, Enria, Asofe, Thons, Varnish of Purity, Synthetic Cokes, Compound Braid, Mithril Alloy, Durable Metal Plate, Blacksmith's Frame, High Grade Suede, Oriharukon Ore, Mithril Ore, Adamantite Nugget, Oriharukon).",
+        neutralDropSummarySpoil: 'Spoil: Sealed A-S gear/jewelry (Draconic Leather, Imperial Crusader, Major Arcana).',
+        neutralDropSummaryMobs: 'Quick reference for farming guide by mobs 23100-23103.',
+        dailyRewardsTitle: 'Updated daily rewards',
+        rewardAdena: 'Adena',
+        rewardFreyaRose: 'Freya Rose Red Potion',
+        rewardTitansBox: "Titan's Box",
+        titansBoxExtractable: "Titan's Box has been added to the server extractable system.",
       },
       siegesTab: {
         fortresses: 'Fortresses',
@@ -871,7 +1095,7 @@ export const translations = {
         pvpCoin: 'PVP Coin',
         pvpCoinSource: '1 per PvP kill',
         eventMedal: 'Event Medal',
-        eventMedalSource: 'From TvT, CTF, DM and Town War events',
+        eventMedalSource: 'From active TvT and Town War events',
         raidToken: 'Raid Token',
         raidTokenSource: 'Dropped by all Raid Bosses and Grand Bosses',
         voteCoin: 'Vote Coin',
@@ -881,21 +1105,33 @@ export const translations = {
         vipToken: 'VIP Token',
         vipTokenSource: 'Purchase with 20 Titan Coins',
         crystalScrollShop: 'Crystal Scroll Shop',
-        crystalScrollNote: '100% enchant success. Requires Vote Coins + Raid Tokens + Adena.',
+        crystalScrollNote: 'On fail it does not downgrade or destroy the item; only the scroll is consumed. Requires Vote Coins + Raid Tokens + Adena.',
         weaponScrolls: 'Weapon Crystal Scrolls',
         armorScrolls: 'Armor Crystal Scrolls',
         grade: 'Grade',
         specialShop: 'Special Shop',
         withTitanCoins: 'With Titan Coins',
         withEventMedals: 'With Event Medals',
+        withVoteCoins: 'With Vote Coins',
         soulCrystal11: 'Soul Crystal Lv. 11',
         soulCrystal12: 'Soul Crystal Lv. 12',
         soulCrystal13: 'Soul Crystal Lv. 13',
         redPipetteKnife: 'Red Pipette Knife',
+        proofOfBlood: 'Proof of Blood',
+        proofOfAlliance: 'Proof of Alliance',
+        proofOfAspiration: 'Proof of Aspiration',
         lifeStone52: 'Life Stone Top-Grade Lv. 52',
         lifeStone61: 'Life Stone Top-Grade Lv. 61',
         lifeStone67: 'Life Stone Top-Grade Lv. 67',
         lifeStone76: 'Life Stone Top-Grade Lv. 76',
+        freyaRosePotion: 'Freya Rose Red Potion',
+        titansBoxTitle: "Titan's Box Rewards",
+        titansBoxDesc: "Official reward chances per Titan's Box opening.",
+        titansBoxItemId: 'Item ID',
+        titansBoxItemName: 'Reward',
+        titansBoxQty: 'Qty',
+        titansBoxChance: '%',
+        titansBoxTotal: 'Total: 100%',
         shirtsTitle: 'Shirt System',
         shirtsDesc: 'Equippable items that give progressive P.Atk, M.Atk and PvP Damage bonuses. To upgrade you must trade in the previous shirt.',
         shirtLevel: 'Level',
@@ -903,6 +1139,9 @@ export const translations = {
         shirtPrice: 'Price',
         raidTokens: 'Raid Tokens per Boss',
         raidTokensDesc: 'All Raid Bosses and Grand Bosses drop Raid Tokens.',
+        raidBoss: 'Boss',
+        raidTotalFinal: 'Final total',
+        raidDistribution: 'Final distribution',
         normalRB: 'Normal Raid Bosses',
         queenAnt: 'Queen Ant',
         orfen: 'Orfen',
@@ -921,6 +1160,11 @@ export const translations = {
       },
       featuresTab: {
         customNpcs: 'Custom NPCs',
+        autoFarm: 'Advanced AutoFarm',
+        autoFarmDesc1: 'Available modes: Auto / Fighter / Mage',
+        autoFarmDesc2: 'Assist, Assist Leader Strict and Summon Assist for party play',
+        autoFarmDesc3: 'Filters: only attacked targets and respectful hunting',
+        autoFarmDesc4: 'Radius control and skill category cooldowns (attack/debuff/buff)',
         bufferNpc: 'Buffer NPC',
         bufferDesc1: 'Categories: Prophet, Chants, Prophecies, Summons, Resistances, Pa\'agrio, Dances, Songs',
         bufferDesc2: 'Free for level 52 or below and for VIP players',
@@ -932,10 +1176,10 @@ export const translations = {
         substackDesc1: 'Allows adding another class on top of current class or subclass',
         substackDesc2: 'Minimum level: 76',
         substackDesc3: 'Quest managed by SubStack Manager in Giran',
-        substackDesc4: 'Level after adding substack: 40',
-        noblesseTrader: 'Noblesse Trader',
-        noblesseDesc1: 'Grants Noblesse status for 2 Gold Bars',
-        noblesseDesc2: 'Requirements: level 70+ and active subclass',
+        substackDesc4: 'No-morph mode active: character body/visual does not change on merge.',
+        noblesseTrader: 'Flexible Noblesse',
+        noblesseDesc1: 'Available through full quest route or Barakiel kill based on server config.',
+        noblesseDesc2: 'Classic route remains and an alternative progression path is available.',
         clanManager: 'Clan Manager',
         clanDesc1: 'Grants Clan Level 8 and 3,000,000 reputation for Gold Bars',
         clanDesc2: 'Requirement: Noble leader',
@@ -978,11 +1222,26 @@ export const translations = {
         olyCountdownVal: '60 seconds',
         olySkills: 'Skills recharged',
         olySkillsVal: 'Yes (before and after combat)',
+        classBalanceTitle: 'PvP Balance v1.1.1',
+        tankVsFighter: 'Tanks vs Fighters: +30% damage',
+        tankVsMage: 'Tanks vs Mages: +25% damage',
+        heavyVsMage: 'Duelist/Dreadnought/Titan/GK/FS/Maestro vs Mages: up to +20%',
+        daggerArcherVsMage: 'Daggers/Archers/BD-SWS line vs Mages: +15%',
+        magicCritCap: 'M.Crit Rate cap: 350',
+        magicCritPower: 'Magic Critical Power: 2.8x',
+        magicFailures: 'MagicFailures disabled for more reliable casting',
+        totemRework: 'Totem rework: full bonus with Fist/Dual Fist, reduced bonus with other weapons',
+        classMaster3rd: 'Class Master now supports 3rd class with configured cost/reward',
+        globalGkUpdate: 'Global GK is active with updated menu and new utility/farm zones',
         heroCustom: 'Custom Hero',
         heroDesc1: 'A consumable item exists that grants temporary Hero status for days (configurable)',
         heroDesc2: 'Heroes can choose 1 Hero weapon at the Hero Monuments',
         heroDesc3: 'Heroes automatically receive the Wings of Destiny Circlet',
         otherFeatures: 'Other Features',
+        expToggle: 'EXP control: use .exp to enable or pause EXP gain based on your objective',
+        topRanking: 'In-game ranking: .top shows paginated PvP/PK standings',
+        dropCommand: 'Drop view: with target + Ctrl+Shift you can inspect drop/spoil instantly',
+        balanceUpdates: 'Frequent balance and siege updates to keep the meta active',
         autoLearn: 'Auto Learn Skills: Skills are learned automatically on level up',
         subclassNoQuest: 'Subclass without Quests: You can change subclass without doing original quests (except 3rd class)',
         offlineShop: 'Offline Shop: When you set up a shop and log out, the shop stays open',
@@ -1010,8 +1269,8 @@ export const translations = {
         cmdJoin: 'Join active event (TvT, CTF or DM)',
         cmdLeave: 'Leave the event',
         cmdTop: 'Rankings menu',
-        cmdTopPvp: 'Top players by PvP kills',
-        cmdTopPk: 'Top players by PK kills',
+        cmdTopPvp: 'Top players by PvP kills (paginated)',
+        cmdTopPk: 'Top players by PK kills (paginated)',
         cmdVote: 'Vote on top sites (HopZone, TopZone, L2Network)',
         cmdVotePoints: 'View accumulated vote points',
         cmdGetVoteReward: 'Redeem vote points for rewards',
@@ -1030,9 +1289,43 @@ export const translations = {
         cmdAway: 'Enable AFK status (with optional message)',
         cmdBack: 'Disable AFK status',
         cmdOfflineShop: 'Convert private shop to offline shop',
+        cmdExp: 'Enable or disable EXP gain',
+        cmdDrop: 'View target drop and spoil with target + Ctrl+Shift',
         cmdRepair: 'Repair bugged character (moves to Floran Village)',
         cmdStat: 'View selected player stats',
         cmdStats: 'View selected player event kills',
+      },
+      overview: {
+        title: 'L2Titan Interlude x25 - Patch 1.3 live',
+        intro1: 'A server for players who value a solid and enjoyable Lineage 2 experience.',
+        intro2: 'Active community, practical systems and a competitive environment built for team play.',
+        sectionTitle: 'What matters most when you play',
+        f1Title: 'SubStack',
+        f1Desc: 'Cumulative subclasses to expand your build for PvP, farming and events.',
+        f2Title: 'Advanced AutoFarm',
+        f2Desc: 'Set modes, assist, filters and radius so your character behaves the way you want.',
+        f3Title: '.exp',
+        f3Desc: 'Enable or pause EXP gain to control your range, goals and progression pace.',
+        f4Title: 'Events with .join/.leave',
+        f4Desc: 'TvT, CTF and DM use unified join/leave commands for faster participation.',
+        f5Title: 'Daily Instances',
+        f5Desc: 'With .daily you see info, remaining time and manage enter/exit quickly.',
+        f6Title: 'Ranking .top',
+        f6Desc: 'Check paginated PvP/PK ranking in-game and track competitive progress.',
+        f7Title: 'Drop view',
+        f7Desc: 'With target + Ctrl+Shift inspect drop/spoil instantly to choose better farming spots.',
+        f8Title: 'VIP',
+        f8Desc: 'Manage VIP status and remaining time with .vip/.vipinfo and clear benefits.',
+        f9Title: 'Buffer Manager',
+        f9Desc: 'Fighter/Mage presets, HP/CP/MP restore, cancel and schemes for fast prep.',
+        f10Title: 'Balance and sieges',
+        f10Desc: 'Frequent updates to keep fights and sieges moving.',
+        whyTitle: 'Why play here',
+        why1: 'Clear tools that save time without removing gameplay depth.',
+        why2: 'Useful commands for progression, events and competition in one place.',
+        why3: 'Active project with frequent balance and siege updates.',
+        ctaTitle: 'Ready to join?',
+        ctaDesc: 'Join Discord for updates and support. Download the client and start now.',
       },
       discord: {
         title: 'Join our Community',
@@ -1045,15 +1338,40 @@ export const translations = {
       readMore: 'Read more →',
       backButton: 'Back',
       items: {
-        opening: {
-          title: 'Grand Opening: L2Titan',
-          summary: 'Get ready for the ultimate experience. Interlude x30 server with unique features.',
-          content: 'L2Titan is ready to launch. On January 24, 2026 we will open our doors to all players. Interlude x30 server with a unique cumulative subclasses system that will allow you to combine skills from different classes in the same character. We will have robust DDoS protection, daily events, Olympiad system and much more. Don\'t miss it!'
+        patchV1: {
+          title: 'Patch v1 - Combat, offline shop and stability',
+          summary: 'Core combat fixes, persistent offline shop, Olympiad/pet adjustments, and anti-crash/anti-bot improvements were applied.',
+          content: 'Patch v1 fixes key combat interactions (heal, lethal, CP, MP reflect, siege revive and cancel), enables DB-persistent offline shop, and adds important server stability, anti-DoS and baseline geodata improvements.'
         },
-        balance: {
-          title: 'Balance Update',
-          summary: 'Adjustments to dagger and archer classes to improve competitive PvP.',
-          content: 'We have made important adjustments to the dagger and archer classes to improve competitive PvP balance. These changes include modifications to skill cooldowns, base damage and special effects. The goal is to create a more balanced environment where all classes have fair opportunities in combat.'
+        patchV1Qol: {
+          title: 'Patch v1 QoL - Drop, vote, Buffer and Substack UI',
+          summary: 'Improvements to .drop, voting flow, RateDropQuest x1.20, Global GK and movement/geodata stability.',
+          content: 'Progression flow was improved with clearer .drop view, fairer vote validation per platform, better Buffer/Substack UI, temporary CTF/DM pause (TvT active), and stability fixes for invalid movement paths.'
+        },
+        patch13: {
+          title: 'Patch 1.3 - Neutral Zone and Titan Box',
+          summary: 'Global GK improvements, Neutral Zone rework, updated daily rewards, and flexible Noblesse progression.',
+          content: 'Gameplay update is live: Global GK now has streamlined navigation, a utilities menu, farm zones (Neutral Zone/Beast Farm), and a level-range Raid Boss browser (non-epic). Neutral Zone was reworked for active PvP with custom monsters and rebalanced drop/spoil economy. Daily instance mobs now reward Adena, Freya Rose, and Titan’s Box (integrated into extractables). Noblesse now supports full quest-chain mode or alternative Barakiel-based progression depending on server configuration.'
+        },
+        patch111: {
+          title: 'Patch 1.3.1 - PvP balance and magic',
+          summary: 'Targeted class-vs-class tuning, totem updates, magic crit cap changes and more reliable casting.',
+          content: 'Tanks and melee lines received targeted matchup tuning. Grand Khavatari totems are no longer hard-locked to fist with scaled bonuses on other weapons. M.Crit was adjusted (cap 350, power 2.8x) and magic failures were disabled for consistency.'
+        },
+        patchQol: {
+          title: 'QoL Patch - Economy, vote and systems',
+          summary: 'Drop Viewer, voting logic, Buffer/Substack UI and economy were updated for better progression clarity.',
+          content: 'The season now includes major QoL upgrades: improved .drop view, fairer vote validation, Event/Vote/Titan shop rebalance, Class Master support for 3rd class, and extra movement/geodata stability fixes.'
+        },
+        castleConquest: {
+          title: 'Castle conquest - last Saturday',
+          summary: 'Summary of last Saturday castle conquest and its impact on server economy.',
+          content: 'Last Saturday castle conquest has been registered with Titan Coin rewards for the winning clan leader. This directly affects VIP progression loop and the strategic control of the current season.'
+        },
+        baiumEvent: {
+          title: 'Upcoming event: Baium',
+          summary: 'Special Baium event is coming. We will publish exact time, rules and rewards in the next announcement.',
+          content: 'Baium event is currently being prepared. Once you share the final official image and schedule, we will update this post with final art, registration window and full rules.'
         }
       }
     },

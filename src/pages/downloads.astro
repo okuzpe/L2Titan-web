@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ActionButton from '../components/ui/ActionButton.astro';
+import CardSurface from '../components/ui/CardSurface.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
 
 const downloads = [
   { 
@@ -70,7 +73,7 @@ const softwareAppLd = {
   },
   "fileSize": "2.8 GB",
   "downloadUrl": "https://downloads.l2-titan.com/zip/Lineage2.zip",
-  "description": "Cliente completo de L2Titan - Servidor Privado de Lineage 2 Interlude x30 con subclases acumulativas, eventos automaticos y PvP intenso."
+  "description": "Cliente completo de L2Titan - Servidor Privado de Lineage 2 Interlude x25 con subclases acumulativas, TvT activo y PvP intenso."
 };
 
 // Función helper para obtener el nombre del archivo
@@ -86,18 +89,32 @@ const getDownloadFilename = (file: typeof downloads[0]) => {
 
 <Layout
 	title="Descargar Cliente"
-	description="Descarga el cliente de L2Titan - Lineage 2 Interlude x30 gratis. Cliente completo, launcher y requisitos del sistema. Disponible en Google Drive, Mega y descarga directa."
+	description="Descarga el cliente de L2Titan - Lineage 2 Interlude x25 gratis. Cliente completo, launcher y requisitos del sistema. Disponible en Google Drive, Mega y descarga directa."
 	keywords="descargar lineage 2, download lineage 2, l2 interlude download, lineage 2 client download, descargar l2 interlude, l2 titan download, lineage 2 free download, l2 client gratis, descargar cliente lineage 2, lineage 2 interlude client, l2 launcher download"
 >
   <script type="application/ld+json" set:html={JSON.stringify(softwareAppLd)} />
   <div class="container mx-auto px-4 py-12 md:py-24">
-    <h1 class="text-3xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-600 mb-8 md:mb-12 text-center font-display tracking-widest drop-shadow-lg" data-i18n="downloads.title">CENTRO DE DESCARGAS</h1>
+    <SectionHeading text="CENTRO DE DESCARGAS" i18nKey="downloads.title" className="mb-8 md:mb-12" />
+
+    <CardSurface className="max-w-5xl mx-auto mb-8 md:mb-10 bg-emerald-500/10 border-emerald-400/30 p-5 md:p-6">
+      <div class="flex items-start gap-3">
+        <span class="text-2xl leading-none">✅</span>
+        <div>
+          <h2 class="text-emerald-300 font-bold text-lg md:text-xl mb-1" data-i18n="downloads.accountNotice.title">
+            Auto Create Account activado
+          </h2>
+          <p class="text-emerald-100/90 text-sm md:text-base" data-i18n="downloads.accountNotice.description">
+            No necesitas registrarte en una web. Tu cuenta se crea automaticamente cuando entras al juego por primera vez.
+          </p>
+        </div>
+      </div>
+    </CardSurface>
     
     <!-- Desktop table -->
     <div class="hidden md:block max-w-5xl mx-auto bg-slate-900/80 backdrop-blur-md rounded-xl border border-yellow-500/20 overflow-hidden mb-16 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
       <div class="overflow-x-auto">
         <table class="w-full text-left">
-          <thead class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-yellow-500 uppercase text-sm font-display tracking-wider border-b border-yellow-500/20">
+          <thead class="bg-linear-to-r from-slate-900 via-slate-800 to-slate-900 text-yellow-500 uppercase text-sm font-display tracking-wider border-b border-yellow-500/20">
             <tr>
               <th class="px-8 py-6 font-bold" data-i18n="downloads.table.file">Archivo</th>
               <th class="px-8 py-6 font-bold" data-i18n="downloads.table.size">Tamaño</th>
@@ -123,15 +140,16 @@ const getDownloadFilename = (file: typeof downloads[0]) => {
                 <td class="px-8 py-6 text-gray-400 font-mono">{file.size}</td>
                 <td class="px-8 py-6 text-gray-400">{file.type}</td>
                 <td class="px-8 py-6 text-right">
-                  <a 
+                  <ActionButton 
                     href={file.link} 
                     download={isDirectDownload(file.type) ? getDownloadFilename(file) : undefined}
                     target={file.link !== '#' ? '_blank' : undefined} 
                     rel={file.link !== '#' ? 'noopener noreferrer' : undefined}
-                    class="inline-block px-6 py-2 bg-yellow-600/20 hover:bg-yellow-500 text-yellow-500 hover:text-black border border-yellow-500/50 hover:border-yellow-500 text-sm font-bold rounded transition-all uppercase tracking-wider"
+                    variant="ghost"
+                    className="px-6 py-2 text-sm"
                   >
                     <span data-i18n="downloads.download">Descargar</span>
-                  </a>
+                  </ActionButton>
                 </td>
               </tr>
             ))}
@@ -143,7 +161,7 @@ const getDownloadFilename = (file: typeof downloads[0]) => {
     <!-- Mobile cards -->
     <div class="md:hidden max-w-5xl mx-auto space-y-4 mb-12">
       {downloads.map((file) => (
-        <div class="bg-slate-900/80 backdrop-blur-md rounded-xl border border-yellow-500/20 p-5 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+        <CardSurface variant="strong" className="p-5 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
           <div class="flex items-center gap-3 mb-3">
             {file.icon.fill ? (
               <svg class={file.icon.class} fill="currentColor" viewBox="0 0 24 24">
@@ -162,21 +180,22 @@ const getDownloadFilename = (file: typeof downloads[0]) => {
             <span class="text-gray-400 font-mono text-sm">{file.size}</span>
             <span class="text-xs text-gray-500 bg-white/5 px-2 py-0.5 rounded">{file.type}</span>
           </div>
-          <a 
+          <ActionButton 
             href={file.link} 
             download={isDirectDownload(file.type) ? getDownloadFilename(file) : undefined}
             target={file.link !== '#' ? '_blank' : undefined} 
             rel={file.link !== '#' ? 'noopener noreferrer' : undefined}
-            class="block w-full text-center px-6 py-3 bg-yellow-600/20 hover:bg-yellow-500 text-yellow-500 hover:text-black border border-yellow-500/50 hover:border-yellow-500 text-sm font-bold rounded transition-all uppercase tracking-wider"
+            variant="ghost"
+            className="w-full px-6 py-3"
           >
             <span data-i18n="downloads.download">Descargar</span>
-          </a>
-        </div>
+          </ActionButton>
+        </CardSurface>
       ))}
     </div>
 
     <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-      <div class="bg-slate-900/50 p-5 md:p-8 rounded-xl border border-white/10 hover:border-yellow-500/30 transition-colors">
+      <CardSurface className="p-5 md:p-8 hover:border-yellow-500/30 transition-colors">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 font-display flex items-center gap-2">
           <span class="text-yellow-500" data-i18n="downloads.requirements.minimum">MINIMOS</span> <span data-i18n="downloads.requirements.requirements">REQUISITOS</span>
         </h2>
@@ -187,8 +206,8 @@ const getDownloadFilename = (file: typeof downloads[0]) => {
           <li class="flex justify-between border-b border-white/5 pb-2"><span>GPU:</span> <span class="text-gray-200">GeForce GT 630</span></li>
           <li class="flex justify-between pt-2"><span>HDD:</span> <span class="text-gray-200">30 GB libres</span></li>
         </ul>
-      </div>
-      <div class="bg-slate-900/50 p-5 md:p-8 rounded-xl border border-white/10 hover:border-yellow-500/30 transition-colors">
+      </CardSurface>
+      <CardSurface className="p-5 md:p-8 hover:border-yellow-500/30 transition-colors">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 font-display flex items-center gap-2">
           <span class="text-yellow-500" data-i18n="downloads.requirements.recommended">RECOMENDADOS</span> <span data-i18n="downloads.requirements.requirements">REQUISITOS</span>
         </h2>
@@ -199,7 +218,19 @@ const getDownloadFilename = (file: typeof downloads[0]) => {
           <li class="flex justify-between border-b border-white/5 pb-2"><span>GPU:</span> <span class="text-gray-200">GeForce GTX 1050+</span></li>
           <li class="flex justify-between pt-2"><span>HDD:</span> <span class="text-gray-200">SSD 30 GB</span></li>
         </ul>
-      </div>
+      </CardSurface>
     </div>
+
+    <CardSurface className="max-w-5xl mx-auto mt-8 md:mt-10 p-5 md:p-8 hover:border-yellow-500/30 transition-colors">
+      <h2 class="text-xl md:text-2xl font-bold text-yellow-400 mb-4 font-display" data-i18n="downloads.quickStart.title">
+        Pasos rapidos para jugar
+      </h2>
+      <ol class="space-y-2 md:space-y-3 text-gray-300 text-sm md:text-base list-decimal pl-5">
+        <li data-i18n="downloads.quickStart.step1">Descarga el Cliente Completo o el Launcher.</li>
+        <li data-i18n="downloads.quickStart.step2">Descomprime el juego y abre L2TitanLauncher.</li>
+        <li data-i18n="downloads.quickStart.step3">Inicia sesion en el juego con el usuario y clave que quieras.</li>
+        <li data-i18n="downloads.quickStart.step4">Tu cuenta se crea automaticamente al primer login (Auto Create Account).</li>
+      </ol>
+    </CardSurface>
   </div>
 </Layout>

@@ -6,34 +6,29 @@ interface Props {
 const { targetDate } = Astro.props;
 ---
 
-<div class="countdown-container text-center p-8 rounded-xl bg-slate-800/50 backdrop-blur border border-white/10 shadow-2xl max-w-3xl mx-auto mt-10" id="countdown-wrapper">
+<div class="countdown-container text-center p-8 shadow-2xl max-w-3xl mx-auto mt-10 rounded-xl">
   <!-- Countdown active state -->
   <div id="countdown-active">
-    <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-4 uppercase tracking-widest" data-i18n="countdown.title">Open Beta Now</h2>
-    <p class="text-xl md:text-2xl text-gray-300 mb-8 uppercase tracking-wide" data-i18n="countdown.subtitle">Open Server In</p>
+    <h2 class="text-3xl md:text-4xl font-bold text-yellow-500 mb-4 uppercase tracking-widest font-display" data-i18n="countdown.title">Servidor en linea</h2>
+    <p class="text-xl md:text-2xl text-gray-300 mb-8 uppercase tracking-wide" data-i18n="countdown.subtitle">Temporada activa</p>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-      <div class="flex flex-col p-4 bg-slate-900/80 rounded-lg border border-yellow-500/20">
+      <div class="flex flex-col p-4 df-surface hover:border-yellow-500/30 transition-colors">
         <span class="text-4xl md:text-6xl font-bold text-white" id="days">00</span>
         <span class="text-sm text-gray-400 uppercase tracking-wider mt-2" data-i18n="countdown.days">Días</span>
       </div>
-      <div class="flex flex-col p-4 bg-slate-900/80 rounded-lg border border-yellow-500/20">
+      <div class="flex flex-col p-4 df-surface hover:border-yellow-500/30 transition-colors">
         <span class="text-4xl md:text-6xl font-bold text-white" id="hours">00</span>
         <span class="text-sm text-gray-400 uppercase tracking-wider mt-2" data-i18n="countdown.hours">Horas</span>
       </div>
-      <div class="flex flex-col p-4 bg-slate-900/80 rounded-lg border border-yellow-500/20">
+      <div class="flex flex-col p-4 df-surface hover:border-yellow-500/30 transition-colors">
         <span class="text-4xl md:text-6xl font-bold text-white" id="minutes">00</span>
         <span class="text-sm text-gray-400 uppercase tracking-wider mt-2" data-i18n="countdown.minutes">Minutos</span>
       </div>
-      <div class="flex flex-col p-4 bg-slate-900/80 rounded-lg border border-yellow-500/20">
+      <div class="flex flex-col p-4 df-surface hover:border-yellow-500/30 transition-colors">
         <span class="text-4xl md:text-6xl font-bold text-white" id="seconds">00</span>
         <span class="text-sm text-gray-400 uppercase tracking-wider mt-2" data-i18n="countdown.seconds">Segundos</span>
       </div>
     </div>
-  </div>
-  <!-- Countdown expired state (hidden by default) -->
-  <div id="countdown-expired" class="hidden">
-    <h2 class="text-3xl md:text-5xl font-bold text-yellow-500 mb-4 uppercase tracking-widest animate-pulse" data-i18n="countdown.serverOpen">¡Servidor Abierto!</h2>
-    <p class="text-xl md:text-2xl text-gray-300 uppercase tracking-wide" data-i18n="countdown.playNow">¡Entra a jugar ahora!</p>
   </div>
 </div>
 
@@ -42,10 +37,10 @@ const { targetDate } = Astro.props;
   let intervalId;
 
   function showExpired() {
-    const activeEl = document.getElementById('countdown-active');
-    const expiredEl = document.getElementById('countdown-expired');
-    if (activeEl) activeEl.classList.add('hidden');
-    if (expiredEl) expiredEl.classList.remove('hidden');
+    document.getElementById('days').innerText = '00';
+    document.getElementById('hours').innerText = '00';
+    document.getElementById('minutes').innerText = '00';
+    document.getElementById('seconds').innerText = '00';
     if (intervalId) clearInterval(intervalId);
   }
 

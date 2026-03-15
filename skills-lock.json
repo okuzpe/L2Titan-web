@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "accessibility-a11y": {
+      "source": "mindrally/skills",
+      "sourceType": "github",
+      "computedHash": "3117d5b0302f4fbb90cf7b3b65474aa0ea70eadaf91036ab9e20c912d68f9289"
+    },
+    "astro": {
+      "source": "astrolicious/agent-skills",
+      "sourceType": "github",
+      "computedHash": "597a4587f30f1152d3ab2923e84db842a18604e09e16885ffa067730fb435d9d"
+    },
+    "internationalization-i18n": {
+      "source": "mindrally/skills",
+      "sourceType": "github",
+      "computedHash": "f097fee820dbf765b315932098b068ea19e603008857effd75a558cdaf031afb"
+    },
+    "tailwindcss": {
+      "source": "hairyf/skills",
+      "sourceType": "github",
+      "computedHash": "676d95536c3c4a64215535ff09128d6e8d5163eb3fc204ed2cfde61e87b5d892"
+    }
+  }
+}

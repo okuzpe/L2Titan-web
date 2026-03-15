@@ -1,0 +1,14 @@
+---
+description: Guardrails globales para contribuir en L2Titan
+alwaysApply: true
+---
+
+# L2Titan Core
+
+- Trabaja sobre codigo fuente en `src/` y assets en `public/`.
+- No propongas ediciones manuales en artefactos generados: `dist/`, `.astro/`, `node_modules/`.
+- Mantén cambios pequeños y enfocados al requerimiento; evita refactors masivos sin pedido explícito.
+- Respeta el stack actual: Astro 5, Tailwind 4 y TypeScript estricto.
+- Conserva la estructura del proyecto (`pages`, `components`, `layouts`, `data`, `utils`).
+- Usa español para contenido editorial del sitio; inglés técnico solo donde ya sea estándar.
+- Si agregas contenido visible al usuario, verifica impacto en SEO/i18n antes de cerrar el cambio.
