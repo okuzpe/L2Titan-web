@@ -15,12 +15,13 @@ const {
   rel,
   download,
   className = '',
+  ...restProps
 } = Astro.props;
 
 const variantClass =
   variant === 'discord' ? 'df-btn-discord' : variant === 'ghost' ? 'df-btn-ghost' : 'df-btn-primary';
 ---
 
-<a href={href} target={target} rel={rel} download={download} class={`${variantClass} ${className}`.trim()}>
+<a href={href} target={target} rel={rel} download={download} class={`${variantClass} ${className}`.trim()} {...restProps}>
   <slot />
 </a>

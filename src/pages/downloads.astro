@@ -3,80 +3,79 @@ import Layout from '../layouts/Layout.astro';
 import ActionButton from '../components/ui/ActionButton.astro';
 import CardSurface from '../components/ui/CardSurface.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
+import {
+  buildBreadcrumb,
+  buildFaq,
+  buildSoftwareApplicationSchema,
+} from '../utils/seo';
+import { visitorLangFromPath } from '../utils/i18n-lang';
+import { translate } from '../utils/translations';
+
+const lang = visitorLangFromPath(Astro.url.pathname);
+const rd = (key: string, fb: string) => translate(`downloads.relatedDocs.${key}`, lang, fb);
+
+const relatedDocLinks = [
+	{ href: '/features', i18nKey: 'features', fallback: 'Features del servidor' },
+	{ href: '/rates', i18nKey: 'rates', fallback: 'Rates x25' },
+	{ href: '/comunidad', i18nKey: 'community', fallback: 'Discord y comunidad' },
+	{ href: '/news', i18nKey: 'news', fallback: 'Noticias' },
+] as const;
 
 const downloads = [
-  { 
-    name: 'Cliente Completo', 
+  {
+    name: 'Cliente Completo',
     nameKey: 'downloads.fileNames.fullClient',
-    size: '2.8 GB', 
-    link: 'https://drive.google.com/file/d/12kuIp38V9BqX4MfRVMA_Kq7S5_MCIAp0/view?usp=sharing', 
+    size: '2.8 GB',
+    link: 'https://drive.google.com/file/d/12kuIp38V9BqX4MfRVMA_Kq7S5_MCIAp0/view?usp=sharing',
     type: 'Google Drive',
-    icon: { 
-      class: 'w-6 h-6 text-yellow-500', 
+    icon: {
+      class: 'w-6 h-6 text-yellow-500',
       path: 'M7.71 3.5L1.15 15l3.42 5.91L12 15l-4.29-7.5L7.71 3.5M12 15l3.42 5.91L22.85 15l-3.42-5.91L12 15m0 0L8.58 9.09 12 3.5l3.42 5.59L12 15z',
-      fill: true
-    }
+      fill: true,
+    },
   },
-  { 
-    name: 'Cliente Completo', 
+  {
+    name: 'Cliente Completo',
     nameKey: 'downloads.fileNames.fullClient',
-    size: '2.8 GB', 
-    link: 'https://mega.nz/file/ANUhyLCa#WZGTUG1Vepl7raHnNNzYZE12oUZf_oAp0XWRB1uMVpk', 
+    size: '2.8 GB',
+    link: 'https://mega.nz/file/WfZjGTZb#n2P6GBrTGMmiAin6tM6SRPCEtEfe4q4jCFB3NVYbuY4',
     type: 'Mega',
-    icon: { 
-      class: 'w-6 h-6 text-yellow-500', 
+    icon: {
+      class: 'w-6 h-6 text-yellow-500',
       path: 'M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.895 8.104l-6.895 6.895-6.895-6.895L12 5.21l6.895 2.894z',
-      fill: true
-    }
+      fill: true,
+    },
   },
-  { 
-    name: 'Cliente Completo', 
+  {
+    name: 'Cliente Completo',
     nameKey: 'downloads.fileNames.fullClient',
-    size: '2.8 GB', 
-    link: 'https://downloads.l2-titan.com/zip/Lineage2.zip', 
-    type: 'Direct', 
+    size: '2.8 GB',
+    link: 'https://downloads.l2-titan.com/zip/Lineage2.zip',
+    type: 'Direct',
     filename: 'Lineage2.zip',
-    icon: { 
-      class: 'w-6 h-6 text-yellow-500', 
+    icon: {
+      class: 'w-6 h-6 text-yellow-500',
       path: 'M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4',
-      fill: false
-    }
+      fill: false,
+    },
   },
-  { 
-    name: 'Launcher', 
+  {
+    name: 'Launcher',
     nameKey: 'downloads.fileNames.launcher',
-    size: '74 MB', 
-    link: 'https://downloads.l2-titan.com/zip/L2TitanLauncher.zip', 
-    type: 'Direct', 
+    size: '74 MB',
+    link: 'https://downloads.l2-titan.com/zip/L2TitanLauncher.zip',
+    type: 'Direct',
     filename: 'L2TitanLauncher.exe',
-    icon: { 
-      class: 'w-6 h-6 text-yellow-500', 
+    icon: {
+      class: 'w-6 h-6 text-yellow-500',
       path: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4',
-      fill: false
-    }
+      fill: false,
+    },
   },
 ];
 
-// Función helper para determinar si es un enlace directo
 const isDirectDownload = (type: string) => type === 'Direct';
 
-const softwareAppLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "L2Titan - Lineage 2 Interlude Client",
-  "operatingSystem": "Windows 7, Windows 8, Windows 10, Windows 11",
-  "applicationCategory": "GameApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "fileSize": "2.8 GB",
-  "downloadUrl": "https://downloads.l2-titan.com/zip/Lineage2.zip",
-  "description": "Cliente completo de L2Titan - Servidor Privado de Lineage 2 Interlude x25 con subclases acumulativas, TvT activo y PvP intenso."
-};
-
-// Función helper para obtener el nombre del archivo
 const getDownloadFilename = (file: typeof downloads[0]) => {
   if (file.filename) return file.filename;
   const url = new URL(file.link);
@@ -85,20 +84,42 @@ const getDownloadFilename = (file: typeof downloads[0]) => {
   return filename || `${file.name.replace(/\s+/g, '')}.${file.link.match(/\.(\w+)$/)?.[1] || 'exe'}`;
 };
 
+const structuredData = [
+  buildBreadcrumb([
+    { name: 'Inicio', path: '/' },
+    { name: 'Descargas', path: '/downloads' },
+  ]),
+  buildSoftwareApplicationSchema(),
+  buildFaq([
+    {
+      question: 'Como descargar Lineage 2 Interlude para jugar en L2Titan?',
+      answer: 'Puedes bajar el cliente completo o el launcher oficial desde Google Drive, Mega o descarga directa en esta misma pagina.',
+    },
+    {
+      question: 'Necesito registrarme antes de entrar al servidor?',
+      answer: 'No. L2Titan usa Auto Create Account, asi que tu cuenta se crea automaticamente al primer login dentro del juego.',
+    },
+    {
+      question: 'Que requisitos necesita el cliente de L2Titan?',
+      answer: 'La pagina muestra requisitos minimos y recomendados para Windows, CPU, RAM, GPU y espacio libre antes de descargar.',
+    },
+  ]),
+];
 ---
 
 <Layout
-	title="Descargar Cliente"
-	description="Descarga el cliente de L2Titan - Lineage 2 Interlude x25 gratis. Cliente completo, launcher y requisitos del sistema. Disponible en Google Drive, Mega y descarga directa."
-	keywords="descargar lineage 2, download lineage 2, l2 interlude download, lineage 2 client download, descargar l2 interlude, l2 titan download, lineage 2 free download, l2 client gratis, descargar cliente lineage 2, lineage 2 interlude client, l2 launcher download"
+  title="Descargar cliente Lineage 2 Interlude — L2Titan"
+  description="Cliente completo y launcher oficial de L2Titan para Windows: espejos Drive, Mega y descarga directa, requisitos y Auto Create Account al primer login."
+  keywords="descargar lineage 2 interlude, l2 interlude client download, l2 titan download, lineage 2 interlude launcher, l2 private server client"
+  canonicalPath="/downloads"
+  structuredData={structuredData}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(softwareAppLd)} />
   <div class="container mx-auto px-4 py-12 md:py-24">
-    <SectionHeading text="CENTRO DE DESCARGAS" i18nKey="downloads.title" className="mb-8 md:mb-12" />
+    <SectionHeading text="CENTRO DE DESCARGAS" i18nKey="downloads.title" className="mb-6 md:mb-8" as="h1" />
 
     <CardSurface className="max-w-5xl mx-auto mb-8 md:mb-10 bg-emerald-500/10 border-emerald-400/30 p-5 md:p-6">
       <div class="flex items-start gap-3">
-        <span class="text-2xl leading-none">✅</span>
+        <span class="text-2xl leading-none" aria-hidden="true">&#x2705;</span>
         <div>
           <h2 class="text-emerald-300 font-bold text-lg md:text-xl mb-1" data-i18n="downloads.accountNotice.title">
             Auto Create Account activado
@@ -109,8 +130,7 @@ const getDownloadFilename = (file: typeof downloads[0]) => {
         </div>
       </div>
     </CardSurface>
-    
-    <!-- Desktop table -->
+
     <div class="hidden md:block max-w-5xl mx-auto bg-slate-900/80 backdrop-blur-md rounded-xl border border-yellow-500/20 overflow-hidden mb-16 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
       <div class="overflow-x-auto">
         <table class="w-full text-left">
@@ -140,10 +160,10 @@ const getDownloadFilename = (file: typeof downloads[0]) => {
                 <td class="px-8 py-6 text-gray-400 font-mono">{file.size}</td>
                 <td class="px-8 py-6 text-gray-400">{file.type}</td>
                 <td class="px-8 py-6 text-right">
-                  <ActionButton 
-                    href={file.link} 
+                  <ActionButton
+                    href={file.link}
                     download={isDirectDownload(file.type) ? getDownloadFilename(file) : undefined}
-                    target={file.link !== '#' ? '_blank' : undefined} 
+                    target={file.link !== '#' ? '_blank' : undefined}
                     rel={file.link !== '#' ? 'noopener noreferrer' : undefined}
                     variant="ghost"
                     className="px-6 py-2 text-sm"
@@ -158,7 +178,6 @@ const getDownloadFilename = (file: typeof downloads[0]) => {
       </div>
     </div>
 
-    <!-- Mobile cards -->
     <div class="md:hidden max-w-5xl mx-auto space-y-4 mb-12">
       {downloads.map((file) => (
         <CardSurface variant="strong" className="p-5 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
@@ -180,10 +199,10 @@ const getDownloadFilename = (file: typeof downloads[0]) => {
             <span class="text-gray-400 font-mono text-sm">{file.size}</span>
             <span class="text-xs text-gray-500 bg-white/5 px-2 py-0.5 rounded">{file.type}</span>
           </div>
-          <ActionButton 
-            href={file.link} 
+          <ActionButton
+            href={file.link}
             download={isDirectDownload(file.type) ? getDownloadFilename(file) : undefined}
-            target={file.link !== '#' ? '_blank' : undefined} 
+            target={file.link !== '#' ? '_blank' : undefined}
             rel={file.link !== '#' ? 'noopener noreferrer' : undefined}
             variant="ghost"
             className="w-full px-6 py-3"
@@ -232,5 +251,91 @@ const getDownloadFilename = (file: typeof downloads[0]) => {
         <li data-i18n="downloads.quickStart.step4">Tu cuenta se crea automaticamente al primer login (Auto Create Account).</li>
       </ol>
     </CardSurface>
+
+    <section class="max-w-5xl mx-auto mt-10 md:mt-14" aria-labelledby="downloads-mas-info">
+      <CardSurface
+        variant="strong"
+        className="p-6 md:p-8 shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:border-yellow-500/35 transition-colors"
+      >
+        <p
+          class="text-[11px] uppercase tracking-[0.28em] text-yellow-400/80 mb-2"
+          data-i18n="downloads.relatedDocs.kicker"
+        >
+          {rd('kicker', 'Después de descargar')}
+        </p>
+        <h2
+          id="downloads-mas-info"
+          class="text-xl md:text-2xl font-bold text-yellow-400 font-display tracking-wide mb-3"
+          data-i18n="downloads.relatedDocs.title"
+        >
+          {rd('title', 'Documentación relacionada')}
+        </h2>
+        <p
+          class="text-gray-400 text-sm md:text-base leading-relaxed mb-6 max-w-2xl"
+          data-i18n="downloads.relatedDocs.subtitle"
+        >
+          {rd(
+            'subtitle',
+            'Instalá el cliente y seguí con rates, features y la comunidad; todo está enlazado para que no te pierdas.',
+          )}
+        </p>
+
+        <a
+          href="/info"
+          class="group flex flex-col gap-2 rounded-xl border border-white/10 bg-slate-900/40 p-4 md:flex-row md:items-center md:justify-between md:gap-4 md:p-5 transition-colors hover:border-yellow-500/30 hover:bg-yellow-500/5"
+        >
+          <div class="min-w-0">
+            <p class="font-display text-base font-bold text-white md:text-lg" data-i18n="downloads.relatedDocs.wikiCta">
+              {rd('wikiCta', 'Wiki del servidor')}
+            </p>
+            <p class="mt-1 text-xs text-gray-400 md:text-sm leading-relaxed" data-i18n="downloads.relatedDocs.wikiHint">
+              {rd('wikiHint', 'Índice en /info: rates, VIP, economía, comandos e instancias.')}
+            </p>
+          </div>
+          <span
+            class="inline-flex shrink-0 items-center gap-2 text-sm font-bold uppercase tracking-wider text-yellow-400 font-display"
+          >
+            <span data-i18n="downloads.relatedDocs.wikiAction">{rd('wikiAction', 'Ir al índice')}</span>
+            <svg
+              class="h-4 w-4 transition-transform group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </span>
+        </a>
+
+        <nav
+          class="mt-6 border-t border-white/10 pt-6"
+          aria-label={rd('navAria', 'Enlaces útiles después de instalar el cliente')}
+        >
+          <p
+            class="text-[11px] uppercase tracking-[0.22em] text-gray-500 mb-3 font-display"
+            data-i18n="downloads.relatedDocs.quickLinksLabel"
+          >
+            {translate('downloads.relatedDocs.quickLinksLabel', lang, 'Enlaces rápidos')}
+          </p>
+          <ul class="grid grid-cols-2 gap-3 sm:grid-cols-4" role="list">
+            {relatedDocLinks.map((link) => {
+              const key = `downloads.relatedDocs.${link.i18nKey}` as const;
+              return (
+                <li class="min-w-0">
+                  <a
+                    href={link.href}
+                    class="flex min-h-12 items-center justify-center rounded-xl border border-white/10 bg-slate-900/30 px-3 py-2.5 text-center text-xs font-semibold leading-snug text-gray-200 font-display transition-colors hover:border-yellow-500/30 hover:bg-yellow-500/5 hover:text-yellow-200 sm:text-sm"
+                    data-i18n={key}
+                  >
+                    {translate(key, lang, link.fallback)}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </CardSurface>
+    </section>
   </div>
 </Layout>

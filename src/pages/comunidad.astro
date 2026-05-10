@@ -1,0 +1,247 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CardSurface from '../components/ui/CardSurface.astro';
+import ActionButton from '../components/ui/ActionButton.astro';
+import { visitorLangFromPath } from '../utils/i18n-lang';
+import { translate } from '../utils/translations';
+import { buildBreadcrumb, buildFaq } from '../utils/seo';
+
+const lang = visitorLangFromPath(Astro.url.pathname);
+const tk = (key: string, fb: string) => translate(key, lang, fb);
+const p = 'pages.community';
+
+const structuredData = [
+	buildBreadcrumb([
+		{ name: tk('navbar.home', 'Inicio'), path: '/' },
+		{ name: tk(`${p}.breadcrumb`, 'Comunidad'), path: '/comunidad' },
+	]),
+	buildFaq([
+		{ question: tk(`${p}.faq1q`, ''), answer: tk(`${p}.faq1a`, '') },
+		{ question: tk(`${p}.faq2q`, ''), answer: tk(`${p}.faq2a`, '') },
+	]),
+];
+---
+
+<Layout
+	title={tk(`${p}.metaTitle`, '')}
+	description={tk(`${p}.metaDescription`, '')}
+	keywords={tk(`${p}.metaKeywords`, '')}
+	canonicalPath="/comunidad"
+	structuredData={structuredData}
+>
+	<div class="container mx-auto max-w-5xl px-4 py-12 md:py-20">
+		<CardSurface variant="strong" className="mb-10 p-6 md:p-10">
+			<p class="text-[11px] uppercase tracking-[0.28em] text-yellow-400/80 mb-3" data-i18n={`${p}.kicker`}>{tk(`${p}.kicker`, '')}</p>
+			<h1 class="text-3xl md:text-5xl font-extrabold text-yellow-400 font-display tracking-wide mb-4" data-i18n={`${p}.h1`}>
+				{tk(`${p}.h1`, '')}
+			</h1>
+			<p class="text-gray-300 text-base md:text-lg leading-relaxed mb-6" data-i18n={`${p}.intro`}>{tk(`${p}.intro`, '')}</p>
+			<div class="flex flex-wrap gap-3">
+				<ActionButton
+					href="https://discord.gg/GunamUdGaQ"
+					target="_blank"
+					rel="noopener noreferrer"
+					variant="discord"
+					className="px-5 py-3"
+					data-i18n={`${p}.ctaDiscord`}
+				>
+					{tk(`${p}.ctaDiscord`, '')}
+				</ActionButton>
+				<ActionButton href="/news" variant="ghost" className="px-5 py-3" data-i18n={`${p}.ctaNews`}>
+					{tk(`${p}.ctaNews`, '')}
+				</ActionButton>
+				<ActionButton href="#vote-section" variant="ghost" className="px-5 py-3" data-i18n={`${p}.ctaVote`}>
+					{tk(`${p}.ctaVote`, '')}
+				</ActionButton>
+			</div>
+		</CardSurface>
+
+		<CardSurface variant="default" className="overflow-hidden p-0">
+			<div class="grid gap-0 lg:grid-cols-2">
+				<section
+					aria-labelledby="comunidad-redes"
+					class="border-b border-white/10 p-6 md:p-8 lg:border-b-0 lg:border-r lg:border-white/10"
+				>
+					<h2
+						id="comunidad-redes"
+						class="font-display text-lg font-bold tracking-tight text-yellow-300 md:text-xl"
+						data-i18n={`${p}.socialTitle`}
+					>
+						{tk(`${p}.socialTitle`, '')}
+					</h2>
+					<p class="mt-1 text-sm text-gray-500" data-i18n={`${p}.socialLead`}>{tk(`${p}.socialLead`, '')}</p>
+					<ul class="mt-5 list-none space-y-3 p-0">
+						<li>
+							<a
+								href="https://www.facebook.com/l2titan.server/"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="group flex items-start gap-4 rounded-xl border border-amber-500/15 bg-linear-to-br from-amber-500/6 to-black/30 p-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] ring-1 ring-black/25 transition hover:border-amber-500/30 hover:from-amber-500/9 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/45"
+							>
+								<span
+									class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 ring-1 ring-amber-500/20"
+									aria-hidden="true"
+								>
+									<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+										<path
+											d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+										/>
+									</svg>
+								</span>
+								<span class="min-w-0 flex-1">
+									<span
+										class="block font-semibold text-gray-100 transition group-hover:text-amber-200"
+										data-i18n={`${p}.fbTitle`}
+									>
+										{tk(`${p}.fbTitle`, '')}
+									</span>
+									<span class="mt-0.5 block text-sm leading-snug text-gray-400" data-i18n={`${p}.fbDesc`}>
+										{tk(`${p}.fbDesc`, '')}
+									</span>
+								</span>
+								<svg
+									class="mt-0.5 h-5 w-5 shrink-0 text-gray-500 transition group-hover:text-amber-400/90"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+									aria-hidden="true"
+								>
+									<path
+										fill-rule="evenodd"
+										d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h5a.75.75 0 010 1.5h-5z"
+										clip-rule="evenodd"
+									/>
+									<path
+										fill-rule="evenodd"
+										d="M6.194 12.753a.75.75 0 001.06.053L16.5 4.44v2.81a.75.75 0 001.5 0v-4.5a.75.75 0 00-.75-.75h-4.5a.75.75 0 000 1.5h2.553l-9.056 8.32a.75.75 0 00-.053 1.06z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+							</a>
+						</li>
+						<li>
+							<a
+								href="https://www.instagram.com/l2titan_com/"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="group flex items-start gap-4 rounded-xl border border-amber-500/15 bg-linear-to-br from-amber-500/6 to-black/30 p-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] ring-1 ring-black/25 transition hover:border-amber-500/30 hover:from-amber-500/9 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/45"
+							>
+								<span
+									class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 ring-1 ring-amber-500/20"
+									aria-hidden="true"
+								>
+									<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+										<path
+											d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm5.25-3.25a1 1 0 110 2 1 1 0 010-2z"
+										/>
+									</svg>
+								</span>
+								<span class="min-w-0 flex-1">
+									<span
+										class="block font-semibold text-gray-100 transition group-hover:text-amber-200"
+										data-i18n={`${p}.igTitle`}
+									>
+										{tk(`${p}.igTitle`, '')}
+									</span>
+									<span class="mt-0.5 block text-sm leading-snug text-gray-400" data-i18n={`${p}.igDesc`}>
+										{tk(`${p}.igDesc`, '')}
+									</span>
+								</span>
+								<svg
+									class="mt-0.5 h-5 w-5 shrink-0 text-gray-500 transition group-hover:text-amber-400/90"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+									aria-hidden="true"
+								>
+									<path
+										fill-rule="evenodd"
+										d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h5a.75.75 0 010 1.5h-5z"
+										clip-rule="evenodd"
+									/>
+									<path
+										fill-rule="evenodd"
+										d="M6.194 12.753a.75.75 0 001.06.053L16.5 4.44v2.81a.75.75 0 001.5 0v-4.5a.75.75 0 00-.75-.75h-4.5a.75.75 0 000 1.5h2.553l-9.056 8.32a.75.75 0 00-.053 1.06z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+							</a>
+						</li>
+					</ul>
+				</section>
+
+				<section aria-labelledby="comunidad-guias" class="p-6 md:p-8">
+					<h2
+						id="comunidad-guias"
+						class="font-display text-lg font-bold tracking-tight text-yellow-300 md:text-xl"
+						data-i18n={`${p}.docsTitle`}
+					>
+						{tk(`${p}.docsTitle`, '')}
+					</h2>
+					<p class="mt-3 rounded-lg border border-white/8 bg-white/3 p-3 text-sm leading-relaxed text-gray-400 md:p-4">
+						<span data-i18n={`${p}.docsIntroBefore`}>{tk(`${p}.docsIntroBefore`, '')}</span>
+						<strong class="font-medium text-gray-300" data-i18n={`${p}.docsIntroStrong`}>{tk(`${p}.docsIntroStrong`, '')}</strong>
+						<span data-i18n={`${p}.docsIntroAfter`}>{tk(`${p}.docsIntroAfter`, '')}</span>
+					</p>
+					<nav
+						class="mt-5 grid gap-3 sm:grid-cols-2"
+						aria-label={tk(`${p}.navAria`, 'Guías del servidor')}
+						data-i18n-aria-label={`${p}.navAria`}
+					>
+						<a
+							href="/info"
+							class="group flex flex-col rounded-xl border border-white/10 bg-black/20 p-4 ring-1 ring-black/30 transition hover:border-amber-500/25 hover:bg-amber-500/4 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/45"
+						>
+							<span class="font-display text-sm font-bold text-gray-100 group-hover:text-amber-200" data-i18n={`${p}.navWikiLabel`}>
+								{tk(`${p}.navWikiLabel`, '')}
+							</span>
+							<span class="mt-1 text-xs leading-snug text-gray-500 group-hover:text-gray-400" data-i18n={`${p}.navWikiDesc`}>
+								{tk(`${p}.navWikiDesc`, '')}
+							</span>
+						</a>
+						<a
+							href="/features"
+							class="group flex flex-col rounded-xl border border-white/10 bg-black/20 p-4 ring-1 ring-black/30 transition hover:border-amber-500/25 hover:bg-amber-500/4 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/45"
+						>
+							<span
+								class="font-display text-sm font-bold text-gray-100 group-hover:text-amber-200"
+								data-i18n={`${p}.navFeaturesLabel`}
+							>
+								{tk(`${p}.navFeaturesLabel`, '')}
+							</span>
+							<span
+								class="mt-1 text-xs leading-snug text-gray-500 group-hover:text-gray-400"
+								data-i18n={`${p}.navFeaturesDesc`}
+							>
+								{tk(`${p}.navFeaturesDesc`, '')}
+							</span>
+						</a>
+						<a
+							href="/events"
+							class="group flex flex-col rounded-xl border border-white/10 bg-black/20 p-4 ring-1 ring-black/30 transition hover:border-amber-500/25 hover:bg-amber-500/4 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/45"
+						>
+							<span class="font-display text-sm font-bold text-gray-100 group-hover:text-amber-200" data-i18n={`${p}.navEventsLabel`}>
+								{tk(`${p}.navEventsLabel`, '')}
+							</span>
+							<span
+								class="mt-1 text-xs leading-snug text-gray-500 group-hover:text-gray-400"
+								data-i18n={`${p}.navEventsDesc`}
+							>
+								{tk(`${p}.navEventsDesc`, '')}
+							</span>
+						</a>
+						<a
+							href="/faq"
+							class="group flex flex-col rounded-xl border border-white/10 bg-black/20 p-4 ring-1 ring-black/30 transition hover:border-amber-500/25 hover:bg-amber-500/4 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/45"
+						>
+							<span class="font-display text-sm font-bold text-gray-100 group-hover:text-amber-200" data-i18n={`${p}.navFaqLabel`}>
+								{tk(`${p}.navFaqLabel`, '')}
+							</span>
+							<span class="mt-1 text-xs leading-snug text-gray-500 group-hover:text-gray-400" data-i18n={`${p}.navFaqDesc`}>
+								{tk(`${p}.navFaqDesc`, '')}
+							</span>
+						</a>
+					</nav>
+				</section>
+			</div>
+		</CardSurface>
+	</div>
+</Layout>

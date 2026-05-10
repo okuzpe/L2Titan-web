@@ -1,0 +1,68 @@
+---
+import InfoWikiLayout from '../../layouts/InfoWikiLayout.astro';
+import TabRates from '../../components/info/TabRates.astro';
+import TabEnchant from '../../components/info/TabEnchant.astro';
+import TabVip from '../../components/info/TabVip.astro';
+import TabEvents from '../../components/info/TabEvents.astro';
+import TabInstances from '../../components/info/TabInstances.astro';
+import TabSieges from '../../components/info/TabSieges.astro';
+import TabEconomy from '../../components/info/TabEconomy.astro';
+import TabFeatures from '../../components/info/TabFeatures.astro';
+import TabCommands from '../../components/info/TabCommands.astro';
+import { infoLandingConfigs } from '../../data/infoLandingConfigs';
+import { getInfoWikiSection, infoWikiSections, type InfoWikiSlug } from '../../data/infoWiki';
+import { buildBreadcrumb } from '../../utils/seo';
+import { visitorLangFromPath } from '../../utils/i18n-lang';
+import { translate } from '../../utils/translations';
+
+export function getStaticPaths() {
+  return infoWikiSections.map((section) => ({
+    params: { slug: section.slug },
+  }));
+}
+
+const componentMap = {
+  rates: TabRates,
+  enchant: TabEnchant,
+  vip: TabVip,
+  events: TabEvents,
+  instances: TabInstances,
+  sieges: TabSieges,
+  economy: TabEconomy,
+  features: TabFeatures,
+  commands: TabCommands,
+} as const;
+
+const slug = Astro.params.slug as InfoWikiSlug;
+const section = getInfoWikiSection(slug);
+
+if (!section) {
+  throw new Error(`Unknown info wiki section: ${slug}`);
+}
+
+const PageComponent = componentMap[slug];
+const config = infoLandingConfigs[slug];
+const lang = visitorLangFromPath(Astro.url.pathname);
+const label = translate(`info.tabs.${slug}`, lang, slug);
+
+const structuredData = [
+  buildBreadcrumb([
+    { name: 'Inicio', path: '/' },
+    { name: 'Informacion', path: '/info' },
+    { name: label, path: `/info/${slug}` },
+  ]),
+];
+---
+
+<InfoWikiLayout
+  title={`${label} | Wiki de L2Titan`}
+  description={config.description}
+  keywords={config.keywords}
+  canonicalPath={config.canonicalPath}
+  structuredData={structuredData}
+  noindex={true}
+  robots="noindex, follow"
+  sectionSlug={slug}
+>
+  <PageComponent />
+</InfoWikiLayout>

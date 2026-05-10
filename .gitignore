@@ -26,3 +26,6 @@ pnpm-debug.log*
 # deploy scripts (local)
 deploy.sh
 deploy.bat
+
+# memoria / notas solo local (agente, no subir)
+.local/

@@ -1,0 +1,127 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CardSurface from '../../components/ui/CardSurface.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import { orderedNews } from '../../data/news';
+import { buildBreadcrumb } from '../../utils/seo';
+import { visitorLangFromPath } from '../../utils/i18n-lang';
+import { translate } from '../../utils/translations';
+
+const lang = visitorLangFromPath(Astro.url.pathname);
+const tk = (key: string, fb: string) => translate(key, lang, fb);
+
+const structuredData = [
+  buildBreadcrumb([
+    { name: tk('navbar.home', 'Inicio'), path: '/' },
+    { name: tk('navbar.news', 'Noticias'), path: '/news' },
+  ]),
+];
+---
+
+<Layout
+  title={tk('news.indexMetaTitle', '')}
+  description={tk('news.indexMetaDescription', '')}
+  keywords="l2 titan news, lineage 2 interlude server news, l2 interlude patch notes, noticias servidor interlude"
+  canonicalPath="/news"
+  structuredData={structuredData}
+>
+  <div class="container mx-auto px-4 py-12 md:py-20">
+    <div class="max-w-6xl mx-auto">
+      <SectionHeading
+        text={tk('news.indexSectionHeading', '')}
+        i18nKey="news.indexSectionHeading"
+        className="mb-8"
+      />
+      <div class="df-surface-strong p-6 md:p-8 mb-8">
+        <h1 class="text-3xl md:text-5xl font-extrabold text-yellow-400 font-display tracking-wide mb-4" data-i18n="news.indexHeroTitle">
+          {tk('news.indexHeroTitle', '')}
+        </h1>
+        <p class="text-base md:text-lg text-gray-300 leading-relaxed" data-i18n="news.indexHeroIntro">
+          {tk('news.indexHeroIntro', '')}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+        {orderedNews.map((item) => (
+          <article>
+            <CardSurface className="overflow-hidden h-full flex flex-col hover:border-yellow-500/30 transition-colors">
+              <img
+                src={item.image}
+                alt={`${item.title} - L2Titan`}
+                width="720"
+                height="320"
+                loading="lazy"
+                class="w-full h-52 object-cover"
+              />
+              <div class="p-5 grow flex flex-col">
+                <p class="text-xs uppercase tracking-[0.2em] text-yellow-500 mb-2">{item.dateLabel}</p>
+                <h2 class="text-xl font-bold text-white mb-3 font-display">
+                  {item.titleKey ? <span data-i18n={item.titleKey}>{translate(item.titleKey, lang, item.title)}</span> : item.title}
+                </h2>
+                <p class="text-sm text-gray-400 grow">
+                  {item.summaryKey ? <span data-i18n={item.summaryKey}>{translate(item.summaryKey, lang, item.summary)}</span> : item.summary}
+                </p>
+                <a
+                  href={`/news/${item.slug}`}
+                  class="mt-4 inline-flex text-sm font-bold uppercase tracking-wider text-yellow-400 hover:text-yellow-300 transition-colors"
+                >
+                  <span data-i18n="news.cardReadPrefix">{tk('news.cardReadPrefix', '')}</span>
+                  {' '}
+                  {item.titleKey ? (
+                    <span data-i18n={item.titleKey}>{translate(item.titleKey, lang, item.title)}</span>
+                  ) : (
+                    item.title
+                  )}
+                </a>
+              </div>
+            </CardSurface>
+          </article>
+        ))}
+      </div>
+
+      <nav
+        class="df-surface-strong max-w-6xl mx-auto mt-12 p-6 md:p-8 rounded-xl border border-white/10"
+        aria-label={tk('news.relatedNavAria', '')}
+        data-i18n-aria-label="news.relatedNavAria"
+      >
+        <h2 class="text-lg font-bold text-yellow-500 font-display mb-3 uppercase tracking-wider" data-i18n="news.relatedTitle">
+          {tk('news.relatedTitle', '')}
+        </h2>
+        <p class="text-sm text-gray-400 mb-4" data-i18n="news.relatedIntro">
+          {tk('news.relatedIntro', '')}
+        </p>
+        <ul class="flex flex-wrap gap-2 text-sm list-none p-0 m-0">
+          <li>
+            <a href="/features" class="text-yellow-400 hover:text-yellow-300 underline-offset-2 hover:underline" data-i18n="news.relatedFeatures">
+              {tk('news.relatedFeatures', '')}
+            </a>
+          </li>
+          <li class="text-gray-600" aria-hidden="true">·</li>
+          <li>
+            <a href="/economy" class="text-yellow-400 hover:text-yellow-300 underline-offset-2 hover:underline" data-i18n="news.relatedEconomy">
+              {tk('news.relatedEconomy', '')}
+            </a>
+          </li>
+          <li class="text-gray-600" aria-hidden="true">·</li>
+          <li>
+            <a href="/events" class="text-yellow-400 hover:text-yellow-300 underline-offset-2 hover:underline" data-i18n="news.relatedEvents">
+              {tk('news.relatedEvents', '')}
+            </a>
+          </li>
+          <li class="text-gray-600" aria-hidden="true">·</li>
+          <li>
+            <a href="/info" class="text-yellow-400 hover:text-yellow-300 underline-offset-2 hover:underline" data-i18n="news.relatedWikiInfo">
+              {tk('news.relatedWikiInfo', '')}
+            </a>
+          </li>
+          <li class="text-gray-600" aria-hidden="true">·</li>
+          <li>
+            <a href="/downloads" class="text-yellow-400 hover:text-yellow-300 underline-offset-2 hover:underline" data-i18n="news.relatedDownloads">
+              {tk('news.relatedDownloads', '')}
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,148 @@
+---
+import InfoWikiLayout from '../../layouts/InfoWikiLayout.astro';
+import CardSurface from '../../components/ui/CardSurface.astro';
+import ActionButton from '../../components/ui/ActionButton.astro';
+import { infoWikiSections } from '../../data/infoWiki';
+import { buildBreadcrumb, buildFaq, buildItemList } from '../../utils/seo';
+import { visitorLangFromPath } from '../../utils/i18n-lang';
+import { translate } from '../../utils/translations';
+
+const lang = visitorLangFromPath(Astro.url.pathname);
+const featuredSections = infoWikiSections.filter((section) => section.featured);
+const sectionName = (slug: string) => translate(`info.tabs.${slug}`, lang, slug);
+
+const structuredData = [
+  buildBreadcrumb([
+    { name: 'Inicio', path: '/' },
+    { name: 'Informacion', path: '/info' },
+  ]),
+  buildFaq([
+    {
+      question: 'Donde puedo consultar la informacion del servidor de forma ordenada?',
+      answer: 'En /info tienes el centro de informacion con navegacion por temas como rates, features, VIP, economy, events e instances.',
+    },
+    {
+      question: 'La wiki reemplaza las landings SEO del sitio?',
+      answer: 'No. La wiki funciona como centro de consulta para jugadores y las landings separadas siguen existiendo para SEO tematico y enlaces compartibles.',
+    },
+  ]),
+  buildItemList(
+    infoWikiSections.map((section) => ({
+      name: sectionName(section.slug),
+      path: `/info/${section.slug}`,
+      description: translate(section.summaryKey, lang, section.summaryKey),
+    })),
+  ),
+];
+---
+
+<InfoWikiLayout
+  title="Wiki y guías L2Titan — Lineage 2 Interlude x25"
+  description="Centro de información del servidor: rates, VIP, economía, eventos, features, comandos, enchant e instancias diarias, con URLs dedicadas para cada tema."
+  canonicalPath="/info"
+  structuredData={structuredData}
+>
+  <Fragment slot="intro">
+    <CardSurface variant="strong" className="max-w-7xl mx-auto mb-6 p-5 md:p-7">
+      <div class="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
+        <div class="max-w-4xl">
+          <p class="text-[11px] uppercase tracking-[0.3em] text-yellow-400/80 mb-2" data-i18n="info.wiki.home.kicker">
+            {translate('info.wiki.home.kicker', lang, 'Centro de informacion')}
+          </p>
+          <h1 class="text-3xl md:text-5xl font-bold text-yellow-400 font-display mb-3" data-i18n="info.wiki.home.title">
+            {translate('info.wiki.home.title', lang, 'Wiki del servidor para consultar todo por secciones')}
+          </h1>
+          <p class="text-sm md:text-base text-gray-300 leading-relaxed mb-3" data-i18n="info.wiki.home.intro">
+            {translate('info.wiki.home.intro', lang, 'Esta portada agrupa toda la informacion importante del servidor en una estructura tipo wiki. En lugar de volcarlo todo junto, eliges un tema y entras directo a su ficha dedicada.')}
+          </p>
+          <p class="text-sm md:text-base text-gray-400 leading-relaxed" data-i18n="info.wiki.home.summary">
+            {translate('info.wiki.home.summary', lang, 'La idea es que un jugador nuevo pueda encontrar rapido rates, features, economy, eventos, comandos o progresion diaria sin perderse entre pantallas largas o tabs ocultos.')}
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <ActionButton href="/info/rates" variant="primary" className="px-5 py-3 text-black" data-i18n="info.wiki.home.ctaRates">
+            {translate('info.wiki.home.ctaRates', lang, 'Empezar por Rates')}
+          </ActionButton>
+          <ActionButton href="/info/features" variant="ghost" className="px-5 py-3" data-i18n="info.wiki.home.ctaFeatures">
+            {translate('info.wiki.home.ctaFeatures', lang, 'Ver Features')}
+          </ActionButton>
+        </div>
+      </div>
+    </CardSurface>
+  </Fragment>
+
+  <CardSurface className="p-5 md:p-7">
+    <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-6">
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.26em] text-gray-500 mb-2" data-i18n="info.wiki.home.featuredKicker">
+          {translate('info.wiki.home.featuredKicker', lang, 'Secciones destacadas')}
+        </p>
+        <h2 class="text-2xl md:text-3xl font-bold text-yellow-400 font-display" data-i18n="info.wiki.home.featuredTitle">
+          {translate('info.wiki.home.featuredTitle', lang, 'Empieza por lo que mas consulta la gente')}
+        </h2>
+      </div>
+      <p class="max-w-2xl text-sm text-gray-400 leading-relaxed" data-i18n="info.wiki.home.featuredSummary">
+        {translate('info.wiki.home.featuredSummary', lang, 'Rates y Features suelen resolver la mayor parte de las dudas iniciales. Desde ahi puedes saltar a VIP, Economy, Commands o cualquier otra ficha relacionada.')}
+      </p>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2">
+      {featuredSections.map((section) => (
+        <a
+          href={`/info/${section.slug}`}
+          class="df-surface block p-5 hover:border-yellow-500/30 transition-colors"
+        >
+          <p class="text-[11px] uppercase tracking-[0.24em] text-yellow-400/75 mb-2" data-i18n={section.kickerKey}>
+            {translate(section.kickerKey, lang, section.kickerKey)}
+          </p>
+          <h3 class="text-xl font-bold text-yellow-300 font-display mb-2" data-i18n={`info.tabs.${section.slug}`}>
+            {translate(`info.tabs.${section.slug}`, lang, section.slug)}
+          </h3>
+          <p class="text-sm text-gray-400 leading-relaxed" data-i18n={section.summaryKey}>
+            {translate(section.summaryKey, lang, section.summaryKey)}
+          </p>
+        </a>
+      ))}
+    </div>
+  </CardSurface>
+
+  <CardSurface className="p-5 md:p-7">
+    <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-6">
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.26em] text-gray-500 mb-2" data-i18n="info.wiki.home.indexKicker">
+          {translate('info.wiki.home.indexKicker', lang, 'Indice completo')}
+        </p>
+        <h2 class="text-2xl md:text-3xl font-bold text-yellow-400 font-display" data-i18n="info.wiki.home.indexTitle">
+          {translate('info.wiki.home.indexTitle', lang, 'Todas las fichas de la wiki')}
+        </h2>
+      </div>
+      <p class="max-w-2xl text-sm text-gray-400 leading-relaxed" data-i18n="info.wiki.home.indexSummary">
+        {translate('info.wiki.home.indexSummary', lang, 'Cada ficha vive en su propia URL para que el arbol lateral sea claro y cada tema se pueda compartir de forma directa.')}
+      </p>
+    </div>
+
+    <div class="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+      {infoWikiSections.map((section, index) => (
+        <a
+          href={`/info/${section.slug}`}
+          class="flex items-start gap-3 rounded-xl border border-white/10 bg-black/30 p-4 hover:border-yellow-500/30 transition-colors"
+        >
+          <span class="inline-flex h-9 min-w-9 items-center justify-center rounded-full border border-yellow-500/20 bg-yellow-500/10 text-yellow-300 text-xs font-bold">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <span class="min-w-0">
+            <span class="block text-[11px] uppercase tracking-[0.22em] text-gray-500 mb-1" data-i18n={section.kickerKey}>
+              {translate(section.kickerKey, lang, section.kickerKey)}
+            </span>
+            <span class="block text-sm font-semibold text-slate-200 mb-1" data-i18n={`info.tabs.${section.slug}`}>
+              {translate(`info.tabs.${section.slug}`, lang, section.slug)}
+            </span>
+            <span class="block text-sm text-gray-400 leading-relaxed" data-i18n={section.summaryKey}>
+              {translate(section.summaryKey, lang, section.summaryKey)}
+            </span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </CardSurface>
+</InfoWikiLayout>

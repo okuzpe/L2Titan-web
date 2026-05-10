@@ -1,5 +1,7 @@
 ---
 import CardSurface from "./ui/CardSurface.astro";
+import { visitorLangFromPath } from "../utils/i18n-lang";
+import { translate } from "../utils/translations";
 
 interface Props {
   title: string;
@@ -10,6 +12,11 @@ interface Props {
 }
 
 const { title, description, icon, titleKey, descriptionKey } = Astro.props;
+const lang = visitorLangFromPath(Astro.url.pathname);
+const resolvedTitle = titleKey ? translate(titleKey, lang, title) : title;
+const resolvedDescription = descriptionKey
+  ? translate(descriptionKey, lang, description)
+  : description;
 ---
 
 <CardSurface className="p-6 md:p-7 hover:border-yellow-500/30 transition-colors duration-300 group">
@@ -17,9 +24,9 @@ const { title, description, icon, titleKey, descriptionKey } = Astro.props;
     {icon}
   </div>
   <h3 class="text-lg md:text-xl df-title mb-2">
-    {titleKey ? <span data-i18n={titleKey}>{title}</span> : title}
+    {titleKey ? <span data-i18n={titleKey}>{resolvedTitle}</span> : resolvedTitle}
   </h3>
   <p class="text-gray-400 text-sm leading-relaxed">
-    {descriptionKey ? <span data-i18n={descriptionKey}>{description}</span> : description}
+    {descriptionKey ? <span data-i18n={descriptionKey}>{resolvedDescription}</span> : resolvedDescription}
   </p>
 </CardSurface>

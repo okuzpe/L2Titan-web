@@ -1,67 +1,144 @@
 ---
 import { classBalance } from '../../data/serverInfo';
+import { visitorLangFromPath } from '../../utils/i18n-lang';
+import { translate } from '../../utils/translations';
+import FeatureAutofarmBlock from './FeatureAutofarmBlock.astro';
+import FeatureOlympiadBlock from './FeatureOlympiadBlock.astro';
+import FeatureRaidbossBlock from './FeatureRaidbossBlock.astro';
+
+const lang = visitorLangFromPath(Astro.url.pathname);
+const featureLabel = (key: string) => translate(`info.featuresTab.${key}`, lang, key);
 ---
 
 <!-- Custom NPCs -->
 <div class="mb-8">
+  <div class="rounded-2xl border border-yellow-500/15 bg-linear-to-r from-yellow-500/10 via-slate-900/80 to-slate-950/90 p-5 md:p-6 mb-6">
+    <p class="text-[11px] uppercase tracking-[0.28em] text-yellow-400/80 mb-2" data-i18n="info.featuresTab.introKicker">
+      {featureLabel('introKicker')}
+    </p>
+    <h3 class="text-2xl font-bold text-yellow-400 font-display mb-3" data-i18n="info.featuresTab.introTitle">
+      {featureLabel('introTitle')}
+    </h3>
+    <p class="max-w-3xl text-sm md:text-base text-gray-300 leading-relaxed" data-i18n="info.featuresTab.introDesc">
+      {featureLabel('introDesc')}
+    </p>
+    <p class="mt-4">
+      <a
+        href="/substack"
+        class="text-sm font-semibold text-yellow-400 hover:text-yellow-300 underline underline-offset-2"
+        data-i18n="info.featuresTab.substackPageLink"
+      >
+        {featureLabel('substackPageLink')}
+      </a>
+    </p>
+  </div>
   <h3 class="text-2xl font-bold text-yellow-500 mb-6 font-display" data-i18n="info.featuresTab.customNpcs">NPCs Custom</h3>
-  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="grid md:grid-cols-2 2xl:grid-cols-3 gap-6">
     <!-- Buffer NPC -->
-    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
+    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 h-full">
       <h4 class="text-lg font-bold text-yellow-400 mb-3 font-display" data-i18n="info.featuresTab.bufferNpc">Buffer NPC</h4>
       <ul class="space-y-2 text-sm text-gray-400">
         {['bufferDesc1', 'bufferDesc2', 'bufferDesc3', 'bufferDesc4', 'bufferDesc5', 'bufferDesc6'].map((key) => (
           <li class="flex items-start gap-2">
-            <span class="text-yellow-500 mt-1 shrink-0">•</span>
-            <span data-i18n={`info.featuresTab.${key}`}>{key}</span>
+            <span class="text-yellow-500 mt-1 shrink-0">*</span>
+            <span data-i18n={`info.featuresTab.${key}`}>{featureLabel(key)}</span>
           </li>
         ))}
       </ul>
     </div>
 
     <!-- Substack Manager -->
-    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
+    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 h-full">
       <h4 class="text-lg font-bold text-yellow-400 mb-3 font-display" data-i18n="info.featuresTab.substackManager">Substack Manager</h4>
       <ul class="space-y-2 text-sm text-gray-400">
-        {['substackDesc1', 'substackDesc2', 'substackDesc3', 'substackDesc4'].map((key) => (
+        {['substackDesc1', 'substackDesc2', 'substackDesc3', 'substackDesc4', 'substackDesc5'].map((key) => (
           <li class="flex items-start gap-2">
-            <span class="text-yellow-500 mt-1 shrink-0">•</span>
-            <span data-i18n={`info.featuresTab.${key}`}>{key}</span>
+            <span class="text-yellow-500 mt-1 shrink-0">*</span>
+            <span data-i18n={`info.featuresTab.${key}`}>{featureLabel(key)}</span>
           </li>
         ))}
       </ul>
     </div>
 
-    <!-- AutoFarm -->
-    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
-      <h4 class="text-lg font-bold text-yellow-400 mb-3 font-display" data-i18n="info.featuresTab.autoFarm">AutoFarm avanzado</h4>
-      <ul class="space-y-2 text-sm text-gray-400">
-        {['autoFarmDesc1', 'autoFarmDesc2', 'autoFarmDesc3', 'autoFarmDesc4'].map((key) => (
-          <li class="flex items-start gap-2">
-            <span class="text-yellow-500 mt-1 shrink-0">•</span>
-            <span data-i18n={`info.featuresTab.${key}`}>{key}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <FeatureAutofarmBlock />
+    <FeatureRaidbossBlock />
+  </div>
+</div>
 
-    <!-- Raidboss Announcement -->
-    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
-      <h4 class="text-lg font-bold text-yellow-400 mb-3 font-display" data-i18n="info.featuresTab.raidbossInfo">Raidboss Announcement</h4>
-      <ul class="space-y-2 text-sm text-gray-400">
-        {['raidbossDesc1', 'raidbossDesc2'].map((key) => (
-          <li class="flex items-start gap-2">
-            <span class="text-yellow-500 mt-1 shrink-0">•</span>
-            <span data-i18n={`info.featuresTab.${key}`}>{key}</span>
-          </li>
-        ))}
-      </ul>
+<!-- Community Board -->
+<div class="bg-slate-900/50 p-6 rounded-xl border border-cyan-500/20 mb-8">
+  <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-5">
+    <div>
+      <p class="text-[11px] uppercase tracking-[0.22em] text-cyan-300/80 mb-2" data-i18n="info.featuresTab.communityKicker">{featureLabel('communityKicker')}</p>
+      <h3 class="text-2xl font-bold text-cyan-400 font-display" data-i18n="info.featuresTab.communityTitle">{featureLabel('communityTitle')}</h3>
+    </div>
+    <p class="max-w-2xl text-sm text-gray-400 leading-relaxed" data-i18n="info.featuresTab.communityIntro">
+      {featureLabel('communityIntro')}
+    </p>
+  </div>
+  <div class="grid gap-6 xl:grid-cols-[1.1fr_0.9fr] items-start">
+    <div class="rounded-xl overflow-hidden border border-cyan-500/15 bg-black/30">
+      <img
+        src="/images/comunity-board.png"
+        alt={featureLabel('communityAlt')}
+        data-i18n-alt="info.featuresTab.communityAlt"
+        class="w-full h-full object-cover object-top"
+        loading="lazy"
+      />
+    </div>
+    <div class="space-y-4">
+      <div class="rounded-xl border border-white/10 bg-black/30 p-4">
+        <p class="text-sm text-gray-300 leading-relaxed" data-i18n="info.featuresTab.communityDesc">
+          {featureLabel('communityDesc')}
+        </p>
+      </div>
+      <div class="grid gap-3 sm:grid-cols-2">
+        <div class="rounded-xl border border-white/10 bg-black/30 p-4">
+          <span class="inline-flex rounded-full border border-cyan-500/20 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-300" data-i18n="info.featuresTab.communityActivityTitle">{featureLabel('communityActivityTitle')}</span>
+          <ul class="mt-3 space-y-2 text-sm text-gray-300">
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-300 mt-1 shrink-0">*</span>
+              <span data-i18n="info.featuresTab.communityActivityItem1">{featureLabel('communityActivityItem1')}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-300 mt-1 shrink-0">*</span>
+              <span data-i18n="info.featuresTab.communityActivityItem2">{featureLabel('communityActivityItem2')}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="rounded-xl border border-white/10 bg-black/30 p-4">
+          <span class="inline-flex rounded-full border border-cyan-500/20 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-300" data-i18n="info.featuresTab.communityAccountTitle">{featureLabel('communityAccountTitle')}</span>
+          <ul class="mt-3 space-y-2 text-sm text-gray-300">
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-300 mt-1 shrink-0">*</span>
+              <span data-i18n="info.featuresTab.communityAccountItem1">{featureLabel('communityAccountItem1')}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-300 mt-1 shrink-0">*</span>
+              <span data-i18n="info.featuresTab.communityAccountItem2">{featureLabel('communityAccountItem2')}</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-cyan-300 mt-1 shrink-0">*</span>
+              <span data-i18n="info.featuresTab.communityAccountItem3">{featureLabel('communityAccountItem3')}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="rounded-xl border border-white/10 bg-black/30 p-4">
+        <span class="inline-flex rounded-full border border-cyan-500/20 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-300" data-i18n="info.featuresTab.communityActionsTitle">{featureLabel('communityActionsTitle')}</span>
+        <div class="mt-3 grid gap-2 sm:grid-cols-2">
+          <div class="rounded-lg border border-white/8 bg-white/5 px-3 py-2 text-sm text-gray-300" data-i18n="info.featuresTab.communityAction1">{featureLabel('communityAction1')}</div>
+          <div class="rounded-lg border border-white/8 bg-white/5 px-3 py-2 text-sm text-gray-300" data-i18n="info.featuresTab.communityAction2">{featureLabel('communityAction2')}</div>
+          <div class="rounded-lg border border-white/8 bg-white/5 px-3 py-2 text-sm text-gray-300" data-i18n="info.featuresTab.communityAction3">{featureLabel('communityAction3')}</div>
+          <div class="rounded-lg border border-white/8 bg-white/5 px-3 py-2 text-sm text-gray-300" data-i18n="info.featuresTab.communityAction4">{featureLabel('communityAction4')}</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- PvP System -->
-<div class="grid md:grid-cols-2 gap-8 mb-8">
+<div class="grid xl:grid-cols-2 gap-8 mb-8">
   <div class="bg-slate-900/50 p-6 rounded-xl border border-green-500/20">
     <h3 class="text-xl font-bold text-green-400 mb-4 font-display" data-i18n="info.featuresTab.pvpRewards">Recompensas PvP</h3>
     <div class="space-y-2 text-sm">
@@ -75,40 +152,17 @@ import { classBalance } from '../../data/serverInfo';
     <p class="text-gray-400 text-sm mb-3" data-i18n="info.featuresTab.pkDesc1">No se dropean items al morir en PvP normal</p>
     <p class="text-red-400 text-sm font-bold mb-2" data-i18n="info.featuresTab.pkDesc2">Solo los PKs (con Karma) dropean items:</p>
     <div class="space-y-1 text-sm">
-      {['pkLimit', 'pkChanceGeneral', 'pkChanceNormal', 'pkChanceEquip', 'pkChanceWeapon', 'pkMinKills'].map((key) => (
+      {['pkDropLimit', 'pkDropChanceGeneral', 'pkDropChanceNormal', 'pkDropChanceEquip', 'pkDropChanceWeapon', 'pkDropMinKills'].map((key) => (
         <div class="flex items-center gap-2 p-2 bg-black/30 rounded">
-          <span class="text-red-400 shrink-0">•</span>
-          <span class="text-gray-400" data-i18n={`info.featuresTab.${key}`}>{key}</span>
+          <span class="text-red-400 shrink-0">*</span>
+          <span class="text-gray-400" data-i18n={`info.featuresTab.${key}`}>{featureLabel(key)}</span>
         </div>
       ))}
     </div>
   </div>
 </div>
 
-<!-- Olympiad -->
-<div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-8">
-  <h3 class="text-2xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.featuresTab.olympiad">Olympiad</h3>
-  <div class="grid sm:grid-cols-2 gap-2 text-sm">
-    {[
-      { label: 'olyStartTime', val: 'olyStartTimeVal' },
-      { label: 'olyDuration', val: 'olyDurationVal' },
-      { label: 'olyPeriod', val: 'olyPeriodVal' },
-      { label: 'olyClassed', val: 'olyClassedVal' },
-      { label: 'olyNonClassed', val: 'olyNonClassedVal' },
-      { label: 'olyReward', val: 'olyRewardVal' },
-      { label: 'olyMaxEnchant', val: 'olyMaxEnchantVal' },
-      { label: 'olyAugment', val: 'olyAugmentVal' },
-      { label: 'olyRestricted', val: 'olyRestrictedVal' },
-      { label: 'olyCountdown', val: 'olyCountdownVal' },
-      { label: 'olySkills', val: 'olySkillsVal' },
-    ].map((item) => (
-      <div class="flex justify-between p-3 bg-black/40 rounded border border-white/5">
-        <span class="text-gray-400" data-i18n={`info.featuresTab.${item.label}`}>{item.label}</span>
-        <span class="text-gray-200 font-medium text-right" data-i18n={`info.featuresTab.${item.val}`}>{item.val}</span>
-      </div>
-    ))}
-  </div>
-</div>
+<FeatureOlympiadBlock />
 
 <!-- PvP Class Balance -->
 <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-8">
@@ -116,7 +170,7 @@ import { classBalance } from '../../data/serverInfo';
   <div class="grid md:grid-cols-2 gap-3">
     {classBalance.map((item) => (
       <div class="p-3 bg-black/40 rounded border border-white/5 text-sm flex items-center justify-between gap-3">
-        <span class="text-gray-300" data-i18n={`info.featuresTab.${item.key}`}>{item.key}</span>
+        <span class="text-gray-300" data-i18n={`info.featuresTab.${item.key}`}>{featureLabel(item.key)}</span>
         <span class="text-yellow-400 font-semibold">{item.value}</span>
       </div>
     ))}
@@ -138,7 +192,7 @@ import { classBalance } from '../../data/serverInfo';
     {['expToggle', 'topRanking', 'dropCommand', 'balanceUpdates', 'globalGkUpdate', 'autoLearn', 'subclassNoQuest', 'offlineShop', 'antiFarm', 'weight', 'shiftClick'].map((key) => (
       <div class="flex items-start gap-2 p-3 bg-black/40 rounded border border-white/5 text-sm">
         <svg class="w-4 h-4 text-green-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        <span class="text-gray-300" data-i18n={`info.featuresTab.${key}`}>{key}</span>
+        <span class="text-gray-300" data-i18n={`info.featuresTab.${key}`}>{featureLabel(key)}</span>
       </div>
     ))}
   </div>

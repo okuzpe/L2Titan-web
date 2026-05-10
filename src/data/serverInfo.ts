@@ -68,15 +68,15 @@ export const blessedScrollJewelry: Record<number, number> = {
   11: 63, 12: 60, 13: 57, 14: 53, 15: 50, 16: 47,
 };
 
-// Crystal scroll probabilities (range +16 to +25, fail = nothing happens, only scroll lost)
-// Weapon & Armor: starts 70%, drops 5% per level
+// Crystal scroll probabilities (range +13 to +25, fail = nothing happens, only scroll lost)
+// Weapon & Armor: starts 74%, then drops gradually
 export const crystalScrollWeaponArmor: Record<number, number> = {
-  17: 70, 18: 65, 19: 60, 20: 55, 21: 50,
+  13: 74, 14: 73, 15: 72, 16: 71, 17: 70, 18: 65, 19: 60, 20: 55, 21: 50,
   22: 45, 23: 40, 24: 35, 25: 30,
 };
-// Jewelry: starts 65%, drops 5% per level
+// Jewelry: ~5% lower than weapon/armor
 export const crystalScrollJewelry: Record<number, number> = {
-  17: 65, 18: 60, 19: 55, 20: 50, 21: 45,
+  13: 69, 14: 68, 15: 67, 16: 66, 17: 65, 18: 60, 19: 55, 20: 50, 21: 45,
   22: 40, 23: 35, 24: 30, 25: 25,
 };
 
@@ -189,6 +189,84 @@ export const raidTokenDrops = [
   { key: 'valakas', total: 600, distribution: '20 drops de 30' },
 ];
 
+export interface DailyInstanceInfo {
+  id: number;
+  name: string;
+  access: string;
+  maxTime: string;
+  maxEntries: string;
+  levelRange: string;
+  focus: string;
+  drops: string[];
+  notes: string[];
+}
+
+export const dailyInstances: DailyInstanceInfo[] = [
+  {
+    id: 1,
+    name: 'Pagan Temple',
+    access: '.daily enter 1',
+    maxTime: '60 min',
+    maxEntries: '1 por dia',
+    levelRange: '1 - 80',
+    focus: 'Farm rapido diario con Adena, Freya Rose y Titan`s Box.',
+    drops: [
+      'Adena: 130k - 170k (70% chance)',
+      'Freya Rose: 1 unidad base, 32.5% normal / 45.5% VIP',
+      'Titan`s Box: 10% normal / 14% VIP',
+    ],
+    notes: [
+      'Reset diario a las 06:30 del servidor.',
+      'El tiempo se pausa al salir o desconectarte.',
+    ],
+  },
+  {
+    id: 2,
+    name: 'Infinitum Tower',
+    access: '.daily enter 2',
+    maxTime: '60 min',
+    maxEntries: '3 por dia',
+    levelRange: '1 - 85',
+    focus: 'Instancia nueva orientada a farmear letras L2 Day y Adena.',
+    drops: [
+      'Adena: 20k - 26k (70% chance)',
+      'Letras L2 Day para canjes especiales en Paul Merchant',
+      'Item especial II para recetas top',
+    ],
+    notes: [
+      'Usa las letras en Paul Merchant para armas, sets y joyas A-grade.',
+      'La letra J no existe en cliente; el item especial es II, no dos I.',
+    ],
+  },
+];
+
+export const l2DayRecipes = [
+  { product: 'Armas A-grade', word: 'WEAPON', reward: 'Armas A-grade normales' },
+  { product: 'Armas A-grade top', word: 'WEAPON + II', reward: 'Armas A-grade top' },
+  { product: 'Escudos A-grade', word: 'SHIELD', reward: 'Escudos A-grade sellados' },
+  { product: 'Joyas Phoenix', word: 'YEWELLS', reward: 'Set sellado Phoenix completo' },
+  { product: 'Joyas Majestic', word: 'YEWELLS + II', reward: 'Set sellado Majestic completo' },
+  { product: 'Sets A-grade sellados', word: 'ARMORS + II', reward: 'Dark Crystal, Tallum, Nightmare y Majestic' },
+];
+
+export const fortressRewardSummary = {
+  leaderReward: '4 Titan Coins',
+  defenderReputation: '+250 clan reputation',
+  conquerorReputation: '+500 clan reputation',
+};
+
+export const castleRewardHighlights = [
+  { castle: 'Gludio', reward: '35 Titan Coins' },
+  { castle: 'Dion', reward: '50 Titan Coins' },
+  { castle: 'Giran', reward: '65 Titan Coins' },
+  { castle: 'Oren', reward: '65 Titan Coins' },
+  { castle: 'Aden', reward: '135 Titan Coins' },
+  { castle: 'Innadril', reward: '55 Titan Coins' },
+  { castle: 'Goddard', reward: '80 Titan Coins' },
+  { castle: 'Rune', reward: '100 Titan Coins' },
+  { castle: 'Schuttgart', reward: '80 Titan Coins' },
+];
+
 // ─── SIEGES ──────────────────────────────────────────────────────────
 
 export const fortressList = [
@@ -217,6 +295,9 @@ export const commands: Record<string, Command[]> = {
   ],
   instances: [
     { cmd: '.daily', key: 'cmdDaily' },
+    { cmd: '.daily watch <id>', key: 'cmdDailyWatch' },
+    { cmd: '.daily enter <id>', key: 'cmdDailyEnter' },
+    { cmd: '.daily exit', key: 'cmdDailyExit' },
   ],
   events: [
     { cmd: '.join', key: 'cmdJoin' },
@@ -227,6 +308,10 @@ export const commands: Record<string, Command[]> = {
   ],
   vote: [
     { cmd: '.vote', key: 'cmdVote' },
+    { cmd: '.voteTime', key: 'cmdVoteTime' },
+  ],
+  teleport: [
+    { cmd: '.globalgk', key: 'cmdGlobalGk' },
   ],
   bank: [
     { cmd: '.bank', key: 'cmdBank' },
@@ -240,7 +325,9 @@ export const commands: Record<string, Command[]> = {
   ],
   utilities: [
     { cmd: '.exp', key: 'cmdExp' },
-    { cmd: '.offline_shop', key: 'cmdOfflineShop' },
+    { cmd: '.farm', key: 'cmdAutoFarm' },
+    { cmd: '.autofarm', key: 'cmdAutoFarm' },
+    { cmd: '.drop', key: 'cmdDrop' },
   ],
 };
 

@@ -1,50 +1,68 @@
 ---
+import { visitorLangFromPath } from "../utils/i18n-lang";
+import { translate } from "../utils/translations";
+
+const lang = visitorLangFromPath(Astro.url.pathname);
 const year = new Date().getFullYear();
+const voteLabel = translate("footer.voteSubmit", lang, "Vote");
+const closeLabel = translate("footer.closeModal", lang, "Close");
+const charPlaceholder = translate(
+  "footer.characterName",
+  lang,
+  "Character name",
+);
 ---
 
 <footer class="bg-slate-900 border-t border-white/10 mt-auto">
   <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-    <!-- Sección de banners de votación -->
+    <!-- Banners de votación; id para ancla desde el nav (usar href="#vote-section", no /#…, para no forzar la home) -->
     <div id="vote-section" class="mb-8 pb-8 border-b border-white/10">
-      <h3 class="text-sm font-semibold text-yellow-500 uppercase tracking-wider mb-4 text-center font-display" data-i18n="footer.voteForUs">
+      <h3
+        class="text-sm font-semibold text-yellow-500 uppercase tracking-wider mb-4 text-center font-display"
+        data-i18n="footer.voteForUs"
+      >
         Vota por nosotros
       </h3>
       <div class="flex flex-wrap justify-center items-center gap-4">
         <!-- Banner HopZone -->
-        <a 
-          href="https://l2.hopzone.net/site/vote/107098/1" 
-          target="_blank" 
+        <a
+          href="https://l2.hopzone.net/site/vote/107098/1"
+          target="_blank"
           rel="noopener noreferrer"
           class="inline-block hover:opacity-80 transition-opacity"
           title="L2.HOPZONE.NET – Lineage 2 Servers ranking"
         >
-          <img 
-            src="https://l2.hopzone.net/assets/img/banners/vote_banners/banner_5.png" 
-            alt="Vote for L2-TITAN.COM" 
+          <img
+            src="https://l2.hopzone.net/assets/img/banners/vote_banners/banner_5.png"
+            alt="Vote for L2-TITAN.COM"
             class="border-0"
             style="width: 140px; height: 120px;"
+            width="140"
+            height="120"
             loading="lazy"
+            decoding="async"
           />
         </a>
-        
+
         <!-- Banner l2topzone -->
-        <a 
-          href="https://l2topzone.com/vote/id/13387" 
-          target="_blank" 
+        <a
+          href="https://l2topzone.com/vote/id/13387"
+          target="_blank"
           rel="noopener noreferrer"
           class="inline-block hover:opacity-80 transition-opacity"
           title="l2topzone"
         >
-          <img 
-            src="https://l2topzone.com/vb/l2topzone-Lineage2-vote-banner-bottom-right-2.gif" 
-            alt="l2topzone.com" 
+          <img
+            src="/images/Topzone-button.gif"
+            alt="l2topzone.com"
             width="140"
             height="120"
             class="border-0"
             loading="lazy"
+            decoding="async"
           />
         </a>
-        
+
         <!-- Banner L2Network -->
         <button
           id="l2network-btn"
@@ -52,15 +70,17 @@ const year = new Date().getFullYear();
           class="inline-block hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-0 p-0"
           title="L2Network"
         >
-          <img 
-            src="https://l2network.eu/images/sidebanner.png" 
-            alt="L2Network" 
+          <img
+            src="https://l2network.eu/images/sidebanner.png"
+            alt="L2Network"
             class="border-0"
             style="width: 145px; height: 122px;"
+            width="145"
+            height="122"
             loading="lazy"
+            decoding="async"
           />
         </button>
-
       </div>
       <!-- Banner Top100Arena + L2JBrasil -->
       <div class="flex flex-wrap justify-center items-center gap-4 mt-4">
@@ -70,7 +90,14 @@ const year = new Date().getFullYear();
           class="inline-block hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-0 p-0"
           title="Top100Arena"
         >
-          <img src="https://www.top100arena.com/rankbadge/102116" alt="Lineage 2 private server" loading="lazy" />
+          <img
+            src="https://www.top100arena.com/rankbadge/102116"
+            alt="Lineage 2 private server"
+            width="200"
+            height="40"
+            loading="lazy"
+            decoding="async"
+          />
         </button>
 
         <button
@@ -80,191 +107,455 @@ const year = new Date().getFullYear();
           title="Top L2JBrasil de Servidores de Lineage2"
         >
           <img
-            src="https://top.l2jbrasil.com/button.php?u=titan"
+            src="/images/L2JBrazil-button.png"
             alt="Top L2JBrasil de Servidores de Lineage2"
+            class="border-0"
+            width="140"
+            height="120"
+            loading="lazy"
+            decoding="async"
+          />
+        </button>
+
+        <!-- L2HopZone: banner remoto a veces 404 hasta activar el listing; fallback local en public/images -->
+        <a
+          href="https://l2hopzone.com/vote/s403672903"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block hover:opacity-80 transition-opacity"
+          title="Vote for L2-Titan"
+        >
+          <img
+            src="/images/l2hopzone-vote-fallback.png"
+            alt="L2HopZone — votar por L2-Titan"
+            width="200"
+            height="60"
+            class="border-0"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+
+        <a
+          href="https://www.arena-top100.com/index.php?a=in&u=L2Titan"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block hover:opacity-80 transition-opacity"
+          title="Arena-Top100 — Lineage 2 Private Servers"
+        >
+          <img
+            src="https://www.arena-top100.com/images/vote/lineage2-private-servers.png"
+            alt="Arena-Top100 — Lineage 2 Private Servers"
+            width="88"
+            height="53"
+            class="border-0"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+
+        {
+          /*
+        <a
+          href="https://en.l2top.info"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block hover:opacity-80 transition-opacity"
+          title="L2 Top 200 [2024 TOP]: lineage 2 top servers List"
+        >
+          <img
+            src="https://en.l2top.info/img/L2TOP-INFO-180x54.gif"
+            alt="L2 Top 200 — Lineage 2 top servers list"
+            width="180"
+            height="54"
+            decoding="async"
             class="border-0"
             loading="lazy"
           />
-        </button>
+        </a>
+        */
+        }
       </div>
     </div>
 
     <!-- Top100Arena Vote Modal -->
-    <div id="top100arena-modal" class="fixed inset-0 z-100 hidden items-center justify-center">
-      <div id="top100arena-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-      <div class="relative bg-slate-900 border border-yellow-500/30 rounded-xl shadow-2xl shadow-black/50 p-6 w-full max-w-sm mx-4">
-        <button id="top100arena-close" type="button" class="absolute top-3 right-3 text-gray-500 hover:text-white transition-colors" aria-label="Close">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+    <div
+      id="top100arena-modal"
+      class="fixed inset-0 z-100 hidden items-center justify-center"
+    >
+      <div
+        id="top100arena-backdrop"
+        class="absolute inset-0 bg-black/70 backdrop-blur-sm"
+      >
+      </div>
+      <div
+        class="relative bg-slate-900 border border-yellow-500/30 rounded-xl shadow-2xl shadow-black/50 p-6 w-full max-w-sm mx-4"
+      >
+        <button
+          id="top100arena-close"
+          type="button"
+          class="absolute top-3 right-3 text-gray-500 hover:text-white transition-colors"
+          aria-label={closeLabel}
+          data-i18n-aria-label="footer.closeModal"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
         <div class="text-center mb-5">
-          <img src="https://www.top100arena.com/rankbadge/102116" alt="Top100Arena" width="200" height="40" class="mx-auto mb-3" />
-          <h4 class="text-lg font-bold text-yellow-500 font-display uppercase tracking-wider">Top100Arena</h4>
+          <img
+            src="https://www.top100arena.com/rankbadge/102116"
+            alt="Top100Arena"
+            width="200"
+            height="40"
+            class="mx-auto mb-3"
+          />
+          <h4
+            class="text-lg font-bold text-yellow-500 font-display uppercase tracking-wider"
+          >
+            Top100Arena
+          </h4>
         </div>
         <form id="top100arena-form">
-          <label for="top100arena-name" class="block text-sm text-gray-400 mb-2" data-i18n="footer.enterCharName">Enter your character name</label>
+          <label
+            for="top100arena-name"
+            class="block text-sm text-gray-400 mb-2"
+            data-i18n="footer.enterCharName">Enter your character name</label
+          >
           <input
             id="top100arena-name"
             type="text"
             required
             maxlength="25"
-            placeholder="Character name"
+            placeholder={charPlaceholder}
             data-i18n="footer.characterName"
             class="w-full px-4 py-3 bg-black/60 border border-white/10 rounded-lg text-sm text-gray-200 placeholder-gray-500 focus:border-yellow-500/50 focus:outline-none transition-colors mb-4"
           />
           <button
             type="submit"
             class="w-full df-btn-ghost px-4 py-3 text-sm"
+            data-i18n="footer.voteSubmit"
           >
-            Vote
+            {voteLabel}
           </button>
         </form>
       </div>
     </div>
 
     <!-- L2Network Vote Modal -->
-    <div id="l2network-modal" class="fixed inset-0 z-100 hidden items-center justify-center">
-      <div id="l2network-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-      <div class="relative bg-slate-900 border border-yellow-500/30 rounded-xl shadow-2xl shadow-black/50 p-6 w-full max-w-sm mx-4">
-        <button id="l2network-close" type="button" class="absolute top-3 right-3 text-gray-500 hover:text-white transition-colors" aria-label="Close">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+    <div
+      id="l2network-modal"
+      class="fixed inset-0 z-100 hidden items-center justify-center"
+    >
+      <div
+        id="l2network-backdrop"
+        class="absolute inset-0 bg-black/70 backdrop-blur-sm"
+      >
+      </div>
+      <div
+        class="relative bg-slate-900 border border-yellow-500/30 rounded-xl shadow-2xl shadow-black/50 p-6 w-full max-w-sm mx-4"
+      >
+        <button
+          id="l2network-close"
+          type="button"
+          class="absolute top-3 right-3 text-gray-500 hover:text-white transition-colors"
+          aria-label={closeLabel}
+          data-i18n-aria-label="footer.closeModal"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
         <div class="text-center mb-5">
-          <img src="https://l2network.eu/images/sidebanner.png" alt="L2Network" style="width: 145px; height: 122px;" class="mx-auto mb-3" />
-          <h4 class="text-lg font-bold text-yellow-500 font-display uppercase tracking-wider">L2Network</h4>
+          <img
+            src="https://l2network.eu/images/sidebanner.png"
+            alt="L2Network"
+            style="width: 145px; height: 122px;"
+            class="mx-auto mb-3"
+          />
+          <h4
+            class="text-lg font-bold text-yellow-500 font-display uppercase tracking-wider"
+          >
+            L2Network
+          </h4>
         </div>
         <form id="l2network-form">
-          <label for="l2network-name" class="block text-sm text-gray-400 mb-2" data-i18n="footer.enterCharName">Enter your character name</label>
+          <label
+            for="l2network-name"
+            class="block text-sm text-gray-400 mb-2"
+            data-i18n="footer.enterCharName">Enter your character name</label
+          >
           <input
             id="l2network-name"
             type="text"
             required
             maxlength="25"
-            placeholder="Character name"
+            placeholder={charPlaceholder}
             data-i18n="footer.characterName"
             class="w-full px-4 py-3 bg-black/60 border border-white/10 rounded-lg text-sm text-gray-200 placeholder-gray-500 focus:border-yellow-500/50 focus:outline-none transition-colors mb-4"
           />
           <button
             type="submit"
             class="w-full df-btn-ghost px-4 py-3 text-sm"
+            data-i18n="footer.voteSubmit"
           >
-            Vote
+            {voteLabel}
           </button>
         </form>
       </div>
     </div>
 
     <!-- Top L2JBrasil Vote Modal -->
-    <div id="top-l2jbrasil-modal" class="fixed inset-0 z-100 hidden items-center justify-center">
-      <div id="top-l2jbrasil-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-      <div class="relative bg-slate-900 border border-yellow-500/30 rounded-xl shadow-2xl shadow-black/50 p-6 w-full max-w-sm mx-4">
-        <button id="top-l2jbrasil-close" type="button" class="absolute top-3 right-3 text-gray-500 hover:text-white transition-colors" aria-label="Close">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+    <div
+      id="top-l2jbrasil-modal"
+      class="fixed inset-0 z-100 hidden items-center justify-center"
+    >
+      <div
+        id="top-l2jbrasil-backdrop"
+        class="absolute inset-0 bg-black/70 backdrop-blur-sm"
+      >
+      </div>
+      <div
+        class="relative bg-slate-900 border border-yellow-500/30 rounded-xl shadow-2xl shadow-black/50 p-6 w-full max-w-sm mx-4"
+      >
+        <button
+          id="top-l2jbrasil-close"
+          type="button"
+          class="absolute top-3 right-3 text-gray-500 hover:text-white transition-colors"
+          aria-label={closeLabel}
+          data-i18n-aria-label="footer.closeModal"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
         <div class="text-center mb-5">
-          <img src="https://top.l2jbrasil.com/button.php?u=titan" alt="Top L2JBrasil" class="mx-auto mb-3" loading="lazy" />
-          <h4 class="text-lg font-bold text-yellow-500 font-display uppercase tracking-wider">Top L2JBrasil</h4>
+          <img
+            src="/images/L2JBrazil-button.png"
+            alt="Top L2JBrasil"
+            class="mx-auto mb-3"
+            loading="lazy"
+          />
+          <h4
+            class="text-lg font-bold text-yellow-500 font-display uppercase tracking-wider"
+          >
+            Top L2JBrasil
+          </h4>
         </div>
         <form id="top-l2jbrasil-form">
-          <label for="top-l2jbrasil-name" class="block text-sm text-gray-400 mb-2" data-i18n="footer.enterCharName">Enter your character name</label>
+          <label
+            for="top-l2jbrasil-name"
+            class="block text-sm text-gray-400 mb-2"
+            data-i18n="footer.enterCharName">Enter your character name</label
+          >
           <input
             id="top-l2jbrasil-name"
             type="text"
             required
             maxlength="25"
-            placeholder="Character name"
+            placeholder={charPlaceholder}
             data-i18n="footer.characterName"
             class="w-full px-4 py-3 bg-black/60 border border-white/10 rounded-lg text-sm text-gray-200 placeholder-gray-500 focus:border-yellow-500/50 focus:outline-none transition-colors mb-3"
           />
-          <p class="text-[11px] text-gray-500 mb-4" data-i18n="footer.l2jbrasilExactNameRule">
-            El nombre debe coincidir exactamente con el que usaras en .vote.
+          <p
+            class="text-[11px] text-gray-500 mb-4"
+            data-i18n="footer.l2jbrasilExactNameRule"
+          >
+            {translate("footer.l2jbrasilExactNameRule", lang, "")}
           </p>
           <button
             type="submit"
             class="w-full df-btn-ghost px-4 py-3 text-sm"
+            data-i18n="footer.voteSubmit"
           >
-            Vote
+            {voteLabel}
           </button>
         </form>
       </div>
     </div>
 
     <script is:inline>
-      (function() {
+      (function () {
         function initVoteModal(prefix, baseUrl, paramBuilder) {
-          var btn = document.getElementById(prefix + '-btn');
-          var modal = document.getElementById(prefix + '-modal');
-          var backdrop = document.getElementById(prefix + '-backdrop');
-          var closeBtn = document.getElementById(prefix + '-close');
-          var form = document.getElementById(prefix + '-form');
-          var nameInput = document.getElementById(prefix + '-name');
+          var btn = document.getElementById(prefix + "-btn");
+          var modal = document.getElementById(prefix + "-modal");
+          var backdrop = document.getElementById(prefix + "-backdrop");
+          var closeBtn = document.getElementById(prefix + "-close");
+          var form = document.getElementById(prefix + "-form");
+          var nameInput = document.getElementById(prefix + "-name");
           if (!btn || !modal || !form || !nameInput) return;
 
           function openModal() {
-            nameInput.value = '';
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+            nameInput.value = "";
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
             nameInput.focus();
           }
 
           function closeModal() {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
           }
 
-          btn.addEventListener('click', openModal);
-          backdrop.addEventListener('click', closeModal);
-          closeBtn.addEventListener('click', closeModal);
+          btn.addEventListener("click", openModal);
+          backdrop.addEventListener("click", closeModal);
+          closeBtn.addEventListener("click", closeModal);
 
-          document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && !modal.classList.contains("hidden")) {
               closeModal();
             }
           });
 
-          form.addEventListener('submit', function(e) {
+          form.addEventListener("submit", function (e) {
             e.preventDefault();
             var name = nameInput.value.trim();
             if (!name) return;
-            window.open(baseUrl + paramBuilder(name), '_blank');
+            window.open(baseUrl + paramBuilder(name), "_blank");
             setTimeout(closeModal, 100);
           });
         }
 
         function init() {
-          initVoteModal('top100arena', 'https://www.top100arena.com/listing/102116/vote?incentive=', function(n) { return encodeURIComponent(n); });
-          initVoteModal('l2network', 'https://l2network.eu/index.php?a=in&u=l2-titan&id=', function(n) { return encodeURIComponent(n); });
-          initVoteModal('top-l2jbrasil', 'https://top.l2jbrasil.com/index.php?a=in&u=titan&player_id=', function(n) { return encodeURIComponent(n); });
+          initVoteModal(
+            "top100arena",
+            "https://www.top100arena.com/listing/102116/vote?incentive=",
+            function (n) {
+              return encodeURIComponent(n);
+            },
+          );
+          initVoteModal(
+            "l2network",
+            "https://l2network.eu/index.php?a=in&u=l2-titan&id=",
+            function (n) {
+              return encodeURIComponent(n);
+            },
+          );
+          initVoteModal(
+            "top-l2jbrasil",
+            "https://top.l2jbrasil.com/index.php?a=in&u=Titan&player_id=",
+            function (n) {
+              return encodeURIComponent(n);
+            },
+          );
         }
 
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', init);
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", init);
         } else {
           init();
         }
       })();
     </script>
 
-    <img
-      src="https://top.l2jbrasil.com/pixel.php?u=titan"
-      alt=""
-      width="1"
-      height="1"
-      class="pointer-events-none opacity-0 select-none"
-      loading="lazy"
-      decoding="async"
-      aria-hidden="true"
-    />
+    <script is:inline>
+      (function () {
+        try {
+          fetch("https://top.l2jbrasil.com/pixel.php?u=Titan", {
+            mode: "no-cors",
+            credentials: "omit",
+          }).catch(function () {});
+        } catch (e) {}
+      })();
+    </script>
+
+    <div
+      class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-gray-500 mb-6 max-w-4xl mx-auto px-2"
+    >
+      <a
+        href="/info"
+        class="hover:text-yellow-400 transition-colors"
+        data-i18n="navbar.info">{translate("navbar.info", lang, "Info")}</a
+      >
+      <a
+        href="/features"
+        class="hover:text-yellow-400 transition-colors"
+        data-i18n="footer.linkFeatures"
+        >{translate("footer.linkFeatures", lang, "Features")}</a
+      >
+      <a
+        href="/faq"
+        class="hover:text-yellow-400 transition-colors"
+        data-i18n="footer.linkFaq">{translate("footer.linkFaq", lang, "FAQ")}</a
+      >
+      <a
+        href="/registro"
+        class="hover:text-yellow-400 transition-colors"
+        data-i18n="footer.linkAccount"
+        >{translate("footer.linkAccount", lang, "Cuenta")}</a
+      >
+      <a
+        href="/downloads"
+        class="hover:text-yellow-400 transition-colors"
+        data-i18n="footer.linkDownloads"
+        >{translate("footer.linkDownloads", lang, "Descargas")}</a
+      >
+      <a
+        href="/news"
+        class="hover:text-yellow-400 transition-colors"
+        data-i18n="footer.linkNews"
+        >{translate("footer.linkNews", lang, "Noticias")}</a
+      >
+      <a
+        href="/comunidad"
+        class="hover:text-yellow-400 transition-colors"
+        data-i18n="footer.linkCommunity"
+        >{translate("footer.linkCommunity", lang, "Comunidad")}</a
+      >
+      <a
+        href="/substack"
+        class="hover:text-yellow-400 transition-colors"
+        data-i18n="footer.linkSubstack"
+        >{translate("footer.linkSubstack", lang, "SubStack")}</a
+      >
+      <a
+        href="/rates"
+        class="hover:text-yellow-400 transition-colors"
+        data-i18n="footer.linkRates"
+        >{translate("footer.linkRates", lang, "Rates")}</a
+      >
+      <a
+        href="/en/substack"
+        class="hover:text-yellow-400 transition-colors"
+        data-i18n="footer.linkSubstackEn"
+        >{translate("footer.linkSubstackEn", lang, "SubStack")}</a
+      >
+    </div>
 
     <!-- Copyright y Redes -->
     <div class="flex flex-col md:flex-row justify-between items-center gap-4">
       <div class="text-gray-400 text-sm">&copy; {year} L2Titan.com.</div>
-      <div id="social-media" class="flex flex-wrap items-center justify-center gap-3">
+      <div
+        id="social-media"
+        class="flex flex-wrap items-center justify-center gap-3"
+      >
         <a
           href="https://www.facebook.com/l2titan.server/"
           target="_blank"
@@ -272,8 +563,15 @@ const year = new Date().getFullYear();
           class="group relative inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-linear-to-r from-[#1b74e4] to-[#0f4ea8] text-white font-bold overflow-hidden shadow-[0_0_20px_rgba(27,116,228,0.3)] transition-all hover:shadow-[0_0_35px_rgba(27,116,228,0.55)] hover:scale-105"
         >
           <span class="sr-only">Facebook</span>
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.5-3.88 3.79-3.88 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"></path>
+          <svg
+            class="w-5 h-5"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.5-3.88 3.79-3.88 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"
+            ></path>
           </svg>
           <span class="text-sm tracking-wide">Facebook</span>
         </a>
@@ -284,8 +582,15 @@ const year = new Date().getFullYear();
           class="group relative inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-linear-to-r from-[#fd1d1d] via-[#d62976] to-[#f58529] text-white font-bold overflow-hidden shadow-[0_0_20px_rgba(214,41,118,0.3)] transition-all hover:shadow-[0_0_35px_rgba(214,41,118,0.55)] hover:scale-105"
         >
           <span class="sr-only">Instagram</span>
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.8A3.95 3.95 0 003.8 7.75v8.5a3.95 3.95 0 003.95 3.95h8.5a3.95 3.95 0 003.95-3.95v-8.5a3.95 3.95 0 00-3.95-3.95h-8.5zm8.8 1.35a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.8a3.2 3.2 0 100 6.4 3.2 3.2 0 000-6.4z"></path>
+          <svg
+            class="w-5 h-5"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.8A3.95 3.95 0 003.8 7.75v8.5a3.95 3.95 0 003.95 3.95h8.5a3.95 3.95 0 003.95-3.95v-8.5a3.95 3.95 0 00-3.95-3.95h-8.5zm8.8 1.35a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.8a3.2 3.2 0 100 6.4 3.2 3.2 0 000-6.4z"
+            ></path>
           </svg>
           <span class="text-sm tracking-wide">Instagram</span>
         </a>

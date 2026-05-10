@@ -1,6 +1,23 @@
 ---
-import { weaponCrystalScrolls, armorCrystalScrolls, eventMedalShop, voteCoinShop, titansBoxRewards, shirts, raidTokenDrops } from '../../data/serverInfo';
+import { weaponCrystalScrolls, armorCrystalScrolls, eventMedalShop, voteCoinShop, titansBoxRewards, shirts, raidTokenDrops, l2DayRecipes } from '../../data/serverInfo';
+import { visitorLangFromPath } from '../../utils/i18n-lang';
+import { translate } from '../../utils/translations';
+
+const lang = visitorLangFromPath(Astro.url.pathname);
+const economyLabel = (key: string) => translate(`info.economyTab.${key}`, lang, key);
 ---
+
+<div class="bg-slate-900/50 p-5 md:p-6 rounded-xl border border-yellow-500/20 mb-6">
+  <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+    <div>
+      <p class="text-[11px] uppercase tracking-[0.22em] text-yellow-400/75">Economy map</p>
+      <h3 class="text-xl md:text-2xl font-bold text-yellow-400 font-display">Monedas, loops y tiendas mejor separadas</h3>
+    </div>
+    <p class="max-w-2xl text-sm text-gray-400 leading-relaxed">
+      La lectura empieza por la moneda, sigue por la tienda o reward asociada y termina con los loops que conectan PvP, bosses, voting y progression.
+    </p>
+  </div>
+</div>
 
 <!-- Currencies -->
 <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-8">
@@ -14,19 +31,60 @@ import { weaponCrystalScrolls, armorCrystalScrolls, eventMedalShop, voteCoinShop
       { name: 'titanCoin', source: 'titanCoinSource', icon: '🏰', color: 'border-yellow-500/20' },
       { name: 'vipToken', source: 'vipTokenSource', icon: '⭐', color: 'border-amber-500/20' },
     ].map((c) => (
-      <div class={`p-4 bg-black/40 rounded border ${c.color}`}>
+      <div class={`p-4 bg-black/40 rounded border ${c.color} h-full`}>
         <div class="flex items-center gap-2 mb-1">
           <span class="text-lg">{c.icon}</span>
-          <span class="text-yellow-400 font-bold text-sm" data-i18n={`info.economyTab.${c.name}`}>{c.name}</span>
+          <span class="text-yellow-400 font-bold text-sm" data-i18n={`info.economyTab.${c.name}`}>{economyLabel(c.name)}</span>
         </div>
-        <p class="text-gray-500 text-xs" data-i18n={`info.economyTab.${c.source}`}>{c.source}</p>
+        <p class="text-gray-500 text-xs" data-i18n={`info.economyTab.${c.source}`}>{economyLabel(c.source)}</p>
       </div>
     ))}
   </div>
 </div>
 
+<!-- L2 Day Letters -->
+<div class="bg-slate-900/50 p-6 rounded-xl border border-cyan-500/20 mb-8">
+  <h3 class="text-2xl font-bold text-cyan-400 mb-2 font-display">L2 Letters</h3>
+  <div class="grid lg:grid-cols-3 gap-5 items-start">
+    <div class="lg:col-span-1">
+      <div class="rounded-xl overflow-hidden border border-cyan-500/15 bg-black/30">
+        <img
+          src="/images/letters-exchange.png"
+          alt="L2 Letters exchange example"
+          class="w-full h-auto object-contain"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <div class="lg:col-span-2">
+      <p class="text-gray-400 text-sm mb-5">
+        La nueva daily <code class="bg-black/40 text-cyan-300 px-2 py-0.5 rounded text-xs">.daily enter 2</code> entrega Adena y letras L2 Day. Esas letras se cambian en <strong>Paul Merchant</strong> por multisells A-grade.
+      </p>
+      <div class="mb-5 rounded-xl border border-cyan-500/15 bg-black/30 p-4">
+        <p class="text-sm text-gray-300">
+          Junta letras para formar palabras y canjearlas directamente en Paul Merchant. Las combinaciones activas son <strong>WEAPON</strong>, <strong>SHIELD</strong>, <strong>YEWELLS</strong> y <strong>ARMORS</strong>. Algunas recetas top tambien piden el item especial <strong>II</strong>.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-3">
+        {l2DayRecipes.map((recipe) => (
+          <div class="p-4 bg-black/40 rounded border border-white/10">
+            <div class="text-cyan-300 font-semibold text-sm mb-1">{recipe.product}</div>
+            <div class="text-gray-400 text-xs uppercase tracking-[0.2em] mb-2">Letras requeridas</div>
+            <div class="text-yellow-400 font-mono text-sm">{recipe.word}</div>
+            <div class="mt-3 text-xs text-gray-400">Canje: {recipe.reward}</div>
+          </div>
+        ))}
+      </div>
+      <p class="text-xs text-gray-500 mt-4">
+        La receta top usa el item especial <strong>II</strong>. No existe letra J en cliente.
+      </p>
+    </div>
+  </div>
+</div>
+
 <!-- Crystal Scroll Shop + Raid Tokens -->
-<div class="grid md:grid-cols-2 gap-8 mb-8">
+<div class="grid xl:grid-cols-2 gap-8 mb-8">
   <!-- Crystal Scrolls -->
   <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
     <h3 class="text-xl font-bold text-yellow-500 mb-2 font-display" data-i18n="info.economyTab.crystalScrollShop">Tienda de Crystal Scrolls</h3>
@@ -100,7 +158,7 @@ import { weaponCrystalScrolls, armorCrystalScrolls, eventMedalShop, voteCoinShop
           <tbody>
             {raidTokenDrops.map((rb) => (
               <tr class="border-b border-white/5">
-                <td class="p-2 md:p-3 text-gray-300" data-i18n={`info.economyTab.${rb.key}`}>{rb.key}</td>
+                <td class="p-2 md:p-3 text-gray-300" data-i18n={`info.economyTab.${rb.key}`}>{economyLabel(rb.key)}</td>
                 <td class="p-2 md:p-3 text-right font-mono text-yellow-400">{rb.total}</td>
                 <td class="p-2 md:p-3 text-right font-mono text-gray-300">{rb.distribution}</td>
               </tr>
@@ -124,7 +182,7 @@ import { weaponCrystalScrolls, armorCrystalScrolls, eventMedalShop, voteCoinShop
       <div class="space-y-1">
         {eventMedalShop.map((item) => (
           <div class="flex justify-between p-2 bg-black/30 rounded text-sm">
-            <span class="text-gray-300" data-i18n={`info.economyTab.${item.key}`}>{item.key}</span>
+            <span class="text-gray-300" data-i18n={`info.economyTab.${item.key}`}>{economyLabel(item.key)}</span>
             <span class="text-blue-400 font-bold">{item.cost.toLocaleString()}</span>
           </div>
         ))}
@@ -134,7 +192,7 @@ import { weaponCrystalScrolls, armorCrystalScrolls, eventMedalShop, voteCoinShop
       <div class="space-y-1">
         {voteCoinShop.map((item) => (
           <div class="flex justify-between p-2 bg-black/30 rounded text-sm">
-            <span class="text-gray-300" data-i18n={`info.economyTab.${item.key}`}>{item.key}</span>
+            <span class="text-gray-300" data-i18n={`info.economyTab.${item.key}`}>{economyLabel(item.key)}</span>
             <span class="text-green-400 font-bold">{item.cost}</span>
           </div>
         ))}
@@ -235,7 +293,7 @@ import { weaponCrystalScrolls, armorCrystalScrolls, eventMedalShop, voteCoinShop
     {['flow1', 'flow2', 'flow3', 'flow4', 'flow5'].map((key) => (
       <div class="flex items-center gap-2 text-sm">
         <span class="text-yellow-500">→</span>
-        <span class="text-gray-300" data-i18n={`info.economyTab.${key}`}>{key}</span>
+        <span class="text-gray-300" data-i18n={`info.economyTab.${key}`}>{economyLabel(key)}</span>
       </div>
     ))}
   </div>

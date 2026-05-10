@@ -1,4 +1,7 @@
 ---
+import { visitorLangFromPath } from "../../utils/i18n-lang";
+import { translate } from "../../utils/translations";
+
 interface Props {
   text: string;
   i18nKey?: string;
@@ -6,8 +9,10 @@ interface Props {
 }
 
 const { text, i18nKey, className = '' } = Astro.props;
+const lang = visitorLangFromPath(Astro.url.pathname);
+const resolvedText = i18nKey ? translate(i18nKey, lang, text) : text;
 ---
 
 <span class={`df-pill ${className}`.trim()}>
-  {i18nKey ? <span data-i18n={i18nKey}>{text}</span> : text}
+  {i18nKey ? <span data-i18n={i18nKey}>{resolvedText}</span> : resolvedText}
 </span>

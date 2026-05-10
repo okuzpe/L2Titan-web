@@ -1,0 +1,176 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CardSurface from "../../components/ui/CardSurface.astro";
+import ActionButton from "../../components/ui/ActionButton.astro";
+import Breadcrumbs from "../../components/seo/Breadcrumbs.astro";
+import SubstackNextSection from "../../components/info/SubstackNextSection.astro";
+import { visitorLangFromPath } from "../../utils/i18n-lang";
+import { translate } from "../../utils/translations";
+import { buildBreadcrumb, buildFaq } from "../../utils/seo";
+
+const lang = visitorLangFromPath(Astro.url.pathname);
+const tk = (key: string, fb: string) => translate(key, lang, fb);
+const p = "pages.substack";
+
+const pageTitle = tk(`${p}.metaTitle`, "");
+const description = tk(`${p}.metaDescription`, "");
+const keywords = tk(`${p}.metaKeywords`, "");
+
+const structuredData = [
+  buildBreadcrumb([
+    { name: tk("navbar.home", "Home"), path: "/" },
+    { name: tk("pages.substackEn.crumb", "SubStack"), path: "/en/substack" },
+  ]),
+  buildFaq([
+    { question: tk(`${p}.faq1q`, ""), answer: tk(`${p}.faq1a`, "") },
+    { question: tk(`${p}.faq2q`, ""), answer: tk(`${p}.faq2a`, "") },
+    { question: tk(`${p}.faq3q`, ""), answer: tk(`${p}.faq3a`, "") },
+    { question: tk(`${p}.faq4q`, ""), answer: tk(`${p}.faq4a`, "") },
+    { question: tk(`${p}.faq5q`, ""), answer: tk(`${p}.faq5a`, "") },
+  ]),
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={description}
+  keywords={keywords}
+  canonicalPath="/en/substack"
+  ogImage="/images/background.jpg"
+  structuredData={structuredData}
+  htmlLang="en"
+  ogLocale="en_US"
+  ogLocaleAlternate="es_ES"
+  defaultVisitorLang="en"
+>
+  <div class="container mx-auto px-4 py-12 md:py-20">
+    <div class="max-w-6xl mx-auto">
+      <Breadcrumbs
+        items={[
+          {
+            name: tk("navbar.home", "Home"),
+            href: "/",
+            i18nKey: "navbar.home",
+          },
+          {
+            name: tk("pages.substackEn.crumb", "SubStack"),
+            href: "/en/substack",
+            i18nKey: "pages.substackEn.crumb",
+          },
+        ]}
+      />
+    </div>
+    <section class="max-w-6xl mx-auto">
+      <CardSurface variant="strong" className="w-full p-6 md:p-8 lg:p-10">
+        <p
+          class="text-[11px] uppercase tracking-[0.28em] text-yellow-400/80 mb-3"
+          data-i18n="pages.substackEn.kicker"
+        >
+          {tk("pages.substackEn.kicker", "")}
+        </p>
+        <h1
+          class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-yellow-400 font-display tracking-wide mb-4"
+          data-i18n="pages.substackEn.h1"
+        >
+          {tk("pages.substackEn.h1", "")}
+        </h1>
+        <p
+          class="text-lg md:text-xl text-gray-100 font-medium leading-relaxed mb-4 max-w-4xl"
+          data-i18n="pages.substackEn.lead1"
+        >
+          {tk("pages.substackEn.lead1", "")}
+        </p>
+        <p
+          class="text-sm md:text-base text-gray-400 leading-relaxed mb-4 max-w-4xl"
+          data-i18n="pages.substackEn.lead2"
+        >
+          {tk("pages.substackEn.lead2", "")}
+        </p>
+        <p
+          class="text-sm md:text-base text-amber-200/90 leading-relaxed border border-amber-500/25 rounded-lg px-4 py-3 mb-6 max-w-4xl bg-amber-500/5"
+          data-i18n="pages.substackEn.headsUp"
+        >
+          {tk("pages.substackEn.headsUp", "")}
+        </p>
+        <div class="flex flex-wrap gap-3 mb-6">
+          <ActionButton
+            href="/downloads"
+            variant="primary"
+            className="px-5 py-3 text-black"
+            data-i18n="home.downloadClient"
+          >
+            {tk("home.downloadClient", "Download client")}
+          </ActionButton>
+          <ActionButton
+            href="https://discord.gg/GunamUdGaQ"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="discord"
+            className="px-5 py-3"
+            data-i18n="pages.substackEn.discordCta"
+          >
+            {tk("pages.substackEn.discordCta", "Official Discord")}
+          </ActionButton>
+          <ActionButton
+            href="/rates"
+            variant="ghost"
+            className="px-5 py-3"
+            data-i18n="pages.substackEn.ratesCta"
+          >
+            {tk("pages.substackEn.ratesCta", "View x25 rates")}
+          </ActionButton>
+        </div>
+        <p class="text-xs text-gray-500 mb-8 pb-8 border-b border-white/10">
+          <strong data-i18n="pages.substackEn.mainEsLine"
+            >{tk("pages.substackEn.mainEsLine", "")}</strong
+          >{" "}
+          <a
+            href="/substack"
+            class="text-yellow-500/90 hover:text-yellow-400 underline underline-offset-2"
+            data-i18n="pages.substackEn.mainEsLink"
+          >
+            {tk("pages.substackEn.mainEsLink", "")}
+          </a>
+        </p>
+
+        <div class="grid gap-10 lg:grid-cols-2 lg:gap-12">
+          <div>
+            <h2
+              class="text-xl md:text-2xl font-bold text-yellow-300 font-display mb-3"
+              data-i18n="pages.substackEn.col1h"
+            >
+              {tk("pages.substackEn.col1h", "")}
+            </h2>
+            <p
+              class="text-gray-300 leading-relaxed"
+              data-i18n="pages.substackEn.col1p"
+            >
+              {tk("pages.substackEn.col1p", "")}
+            </p>
+          </div>
+          <div>
+            <h2
+              class="text-xl md:text-2xl font-bold text-yellow-300 font-display mb-3"
+              data-i18n="pages.substackEn.col2h"
+            >
+              {tk("pages.substackEn.col2h", "")}
+            </h2>
+            <ul class="list-disc pl-5 text-gray-300 space-y-2">
+              <li data-i18n="pages.substackEn.col2li1">
+                {tk("pages.substackEn.col2li1", "")}
+              </li>
+              <li data-i18n="pages.substackEn.col2li2">
+                {tk("pages.substackEn.col2li2", "")}
+              </li>
+              <li data-i18n="pages.substackEn.col2li3">
+                {tk("pages.substackEn.col2li3", "")}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <SubstackNextSection lang={lang} keyPrefix="pages.substackEn" />
+      </CardSurface>
+    </section>
+  </div>
+</Layout>

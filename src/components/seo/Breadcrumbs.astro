@@ -1,0 +1,41 @@
+---
+export interface Crumb {
+	name: string;
+	href: string;
+	/** Si existe, el toggle de idioma actualiza el texto vía `data-i18n`. */
+	i18nKey?: string;
+}
+
+interface Props {
+	items: Crumb[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="text-xs md:text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
+	<ol class="flex flex-wrap items-center gap-1.5 list-none p-0 m-0">
+		{items.map((c, i) => (
+			<li class="flex items-center gap-1.5">
+				{i > 0 && <span class="text-gray-600" aria-hidden="true">/</span>}
+				{i === items.length - 1 ? (
+					c.i18nKey ? (
+						<span class="text-gray-300 font-medium" data-i18n={c.i18nKey}>
+							{c.name}
+						</span>
+					) : (
+						<span class="text-gray-300 font-medium">{c.name}</span>
+					)
+				) : c.i18nKey ? (
+					<a href={c.href} class="text-yellow-500/90 hover:text-yellow-400 transition-colors" data-i18n={c.i18nKey}>
+						{c.name}
+					</a>
+				) : (
+					<a href={c.href} class="text-yellow-500/90 hover:text-yellow-400 transition-colors">
+						{c.name}
+					</a>
+				)}
+			</li>
+		))}
+	</ol>
+</nav>

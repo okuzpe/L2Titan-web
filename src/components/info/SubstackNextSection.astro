@@ -1,0 +1,134 @@
+---
+import type { Language } from '../../data/translations';
+import { translate } from '../../utils/translations';
+
+interface Props {
+	lang: Language;
+	keyPrefix: 'pages.substack' | 'pages.substackEn';
+}
+
+const { lang, keyPrefix } = Astro.props;
+
+const t = (key: string, fallback: string) => translate(`${keyPrefix}.${key}`, lang, fallback);
+const dk = (key: string) => `${keyPrefix}.${key}`;
+
+const DISCORD_HREF = 'https://discord.gg/GunamUdGaQ';
+
+const linkClass =
+	'inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400/95 transition hover:text-amber-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/45 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c0a09] rounded-sm';
+---
+
+<div class="mt-10 border-t border-white/10 pt-8 md:pt-10">
+	<header class="mb-6 md:mb-8">
+		<h2 class="font-display text-xl font-bold tracking-tight text-yellow-300 md:text-2xl" data-i18n={dk('nextH')}>
+			{t('nextH', 'Next step')}
+		</h2>
+		<p class="mt-2 max-w-3xl text-sm leading-relaxed text-gray-400 md:text-base" data-i18n={dk('nextIntro')}>
+			{t('nextIntro', '')}
+		</p>
+	</header>
+
+	<ol class="m-0 grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+		<li
+			class="flex flex-col rounded-2xl border border-amber-500/15 bg-linear-to-b from-amber-500/[0.07] to-black/35 p-5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] ring-1 ring-black/30 transition hover:border-amber-500/28"
+		>
+			<span
+				class="mb-3 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-xs font-bold tabular-nums text-amber-300 ring-1 ring-amber-500/25"
+				aria-hidden="true"
+			>
+				1
+			</span>
+			<h3 class="mb-2 font-display text-base font-bold text-gray-100" data-i18n={dk('step1Title')}>
+				{t('step1Title', '')}
+			</h3>
+			<p class="mb-4 flex-1 text-sm leading-relaxed text-gray-400" data-i18n={dk('step1Body')}>
+				{t('step1Body', '')}
+			</p>
+			<a href="/downloads" class={linkClass}>
+				<span data-i18n={dk('step1Link')}>{t('step1Link', '')}</span>
+				<svg class="h-4 w-4 shrink-0 opacity-80" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+					<path
+						fill-rule="evenodd"
+						d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
+						clip-rule="evenodd"
+					/>
+				</svg>
+			</a>
+		</li>
+
+		<li
+			class="flex flex-col rounded-2xl border border-amber-500/15 bg-linear-to-b from-amber-500/[0.07] to-black/35 p-5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] ring-1 ring-black/30 transition hover:border-amber-500/28"
+		>
+			<span
+				class="mb-3 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-xs font-bold tabular-nums text-amber-300 ring-1 ring-amber-500/25"
+				aria-hidden="true"
+			>
+				2
+			</span>
+			<h3 class="mb-2 font-display text-base font-bold text-gray-100" data-i18n={dk('step2Title')}>
+				{t('step2Title', '')}
+			</h3>
+			<p class="mb-4 flex-1 text-sm leading-relaxed text-gray-400" data-i18n={dk('step2Body')}>
+				{t('step2Body', '')}
+			</p>
+			<div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+				<a href="/features" class={linkClass}>
+					<span data-i18n={dk('step2LinkFeatures')}>{t('step2LinkFeatures', '')}</span>
+					<svg class="h-4 w-4 shrink-0 opacity-80" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+						<path
+							fill-rule="evenodd"
+							d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
+							clip-rule="evenodd"
+						/>
+					</svg>
+				</a>
+				<a href="/rates" class={`${linkClass} font-medium text-gray-300 hover:text-amber-300/90`}>
+					<span data-i18n={dk('step2LinkRates')}>{t('step2LinkRates', '')}</span>
+				</a>
+			</div>
+		</li>
+
+		<li
+			class="flex flex-col rounded-2xl border border-amber-500/15 bg-linear-to-b from-amber-500/[0.07] to-black/35 p-5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] ring-1 ring-black/30 transition hover:border-amber-500/28 sm:col-span-2 lg:col-span-1"
+		>
+			<span
+				class="mb-3 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-xs font-bold tabular-nums text-amber-300 ring-1 ring-amber-500/25"
+				aria-hidden="true"
+			>
+				3
+			</span>
+			<h3 class="mb-2 font-display text-base font-bold text-gray-100" data-i18n={dk('step3Title')}>
+				{t('step3Title', '')}
+			</h3>
+			<p class="mb-4 flex-1 text-sm leading-relaxed text-gray-400" data-i18n={dk('step3Body')}>
+				{t('step3Body', '')}
+			</p>
+			<a href={DISCORD_HREF} class={linkClass} target="_blank" rel="noopener noreferrer">
+				<span data-i18n={dk('step3Link')}>{t('step3Link', '')}</span>
+				<svg class="h-4 w-4 shrink-0 opacity-80" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+					<path
+						fill-rule="evenodd"
+						d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
+						clip-rule="evenodd"
+					/>
+				</svg>
+			</a>
+		</li>
+	</ol>
+
+	<aside
+		class="mt-8 rounded-2xl border border-amber-500/25 bg-linear-to-br from-amber-500/[0.08] via-black/25 to-black/40 p-5 shadow-[inset_0_1px_0_0_rgba(250,204,21,0.06)] ring-1 ring-amber-500/10 md:mt-10 md:p-6"
+		aria-labelledby="substack-promo-note-heading"
+	>
+		<p
+			id="substack-promo-note-heading"
+			class="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-amber-400/80 font-display"
+			data-i18n={dk('footnoteKicker')}
+		>
+			{t('footnoteKicker', '')}
+		</p>
+		<p class="text-sm leading-relaxed text-gray-400" data-i18n={dk('footnote')}>
+			{t('footnote', '')}
+		</p>
+	</aside>
+</div>

@@ -6,12 +6,19 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "audit:i18n": "npx --yes tsx scripts/audit-i18n.mts",
+    "optimize:images": "npx --yes tsx scripts/optimize-news-hero-images.mts"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.16.0",
     "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "sharp": "^0.34.3",
+    "typescript": "^5.9.3"
   }
 }

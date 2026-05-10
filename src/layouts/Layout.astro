@@ -3,6 +3,9 @@ import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import { translations } from "../data/translations";
+import { DEFAULT_OG_IMAGE, SITE_URL, absoluteUrl } from "../utils/seo";
+import { visitorLangFromPath } from "../utils/i18n-lang";
+import { translate } from "../utils/translations";
 
 interface Props {
 	title: string;
@@ -12,105 +15,65 @@ interface Props {
 	ogType?: string;
 	articlePublishedTime?: string;
 	noindex?: boolean;
+	canonicalPath?: string;
+	robots?: string;
+	structuredData?: object[];
+	/** Document language for `<html lang>` and initial SEO signals */
+	htmlLang?: string;
+	/** Primary Open Graph locale, e.g. es_ES or en_US */
+	ogLocale?: string;
+	/** Alternate locale for og:locale:alternate */
+	ogLocaleAlternate?: string;
+	/** Force client i18n to this language on first paint (e.g. English SEO routes under `/en/`) */
+	defaultVisitorLang?: "es" | "en";
+	/** Preload a same-origin image (e.g. home hero) to improve LCP */
+	preloadLcpImage?: string;
 }
 
 const {
 	title,
 	description = "L2Titan Interlude x25 sobre base L2JFrozen con SubStack, AutoFarm configurable, TvT activo, instancias diarias y comandos in-game para progresar con claridad.",
 	keywords = "lineage 2 private server x25, l2 interlude private server, l2 titan, l2 substack, lineage 2 cumulative subclasses, l2 interlude pvp server, l2 events tvt, l2 daily instances, l2 ranking .top",
-	ogImage = "/images/background.jpg",
+	ogImage = DEFAULT_OG_IMAGE,
 	ogType = "website",
 	articlePublishedTime,
 	noindex = false,
+	canonicalPath,
+	robots,
+	structuredData = [],
+	htmlLang: htmlLangProp,
+	ogLocale: ogLocaleProp,
+	ogLocaleAlternate: ogLocaleAlternateProp,
+	defaultVisitorLang,
+	preloadLcpImage,
 } = Astro.props;
 
-// Convert translations to JSON string for inline script
-const translationsJson = JSON.stringify(translations);
-
-// Detect initial language for HTML lang attribute (server-side)
-// Default to Spanish for better SEO in target market
+const visitorLang = visitorLangFromPath(Astro.url.pathname);
+const translationsBase64 = Buffer.from(JSON.stringify(translations), 'utf-8').toString('base64');
 const defaultLang = 'es';
-
-// Build canonical URL
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://l2-titan.com');
-
-// Build full OG image URL
-const ogImageURL = new URL(ogImage, Astro.site || 'https://l2-titan.com').toString();
-
-// Full title
-const siteTitle = "L2Titan 30x - Lineage 2 Interlude Private Server SubStack";
-const fullTitle = title === "Inicio" ? siteTitle : `${title} | ${siteTitle}`;
-
-// JSON-LD Structured Data
-const jsonLd = {
-	"@context": "https://schema.org",
-	"@type": "WebSite",
-	"name": "L2Titan",
-	"alternateName": ["L2 Titan", "Lineage 2 Titan", "L2Titan 30x", "L2Titan SubStack"],
-	"url": "https://l2-titan.com",
-	"description": "Servidor privado de Lineage 2 Interlude x25 con SubStack, TvT activo, instancias diarias y comandos in-game claros.",
-	"inLanguage": ["es", "en"]
-};
-
-const organizationLd = {
-	"@context": "https://schema.org",
-	"@type": "Organization",
-	"name": "L2Titan",
-	"alternateName": ["L2 Titan", "L2Titan 30x", "L2Titan SubStack"],
-	"url": "https://l2-titan.com",
-	"logo": "https://l2-titan.com/favicon.svg",
-	"sameAs": [
-		"https://discord.gg/GunamUdGaQ"
-	],
-	"description": "L2Titan - Servidor privado de Lineage 2 Interlude x25 con SubStack, TvT activo y comunidad PvP activa."
-};
-
-const gameServerLd = {
-	"@context": "https://schema.org",
-	"@type": "VideoGame",
-	"name": "L2Titan 30x - Lineage 2 Interlude SubStack",
-	"alternateName": ["L2Titan", "L2 Titan 30x", "L2Titan SubStack"],
-	"description": "Servidor privado de Lineage 2 Interlude con rates x25, SubStack, TvT activo, instancias diarias y sistema VIP.",
-	"gamePlatform": "PC",
-	"applicationCategory": "Game",
-	"operatingSystem": "Windows",
-	"offers": {
-		"@type": "Offer",
-		"price": "0",
-		"priceCurrency": "USD",
-		"availability": "https://schema.org/InStock"
-	},
-	"genre": ["MMORPG", "PvP", "Fantasy"],
-	"url": "https://l2-titan.com"
-};
-
-const siteBase = Astro.site?.toString().replace(/\/$/, '') || 'https://l2-titan.com';
-const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
-const breadcrumbItems = [
-	{ "@type": "ListItem", "position": 1, "name": "Inicio", "item": siteBase }
-];
-if (pathSegments.length > 0) {
-	let currentPath = '';
-	pathSegments.forEach((segment, i) => {
-		currentPath += `/${segment}`;
-		breadcrumbItems.push({
-			"@type": "ListItem",
-			"position": i + 2,
-			"name": title,
-			"item": `${siteBase}${currentPath}`
-		});
-	});
-}
-const breadcrumbLd = {
-	"@context": "https://schema.org",
-	"@type": "BreadcrumbList",
-	"itemListElement": breadcrumbItems
-};
+const htmlLang = htmlLangProp ?? defaultLang;
+const ogLocale = ogLocaleProp ?? "es_ES";
+const ogLocaleAlternate = ogLocaleAlternateProp ?? "en_US";
+/** Sufijo corto para `<title>` y OG: evita títulos duplicados y largos en todas las URLs. */
+const BRAND = "L2Titan";
+const fullTitle = title.trim() === BRAND ? BRAND : `${title.trim()} | ${BRAND}`;
+const canonicalURL = absoluteUrl(canonicalPath ?? Astro.url.pathname);
+const ogImageURL = new URL(ogImage, SITE_URL).toString();
+const robotsContent = robots ?? (noindex
+	? "noindex, nofollow"
+	: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
 ---
 
 <!doctype html>
-<html lang={defaultLang} class="dark">
+<html lang={htmlLang} class="dark">
 	<head>
+		{defaultVisitorLang === "en" && (
+			<script is:inline>
+				try {
+					localStorage.setItem("language", "en");
+				} catch (e) {}
+			</script>
+		)}
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -119,30 +82,25 @@ const breadcrumbLd = {
 		<meta name="description" content={description} />
 		<meta name="keywords" content={keywords} />
 		<meta name="author" content="L2Titan" />
-		<meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
-		<link rel="canonical" href={canonicalURL.toString()} />
-
-		<!-- Hreflang for multilingual SEO -->
-		<link rel="alternate" hreflang="es" href={canonicalURL.toString()} />
-		<link rel="alternate" hreflang="en" href={canonicalURL.toString()} />
-		<link rel="alternate" hreflang="x-default" href={canonicalURL.toString()} />
+		<meta name="robots" content={robotsContent} />
+		<link rel="canonical" href={canonicalURL} />
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content={ogType} />
-		<meta property="og:url" content={canonicalURL.toString()} />
+		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:title" content={fullTitle} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={ogImageURL} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta property="og:site_name" content="L2Titan" />
-		<meta property="og:locale" content="es_ES" />
-		<meta property="og:locale:alternate" content="en_US" />
+		<meta property="og:locale" content={ogLocale} />
+		<meta property="og:locale:alternate" content={ogLocaleAlternate} />
 		{articlePublishedTime && <meta property="article:published_time" content={articlePublishedTime} />}
 
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:url" content={canonicalURL.toString()} />
+		<meta name="twitter:url" content={canonicalURL} />
 		<meta name="twitter:title" content={fullTitle} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImageURL} />
@@ -155,8 +113,11 @@ const breadcrumbLd = {
 		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-		<!-- DNS Prefetch for third-party domains -->
-		<link rel="dns-prefetch" href="https://connect.facebook.net" />
+		{preloadLcpImage && (
+			<link rel="preload" as="image" href={preloadLcpImage} fetchpriority="high" />
+		)}
+
+		<link rel="preconnect" href="https://connect.facebook.net" crossorigin />
 		<link rel="dns-prefetch" href="https://www.facebook.com" />
 
 		<!-- Fonts -->
@@ -178,32 +139,33 @@ const breadcrumbLd = {
 		<meta name="generator" content={Astro.generator} />
 
 		<!-- JSON-LD Structured Data -->
-		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-		<script type="application/ld+json" set:html={JSON.stringify(organizationLd)} />
-		<script type="application/ld+json" set:html={JSON.stringify(gameServerLd)} />
-		<script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+		{structuredData.map((entry) => (
+			<script type="application/ld+json" set:html={JSON.stringify(entry)} />
+		))}
 		<style is:inline>
+			/* Visible by default so FCP/LCP are not blocked waiting for i18n (PageSpeed / CrUX). */
 			body {
-				opacity: 0;
-				transition: opacity 0.1s ease-in;
-			}
-			body.i18n-ready,
-			body.no-js {
 				opacity: 1;
 			}
 		</style>
-		<script is:inline define:vars={{ translationsJson }}>
+		<script is:inline define:vars={{ translationsBase64 }}>
 			(function() {
 				// Execute immediately before body renders
-				const translationsData = JSON.parse(translationsJson);
+				const binary = atob(translationsBase64);
+				const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+				const translationsData = JSON.parse(new TextDecoder().decode(bytes));
 
 				// Make functions globally available
 				window.i18n = {
 					getLanguage: function() {
-						if (typeof localStorage === 'undefined') return 'es';
-						const saved = localStorage.getItem('language');
-						if (saved === 'es' || saved === 'en') return saved;
-						// Default language for first visit
+						if (typeof localStorage !== 'undefined') {
+							const saved = localStorage.getItem('language');
+							if (saved === 'es' || saved === 'en') return saved;
+						}
+						if (typeof window !== 'undefined' && window.location && window.location.pathname) {
+							const path = window.location.pathname;
+							if (path === '/en' || path.startsWith('/en/')) return 'en';
+						}
 						return 'es';
 					},
 					getTranslation: function(key, lang) {
@@ -256,6 +218,15 @@ const breadcrumbLd = {
 							}
 						});
 
+						// Update aria-label attributes
+						const ariaLabelElements = document.querySelectorAll('[data-i18n-aria-label]');
+						ariaLabelElements.forEach((element) => {
+							const key = element.getAttribute('data-i18n-aria-label');
+							if (key) {
+								element.setAttribute('aria-label', window.i18n.getTranslation(key, lang));
+							}
+						});
+
 						// Update language indicator in navbar
 						const langIndicator = document.getElementById('current-language');
 						if (langIndicator) {
@@ -285,18 +256,46 @@ const breadcrumbLd = {
 			})();
 		</script>
 
-		<!-- Meta Pixel Code -->
+		<!-- Meta Pixel: defer to after load so it does not compete with LCP on mobile -->
 		<script is:inline>
-			!function(f,b,e,v,n,t,s)
-			{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-			n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-			if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-			n.queue=[];t=b.createElement(e);t.async=!0;
-			t.src=v;s=b.getElementsByTagName(e)[0];
-			s.parentNode.insertBefore(t,s)}(window, document,'script',
-			'https://connect.facebook.net/en_US/fbevents.js');
-			fbq('init', '802270496211593');
-			fbq('track', 'PageView');
+			(function () {
+				function loadPixel() {
+					if (window.fbq) return;
+					!(function (f, b, e, v, n, t, s) {
+						if (f.fbq) return;
+						n = f.fbq = function () {
+							n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+						};
+						if (!f._fbq) f._fbq = n;
+						n.push = n;
+						n.loaded = !0;
+						n.version = '2.0';
+						n.queue = [];
+						t = b.createElement(e);
+						t.async = !0;
+						t.src = v;
+						s = b.getElementsByTagName(e)[0];
+						s.parentNode.insertBefore(t, s);
+					})(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+					fbq('init', '802270496211593');
+					fbq('track', 'PageView');
+				}
+				if (document.readyState === 'complete') {
+					if ('requestIdleCallback' in window) {
+						requestIdleCallback(loadPixel, { timeout: 4000 });
+					} else {
+						setTimeout(loadPixel, 1);
+					}
+				} else {
+					window.addEventListener('load', function () {
+						if ('requestIdleCallback' in window) {
+							requestIdleCallback(loadPixel, { timeout: 4000 });
+						} else {
+							setTimeout(loadPixel, 1);
+						}
+					});
+				}
+			})();
 		</script>
 		<noscript><img height="1" width="1" style="display:none"
 			src="https://www.facebook.com/tr?id=802270496211593&ev=PageView&noscript=1"
@@ -307,9 +306,19 @@ const breadcrumbLd = {
 		class="min-h-screen flex flex-col bg-black text-slate-200 overflow-x-hidden"
 	>
 		<Navbar />
-		<main class="grow">
+		<main class="grow pb-[4.25rem] md:pb-0">
 			<slot />
 		</main>
+		<a
+			href="/downloads"
+			class="fixed bottom-0 inset-x-0 z-40 flex md:hidden items-center justify-center gap-2 border-t border-yellow-600/40 bg-yellow-500 px-4 py-3 text-sm font-bold uppercase tracking-wider text-black hover:bg-yellow-400 transition-colors shadow-[0_-8px_24px_rgba(0,0,0,0.45)] pb-[max(0.75rem,env(safe-area-inset-bottom))]"
+			data-i18n="home.downloadClient"
+		>
+			<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+			</svg>
+			{translate("home.downloadClient", visitorLang, "Descargar Cliente")}
+		</a>
 		<Footer />
 		<noscript>
 			<style>

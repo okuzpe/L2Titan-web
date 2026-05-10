@@ -1,0 +1,405 @@
+---
+import Layout from './Layout.astro';
+import CardSurface from '../components/ui/CardSurface.astro';
+import ActionButton from '../components/ui/ActionButton.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import { infoLandingConfigs } from '../data/infoLandingConfigs';
+import { getInfoWikiSection, infoWikiSections, type InfoWikiSlug } from '../data/infoWiki';
+import { visitorLangFromPath } from '../utils/i18n-lang';
+import { translate } from '../utils/translations';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  ogImage?: string;
+  keywords?: string;
+  structuredData?: object[];
+  noindex?: boolean;
+  robots?: string;
+  sectionSlug?: InfoWikiSlug;
+}
+
+const {
+  title,
+  description,
+  canonicalPath,
+  ogImage,
+  keywords,
+  structuredData = [],
+  noindex = false,
+  robots,
+  sectionSlug,
+} = Astro.props;
+
+const activeSection = sectionSlug ? getInfoWikiSection(sectionSlug) : undefined;
+const activeConfig = activeSection ? infoLandingConfigs[activeSection.slug] : undefined;
+const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const lang = visitorLangFromPath(Astro.url.pathname);
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonicalPath={canonicalPath}
+  ogImage={ogImage}
+  keywords={keywords}
+  structuredData={structuredData}
+  noindex={noindex}
+  robots={robots}
+>
+  <div class="container mx-auto px-4 py-12 md:py-20">
+    <SectionHeading text="INFORMACION DEL SERVIDOR" i18nKey="info.title" className="mb-6 md:mb-10" />
+
+    {activeSection ? (
+      <CardSurface variant="strong" className="max-w-7xl mx-auto mb-6 p-5 md:p-7">
+        <div class="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
+          <div class="max-w-4xl">
+            <p class="text-[11px] uppercase tracking-[0.3em] text-yellow-400/80 mb-2" data-i18n={activeSection.kickerKey}>
+              {translate(activeSection.kickerKey, lang, activeSection.kickerKey)}
+            </p>
+            <h1 class="text-3xl md:text-4xl font-bold text-yellow-400 font-display mb-3" data-i18n={`info.tabs.${activeSection.slug}`}>
+              {translate(`info.tabs.${activeSection.slug}`, lang, activeSection.slug)}
+            </h1>
+            <p class="text-sm md:text-base text-gray-300 leading-relaxed" data-i18n={activeSection.summaryKey}>
+              {translate(activeSection.summaryKey, lang, activeSection.summaryKey)}
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <ActionButton href={activeConfig?.canonicalPath ?? '/info'} variant="ghost" className="px-5 py-3" data-i18n="info.wiki.layout.viewMore">
+              {translate('info.wiki.layout.viewMore', lang, 'Ver mas')}
+            </ActionButton>
+            <ActionButton href="/downloads" variant="primary" className="px-5 py-3 text-black" data-i18n="home.downloadClient">
+              {translate('home.downloadClient', lang, 'Descargar cliente')}
+            </ActionButton>
+          </div>
+        </div>
+      </CardSurface>
+    ) : (
+      <slot name="intro" />
+    )}
+
+    <div class="max-w-7xl mx-auto lg:grid lg:grid-cols-[88px_minmax(0,1fr)] lg:gap-8">
+      <aside class="relative hidden lg:block">
+        <div class="df-surface-strong wiki-rail sticky top-24 z-40 p-3" data-wiki-rail data-expanded="false" data-pinned="false">
+          <div class="wiki-rail-head mb-3">
+            <div class="wiki-rail-copy min-w-0">
+              <p class="text-[11px] uppercase tracking-[0.28em] text-gray-500" data-i18n="info.wiki.layout.railLabel">
+                {translate('info.wiki.layout.railLabel', lang, 'Wiki')}
+              </p>
+              <p class="text-xs text-gray-500 mt-1" data-i18n="info.wiki.layout.railCenter">
+                {translate('info.wiki.layout.railCenter', lang, 'Centro de informacion')}
+              </p>
+            </div>
+            <button
+              type="button"
+              class="wiki-rail-toggle"
+              data-wiki-toggle
+              aria-expanded="false"
+              data-i18n-aria-label="info.wiki.layout.pinOpen"
+              aria-label={translate('info.wiki.layout.pinOpen', lang, 'Fijar arbol wiki abierto')}
+            >
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          </div>
+
+          <nav data-i18n-aria-label="info.wiki.layout.desktopNavLabel" aria-label={translate('info.wiki.layout.desktopNavLabel', lang, 'Indice de informacion del servidor')}>
+            <a
+              href="/info"
+              class={`wiki-tree-item mb-2 ${currentPath === '/info' ? 'is-active' : ''}`}
+              aria-current={currentPath === '/info' ? 'page' : undefined}
+              data-i18n-title="info.wiki.layout.railCenter"
+              title={translate('info.wiki.layout.railCenter', lang, 'Centro de informacion')}
+            >
+              <span class="wiki-tree-index">00</span>
+              <span class="wiki-tree-copy min-w-0">
+                <span class="block text-[11px] uppercase tracking-[0.22em] text-gray-500" data-i18n="info.wiki.layout.coverLabel">
+                  {translate('info.wiki.layout.coverLabel', lang, 'Portada')}
+                </span>
+                <span class="block text-sm font-semibold text-slate-200" data-i18n="info.wiki.layout.railCenter">
+                  {translate('info.wiki.layout.railCenter', lang, 'Centro de informacion')}
+                </span>
+              </span>
+            </a>
+
+            <div class="space-y-1.5">
+              {infoWikiSections.map((section, index) => {
+                const href = `/info/${section.slug}`;
+                return (
+                  <a
+                    href={href}
+                    class={`wiki-tree-item ${currentPath === href ? 'is-active' : ''}`}
+                    aria-current={currentPath === href ? 'page' : undefined}
+                    data-i18n-title={`info.tabs.${section.slug}`}
+                    title={translate(`info.tabs.${section.slug}`, lang, section.slug)}
+                  >
+                    <span class="wiki-tree-index">{String(index + 1).padStart(2, '0')}</span>
+                    <span class="wiki-tree-copy min-w-0">
+                      <span class="block text-[11px] uppercase tracking-[0.22em] text-gray-500" data-i18n={section.kickerKey}>
+                        {translate(section.kickerKey, lang, section.kickerKey)}
+                      </span>
+                      <span class="block text-sm font-semibold text-slate-200" data-i18n={`info.tabs.${section.slug}`}>
+                        {translate(`info.tabs.${section.slug}`, lang, section.slug)}
+                      </span>
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+          </nav>
+        </div>
+      </aside>
+
+      <div class="min-w-0">
+        <div class="lg:hidden sticky top-16 z-30 -mx-4 px-4 pb-4 pt-2 bg-linear-to-b from-black via-black/95 to-transparent">
+          <nav class="flex gap-2 overflow-x-auto scrollbar-hide pb-1" data-i18n-aria-label="info.wiki.layout.mobileNavLabel" aria-label={translate('info.wiki.layout.mobileNavLabel', lang, 'Indice movil de informacion')}>
+            <a href="/info" class={`wiki-chip ${currentPath === '/info' ? 'is-active' : ''}`} aria-current={currentPath === '/info' ? 'page' : undefined}>
+              <span data-i18n="info.wiki.layout.mobileCenter">{translate('info.wiki.layout.mobileCenter', lang, 'Centro')}</span>
+            </a>
+            {infoWikiSections.map((section) => {
+              const href = `/info/${section.slug}`;
+              return (
+                <a
+                  href={href}
+                  class={`wiki-chip ${currentPath === href ? 'is-active' : ''}`}
+                  aria-current={currentPath === href ? 'page' : undefined}
+                  data-i18n={`info.tabs.${section.slug}`}
+                >
+                  {translate(`info.tabs.${section.slug}`, lang, section.slug)}
+                </a>
+              );
+            })}
+          </nav>
+        </div>
+
+        <div class="space-y-6">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .wiki-rail {
+    width: 5.5rem;
+    overflow: hidden;
+    transition: width 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+  }
+
+  .wiki-rail[data-expanded='true'],
+  .wiki-rail[data-pinned='true'],
+  .wiki-rail:hover,
+  .wiki-rail:focus-within {
+    width: 19.5rem;
+    box-shadow: 0 18px 48px rgba(2, 6, 23, 0.42);
+  }
+
+  .wiki-rail-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .wiki-rail-copy,
+  .wiki-tree-copy {
+    min-width: 0;
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transform: translateX(-0.35rem);
+    transition: max-width 0.22s ease, opacity 0.18s ease, transform 0.18s ease;
+  }
+
+  .wiki-rail[data-expanded='true'] .wiki-rail-copy,
+  .wiki-rail[data-pinned='true'] .wiki-rail-copy,
+  .wiki-rail:hover .wiki-rail-copy,
+  .wiki-rail:focus-within .wiki-rail-copy,
+  .wiki-rail[data-expanded='true'] .wiki-tree-copy,
+  .wiki-rail[data-pinned='true'] .wiki-tree-copy,
+  .wiki-rail:hover .wiki-tree-copy,
+  .wiki-rail:focus-within .wiki-tree-copy {
+    max-width: 14rem;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .wiki-rail-toggle {
+    display: inline-flex;
+    height: 2.35rem;
+    width: 2.35rem;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid rgba(250, 204, 21, 0.18);
+    background: rgba(0, 0, 0, 0.24);
+    color: #fde68a;
+    transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .wiki-rail-toggle:hover {
+    border-color: rgba(250, 204, 21, 0.38);
+    background: rgba(250, 204, 21, 0.12);
+  }
+
+  .wiki-rail[data-pinned='true'] .wiki-rail-toggle svg {
+    transform: rotate(180deg);
+  }
+
+  .wiki-tree-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    border-radius: 0.95rem;
+    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 0.8rem 0.85rem;
+    transition: all 0.2s ease;
+  }
+
+  .wiki-tree-item:hover {
+    border-color: rgba(250, 204, 21, 0.22);
+    background: rgba(250, 204, 21, 0.06);
+  }
+
+  .wiki-tree-item.is-active {
+    border-color: rgba(250, 204, 21, 0.35);
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.14), rgba(15, 23, 42, 0.65));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .wiki-tree-index {
+    display: inline-flex;
+    min-width: 2.2rem;
+    height: 2.2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid rgba(250, 204, 21, 0.18);
+    background: rgba(0, 0, 0, 0.35);
+    color: rgba(250, 204, 21, 0.95);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .wiki-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid rgba(250, 204, 21, 0.18);
+    background: rgba(15, 23, 42, 0.72);
+    padding: 0.7rem 0.95rem;
+    color: #d1d5db;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+  }
+
+  .wiki-chip:hover,
+  .wiki-chip.is-active {
+    border-color: rgba(250, 204, 21, 0.4);
+    color: #fde68a;
+    background: rgba(250, 204, 21, 0.12);
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const storageKey = 'l2titan-wiki-rail-pinned';
+
+    const bindRail = (rail) => {
+      if (!(rail instanceof HTMLElement) || rail.dataset.bound === 'true') return;
+
+      rail.dataset.bound = 'true';
+      const toggle = rail.querySelector('[data-wiki-toggle]');
+
+      const sync = () => {
+        const expanded = rail.dataset.expanded === 'true' || rail.dataset.pinned === 'true';
+        if (toggle instanceof HTMLButtonElement) {
+          toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          const labelKey = rail.dataset.pinned === 'true' ? 'info.wiki.layout.pinClose' : 'info.wiki.layout.pinOpen';
+          const label = window.i18n?.getTranslation ? window.i18n.getTranslation(labelKey) : (rail.dataset.pinned === 'true' ? 'Colapsar arbol wiki' : 'Fijar arbol wiki abierto');
+          toggle.setAttribute('aria-label', label);
+        }
+      };
+
+      const savedPinned = window.localStorage.getItem(storageKey) === 'true';
+      rail.dataset.pinned = savedPinned ? 'true' : 'false';
+      rail.dataset.expanded = savedPinned ? 'true' : 'false';
+
+      rail.addEventListener('mouseenter', () => {
+        if (rail.dataset.pinned !== 'true') {
+          rail.dataset.expanded = 'true';
+          sync();
+        }
+      });
+
+      rail.addEventListener('mouseleave', () => {
+        if (rail.dataset.pinned !== 'true') {
+          rail.dataset.expanded = 'false';
+          sync();
+        }
+      });
+
+      rail.addEventListener('focusin', () => {
+        rail.dataset.expanded = 'true';
+        sync();
+      });
+
+      rail.addEventListener('focusout', (event) => {
+        if (
+          rail.dataset.pinned !== 'true' &&
+          (!event.relatedTarget ||
+            !(event.relatedTarget instanceof Node) ||
+            !rail.contains(event.relatedTarget))
+        ) {
+          rail.dataset.expanded = 'false';
+          sync();
+        }
+      });
+
+      if (toggle instanceof HTMLButtonElement) {
+        toggle.addEventListener('click', () => {
+          const nextPinned = rail.dataset.pinned !== 'true';
+          rail.dataset.pinned = nextPinned ? 'true' : 'false';
+          rail.dataset.expanded = nextPinned ? 'true' : 'false';
+
+          if (nextPinned) {
+            window.localStorage.setItem(storageKey, 'true');
+          } else {
+            window.localStorage.removeItem(storageKey);
+          }
+
+          sync();
+        });
+      }
+
+      sync();
+    };
+
+    const initRails = () => {
+      document.querySelectorAll('[data-wiki-rail]').forEach((rail) => bindRail(rail));
+    };
+
+    initRails();
+    document.addEventListener('astro:page-load', initRails);
+  })();
+</script>

@@ -1,0 +1,156 @@
+---
+import Layout from './Layout.astro';
+import ActionButton from '../components/ui/ActionButton.astro';
+import CardSurface from '../components/ui/CardSurface.astro';
+import type { InfoContentBlock, InfoLandingTopicSlug, LandingCtaPreset } from '../data/infoLandingConfigs';
+import { infoWikiSections } from '../data/infoWiki';
+import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
+import { visitorLangFromPath } from '../utils/i18n-lang';
+import { translate } from '../utils/translations';
+
+interface Props {
+	title: string;
+	description: string;
+	keywords?: string;
+	canonicalPath: string;
+	heading: string;
+	intro: string;
+	topicSlug: InfoLandingTopicSlug;
+	ogImage?: string;
+	structuredData?: object[];
+	contentBlocks?: InfoContentBlock[];
+	showBreadcrumbs?: boolean;
+	landingCtaPreset?: LandingCtaPreset;
+}
+
+const {
+	title,
+	description,
+	keywords,
+	canonicalPath,
+	heading,
+	intro,
+	topicSlug,
+	ogImage,
+	structuredData = [],
+	contentBlocks = [],
+	showBreadcrumbs = true,
+	landingCtaPreset = 'default',
+} = Astro.props;
+
+const lang = visitorLangFromPath(Astro.url.pathname);
+const headingKey = `info.landings.topics.${topicSlug}.heading`;
+const introKey = `info.landings.topics.${topicSlug}.intro`;
+const metaTitleKey = `info.landings.topics.${topicSlug}.metaTitle`;
+const metaDescKey = `info.landings.topics.${topicSlug}.metaDescription`;
+const headingDisplay = translate(headingKey, lang, heading);
+const introDisplay = translate(introKey, lang, intro);
+const titleDisplay = translate(metaTitleKey, lang, title);
+const descriptionDisplay = translate(metaDescKey, lang, description);
+
+const normalizedCanonical = canonicalPath.replace(/^\/+|\/+$/g, '');
+const wikiSectionMatch = infoWikiSections.find((s) => s.slug === normalizedCanonical);
+const wikiPath = wikiSectionMatch ? `/info/${wikiSectionMatch.slug}` : '/info';
+
+const breadcrumbItems = [
+	{ name: translate('navbar.home', lang, 'Inicio'), href: '/', i18nKey: 'navbar.home' },
+	{
+		name: translate('info.landings.breadcrumbWiki', lang, 'Información'),
+		href: '/info',
+		i18nKey: 'info.landings.breadcrumbWiki',
+	},
+	{ name: headingDisplay, href: canonicalPath, i18nKey: headingKey },
+];
+
+type SecondaryCta = { href: string; labelKey: string; fallback: string };
+
+let secondaryCta: SecondaryCta | null = null;
+let wikiAsTextLink = false;
+
+if (landingCtaPreset === 'economy') {
+	secondaryCta = { href: '/rates', labelKey: 'info.landings.ctaRates', fallback: 'Ver rates x25' };
+	wikiAsTextLink = true;
+} else if (landingCtaPreset === 'rates') {
+	secondaryCta = { href: '/economy', labelKey: 'info.landings.ctaEconomy', fallback: 'Ver economía y monedas' };
+	wikiAsTextLink = true;
+} else if (landingCtaPreset === 'events') {
+	secondaryCta = { href: '/instances', labelKey: 'info.landings.ctaInstances', fallback: 'Dailies e instancias' };
+	wikiAsTextLink = true;
+} else if (landingCtaPreset === 'instances') {
+	secondaryCta = { href: '/economy', labelKey: 'info.landings.ctaEconomy', fallback: 'Ver economía y monedas' };
+	wikiAsTextLink = true;
+}
+---
+
+<Layout
+	title={titleDisplay}
+	description={descriptionDisplay}
+	keywords={keywords}
+	canonicalPath={canonicalPath}
+	ogImage={ogImage}
+	structuredData={structuredData}
+>
+	<div class="container mx-auto px-4 py-12 md:py-20">
+		{showBreadcrumbs && (
+			<div class="max-w-6xl mx-auto">
+				<Breadcrumbs items={breadcrumbItems} />
+			</div>
+		)}
+		<section class="max-w-6xl mx-auto mb-10">
+			<CardSurface variant="strong" className="w-full p-6 md:p-8">
+				<h1 class="text-3xl md:text-5xl font-extrabold text-yellow-400 font-display tracking-wide mb-4" data-i18n={headingKey}>
+					{headingDisplay}
+				</h1>
+				<p class="text-base md:text-lg text-gray-300 leading-relaxed" data-i18n={introKey}>{introDisplay}</p>
+				<div class="mt-6 flex flex-wrap items-center gap-3">
+					<ActionButton href="/downloads" variant="primary" className="px-5 py-3 text-black" data-i18n="home.downloadClient">
+						{translate('home.downloadClient', lang, 'Descargar cliente')}
+					</ActionButton>
+					{
+						secondaryCta && (
+							<ActionButton href={secondaryCta.href} variant="ghost" className="px-5 py-3" data-i18n={secondaryCta.labelKey}>
+								{translate(secondaryCta.labelKey, lang, secondaryCta.fallback)}
+							</ActionButton>
+						)
+					}
+					{
+						!wikiAsTextLink && (
+							<ActionButton href={wikiPath} variant="ghost" className="px-5 py-3" data-i18n="info.landings.openInWiki">
+								{translate('info.landings.openInWiki', lang, 'Abrir en la wiki')}
+							</ActionButton>
+						)
+					}
+				</div>
+				{
+					wikiAsTextLink && (
+						<div class="mt-4">
+							<a
+								href={wikiPath}
+								class="text-sm text-yellow-500/90 hover:text-yellow-400 underline underline-offset-2"
+								data-i18n="info.landings.openInWiki"
+							>
+								{translate('info.landings.openInWiki', lang, 'Abrir en la wiki')}
+							</a>
+						</div>
+					)
+				}
+			</CardSurface>
+		</section>
+
+		{contentBlocks.length > 0 &&
+			contentBlocks.map((block, blockIndex) => (
+				<section class="max-w-6xl mx-auto mb-10" aria-labelledby={`landing-block-${blockIndex}`}>
+					<CardSurface variant="strong" className="w-full p-6 md:p-8">
+						<h2 id={`landing-block-${blockIndex}`} class="text-2xl md:text-3xl font-bold text-yellow-400 font-display mb-4">
+							{block.heading}
+						</h2>
+						<p class="text-gray-300 leading-relaxed text-sm md:text-base whitespace-pre-line">{block.body}</p>
+					</CardSurface>
+				</section>
+			))}
+
+		<div class="max-w-6xl mx-auto mb-10">
+			<slot />
+		</div>
+	</div>
+</Layout>

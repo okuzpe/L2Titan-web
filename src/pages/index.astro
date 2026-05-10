@@ -1,85 +1,139 @@
 ---
+import { getImage, Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import ServerStats from "../components/ServerStats.astro";
 import FeatureCard from "../components/FeatureCard.astro";
 import NewsFeed from "../components/NewsFeed.astro";
 import ActionButton from "../components/ui/ActionButton.astro";
-import BadgePill from "../components/ui/BadgePill.astro";
 import CardSurface from "../components/ui/CardSurface.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
+import {
+	buildBreadcrumb,
+	buildFaq,
+	buildOrganizationSchema,
+	buildVideoGameSchema,
+	buildWebsiteSchema,
+} from "../utils/seo";
+import { visitorLangFromPath } from "../utils/i18n-lang";
+import { translate } from "../utils/translations";
+import heroBackground from "../assets/hero-background.jpg";
+
+const lang = visitorLangFromPath(Astro.url.pathname);
+
+const heroLcp = await getImage({
+	src: heroBackground,
+	width: 1920,
+	format: "webp",
+	quality: 78,
+});
 
 // Variable para mostrar/ocultar información del servidor
 const showServerInfo = false;
 
 const overviewItems = [
-	['f1Title', 'f1Desc'],
-	['f2Title', 'f2Desc'],
-	['f3Title', 'f3Desc'],
-	['f4Title', 'f4Desc'],
-	['f5Title', 'f5Desc'],
-	['f6Title', 'f6Desc'],
-	['f7Title', 'f7Desc'],
-	['f8Title', 'f8Desc'],
-	['f9Title', 'f9Desc'],
-	['f10Title', 'f10Desc'],
+	['substackTitle', 'substackDesc'],
+	['autofarmTitle', 'autofarmDesc'],
+	['eventsTitle', 'eventsDesc'],
+	['dailyTitle', 'dailyDesc'],
+	['rankingTitle', 'rankingDesc'],
+	['balanceTitle', 'balanceDesc'],
+];
+
+const quickNavLinks = [
+	{ href: '/downloads', labelKey: 'home.quickNav.downloads', fallback: 'Descargar cliente' },
+	{ href: '/features', labelKey: 'home.quickNav.features', fallback: 'Features del servidor' },
+	{ href: '/rates', labelKey: 'home.quickNav.rates', fallback: 'Rates x25' },
+	{ href: '/faq', labelKey: 'home.quickNav.faq', fallback: 'FAQ' },
+	{ href: '/news', labelKey: 'home.quickNav.news', fallback: 'Noticias' },
+	{ href: '/comunidad', labelKey: 'home.quickNav.community', fallback: 'Comunidad' },
+] as const;
+
+const structuredData = [
+	buildWebsiteSchema(),
+	buildOrganizationSchema(),
+	buildVideoGameSchema(),
+	buildBreadcrumb([{ name: 'Inicio', path: '/' }]),
+	buildFaq([
+		{
+			question: '¿Qué tipo de servidor es L2Titan?',
+			answer:
+				'L2Titan es un servidor privado de Lineage II Interlude x25 con SubStack, AutoFarm configurable, daily instances y eventos PvP. La información detallada está en /features, /rates y /faq.',
+		},
+		{
+			question: '¿Tiene Auto Create Account?',
+			answer:
+				'Sí. No hace falta registro web: la cuenta se crea al primer login. Pasos en /registro y cliente en /downloads.',
+		},
+		{
+			question: '¿Dónde sigo parches y novedades?',
+			answer: 'En /news y en el Discord oficial; la web mantiene landings por tema (economía, instancias, eventos) para enlazar con contexto.',
+		},
+	]),
 ];
 ---
 
 <Layout
-	title="Inicio"
-	description="L2Titan Interlude x25 sobre base L2JFrozen con SubStack, AutoFarm configurable, Daily Instances, ranking .top y sistemas actualizados para progresar y competir."
-	keywords="l2titan 25x, l2 titan interlude x25, l2 substack, lineage 2 interlude substack, l2 interlude pvp server, lineage 2 private server x25, l2 daily instances, l2 events tvt, l2 .top ranking, l2 autofarm interlude"
+	title="Servidor Lineage 2 Interlude x25 con SubStack y AutoFarm"
+	description="L2Titan: servidor privado Lineage II Interlude x25 con SubStack, AutoFarm, instancias diarias, TvT y economía documentada. Comunidad hispanohablante; cuenta al primer login sin formulario web."
+	keywords="lineage 2 interlude server, l2 interlude server, lineage 2 private server, l2 pvp server, lineage 2 autofarm server, lineage ii interlude, l2 substack, l2 titan"
+	canonicalPath="/"
+	structuredData={structuredData}
+	preloadLcpImage={heroLcp.src}
 >
 	<section class="relative min-h-screen flex flex-col justify-center overflow-hidden">
 		<div class="absolute inset-0 z-0">
-			<img
-				src="/images/background.jpg"
-				alt="L2Titan - Servidor Privado Lineage 2 Interlude x25 SubStack con PvP intenso"
-				width="1920"
-				height="1080"
+			<Image
+				src={heroBackground}
+				alt="Cabecera visual de L2Titan, servidor Lineage 2 Interlude"
+				width={1920}
+				height={1080}
+				sizes="100vw"
+				widths={[640, 960, 1280, 1920]}
+				quality={78}
+				format="webp"
+				loading="eager"
 				fetchpriority="high"
+				decoding="sync"
 				class="w-full h-full object-cover opacity-70"
 			/>
 			<div class="absolute inset-0 bg-linear-to-b from-black/45 via-black/20 to-black/75"></div>
 		</div>
 
 		<div class="relative z-30 container mx-auto px-4 mt-20">
-			<div class="mx-auto max-w-6xl df-surface-strong p-6 md:p-10 animate-hero-pulse">
+			<div class="mx-auto max-w-6xl df-surface-strong p-6 md:p-10">
 				<div class="grid lg:grid-cols-[1.25fr_1fr] gap-6 lg:gap-10 items-center">
 					<div class="text-center lg:text-left">
-						<p class="inline-block text-[11px] uppercase tracking-[0.24em] text-yellow-400/90 font-semibold border border-yellow-500/30 rounded-full px-3 py-1 mb-3" data-i18n="home.heroPromo.badge">Temporada activa</p>
-						<h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-yellow-400 mb-2 drop-shadow-[0_3px_4px_rgba(0,0,0,0.7)] font-display tracking-widest">
-							L2TITAN
+						<h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-yellow-400 mb-3 drop-shadow-[0_3px_4px_rgba(0,0,0,0.7)] font-display tracking-widest">
+							<span class="block">L2TITAN</span>
+							<span class="mt-2 block text-base sm:text-lg md:text-xl font-semibold text-yellow-200/95 normal-case tracking-normal max-w-xl mx-auto lg:mx-0 font-sans leading-snug">
+								Servidor Lineage 2 Interlude x25 — SubStack, AutoFarm y PvP
+							</span>
 						</h1>
-						<h2 class="text-xl sm:text-2xl md:text-3xl text-yellow-300 font-extrabold mb-2 uppercase tracking-wider font-display" data-i18n="home.heroPromo.title">
+						<p class="text-lg sm:text-xl md:text-2xl text-yellow-300/95 font-semibold mb-3 font-sans max-w-xl mx-auto lg:mx-0" data-i18n="home.heroPromo.title">
 							Para clanes que quieren progreso real
-						</h2>
-						<p class="text-base sm:text-2xl md:text-3xl text-yellow-500/90 font-bold mb-4 tracking-wide uppercase">
-							<span data-i18n="home.hero">Interlude x25</span>
 						</p>
 						<p class="text-sm md:text-base text-gray-300 max-w-xl mx-auto lg:mx-0 leading-relaxed" data-i18n="home.heroPromo.desc">
 							SubStack, AutoFarm, eventos y economía activa en un servidor pensado para durar. Entra con toda la información clara desde el día uno.
 						</p>
-						<div class="mt-4 flex flex-wrap gap-2 justify-center lg:justify-start">
-							<BadgePill text="SubStack" />
-							<BadgePill text="AutoFarm" />
-							<BadgePill text="Daily Instances" />
-							<BadgePill text="TvT" />
-						</div>
 					</div>
 
 					<div class="space-y-4 lg:pl-2">
 						<ActionButton
 							href="/downloads"
 							variant="primary"
-							className="group relative w-full px-7 py-4 rounded-lg overflow-hidden text-base"
+							className="w-full px-7 py-4 rounded-lg text-base"
 						>
-							<div class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"></div>
-							<svg class="relative w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-							<span class="relative uppercase tracking-wider" data-i18n="home.downloadClient">Descargar Cliente</span>
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+							<span class="uppercase tracking-wider" data-i18n="home.downloadClient">Descargar Cliente</span>
 						</ActionButton>
-						<p class="text-xs text-gray-400 px-1" data-i18n="home.heroPromo.primaryHint">
-							Cliente completo y launcher oficial con instalación rápida.
+						<p class="px-1 pt-1 text-center lg:text-left">
+							<a
+								href="/registro"
+								class="text-sm sm:text-[0.95rem] font-medium text-gray-300 transition-colors hover:text-yellow-200/95 focus:outline-none focus-visible:text-yellow-200 focus-visible:underline focus-visible:underline-offset-2"
+								data-i18n="home.heroPromo.registroCta"
+							>
+								{translate('home.heroPromo.registroCta', lang, 'Sin registro web: cómo crear cuenta al primer login')}
+							</a>
 						</p>
 						<div class="grid grid-cols-1 gap-3">
 							<ActionButton
@@ -94,13 +148,12 @@ const overviewItems = [
 							</ActionButton>
 						</div>
 						<ActionButton
-							href="/rates"
+							href="/info"
 							variant="ghost"
-							className="group relative w-full px-8 py-4 md:py-[1.15rem] rounded-xl border border-yellow-300/55 text-base md:text-lg shadow-[0_0_18px_rgba(250,204,21,0.35)] hover:scale-[1.01] hover:shadow-[0_0_28px_rgba(250,204,21,0.48)] transition-all duration-300 overflow-hidden"
+							className="w-full px-8 py-4 md:py-[1.15rem] rounded-xl border border-yellow-500/35 text-base md:text-lg hover:border-yellow-500/55 transition-colors"
 						>
-							<div class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-yellow-100/25 to-transparent -translate-x-full group-hover:animate-shimmer"></div>
-							<span class="relative font-extrabold uppercase tracking-[0.16em]" data-i18n="home.heroPromo.cta">Ver Info completa</span>
-							<svg class="relative w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+							<span class="font-extrabold uppercase tracking-[0.16em]" data-i18n="home.heroPromo.cta">Ver Info completa</span>
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
 						</ActionButton>
 					</div>
 				</div>
@@ -126,14 +179,14 @@ const overviewItems = [
 					titleKey="home.features.events.title"
 					description="Modos, assist, filtros y radio para farmear con control total."
 					descriptionKey="home.features.events.description"
-					icon="🛡️"
+					icon="⚙️"
 				/>
 				<FeatureCard
-					title="Anti DDoS"
-					titleKey="home.features.ddos.title"
-					description="Proteccion activa para mantener estabilidad durante picos de trafico."
-					descriptionKey="home.features.ddos.description"
-					icon="🏆"
+					title="Economía y progreso"
+					titleKey="home.features.economy.title"
+					description="Monedas, Titan Box y tiendas con un circuito claro entre farm, PvP y bosses."
+					descriptionKey="home.features.economy.description"
+					icon="💰"
 				/>
 			</div>
 		</section>
@@ -159,7 +212,7 @@ const overviewItems = [
 				</CardSurface>
 
 				<div>
-					<h3 class="text-xl md:text-2xl font-bold text-yellow-500 mb-4 font-display uppercase tracking-wide" data-i18n="info.overview.sectionTitle">
+					<h3 class="text-xl md:text-2xl font-bold text-yellow-500 mb-4 font-display tracking-tight" data-i18n="info.overview.sectionTitle">
 						Lo mas importante para jugar mejor
 					</h3>
 					<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -167,80 +220,141 @@ const overviewItems = [
 							<article class="df-surface p-4 hover:border-yellow-500/30 transition-colors">
 								<div class="flex items-center gap-2 mb-1">
 									<span class="inline-flex h-6 min-w-6 items-center justify-center px-1 rounded-full bg-yellow-500/15 text-yellow-400 text-xs font-bold">{idx + 1}</span>
-									<h4 class="text-yellow-400 font-semibold text-sm md:text-base" data-i18n={`info.overview.${titleKey}`}>{titleKey}</h4>
+									<h4 class="text-yellow-400 font-semibold text-sm md:text-base" data-i18n={`info.overview.${titleKey}`}>{translate(`info.overview.${titleKey}`, lang, titleKey)}</h4>
 								</div>
-								<p class="text-gray-400 text-sm leading-relaxed" data-i18n={`info.overview.${descKey}`}>{descKey}</p>
+								<p class="text-gray-400 text-sm leading-relaxed" data-i18n={`info.overview.${descKey}`}>{translate(`info.overview.${descKey}`, lang, descKey)}</p>
 							</article>
 						))}
 					</div>
-					<p class="text-xs text-gray-500 mt-3">
-						Si quieres numeros exactos y reglas puntuales, revisa cada tab debajo.
-					</p>
+					<CardSurface
+						variant="strong"
+						className="mt-6 p-6 md:p-8 shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:border-yellow-500/35 transition-colors"
+					>
+						<div class="grid gap-8 lg:grid-cols-2 lg:gap-10 lg:items-start">
+							<div>
+								<p
+									class="text-[11px] uppercase tracking-[0.28em] text-yellow-400/80 mb-2"
+									data-i18n="home.guidesDeepLink.kicker"
+								>
+									{translate('home.guidesDeepLink.kicker', lang, 'Documentación')}
+								</p>
+								<h3
+									class="text-xl md:text-2xl font-bold text-yellow-400 font-display tracking-wide mb-3"
+									data-i18n="home.guidesDeepLink.headline"
+								>
+									{translate('home.guidesDeepLink.headline', lang, 'Centro de información')}
+								</h3>
+								<p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6 max-w-xl" data-i18n="home.guidesDeepLink.hint">
+									{translate(
+										'home.guidesDeepLink.hint',
+										lang,
+										'Índice en /info: rates, features, economía, comandos e instancias. Cada tema tiene landing con URL propia para compartir.',
+									)}
+								</p>
+								<a
+									href="/info"
+									class="group flex flex-col gap-2 rounded-xl border border-white/10 bg-slate-900/40 p-4 md:flex-row md:items-center md:justify-between md:gap-4 md:p-5 transition-colors hover:border-yellow-500/30 hover:bg-yellow-500/5"
+								>
+									<div class="min-w-0">
+										<p class="font-display text-base font-bold text-white md:text-lg" data-i18n="home.guidesDeepLink.cta">
+											{translate('home.guidesDeepLink.cta', lang, 'Wiki del servidor')}
+										</p>
+										<p class="mt-1 text-xs text-gray-400 md:text-sm leading-relaxed" data-i18n="home.guidesDeepLink.linkSub">
+											{translate(
+												'home.guidesDeepLink.linkSub',
+												lang,
+												'Todo el índice y las landings por sección en un solo lugar.',
+											)}
+										</p>
+									</div>
+									<span
+										class="inline-flex shrink-0 items-center gap-2 text-sm font-bold uppercase tracking-wider text-yellow-400 font-display"
+									>
+										<span data-i18n="home.guidesDeepLink.action">{translate('home.guidesDeepLink.action', lang, 'Ir al índice')}</span>
+										<svg
+											class="h-4 w-4 transition-transform group-hover:translate-x-1"
+											fill="none"
+											stroke="currentColor"
+											viewBox="0 0 24 24"
+											aria-hidden="true"
+										>
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+										</svg>
+									</span>
+								</a>
+							</div>
+
+							<div
+								class="pt-8 mt-2 border-t border-yellow-500/25 lg:mt-0 lg:pt-0 lg:border-t-0 lg:border-l lg:border-yellow-500/30 lg:pl-10"
+							>
+								<p
+									class="text-[11px] uppercase tracking-[0.28em] text-yellow-400/85 mb-3 font-display drop-shadow-[0_0_12px_rgba(250,204,21,0.12)]"
+									data-i18n="home.quickNav.title"
+								>
+									{translate('home.quickNav.title', lang, 'Accesos rápidos')}
+								</p>
+								<ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2" role="list">
+									{quickNavLinks.map((link) => (
+										<li class="min-w-0">
+											<a
+												href={link.href}
+												class="flex min-h-12 items-center justify-center rounded-xl border border-yellow-500/35 bg-slate-950/50 px-3 py-2.5 text-center text-xs font-semibold leading-snug text-yellow-100 font-display shadow-[inset_0_1px_0_0_rgba(250,204,21,0.08)] transition-colors hover:border-yellow-400/60 hover:bg-yellow-500/10 hover:text-yellow-50 sm:text-sm"
+												data-i18n={link.labelKey}
+											>
+												{translate(link.labelKey, lang, link.fallback)}
+											</a>
+										</li>
+									))}
+								</ul>
+							</div>
+						</div>
+					</CardSurface>
 				</div>
 
 				<CardSurface className="p-6 md:p-7">
 					<h3 class="text-xl font-bold text-yellow-500 mb-3 font-display" data-i18n="info.overview.whyTitle">Por que jugar aqui</h3>
 					<ul class="space-y-2 text-sm text-gray-300">
-						{['why1', 'why2', 'why3'].map((key) => (
+						{['whyClarity', 'whyCommands', 'whyUpdates'].map((key) => (
 							<li class="flex items-start gap-2">
 								<span class="text-yellow-500 mt-0.5">•</span>
-								<span data-i18n={`info.overview.${key}`}>{key}</span>
+								<span data-i18n={`info.overview.${key}`}>{translate(`info.overview.${key}`, lang, key)}</span>
 							</li>
 						))}
 					</ul>
-					<div class="mt-5 border-t border-white/10 pt-4">
-						<h4 class="text-lg font-bold text-white mb-1" data-i18n="info.overview.ctaTitle">Listo para entrar?</h4>
-						<p class="text-sm text-gray-400 mb-4" data-i18n="info.overview.ctaDesc">
-							Unite al Discord para novedades y soporte. Descarga el cliente y empeza hoy.
+					<div class="mt-6 border-t border-white/10 pt-5 space-y-4">
+						<p class="text-sm leading-relaxed text-gray-300">
+							<strong class="font-semibold text-white" data-i18n="info.overview.ctaTitle">Listo para entrar?</strong>
+							{' '}
+							<span class="text-gray-400" data-i18n="info.overview.ctaDesc">
+								Unite al Discord para novedades y soporte. Descarga el cliente y empeza hoy.
+							</span>
 						</p>
-						<div class="flex flex-wrap gap-3">
-							<ActionButton
+						<p class="text-sm flex flex-wrap gap-x-5 gap-y-1">
+							<a
 								href="https://discord.gg/GunamUdGaQ"
 								target="_blank"
 								rel="noopener noreferrer"
-								variant="discord"
-								className="px-4 py-2 text-xs md:text-sm"
+								class="text-yellow-500/90 hover:text-yellow-400 font-medium underline underline-offset-2"
+								data-i18n="home.joinDiscord"
 							>
-								Discord
-							</ActionButton>
-							<ActionButton
+								Unirse a Discord
+							</a>
+							<a
 								href="/downloads"
-								variant="ghost"
-								className="px-4 py-2 text-xs md:text-sm"
+								class="text-gray-400 hover:text-gray-200 underline underline-offset-2"
+								data-i18n="navbar.downloads"
 							>
 								Descargas
-							</ActionButton>
-						</div>
+							</a>
+						</p>
+						<ActionButton href="/info" variant="primary" className="px-4 py-2.5 text-black border-yellow-300/40 w-full sm:w-auto">
+							Explorar centro de informacion
+							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+						</ActionButton>
 					</div>
-					<ActionButton href="/rates" variant="primary" className="mt-4 px-4 py-2 text-black border-yellow-300/40">
-						Abrir Info completa en tabs
-						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-					</ActionButton>
 				</CardSurface>
 			</div>
 		</section>
 	</div>
 
 </Layout>
-
-<style>
-	@keyframes heroPulse {
-		0%, 100% {
-			box-shadow: 0 0 0 rgba(234, 179, 8, 0);
-		}
-		50% {
-			box-shadow: 0 0 18px rgba(234, 179, 8, 0.12);
-		}
-	}
-	.animate-hero-pulse {
-		animation: heroPulse 6s ease-in-out infinite;
-	}
-	@keyframes shimmer {
-		100% {
-			transform: translateX(100%);
-		}
-	}
-	.animate-shimmer {
-		animation: shimmer 2s infinite;
-	}
-</style>

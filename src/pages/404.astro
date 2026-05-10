@@ -1,8 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { visitorLangFromPath } from '../utils/i18n-lang';
+import { translate } from '../utils/translations';
+
+const lang = visitorLangFromPath(Astro.url.pathname);
+const pageTitle = `404 — ${translate('error.notFoundTitle', lang, 'Page not found')}`;
 ---
 
-<Layout title="404 - Page Not Found" noindex={true}>
+<Layout title={pageTitle} noindex={true}>
   <div class="min-h-screen bg-gradient-to-b from-black via-slate-900 to-black flex items-center justify-center px-4">
     <div class="text-center max-w-lg">
       <h1 class="text-8xl md:text-9xl font-bold text-yellow-500 font-display mb-4">404</h1>

@@ -1,8 +1,10 @@
 export interface NewsItem {
   slug: string;
+  legacySlugs?: string[];
   title: string;
   titleKey: string;
-  date: string;
+  publishedAt: string;
+  dateLabel: string;
   summary: string;
   summaryKey: string;
   content: string;
@@ -12,13 +14,52 @@ export interface NewsItem {
 
 export const news: NewsItem[] = [
   {
+    slug: 'infinitum-tower-l2day',
+    title: 'Infinitum Tower y letras L2 Day ya visibles en la web',
+    titleKey: 'news.items.infinitumTower.title',
+    publishedAt: '2026-05-03',
+    dateLabel: '3 de mayo de 2026',
+    summary: 'La web ahora muestra la daily nueva de letras, su acceso real con .daily enter 2 y los cambios de Paul Merchant.',
+    summaryKey: 'news.items.infinitumTower.summary',
+    content: 'Se alineo la informacion publica con la configuracion real del servidor: Infinitum Tower aparece como daily activa, se explican las letras L2 Day y se aclaran los cambios de Paul Merchant para armas, sets, escudos y joyas A-grade.',
+    contentKey: 'news.items.infinitumTower.content',
+    image: '/images/infinitum-tower.webp',
+  },
+  {
+    slug: 'valakas-26-abril-2026',
+    legacySlugs: ['valakas-past-event'],
+    title: 'Valakas del 26 de abril de 2026: resultado del evento especial',
+    titleKey: '',
+    publishedAt: '2026-04-26',
+    dateLabel: '26 de abril de 2026',
+    summary: 'Resumen del evento especial de Valakas celebrado el 26 de abril de 2026 en L2Titan.',
+    summaryKey: '',
+    content: 'El evento especial de Valakas del 26 de abril de 2026 queda registrado en la web como referencia reciente de la temporada. Esta entrada ayuda a mostrar actividad real del servidor, continuidad de eventos y movimiento de clanes dentro del calendario competitivo.',
+    contentKey: '',
+    image: '/images/valakas-past-event.webp',
+  },
+  {
+    slug: 'baium-19-abril-2026',
+    legacySlugs: ['baium-upcoming-event'],
+    title: 'Baium del 19 de abril de 2026: registro del evento especial',
+    titleKey: '',
+    publishedAt: '2026-04-19',
+    dateLabel: '19 de abril de 2026',
+    summary: 'Registro del evento especial de Baium celebrado el 19 de abril de 2026 en la temporada actual.',
+    summaryKey: '',
+    content: 'La noticia de Baium queda actualizada como evento ya celebrado el 19 de abril de 2026. Esto deja una senal mas clara para usuarios y buscadores: el servidor publica actividad concreta, con fechas absolutas y seguimiento visible de su calendario ingame.',
+    contentKey: '',
+    image: '/images/BaiumEvent.webp',
+  },
+  {
     slug: 'patch-v1-combate-sistemas',
     title: 'Patch v1 - Combate, offline shop y estabilidad',
     titleKey: 'news.items.patchV1.title',
-    date: '22 Feb 2026',
+    publishedAt: '2026-02-22',
+    dateLabel: '22 de febrero de 2026',
     summary: 'Se aplicaron fixes de combate, tienda offline persistente, ajustes de Olympiad, pets y mejoras anti-crash/anti-bot.',
     summaryKey: 'news.items.patchV1.summary',
-    content: 'El patch v1 corrige interacciones críticas de combate (heal, lethal, CP, MP reflect, revive en asedio y cancel), habilita offline shop con persistencia en DB y suma mejoras de estabilidad de servidor, anti-DoS y geodata base.',
+    content: 'El patch v1 corrige interacciones criticas de combate (heal, lethal, CP, MP reflect, revive en asedio y cancel), habilita offline shop con persistencia en DB y suma mejoras de estabilidad de servidor, anti-DoS y geodata base.',
     contentKey: 'news.items.patchV1.content',
     image: '/images/background.jpg',
   },
@@ -26,10 +67,11 @@ export const news: NewsItem[] = [
     slug: 'patch-v1-qol-voto-buffer',
     title: 'Patch v1 QoL - Drop, voto, Buffer y Substack UI',
     titleKey: 'news.items.patchV1Qol.title',
-    date: '23 Feb 2026',
+    publishedAt: '2026-02-23',
+    dateLabel: '23 de febrero de 2026',
     summary: 'Mejoras en .drop, sistema de voto, RateDropQuest x1.20, Global GK y ajustes de movimiento/geodata.',
     summaryKey: 'news.items.patchV1Qol.summary',
-    content: 'Se optimizó el flujo de progreso con .drop más claro, voto más justo por plataforma, mejoras de UI en Buffer/Substack, CTF/DM en pausa temporal (TvT activo), y ajustes de estabilidad para movimientos inválidos.',
+    content: 'Se optimizo el flujo de progreso con .drop mas claro, voto mas justo por plataforma, mejoras de UI en Buffer/Substack, CTF/DM en pausa temporal (TvT activo), y ajustes de estabilidad para movimientos invalidos.',
     contentKey: 'news.items.patchV1Qol.content',
     image: '/images/interface.png',
   },
@@ -37,10 +79,11 @@ export const news: NewsItem[] = [
     slug: 'patch-1-3-gameplay',
     title: 'Patch 1.3 - Neutral Zone y Titan Box',
     titleKey: 'news.items.patch13.title',
-    date: '13 Mar 2026',
-    summary: 'Global GK mejorado, Neutral Zone rework, rewards diarios actualizados y progresión Noblesse flexible.',
+    publishedAt: '2026-03-13',
+    dateLabel: '13 de marzo de 2026',
+    summary: 'Global GK mejorado, Neutral Zone rework, rewards diarios actualizados y progresion Noblesse flexible.',
     summaryKey: 'news.items.patch13.summary',
-    content: 'Gameplay update activo: Global GK con navegación simplificada, menú de utilidades y farm zones (Neutral Zone/Beast Farm), además de navegador de Raid Boss por rangos (sin épicos). Neutral Zone recibió rework de flujo PvP, mobs custom y economía drop/spoil ajustada. Daily ahora recompensa Adena, Freya Rose y Titan’s Box (integrada a extractables). Noblesse ahora soporta ruta de quest completa o progresión alternativa por Barakiel según configuración del servidor.',
+    content: 'Gameplay update activo: Global GK con navegacion simplificada, menu de utilidades y farm zones (Neutral Zone/Beast Farm), ademas de navegador de Raid Boss por rangos (sin epicos). Neutral Zone recibio rework de flujo PvP, mobs custom y economia drop/spoil ajustada. Daily ahora recompensa Adena, Freya Rose y Titan`s Box (integrada a extractables). Noblesse ahora soporta ruta de quest completa o progresion alternativa por Barakiel segun configuracion del servidor.',
     contentKey: 'news.items.patch13.content',
     image: '/images/NeutralZone.jpg',
   },
@@ -48,73 +91,43 @@ export const news: NewsItem[] = [
     slug: 'patch-1-1-1-balance',
     title: 'Patch 1.3.1 - Balance PvP y magia',
     titleKey: 'news.items.patch111.title',
-    date: '01 Mar 2026',
-    summary: 'Se aplicó tuning por matchups PvP, ajustes de totems, cap de magic crit y casteo más confiable.',
+    publishedAt: '2026-03-01',
+    dateLabel: '1 de marzo de 2026',
+    summary: 'Se aplico tuning por matchups PvP, ajustes de totems, cap de magic crit y casteo mas confiable.',
     summaryKey: 'news.items.patch111.summary',
-    content: 'Tanques y líneas melee recibieron ajustes específicos contra ciertos arquetipos. Totems de Grand Khavatari ya no quedan bloqueados fuera de fist, con bonus escalado. También se ajustó M.Crit (cap 350, power 2.8x) y se desactivaron fallos mágicos para mejorar consistencia.',
+    content: 'Tanques y lineas melee recibieron ajustes especificos contra ciertos arquetipos. Totems de Grand Khavatari ya no quedan bloqueados fuera de fist, con bonus escalado. Tambien se ajusto M.Crit (cap 350, power 2.8x) y se desactivaron fallos magicos para mejorar consistencia.',
     contentKey: 'news.items.patch111.content',
-    image: '/images/Box.png',
+    image: '/images/balance-pvp.png',
   },
   {
     slug: 'patch-qol-economy',
     title: 'Patch QoL - Economy, voto y sistemas',
     titleKey: 'news.items.patchQol.title',
-    date: '27 Feb 2026',
-    summary: 'Drop Viewer, sistema de voto, Buffer/Substack UI y economía fueron actualizados para mejorar progresión y claridad.',
+    publishedAt: '2026-02-27',
+    dateLabel: '27 de febrero de 2026',
+    summary: 'Drop Viewer, sistema de voto, Buffer/Substack UI y economia fueron actualizados para mejorar progresion y claridad.',
     summaryKey: 'news.items.patchQol.summary',
-    content: 'La web y el servidor reflejan mejoras de QoL: .drop con mejor lectura, control de voto más justo, ajustes de shop Event/Vote/Titan, Class Master con 3ra clase y mejoras de estabilidad en movimiento/geodata.',
+    content: 'La web y el servidor reflejan mejoras de QoL: .drop con mejor lectura, control de voto mas justo, ajustes de shop Event/Vote/Titan, Class Master con 3ra clase y mejoras de estabilidad en movimiento/geodata.',
     contentKey: 'news.items.patchQol.content',
     image: '/images/background.jpg',
   },
   {
-    slug: 'castle-conquest-last-saturday',
-    title: 'Conquista de castillo - sábado pasado',
-    titleKey: 'news.items.castleConquest.title',
-    date: '07 Mar 2026',
-    summary: 'Resumen de la conquista del castillo del sábado pasado con impacto en la economía del servidor.',
-    summaryKey: 'news.items.castleConquest.summary',
-    content: 'La conquista del castillo del sábado pasado quedó registrada con recompensas de Titan Coins para el líder del clan ganador. Este logro impacta el ciclo de progresión VIP y el control estratégico de la temporada.',
-    contentKey: 'news.items.castleConquest.content',
+    slug: 'conquista-castillo-7-marzo-2026',
+    legacySlugs: ['castle-conquest-last-saturday'],
+    title: 'Conquista de castillo del 7 de marzo de 2026: impacto en Titan Coins',
+    titleKey: '',
+    publishedAt: '2026-03-07',
+    dateLabel: '7 de marzo de 2026',
+    summary: 'Resumen de la conquista de castillo del 7 de marzo de 2026 y su efecto en la economia del servidor.',
+    summaryKey: '',
+    content: 'La conquista de castillo del 7 de marzo de 2026 queda registrada con recompensas reales de Titan Coins para el lider del clan ganador. Este tipo de entrada ayuda a reforzar la visibilidad del ciclo competitivo, la economia y la actividad de clanes en la temporada.',
+    contentKey: '',
     image: '/images/GiranCastle.jpg',
-  },
-  {
-    slug: 'baium-upcoming-event',
-    title: 'Próximo evento: Baium',
-    titleKey: 'news.items.baiumEvent.title',
-    date: 'Próximamente',
-    summary: 'Se viene evento especial de Baium. Publicaremos hora exacta, reglas y rewards en el próximo anuncio.',
-    summaryKey: 'news.items.baiumEvent.summary',
-    content: 'Evento en preparación: Baium. Apenas nos compartas la imagen oficial y horario final, actualizamos esta noticia con el arte definitivo, ventana de registro y reglas completas.',
-    contentKey: 'news.items.baiumEvent.content',
-    image: '/images/BaiumEvent.png',
   },
 ];
 
-const monthMap: Record<string, number> = {
-  jan: 0,
-  feb: 1,
-  mar: 2,
-  apr: 3,
-  may: 4,
-  jun: 5,
-  jul: 6,
-  aug: 7,
-  sep: 8,
-  oct: 9,
-  nov: 10,
-  dec: 11,
-};
-
-function parseNewsDate(dateText: string): number | null {
-  const match = dateText.trim().match(/^(\d{1,2})\s+([A-Za-z]{3})\s+(\d{4})$/);
-  if (!match) return null;
-
-  const day = Number(match[1]);
-  const month = monthMap[match[2].toLowerCase()];
-  const year = Number(match[3]);
-  if (Number.isNaN(day) || month === undefined || Number.isNaN(year)) return null;
-
-  return Date.UTC(year, month, day);
+function parsePublishedAt(value: string): number {
+  return Date.parse(`${value}T00:00:00Z`);
 }
 
 function parsePatchVersion(title: string): number[] {
@@ -124,14 +137,14 @@ function parsePatchVersion(title: string): number[] {
   return match[1]
     .split('.')
     .map((part) => Number(part))
-    .filter((value) => Number.isFinite(value));
+    .filter((versionPart) => Number.isFinite(versionPart));
 }
 
 function comparePatchVersion(a: number[], b: number[]): number {
   const maxLength = Math.max(a.length, b.length);
-  for (let i = 0; i < maxLength; i += 1) {
-    const left = a[i] ?? 0;
-    const right = b[i] ?? 0;
+  for (let index = 0; index < maxLength; index += 1) {
+    const left = a[index] ?? 0;
+    const right = b[index] ?? 0;
     if (left !== right) return right - left;
   }
   return 0;
@@ -139,22 +152,14 @@ function comparePatchVersion(a: number[], b: number[]): number {
 
 export function sortNewsItems(items: NewsItem[]): NewsItem[] {
   return [...items].sort((left, right) => {
-    const leftDate = parseNewsDate(left.date);
-    const rightDate = parseNewsDate(right.date);
+    const dateCompare = parsePublishedAt(right.publishedAt) - parsePublishedAt(left.publishedAt);
+    if (dateCompare !== 0) return dateCompare;
 
-    // Items with valid date go first (oldest to newest).
-    if (leftDate !== null && rightDate !== null && leftDate !== rightDate) {
-      return leftDate - rightDate;
-    }
-    if (leftDate !== null && rightDate === null) return -1;
-    if (leftDate === null && rightDate !== null) return 1;
-
-    // If date ties or dates are missing, compare patch version.
     const patchCompare = comparePatchVersion(
       parsePatchVersion(left.title),
       parsePatchVersion(right.title),
     );
-    if (patchCompare !== 0) return -patchCompare;
+    if (patchCompare !== 0) return patchCompare;
 
     return left.title.localeCompare(right.title, 'es');
   });
@@ -162,8 +167,6 @@ export function sortNewsItems(items: NewsItem[]): NewsItem[] {
 
 export const orderedNews = sortNewsItems(news);
 
-// Función helper para obtener una noticia por slug
 export function getNewsBySlug(slug: string): NewsItem | undefined {
-  return news.find(item => item.slug === slug);
+  return news.find((item) => item.slug === slug || item.legacySlugs?.includes(slug));
 }
-

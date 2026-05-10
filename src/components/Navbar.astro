@@ -1,6 +1,10 @@
 ---
+import { visitorLangFromPath } from '../utils/i18n-lang';
+import { translate } from '../utils/translations';
+
+const lang = visitorLangFromPath(Astro.url.pathname);
 ---
-<nav class="df-surface-strong rounded-none border-x-0 sticky top-0 z-50">
+<nav class="df-surface-strong navbar-shell rounded-none border-x-0 sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <div class="flex items-center">
@@ -8,36 +12,48 @@
           L2TITAN
         </a>
       </div>
-      <!-- Desktop nav -->
-      <div class="hidden md:block">
-        <div class="ml-10 flex items-baseline space-x-4">
-          <a href="/" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.home">Home</a>
-          <a href="/downloads" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.downloads">Downloads</a>
-          <a href="/rates" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.info">Info</a>
-          <a href="#vote-section" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.vote">Vote</a>
-          <a href="/#social-media" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.socialMedia">Social Media</a>
-          <div class="relative">
-            <button id="language-toggle" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2" aria-label="Change language">
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
-              </svg>
-              <span id="current-language" class="uppercase">EN</span>
-            </button>
+      <!-- Desktop nav: pocas rutas visibles + "Más" (sin JS) -->
+      <div class="hidden md:flex md:items-center md:ml-6 lg:ml-10 md:gap-1 lg:gap-2">
+        <a href="/" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.home">{translate('navbar.home', lang, 'Inicio')}</a>
+        <a href="/downloads" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.downloads">{translate('navbar.downloads', lang, 'Descargas')}</a>
+        <a href="/info" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.info">{translate('navbar.info', lang, 'Info')}</a>
+        <a href="/news" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.news">{translate('navbar.news', lang, 'Noticias')}</a>
+        <a href="#vote-section" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.vote">{translate('navbar.vote', lang, 'Votar')}</a>
+        <details class="relative group">
+          <summary class="list-none cursor-pointer select-none text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 [&::-webkit-details-marker]:hidden">
+            <span data-i18n="navbar.more">{translate('navbar.more', lang, 'Más')}</span>
+            <svg class="h-3.5 w-3.5 opacity-70 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="absolute right-0 top-full z-50 mt-1 min-w-[11.5rem] rounded-lg border border-white/10 bg-black/95 py-1 shadow-xl backdrop-blur-md">
+            <a href="/substack" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white" data-i18n="navbar.substack">{translate('navbar.substack', lang, 'SubStack')}</a>
+            <a href="/faq" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white" data-i18n="navbar.faq">{translate('navbar.faq', lang, 'FAQ')}</a>
+            <a href="/registro" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white" data-i18n="navbar.registro">{translate('navbar.registro', lang, 'Cuenta')}</a>
+            <a href="/comunidad" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white" data-i18n="navbar.community">{translate('navbar.community', lang, 'Comunidad')}</a>
           </div>
-          <div class="flex items-center gap-3 px-3 py-2 rounded-md border border-white/5 bg-white/5">
+        </details>
+        <div class="flex items-center gap-2 border-l border-white/10 pl-3 ml-1 shrink-0">
+          <button id="language-toggle" type="button" class="text-gray-300 hover:text-white hover:bg-white/10 px-2.5 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1.5" data-i18n-aria-label="navbar.changeLanguage" aria-label={translate('navbar.changeLanguage', lang, 'Cambiar idioma')}>
+            <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+            </svg>
+            <span id="current-language" class="uppercase text-xs sm:text-sm">ES</span>
+          </button>
+          <div class="hidden sm:flex items-center gap-3 px-2.5 py-2 rounded-md border border-white/5 bg-white/5">
             <div class="flex items-center gap-1.5">
               <span id="status-game-dot" class="inline-block w-2 h-2 rounded-full bg-gray-500 transition-colors"></span>
-              <span class="text-xs text-gray-400 uppercase tracking-wider" data-i18n="status.game">Game</span>
+              <span class="text-xs text-gray-400 uppercase tracking-wider" data-i18n="status.game">{translate('status.game', lang, 'Juego')}</span>
             </div>
             <div class="flex items-center gap-1.5">
               <span id="status-login-dot" class="inline-block w-2 h-2 rounded-full bg-gray-500 transition-colors"></span>
-              <span class="text-xs text-gray-400 uppercase tracking-wider" data-i18n="status.login">Login</span>
+              <span class="text-xs text-gray-400 uppercase tracking-wider" data-i18n="status.login">{translate('status.login', lang, 'Login')}</span>
             </div>
           </div>
         </div>
       </div>
       <!-- Mobile hamburger button -->
-      <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white p-2 rounded-lg transition-colors" aria-label="Toggle menu" aria-expanded="false">
+      <button id="mobile-menu-btn" type="button" class="md:hidden text-gray-300 hover:text-white p-2 rounded-lg transition-colors" data-i18n-aria-label="navbar.toggleMenu" aria-label={translate('navbar.toggleMenu', lang, 'Abrir o cerrar menú')} aria-expanded="false">
         <svg id="hamburger-icon" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
@@ -50,26 +66,40 @@
   <!-- Mobile menu panel -->
   <div id="mobile-menu" class="hidden md:hidden border-t border-white/10">
     <div class="px-4 py-3 space-y-1">
-      <a href="/" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all" data-i18n="navbar.home">Home</a>
-      <a href="/downloads" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all" data-i18n="navbar.downloads">Downloads</a>
-      <a href="/rates" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all" data-i18n="navbar.info">Info</a>
-      <a href="#vote-section" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all" data-i18n="navbar.vote">Vote</a>
-      <a href="/#social-media" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all" data-i18n="navbar.socialMedia">Social Media</a>
+      <a href="/" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all" data-i18n="navbar.home">{translate('navbar.home', lang, 'Inicio')}</a>
+      <a href="/downloads" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all" data-i18n="navbar.downloads">{translate('navbar.downloads', lang, 'Descargas')}</a>
+      <a href="/info" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all" data-i18n="navbar.info">{translate('navbar.info', lang, 'Info')}</a>
+      <a href="/news" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all" data-i18n="navbar.news">{translate('navbar.news', lang, 'Noticias')}</a>
+      <a href="#vote-section" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all" data-i18n="navbar.vote">{translate('navbar.vote', lang, 'Votar')}</a>
+      <details class="group rounded-lg">
+        <summary class="list-none cursor-pointer select-none text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all flex items-center justify-between [&::-webkit-details-marker]:hidden">
+          <span data-i18n="navbar.more">{translate('navbar.more', lang, 'Más')}</span>
+          <svg class="h-4 w-4 opacity-70 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="mt-1 space-y-1 border-l border-yellow-500/15 ml-3 pl-2">
+          <a href="/substack" class="mobile-nav-link block text-gray-400 hover:text-white hover:bg-white/10 px-3 py-2.5 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.substack">{translate('navbar.substack', lang, 'SubStack')}</a>
+          <a href="/faq" class="mobile-nav-link block text-gray-400 hover:text-white hover:bg-white/10 px-3 py-2.5 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.faq">{translate('navbar.faq', lang, 'FAQ')}</a>
+          <a href="/registro" class="mobile-nav-link block text-gray-400 hover:text-white hover:bg-white/10 px-3 py-2.5 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.registro">{translate('navbar.registro', lang, 'Cuenta')}</a>
+          <a href="/comunidad" class="mobile-nav-link block text-gray-400 hover:text-white hover:bg-white/10 px-3 py-2.5 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.community">{translate('navbar.community', lang, 'Comunidad')}</a>
+        </div>
+      </details>
       <div class="flex items-center justify-between px-3 py-3 border-t border-white/10 mt-2 pt-3">
-        <button id="language-toggle-mobile" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-all flex items-center gap-2" aria-label="Change language">
+        <button id="language-toggle-mobile" type="button" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-all flex items-center gap-2" data-i18n-aria-label="navbar.changeLanguage" aria-label={translate('navbar.changeLanguage', lang, 'Cambiar idioma')}>
           <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
           </svg>
-          <span id="current-language-mobile" class="uppercase">EN</span>
+          <span id="current-language-mobile" class="uppercase">ES</span>
         </button>
         <div class="flex items-center gap-3 px-3 py-2 rounded-md border border-white/5 bg-white/5">
           <div class="flex items-center gap-1.5">
             <span id="status-game-dot-mobile" class="inline-block w-2 h-2 rounded-full bg-gray-500 transition-colors"></span>
-            <span class="text-xs text-gray-400 uppercase tracking-wider" data-i18n="status.game">Game</span>
+            <span class="text-xs text-gray-400 uppercase tracking-wider" data-i18n="status.game">{translate('status.game', lang, 'Juego')}</span>
           </div>
           <div class="flex items-center gap-1.5">
             <span id="status-login-dot-mobile" class="inline-block w-2 h-2 rounded-full bg-gray-500 transition-colors"></span>
-            <span class="text-xs text-gray-400 uppercase tracking-wider" data-i18n="status.login">Login</span>
+            <span class="text-xs text-gray-400 uppercase tracking-wider" data-i18n="status.login">{translate('status.login', lang, 'Login')}</span>
           </div>
         </div>
       </div>
@@ -78,6 +108,10 @@
 </nav>
 
 <style>
+  .navbar-shell {
+    border-radius: 0 !important;
+  }
+
   @keyframes status-pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }

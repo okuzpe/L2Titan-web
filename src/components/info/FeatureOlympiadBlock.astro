@@ -1,0 +1,39 @@
+---
+import { visitorLangFromPath } from '../../utils/i18n-lang';
+import { translate } from '../../utils/translations';
+
+const lang = visitorLangFromPath(Astro.url.pathname);
+const featureLabel = (key: string) => translate(`info.featuresTab.${key}`, lang, key);
+
+const rows = [
+	{ label: 'olympiadStartTime', val: 'olympiadStartTimeValue' },
+	{ label: 'olyDuration', val: 'olyDurationVal' },
+	{ label: 'olyPeriod', val: 'olyPeriodVal' },
+	{ label: 'olyClassed', val: 'olyClassedVal' },
+	{ label: 'olyNonClassed', val: 'olyNonClassedVal' },
+	{ label: 'olyReward', val: 'olyRewardVal' },
+	{ label: 'olyMaxEnchant', val: 'olyMaxEnchantVal' },
+	{ label: 'olyAugment', val: 'olyAugmentVal' },
+	{ label: 'olyRestricted', val: 'olyRestrictedVal' },
+	{ label: 'olyCountdown', val: 'olyCountdownVal' },
+	{ label: 'olySkills', val: 'olySkillsVal' },
+] as const;
+---
+
+<div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-8">
+	<h3 class="text-2xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.featuresTab.olympiad">
+		{featureLabel('olympiad')}
+	</h3>
+	<div class="grid sm:grid-cols-2 gap-2 text-sm">
+		{rows.map((item) => (
+			<div class="flex justify-between p-3 bg-black/40 rounded border border-white/5 gap-3">
+				<span class="text-gray-400 shrink" data-i18n={`info.featuresTab.${item.label}`}>
+					{featureLabel(item.label)}
+				</span>
+				<span class="text-gray-200 font-medium text-right" data-i18n={`info.featuresTab.${item.val}`}>
+					{featureLabel(item.val)}
+				</span>
+			</div>
+		))}
+	</div>
+</div>
