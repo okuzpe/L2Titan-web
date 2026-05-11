@@ -63,11 +63,13 @@ const charPlaceholder = translate(
           />
         </a>
 
-        <!-- Banner L2Network -->
-        <button
+        <!-- Banner L2Network: <a href> para SEO (enlaces rastreables); el modal sigue con preventDefault -->
+        <a
           id="l2network-btn"
-          type="button"
-          class="inline-block hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-0 p-0"
+          href="https://l2network.eu/index.php?a=in&u=l2-titan"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block hover:opacity-80 transition-opacity cursor-pointer"
           title="L2Network"
         >
           <img
@@ -80,30 +82,35 @@ const charPlaceholder = translate(
             loading="lazy"
             decoding="async"
           />
-        </button>
+        </a>
       </div>
       <!-- Banner Top100Arena + L2JBrasil -->
       <div class="flex flex-wrap justify-center items-center gap-4 mt-4">
-        <button
+        <a
           id="top100arena-btn"
-          type="button"
-          class="inline-block hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-0 p-0"
+          href="https://www.top100arena.com/listing/102116"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block hover:opacity-80 transition-opacity cursor-pointer"
           title="Top100Arena"
         >
           <img
             src="https://www.top100arena.com/rankbadge/102116"
             alt="Lineage 2 private server"
-            width="200"
-            height="40"
+            width="150"
+            height="45"
+            class="w-[150px] h-auto max-w-full"
             loading="lazy"
             decoding="async"
           />
-        </button>
+        </a>
 
-        <button
+        <a
           id="top-l2jbrasil-btn"
-          type="button"
-          class="inline-block hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-0 p-0"
+          href="https://top.l2jbrasil.com/index.php?a=in&u=Titan"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block hover:opacity-80 transition-opacity cursor-pointer"
           title="Top L2JBrasil de Servidores de Lineage2"
         >
           <img
@@ -115,7 +122,7 @@ const charPlaceholder = translate(
             loading="lazy"
             decoding="async"
           />
-        </button>
+        </a>
 
         <!-- L2HopZone: banner remoto a veces 404 hasta activar el listing; fallback local en public/images -->
         <a
@@ -215,9 +222,9 @@ const charPlaceholder = translate(
           <img
             src="https://www.top100arena.com/rankbadge/102116"
             alt="Top100Arena"
-            width="200"
-            height="40"
-            class="mx-auto mb-3"
+            width="150"
+            height="45"
+            class="mx-auto mb-3 w-[150px] h-auto max-w-full"
           />
           <h4
             class="text-lg font-bold text-yellow-500 font-display uppercase tracking-wider"
@@ -424,7 +431,10 @@ const charPlaceholder = translate(
             modal.classList.remove("flex");
           }
 
-          btn.addEventListener("click", openModal);
+          btn.addEventListener("click", function (e) {
+            e.preventDefault();
+            openModal();
+          });
           backdrop.addEventListener("click", closeModal);
           closeBtn.addEventListener("click", closeModal);
 
@@ -475,19 +485,8 @@ const charPlaceholder = translate(
       })();
     </script>
 
-    <script is:inline>
-      (function () {
-        try {
-          fetch("https://top.l2jbrasil.com/pixel.php?u=Titan", {
-            mode: "no-cors",
-            credentials: "omit",
-          }).catch(function () {});
-        } catch (e) {}
-      })();
-    </script>
-
     <div
-      class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-gray-500 mb-6 max-w-4xl mx-auto px-2"
+      class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-gray-300 mb-6 max-w-4xl mx-auto px-2"
     >
       <a
         href="/info"

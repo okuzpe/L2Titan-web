@@ -20,12 +20,23 @@ import heroBackground from "../assets/hero-background.jpg";
 
 const lang = visitorLangFromPath(Astro.url.pathname);
 
-const heroLcp = await getImage({
-	src: heroBackground,
-	width: 1920,
-	format: "webp",
-	quality: 78,
-});
+/** Variantes hero: 1440w encaja viewport ~1350px (Lighthouse desktop) sin forzar 1920w */
+const HERO_WIDTHS = [480, 640, 960, 1280, 1440, 1920] as const;
+const HERO_QUALITY = 70;
+const heroVariants = await Promise.all(
+	HERO_WIDTHS.map((w) =>
+		getImage({
+			src: heroBackground,
+			width: w,
+			format: "webp",
+			quality: HERO_QUALITY,
+		}),
+	),
+);
+const heroPreloadSrcset = heroVariants
+	.map((img, i) => `${img.src} ${HERO_WIDTHS[i]}w`)
+	.join(", ");
+const heroPreloadHref = heroVariants[0].src;
 
 // Variable para mostrar/ocultar información del servidor
 const showServerInfo = false;
@@ -78,7 +89,9 @@ const structuredData = [
 	keywords="lineage 2 interlude server, l2 interlude server, lineage 2 private server, l2 pvp server, lineage 2 autofarm server, lineage ii interlude, l2 substack, l2 titan"
 	canonicalPath="/"
 	structuredData={structuredData}
-	preloadLcpImage={heroLcp.src}
+	preloadLcpImage={heroPreloadHref}
+	preloadLcpImageSrcset={heroPreloadSrcset}
+	preloadLcpImageSizes="100vw"
 >
 	<section class="relative min-h-screen flex flex-col justify-center overflow-hidden">
 		<div class="absolute inset-0 z-0">
@@ -88,12 +101,12 @@ const structuredData = [
 				width={1920}
 				height={1080}
 				sizes="100vw"
-				widths={[640, 960, 1280, 1920]}
-				quality={78}
+				widths={[480, 640, 960, 1280, 1440, 1920]}
+				quality={HERO_QUALITY}
 				format="webp"
 				loading="eager"
 				fetchpriority="high"
-				decoding="sync"
+				decoding="async"
 				class="w-full h-full object-cover opacity-70"
 			/>
 			<div class="absolute inset-0 bg-linear-to-b from-black/45 via-black/20 to-black/75"></div>
@@ -165,7 +178,14 @@ const structuredData = [
 	{showServerInfo && <ServerStats />}
 
 	<div class="container mx-auto px-4 py-14 md:py-18 space-y-10 md:space-y-14">
-		<section class="relative z-10 mt-0">
+		<section class="relative z-10 mt-0" aria-labelledby="home-features-heading">
+			<h2
+				id="home-features-heading"
+				class="sr-only"
+				data-i18n="home.featuresSection.title"
+			>
+				{translate('home.featuresSection.title', lang, 'Destacados del servidor')}
+			</h2>
 			<div class="grid md:grid-cols-3 gap-5 md:gap-6">
 				<FeatureCard
 					title="SubStack real"

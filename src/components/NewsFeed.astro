@@ -1,5 +1,6 @@
 ---
 import { orderedNews } from '../data/news';
+import { newsWebpSrcset } from '../utils/news-images';
 import CardSurface from './ui/CardSurface.astro';
 import SectionHeading from './ui/SectionHeading.astro';
 import { visitorLangFromPath } from '../utils/i18n-lang';
@@ -16,19 +17,39 @@ const preview = orderedNews.slice(0, 3);
     <div class="max-w-6xl mx-auto">
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {
-          preview.map((item) => (
+          preview.map((item) => {
+            const previewTitle = item.titleKey
+              ? translate(item.titleKey, lang, item.title)
+              : item.title;
+            const alt = `${previewTitle} - L2Titan Lineage 2 Interlude`;
+            const webpSrcset = newsWebpSrcset(item);
+            return (
             <article class="h-full">
               <CardSurface className="overflow-hidden border-white/10 transition-colors duration-300 hover:border-yellow-500/25 h-full flex flex-col">
                 <div class="h-52 overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={`${item.title} - L2Titan Lineage 2 Interlude`}
-                    width="960"
-                    height="224"
-                    loading="lazy"
-                    decoding="async"
-                    class="w-full h-full object-cover"
-                  />
+                  {item.imageCard && webpSrcset ? (
+                    <img
+                      src={item.imageCard}
+                      srcset={webpSrcset}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                      alt={alt}
+                      width="600"
+                      height="360"
+                      loading="lazy"
+                      decoding="async"
+                      class="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <img
+                      src={item.image}
+                      alt={alt}
+                      width="960"
+                      height="224"
+                      loading="lazy"
+                      decoding="async"
+                      class="w-full h-full object-cover"
+                    />
+                  )}
                 </div>
                 <div class="p-5 grow flex flex-col">
                   <div class="text-yellow-500 text-xs font-bold uppercase tracking-wider mb-2">
@@ -58,7 +79,8 @@ const preview = orderedNews.slice(0, 3);
                 </div>
               </CardSurface>
             </article>
-          ))
+            );
+          })
         }
       </div>
 

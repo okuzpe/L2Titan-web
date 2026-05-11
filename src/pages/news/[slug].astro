@@ -4,6 +4,7 @@ import { buildBreadcrumb, absoluteUrl } from '../../utils/seo';
 import { visitorLangFromPath } from '../../utils/i18n-lang';
 import { translate } from '../../utils/translations';
 import type { NewsItem } from '../../data/news';
+import { newsWebpSrcset } from '../../utils/news-images';
 
 interface Props {
   newsItem: NewsItem;
@@ -33,6 +34,7 @@ const resolvedContent = newsItem.contentKey
   : newsItem.content;
 
 const articleImageURL = absoluteUrl(newsItem.image);
+const articleWebpSrcset = newsWebpSrcset(newsItem);
 const articleUrl = absoluteUrl(`/news/${newsItem.slug}`);
 const articleLd = {
   '@context': 'https://schema.org',
@@ -109,14 +111,27 @@ const breadcrumbLd = buildBreadcrumb([
       </header>
 
       <div class="mb-8 rounded-xl overflow-hidden border border-white/10 shadow-2xl">
-        <img
-          src={newsItem.image}
-          alt={`${resolvedTitle} - L2Titan Lineage 2 Interlude`}
-          width="896"
-          height="384"
-          loading="lazy"
-          class="w-full h-48 sm:h-72 md:h-96 object-cover"
-        />
+        {newsItem.imageCard && articleWebpSrcset ? (
+          <img
+            src={newsItem.imageCard}
+            srcset={articleWebpSrcset}
+            sizes="(max-width: 768px) 100vw, min(896px, 100vw)"
+            alt={`${resolvedTitle} - L2Titan Lineage 2 Interlude`}
+            width="900"
+            height="540"
+            loading="lazy"
+            class="w-full h-48 sm:h-72 md:h-96 object-cover"
+          />
+        ) : (
+          <img
+            src={newsItem.image}
+            alt={`${resolvedTitle} - L2Titan Lineage 2 Interlude`}
+            width="896"
+            height="384"
+            loading="lazy"
+            class="w-full h-48 sm:h-72 md:h-96 object-cover"
+          />
+        )}
       </div>
 
       <div class="prose prose-invert prose-lg max-w-none">

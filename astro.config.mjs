@@ -38,6 +38,20 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      rollupOptions: {
+        output: {
+          /** Evita nombres tipo `autofarm.*.css` en toda la web (un solo CSS compartido). */
+          assetFileNames: (assetInfo) => {
+            const name = assetInfo.names?.[0] ?? '';
+            if (name.endsWith('.css')) {
+              return '_astro/site.[hash][extname]';
+            }
+            return '_astro/[name].[hash][extname]';
+          },
+        },
+      },
+    },
     server: {
       proxy: {
         '/status': {

@@ -10,6 +10,8 @@ export interface NewsItem {
   content: string;
   contentKey: string;
   image: string;
+  /** Derivado estrecho para listados (srcset); opcional. */
+  imageCard?: string;
 }
 
 export const news: NewsItem[] = [
@@ -24,6 +26,7 @@ export const news: NewsItem[] = [
     content: 'Se alineo la informacion publica con la configuracion real del servidor: Infinitum Tower aparece como daily activa, se explican las letras L2 Day y se aclaran los cambios de Paul Merchant para armas, sets, escudos y joyas A-grade.',
     contentKey: 'news.items.infinitumTower.content',
     image: '/images/infinitum-tower.webp',
+    imageCard: '/images/infinitum-tower-card.webp',
   },
   {
     slug: 'valakas-26-abril-2026',
@@ -37,6 +40,7 @@ export const news: NewsItem[] = [
     content: 'El evento especial de Valakas del 26 de abril de 2026 queda registrado en la web como referencia reciente de la temporada. Esta entrada ayuda a mostrar actividad real del servidor, continuidad de eventos y movimiento de clanes dentro del calendario competitivo.',
     contentKey: '',
     image: '/images/valakas-past-event.webp',
+    imageCard: '/images/valakas-past-event-card.webp',
   },
   {
     slug: 'baium-19-abril-2026',
@@ -50,6 +54,7 @@ export const news: NewsItem[] = [
     content: 'La noticia de Baium queda actualizada como evento ya celebrado el 19 de abril de 2026. Esto deja una senal mas clara para usuarios y buscadores: el servidor publica actividad concreta, con fechas absolutas y seguimiento visible de su calendario ingame.',
     contentKey: '',
     image: '/images/BaiumEvent.webp',
+    imageCard: '/images/BaiumEvent-card.webp',
   },
   {
     slug: 'patch-v1-combate-sistemas',

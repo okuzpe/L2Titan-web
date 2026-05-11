@@ -28,6 +28,10 @@ interface Props {
 	defaultVisitorLang?: "es" | "en";
 	/** Preload a same-origin image (e.g. home hero) to improve LCP */
 	preloadLcpImage?: string;
+	/** `imagesrcset` para preload responsive (móvil descarga ~480–640w, no 1920w) */
+	preloadLcpImageSrcset?: string;
+	/** Debe coincidir con el `sizes` del `<img>` del hero (p. ej. 100vw) */
+	preloadLcpImageSizes?: string;
 }
 
 const {
@@ -46,6 +50,8 @@ const {
 	ogLocaleAlternate: ogLocaleAlternateProp,
 	defaultVisitorLang,
 	preloadLcpImage,
+	preloadLcpImageSrcset,
+	preloadLcpImageSizes,
 } = Astro.props;
 
 const visitorLang = visitorLangFromPath(Astro.url.pathname);
@@ -113,12 +119,21 @@ const robotsContent = robots ?? (noindex
 		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-		{preloadLcpImage && (
-			<link rel="preload" as="image" href={preloadLcpImage} fetchpriority="high" />
+		{preloadLcpImage && preloadLcpImageSrcset ? (
+			<link
+				rel="preload"
+				as="image"
+				type="image/webp"
+				href={preloadLcpImage}
+				imagesrcset={preloadLcpImageSrcset}
+				imagesizes={preloadLcpImageSizes ?? "100vw"}
+				fetchpriority="high"
+			/>
+		) : (
+			preloadLcpImage && (
+				<link rel="preload" as="image" href={preloadLcpImage} fetchpriority="high" />
+			)
 		)}
-
-		<link rel="preconnect" href="https://connect.facebook.net" crossorigin />
-		<link rel="dns-prefetch" href="https://www.facebook.com" />
 
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -256,11 +271,22 @@ const robotsContent = robots ?? (noindex
 			})();
 		</script>
 
-		<!-- Meta Pixel: defer to after load so it does not compete with LCP on mobile -->
+		<!-- Meta Pixel: sin `scroll` como disparador — Lighthouse desktop suele simular scroll y cargaba el pixel a mitad del trace (LCP/TBT). Clic/toque/tecla + fallback. -->
 		<script is:inline>
 			(function () {
+				var pixelDone = false;
+				var fallbackTimer;
 				function loadPixel() {
-					if (window.fbq) return;
+					if (pixelDone || window.fbq) return;
+					pixelDone = true;
+					if (fallbackTimer) clearTimeout(fallbackTimer);
+					try {
+						var pc = document.createElement('link');
+						pc.rel = 'preconnect';
+						pc.href = 'https://connect.facebook.net';
+						pc.crossOrigin = '';
+						document.head.appendChild(pc);
+					} catch (e) {}
 					!(function (f, b, e, v, n, t, s) {
 						if (f.fbq) return;
 						n = f.fbq = function () {
@@ -280,20 +306,19 @@ const robotsContent = robots ?? (noindex
 					fbq('init', '802270496211593');
 					fbq('track', 'PageView');
 				}
+				function onFirstEngagement() {
+					loadPixel();
+				}
+				['pointerdown', 'touchstart', 'keydown'].forEach(function (ev) {
+					document.addEventListener(ev, onFirstEngagement, { capture: true, passive: true, once: true });
+				});
+				function armFallback() {
+					fallbackTimer = window.setTimeout(loadPixel, 28000);
+				}
 				if (document.readyState === 'complete') {
-					if ('requestIdleCallback' in window) {
-						requestIdleCallback(loadPixel, { timeout: 4000 });
-					} else {
-						setTimeout(loadPixel, 1);
-					}
+					armFallback();
 				} else {
-					window.addEventListener('load', function () {
-						if ('requestIdleCallback' in window) {
-							requestIdleCallback(loadPixel, { timeout: 4000 });
-						} else {
-							setTimeout(loadPixel, 1);
-						}
-					});
+					window.addEventListener('load', armFallback, { once: true });
 				}
 			})();
 		</script>
@@ -345,6 +370,68 @@ const robotsContent = robots ?? (noindex
 					if (document.body) {
 						document.body.classList.add('no-js');
 					}
+				}
+			})();
+		</script>
+		<!-- Estado juego/login: al final del body + retraso tras load → no encadena con CSS en critical path (PSI) -->
+		<script is:inline>
+			(function () {
+				var dotBase = 'inline-block w-2 h-2 rounded-full transition-colors ';
+				function applyStatus(id, statusClass) {
+					var el = document.getElementById(id);
+					if (el) el.className = dotBase + statusClass;
+				}
+				function fetchServerStatus() {
+					var gameDot = document.getElementById('status-game-dot');
+					var loginDot = document.getElementById('status-login-dot');
+					if (!gameDot || !loginDot) return;
+					fetch('/status')
+						.then(function (res) {
+							return res.json();
+						})
+						.then(function (data) {
+							var gameClass = data.game === 'online' ? 'status-online' : 'status-offline';
+							var loginClass = data.login === 'online' ? 'status-online' : 'status-offline';
+							applyStatus('status-game-dot', gameClass);
+							applyStatus('status-game-dot-mobile', gameClass);
+							applyStatus('status-login-dot', loginClass);
+							applyStatus('status-login-dot-mobile', loginClass);
+						})
+						.catch(function () {
+							var fallback = 'bg-gray-500';
+							applyStatus('status-game-dot', fallback);
+							applyStatus('status-game-dot-mobile', fallback);
+							applyStatus('status-login-dot', fallback);
+							applyStatus('status-login-dot-mobile', fallback);
+						});
+				}
+				function startStatusPolling() {
+					fetchServerStatus();
+					setInterval(fetchServerStatus, 60000);
+				}
+				function kick() {
+					if ('requestIdleCallback' in window) {
+						requestIdleCallback(
+							function () {
+								startStatusPolling();
+							},
+							{ timeout: 8000 },
+						);
+					} else {
+						setTimeout(startStatusPolling, 1500);
+					}
+				}
+				var afterLoadDelayMs = 4000;
+				if (document.readyState === 'complete') {
+					setTimeout(kick, afterLoadDelayMs);
+				} else {
+					window.addEventListener(
+						'load',
+						function () {
+							setTimeout(kick, afterLoadDelayMs);
+						},
+						{ once: true },
+					);
 				}
 			})();
 		</script>

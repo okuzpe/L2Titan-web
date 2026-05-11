@@ -51,6 +51,9 @@ const baseTranslations = {
         news: "Noticias",
         community: "Comunidad",
       },
+      featuresSection: {
+        title: "Destacados del servidor",
+      },
       infoStrip: {
         title: "Quieres todo el detalle del servidor?",
         description:
@@ -145,7 +148,7 @@ const baseTranslations = {
       linkSubstack: "SubStack",
       linkRates: "Rates",
       linkDownloads: "Descargas",
-      linkSubstackEn: "SubStack",
+      linkSubstackEn: "SubStack (EN)",
       linkFaq: "FAQ para jugadores",
       linkAccount: "Crear cuenta (Auto Create)",
       linkCommunity: "Comunidad y Discord",
@@ -974,6 +977,9 @@ const baseTranslations = {
         news: "News",
         community: "Community",
       },
+      featuresSection: {
+        title: "Server highlights",
+      },
       infoStrip: {
         title: "Want the full server breakdown?",
         description:
@@ -1068,7 +1074,7 @@ const baseTranslations = {
       linkSubstack: "SubStack",
       linkRates: "Rates",
       linkDownloads: "Downloads",
-      linkSubstackEn: "SubStack",
+      linkSubstackEn: "SubStack (EN)",
       linkFaq: "Player FAQ",
       linkAccount: "Create account (Auto Create)",
       linkCommunity: "Community & Discord",

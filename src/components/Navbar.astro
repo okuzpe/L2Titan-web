@@ -165,48 +165,6 @@ const lang = visitorLangFromPath(Astro.url.pathname);
 
 <script is:inline>
   (function() {
-    var dotBase = 'inline-block w-2 h-2 rounded-full transition-colors ';
-
-    function applyStatus(id, statusClass) {
-      var el = document.getElementById(id);
-      if (el) el.className = dotBase + statusClass;
-    }
-
-    function fetchServerStatus() {
-      var gameDot = document.getElementById('status-game-dot');
-      var loginDot = document.getElementById('status-login-dot');
-      if (!gameDot || !loginDot) return;
-
-      fetch('/status')
-        .then(function(res) { return res.json(); })
-        .then(function(data) {
-          var gameClass = data.game === 'online' ? 'status-online' : 'status-offline';
-          var loginClass = data.login === 'online' ? 'status-online' : 'status-offline';
-          applyStatus('status-game-dot', gameClass);
-          applyStatus('status-game-dot-mobile', gameClass);
-          applyStatus('status-login-dot', loginClass);
-          applyStatus('status-login-dot-mobile', loginClass);
-        })
-        .catch(function() {
-          var fallback = 'bg-gray-500';
-          applyStatus('status-game-dot', fallback);
-          applyStatus('status-game-dot-mobile', fallback);
-          applyStatus('status-login-dot', fallback);
-          applyStatus('status-login-dot-mobile', fallback);
-        });
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', fetchServerStatus);
-    } else {
-      fetchServerStatus();
-    }
-    setInterval(fetchServerStatus, 60000);
-  })();
-</script>
-
-<script is:inline>
-  (function() {
     function initLanguageToggle() {
       if (!window.i18n) return;
 
