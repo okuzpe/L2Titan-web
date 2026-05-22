@@ -1,0 +1,53 @@
+---
+import CardSurface from './CardSurface.astro';
+import { visitorLangFromPath } from '../../utils/i18n-lang';
+import { translate } from '../../utils/translations';
+
+interface Props {
+	kicker?: string;
+	kickerKey?: string;
+	title: string;
+	titleKey?: string;
+	description?: string;
+	descriptionKey?: string;
+	className?: string;
+	spanFull?: boolean;
+}
+
+const {
+	kicker,
+	kickerKey,
+	title,
+	titleKey,
+	description,
+	descriptionKey,
+	className = '',
+	spanFull = false,
+} = Astro.props;
+const lang = visitorLangFromPath(Astro.url.pathname);
+const titleText = titleKey ? translate(titleKey, lang, title) : title;
+const descText = descriptionKey ? translate(descriptionKey, lang, description ?? '') : description;
+const kickerText = kickerKey ? translate(kickerKey, lang, kicker ?? '') : kicker;
+---
+
+<CardSurface
+	className={`df-intro-band ${spanFull ? 'md:col-span-2' : ''} ${className}`.trim()}
+>
+	<div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+		<div>
+			{kickerText && (
+				<p class="df-kicker mb-2" {...kickerKey ? { 'data-i18n': kickerKey } : {}}>
+					{kickerText}
+				</p>
+			)}
+			<h3 class="df-section-label" {...titleKey ? { 'data-i18n': titleKey } : {}}>
+				{titleText}
+			</h3>
+		</div>
+		{descText && (
+			<p class="max-w-2xl df-muted" {...descriptionKey ? { 'data-i18n': descriptionKey } : {}}>
+				{descText}
+			</p>
+		)}
+	</div>
+</CardSurface>

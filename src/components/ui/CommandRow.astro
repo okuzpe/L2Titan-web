@@ -1,0 +1,20 @@
+---
+interface Props {
+	command: string;
+	description: string;
+	commandKey?: string;
+	descriptionKey?: string;
+}
+
+const { command, description, commandKey, descriptionKey } = Astro.props;
+---
+
+<li class="flex flex-wrap items-baseline gap-2 border-b border-white/5 py-2 last:border-0 sm:gap-3">
+	<code class="df-code-chip" {...commandKey ? { 'data-i18n': commandKey } : {}}>
+		{command}
+	</code>
+	<span class="hidden text-yellow-500/50 sm:inline" aria-hidden="true">›</span>
+	<span class="text-sm text-gray-400" {...descriptionKey ? { 'data-i18n': descriptionKey } : {}}>
+		{description}
+	</span>
+</li>

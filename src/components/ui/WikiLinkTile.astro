@@ -1,0 +1,36 @@
+---
+interface Props {
+	href: string;
+	title: string;
+	titleKey?: string;
+	hint: string;
+	hintKey?: string;
+	action: string;
+	actionKey?: string;
+}
+
+const { href, title, titleKey, hint, hintKey, action, actionKey } = Astro.props;
+---
+
+<a href={href} class="df-link-tile group">
+	<div class="min-w-0">
+		<p class="df-link-tile-title" {...titleKey ? { 'data-i18n': titleKey } : {}}>
+			{title}
+		</p>
+		<p class="df-link-tile-hint" {...hintKey ? { 'data-i18n': hintKey } : {}}>
+			{hint}
+		</p>
+	</div>
+	<span class="df-link-tile-action">
+		<span {...actionKey ? { 'data-i18n': actionKey } : {}}>{action}</span>
+		<svg
+			class="h-4 w-4 transition-transform group-hover:translate-x-1"
+			fill="none"
+			stroke="currentColor"
+			viewBox="0 0 24 24"
+			aria-hidden="true"
+		>
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+		</svg>
+	</span>
+</a>

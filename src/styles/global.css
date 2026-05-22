@@ -13,6 +13,8 @@
   --color-surface-3: #1f2937;
   --color-text-main: #e2e8f0;
   --color-text-muted: #94a3b8;
+  --color-success: #4ade80;
+  --color-danger: #f87171;
   --radius-card: 1rem;
   --radius-panel: 1.25rem;
   --shadow-gold-soft: 0 0 26px rgba(234, 179, 8, 0.2);
@@ -97,6 +99,187 @@ h6 {
 .df-btn-discord:hover {
   filter: brightness(1.1);
   box-shadow: 0 0 34px rgba(109, 63, 242, 0.45);
+}
+
+/* --- Tighten: tipografía y bloques reutilizables --- */
+.df-kicker {
+  @apply text-[11px] uppercase tracking-[0.28em] text-yellow-400/80;
+}
+
+.df-kicker-muted {
+  @apply text-[11px] uppercase tracking-[0.22em] text-gray-500;
+}
+
+/* Sub-encabezado dentro de bloques dorados (p. ej. Quick links en descargas) */
+.df-kicker-sub {
+  @apply text-[11px] uppercase tracking-[0.22em] text-yellow-500/70 font-display;
+}
+
+.df-notice-success {
+  @apply border border-emerald-400/30 bg-emerald-500/10;
+  border-radius: var(--radius-card);
+}
+
+.df-panel-inner {
+  @apply rounded-xl border border-white/10 bg-black/30;
+}
+
+.df-accent-chip {
+  @apply inline-flex rounded-full border border-yellow-500/20 bg-yellow-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-yellow-300;
+}
+
+.df-stat-chip {
+  @apply rounded-xl border border-yellow-500/20 bg-yellow-500/10 p-3;
+}
+
+.df-callout {
+  @apply border-l-4 border-yellow-500 bg-linear-to-r from-yellow-900/20 to-transparent rounded-r-lg p-4;
+}
+
+.df-prose {
+  @apply text-base leading-relaxed text-gray-300 md:text-lg;
+}
+
+.df-article-title {
+  @apply text-3xl font-bold text-white font-display md:text-4xl text-balance;
+}
+
+.df-link-back {
+  @apply inline-flex items-center gap-2 text-yellow-500 transition-colors hover:text-yellow-400;
+}
+
+.df-hero-title {
+  @apply text-3xl md:text-5xl font-extrabold text-yellow-400 font-display tracking-wide text-balance;
+}
+
+.df-lead {
+  @apply text-base md:text-lg text-gray-300 leading-relaxed;
+}
+
+.df-section-label {
+  @apply text-xl md:text-2xl font-bold text-yellow-500 font-display tracking-tight;
+}
+
+.df-muted {
+  @apply text-gray-400 text-sm md:text-base leading-relaxed;
+}
+
+.df-stat-tile {
+  @apply bg-slate-900/60 border border-white/10 backdrop-blur-sm p-4 md:p-5 hover:border-yellow-500/30 transition-colors;
+  border-radius: var(--radius-card);
+}
+
+.df-step-num {
+  @apply inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-yellow-500/20 text-sm font-bold text-yellow-500;
+}
+
+.df-table-wrap {
+  @apply bg-slate-900/60 border border-white/10 backdrop-blur-sm overflow-x-auto;
+  border-radius: var(--radius-card);
+}
+
+.df-table-wrap thead tr {
+  @apply bg-black/50 border-b border-white/10;
+}
+
+.df-table-wrap th {
+  @apply px-4 py-3 text-xs font-display uppercase tracking-wider text-yellow-400;
+}
+
+.df-table-wrap tbody tr {
+  @apply border-b border-white/5;
+}
+
+.df-table-wrap tbody tr:nth-child(odd) {
+  @apply bg-black/30;
+}
+
+.df-table-wrap tbody tr:nth-child(even) {
+  @apply bg-black/15;
+}
+
+.df-table-wrap td {
+  @apply px-4 py-3 text-sm text-gray-300;
+}
+
+.df-nav-tile {
+  @apply flex min-h-12 w-full items-center justify-center rounded-xl border border-yellow-500/40 bg-yellow-500/5 px-3 py-2.5 text-center text-xs font-semibold leading-snug text-yellow-200 font-display shadow-[inset_0_1px_0_0_rgba(250,204,21,0.12)] transition-colors hover:border-yellow-400/70 hover:bg-yellow-500/15 hover:text-yellow-50 sm:text-sm;
+}
+
+.df-link-tile {
+  @apply flex flex-col gap-2 rounded-xl border border-yellow-500/25 bg-slate-950/60 p-4 shadow-[inset_0_1px_0_0_rgba(250,204,21,0.06)] transition-colors hover:border-yellow-400/50 hover:bg-yellow-500/8 md:flex-row md:items-center md:justify-between md:gap-4 md:p-5;
+  border-radius: var(--radius-card);
+}
+
+.df-link-tile-title {
+  @apply font-display text-base font-bold text-white md:text-lg;
+}
+
+.df-link-tile-hint {
+  @apply mt-1 text-xs leading-relaxed text-gray-400 md:text-sm;
+}
+
+.df-link-tile-action {
+  @apply inline-flex shrink-0 items-center gap-2 font-display text-sm font-bold uppercase tracking-wider text-yellow-400;
+}
+
+.df-spec-row {
+  @apply flex justify-between border-b border-white/5 pb-2 text-sm text-gray-400;
+}
+
+.df-spec-row:last-child {
+  @apply border-b-0 pb-0 pt-2;
+}
+
+.df-spec-value {
+  @apply text-gray-200;
+}
+
+.df-code-chip {
+  @apply rounded bg-black/40 px-2 py-1 font-mono text-sm text-yellow-300;
+}
+
+.df-faq {
+  @apply bg-slate-900/60 border border-white/10 backdrop-blur-sm overflow-hidden transition-colors;
+  border-radius: var(--radius-card);
+}
+
+.df-faq[open] {
+  @apply border-l-2 border-l-yellow-500/60;
+}
+
+.df-faq summary {
+  @apply cursor-pointer list-none px-4 py-3 font-semibold text-sm md:text-base text-yellow-100 flex items-center justify-between gap-2 [&::-webkit-details-marker]:hidden;
+}
+
+.df-faq summary::after {
+  content: '+';
+  @apply text-yellow-500/70 text-lg leading-none transition-transform;
+}
+
+.df-faq[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.df-faq .df-faq-body {
+  @apply border-t border-white/5 px-4 pb-4 pt-2 text-sm md:text-base text-gray-300 leading-relaxed;
+}
+
+.df-intro-band {
+  @apply bg-slate-900/60 border border-yellow-500/20 backdrop-blur-sm p-5 md:p-6;
+  border-radius: var(--radius-card);
+}
+
+.df-divider {
+  @apply border-t border-yellow-500/20;
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-danger {
+  color: var(--color-danger);
 }
 
 @media (prefers-reduced-motion: reduce) {

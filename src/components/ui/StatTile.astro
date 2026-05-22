@@ -1,0 +1,17 @@
+---
+interface Props {
+	label: string;
+	value: string;
+	icon?: string;
+	valueClassName?: string;
+	className?: string;
+}
+
+const { label, value, icon, valueClassName = 'text-yellow-400', className = '' } = Astro.props;
+---
+
+<div class={`df-stat-tile ${className}`.trim()}>
+	{icon && <span class="mb-2 block text-2xl" aria-hidden="true">{icon}</span>}
+	<p class="mb-1 text-xs uppercase tracking-wider text-gray-400">{label}</p>
+	<p class={`text-xl md:text-2xl font-bold font-display ${valueClassName}`}>{value}</p>
+</div>

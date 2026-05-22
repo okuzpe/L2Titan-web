@@ -6,7 +6,7 @@ const lang = visitorLangFromPath(Astro.url.pathname);
 const featureLabel = (key: string) => translate(`info.featuresTab.${key}`, lang, key);
 ---
 
-<div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 h-full">
+<div class="df-surface p-6 rounded-xl border border-white/10 h-full">
 	<h4 class="text-lg font-bold text-yellow-400 mb-3 font-display" data-i18n="info.featuresTab.autoFarm">
 		{featureLabel('autoFarm')}
 	</h4>

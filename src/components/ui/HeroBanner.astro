@@ -1,0 +1,41 @@
+---
+import CardSurface from './CardSurface.astro';
+import { visitorLangFromPath } from '../../utils/i18n-lang';
+import { translate } from '../../utils/translations';
+
+interface Props {
+	title: string;
+	titleKey?: string;
+	intro: string;
+	introKey?: string;
+	kicker?: string;
+	kickerKey?: string;
+	className?: string;
+}
+
+const { title, titleKey, intro, introKey, kicker, kickerKey, className = '' } = Astro.props;
+const lang = visitorLangFromPath(Astro.url.pathname);
+const titleText = titleKey ? translate(titleKey, lang, title) : title;
+const introText = introKey ? translate(introKey, lang, intro) : intro;
+const kickerText = kickerKey ? translate(kickerKey, lang, kicker ?? '') : kicker;
+---
+
+<CardSurface variant="strong" className={`p-6 md:p-10 ${className}`.trim()}>
+	{kickerText && (
+		<p class="df-kicker mb-3" {...kickerKey ? { 'data-i18n': kickerKey } : {}}>
+			{kickerText}
+		</p>
+	)}
+	<h1 class="df-hero-title mb-4" {...titleKey ? { 'data-i18n': titleKey } : {}}>
+		{titleText}
+	</h1>
+	{introKey === undefined && intro === '' ? (
+		<div class="df-lead mb-0"><slot name="intro" /></div>
+	) : (
+		<p class="df-lead" {...introKey ? { 'data-i18n': introKey } : {}}>
+			{introText}
+		</p>
+	)}
+	<div class="mt-6 flex flex-wrap items-center gap-3"><slot name="actions" /></div>
+	<slot name="footer" />
+</CardSurface>

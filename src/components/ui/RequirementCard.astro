@@ -1,0 +1,35 @@
+---
+import CardSurface from './CardSurface.astro';
+
+interface SpecRow {
+	label: string;
+	value: string;
+}
+
+interface Props {
+	accentLabel: string;
+	accentKey?: string;
+	titleLabel: string;
+	titleKey?: string;
+	rows: SpecRow[];
+}
+
+const { accentLabel, accentKey, titleLabel, titleKey, rows } = Astro.props;
+---
+
+<CardSurface className="p-5 md:p-8 hover:border-yellow-500/30 transition-colors">
+	<h2 class="df-section-label mb-4 md:mb-6 flex flex-wrap items-center gap-2 text-white">
+		<span class="text-yellow-500" {...accentKey ? { 'data-i18n': accentKey } : {}}>{accentLabel}</span>
+		<span {...titleKey ? { 'data-i18n': titleKey } : {}}>{titleLabel}</span>
+	</h2>
+	<ul class="space-y-2 md:space-y-3">
+		{
+			rows.map((row) => (
+				<li class="df-spec-row">
+					<span>{row.label}</span>
+					<span class="df-spec-value">{row.value}</span>
+				</li>
+			))
+		}
+	</ul>
+</CardSurface>

@@ -1,0 +1,19 @@
+---
+interface Props {
+	href: string;
+	label: string;
+	labelKey?: string;
+	external?: boolean;
+}
+
+const { href, label, labelKey, external = href.startsWith('http') } = Astro.props;
+---
+
+<a
+	href={href}
+	class="df-nav-tile"
+	{...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+	{...(labelKey ? { 'data-i18n': labelKey } : {})}
+>
+	{label}
+</a>

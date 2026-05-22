@@ -2,7 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import ActionButton from '../components/ui/ActionButton.astro';
 import CardSurface from '../components/ui/CardSurface.astro';
+import RelatedDocsSection from '../components/ui/RelatedDocsSection.astro';
+import RequirementCard from '../components/ui/RequirementCard.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
+import StepList from '../components/ui/StepList.astro';
 import {
   buildBreadcrumb,
   buildFaq,
@@ -20,6 +23,19 @@ const relatedDocLinks = [
 	{ href: '/comunidad', i18nKey: 'community', fallback: 'Discord y comunidad' },
 	{ href: '/news', i18nKey: 'news', fallback: 'Noticias' },
 ] as const;
+
+const relatedDocNavLinks = relatedDocLinks.map((link) => ({
+	href: link.href,
+	label: translate(`downloads.relatedDocs.${link.i18nKey}`, lang, link.fallback),
+	labelKey: `downloads.relatedDocs.${link.i18nKey}`,
+}));
+
+const quickStartSteps = [
+	{ n: 1, text: translate('downloads.quickStart.step1', lang, ''), i18nKey: 'downloads.quickStart.step1' },
+	{ n: 2, text: translate('downloads.quickStart.step2', lang, ''), i18nKey: 'downloads.quickStart.step2' },
+	{ n: 3, text: translate('downloads.quickStart.step3', lang, ''), i18nKey: 'downloads.quickStart.step3' },
+	{ n: 4, text: translate('downloads.quickStart.step4', lang, ''), i18nKey: 'downloads.quickStart.step4' },
+];
 
 const downloads = [
   {
@@ -117,35 +133,35 @@ const structuredData = [
   <div class="container mx-auto px-4 py-12 md:py-24">
     <SectionHeading text="CENTRO DE DESCARGAS" i18nKey="downloads.title" className="mb-6 md:mb-8" as="h1" />
 
-    <CardSurface className="max-w-5xl mx-auto mb-8 md:mb-10 bg-emerald-500/10 border-emerald-400/30 p-5 md:p-6">
+    <CardSurface className="max-w-5xl mx-auto mb-8 md:mb-10 df-notice-success p-5 md:p-6">
       <div class="flex items-start gap-3">
         <span class="text-2xl leading-none" aria-hidden="true">&#x2705;</span>
         <div>
-          <h2 class="text-emerald-300 font-bold text-lg md:text-xl mb-1" data-i18n="downloads.accountNotice.title">
+          <h2 class="df-section-label mb-1 text-emerald-300" data-i18n="downloads.accountNotice.title">
             Auto Create Account activado
           </h2>
-          <p class="text-emerald-100/90 text-sm md:text-base" data-i18n="downloads.accountNotice.description">
+          <p class="df-muted text-emerald-100/90" data-i18n="downloads.accountNotice.description">
             No necesitas registrarte en una web. Tu cuenta se crea automaticamente cuando entras al juego por primera vez.
           </p>
         </div>
       </div>
     </CardSurface>
 
-    <div class="hidden md:block max-w-5xl mx-auto bg-slate-900/80 backdrop-blur-md rounded-xl border border-yellow-500/20 overflow-hidden mb-16 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-      <div class="overflow-x-auto">
+    <div class="hidden md:block max-w-5xl mx-auto df-table-wrap mb-16 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
         <table class="w-full text-left">
-          <thead class="bg-linear-to-r from-slate-900 via-slate-800 to-slate-900 text-yellow-500 uppercase text-sm font-display tracking-wider border-b border-yellow-500/20">
+          <thead>
             <tr>
-              <th class="px-8 py-6 font-bold" data-i18n="downloads.table.file">Archivo</th>
-              <th class="px-8 py-6 font-bold" data-i18n="downloads.table.size">Tamaño</th>
-              <th class="px-8 py-6 font-bold" data-i18n="downloads.table.type">Tipo</th>
-              <th class="px-8 py-6 font-bold text-right" data-i18n="downloads.table.action">Acción</th>
+              <th data-i18n="downloads.table.file">Archivo</th>
+              <th data-i18n="downloads.table.size">Tamaño</th>
+              <th data-i18n="downloads.table.type">Tipo</th>
+              <th class="text-right" data-i18n="downloads.table.action">Acción</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-white/5">
+          <tbody>
             {downloads.map((file) => (
               <tr class="hover:bg-yellow-500/5 transition-colors group">
-                <td class="px-8 py-6 font-medium text-white group-hover:text-yellow-200 transition-colors flex items-center gap-3">
+                <td class="font-medium text-white group-hover:text-yellow-200 transition-colors">
+                  <span class="inline-flex items-center gap-3">
                   {file.icon.fill ? (
                     <svg class={file.icon.class} fill="currentColor" viewBox="0 0 24 24">
                       <path d={file.icon.path} />
@@ -156,10 +172,11 @@ const structuredData = [
                     </svg>
                   )}
                   {file.nameKey ? <span data-i18n={file.nameKey}>{file.name}</span> : file.name}
+                  </span>
                 </td>
-                <td class="px-8 py-6 text-gray-400 font-mono">{file.size}</td>
-                <td class="px-8 py-6 text-gray-400">{file.type}</td>
-                <td class="px-8 py-6 text-right">
+                <td class="font-mono text-gray-400">{file.size}</td>
+                <td class="text-gray-400">{file.type}</td>
+                <td class="text-right">
                   <ActionButton
                     href={file.link}
                     download={isDirectDownload(file.type) ? getDownloadFilename(file) : undefined}
@@ -175,7 +192,6 @@ const structuredData = [
             ))}
           </tbody>
         </table>
-      </div>
     </div>
 
     <div class="md:hidden max-w-5xl mx-auto space-y-4 mb-12">
@@ -214,128 +230,63 @@ const structuredData = [
     </div>
 
     <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-      <CardSurface className="p-5 md:p-8 hover:border-yellow-500/30 transition-colors">
-        <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 font-display flex items-center gap-2">
-          <span class="text-yellow-500" data-i18n="downloads.requirements.minimum">MINIMOS</span> <span data-i18n="downloads.requirements.requirements">REQUISITOS</span>
-        </h2>
-        <ul class="space-y-2 md:space-y-3 text-gray-400 text-sm">
-          <li class="flex justify-between border-b border-white/5 pb-2"><span>OS:</span> <span class="text-gray-200">Windows 7/8/10</span></li>
-          <li class="flex justify-between border-b border-white/5 pb-2"><span>CPU:</span> <span class="text-gray-200">Intel Core i3</span></li>
-          <li class="flex justify-between border-b border-white/5 pb-2"><span>RAM:</span> <span class="text-gray-200">4 GB</span></li>
-          <li class="flex justify-between border-b border-white/5 pb-2"><span>GPU:</span> <span class="text-gray-200">GeForce GT 630</span></li>
-          <li class="flex justify-between pt-2"><span>HDD:</span> <span class="text-gray-200">30 GB libres</span></li>
-        </ul>
-      </CardSurface>
-      <CardSurface className="p-5 md:p-8 hover:border-yellow-500/30 transition-colors">
-        <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 font-display flex items-center gap-2">
-          <span class="text-yellow-500" data-i18n="downloads.requirements.recommended">RECOMENDADOS</span> <span data-i18n="downloads.requirements.requirements">REQUISITOS</span>
-        </h2>
-        <ul class="space-y-2 md:space-y-3 text-gray-400 text-sm">
-          <li class="flex justify-between border-b border-white/5 pb-2"><span>OS:</span> <span class="text-gray-200">Windows 10/11</span></li>
-          <li class="flex justify-between border-b border-white/5 pb-2"><span>CPU:</span> <span class="text-gray-200">Intel Core i5+</span></li>
-          <li class="flex justify-between border-b border-white/5 pb-2"><span>RAM:</span> <span class="text-gray-200">8 GB+</span></li>
-          <li class="flex justify-between border-b border-white/5 pb-2"><span>GPU:</span> <span class="text-gray-200">GeForce GTX 1050+</span></li>
-          <li class="flex justify-between pt-2"><span>HDD:</span> <span class="text-gray-200">SSD 30 GB</span></li>
-        </ul>
-      </CardSurface>
+      <RequirementCard
+        accentLabel="MINIMOS"
+        accentKey="downloads.requirements.minimum"
+        titleLabel="REQUISITOS"
+        titleKey="downloads.requirements.requirements"
+        rows={[
+          { label: 'OS:', value: 'Windows 7/8/10' },
+          { label: 'CPU:', value: 'Intel Core i3' },
+          { label: 'RAM:', value: '4 GB' },
+          { label: 'GPU:', value: 'GeForce GT 630' },
+          { label: 'HDD:', value: '30 GB libres' },
+        ]}
+      />
+      <RequirementCard
+        accentLabel="RECOMENDADOS"
+        accentKey="downloads.requirements.recommended"
+        titleLabel="REQUISITOS"
+        titleKey="downloads.requirements.requirements"
+        rows={[
+          { label: 'OS:', value: 'Windows 10/11' },
+          { label: 'CPU:', value: 'Intel Core i5+' },
+          { label: 'RAM:', value: '8 GB+' },
+          { label: 'GPU:', value: 'GeForce GTX 1050+' },
+          { label: 'HDD:', value: 'SSD 30 GB' },
+        ]}
+      />
     </div>
 
     <CardSurface className="max-w-5xl mx-auto mt-8 md:mt-10 p-5 md:p-8 hover:border-yellow-500/30 transition-colors">
-      <h2 class="text-xl md:text-2xl font-bold text-yellow-400 mb-4 font-display" data-i18n="downloads.quickStart.title">
+      <h2 class="df-section-label mb-4" data-i18n="downloads.quickStart.title">
         Pasos rapidos para jugar
       </h2>
-      <ol class="space-y-2 md:space-y-3 text-gray-300 text-sm md:text-base list-decimal pl-5">
-        <li data-i18n="downloads.quickStart.step1">Descarga el Cliente Completo o el Launcher.</li>
-        <li data-i18n="downloads.quickStart.step2">Descomprime el juego y abre L2TitanLauncher.</li>
-        <li data-i18n="downloads.quickStart.step3">Inicia sesion en el juego con el usuario y clave que quieras.</li>
-        <li data-i18n="downloads.quickStart.step4">Tu cuenta se crea automaticamente al primer login (Auto Create Account).</li>
-      </ol>
+      <StepList steps={quickStartSteps} />
     </CardSurface>
 
-    <section class="max-w-5xl mx-auto mt-10 md:mt-14" aria-labelledby="downloads-mas-info">
-      <CardSurface
-        variant="strong"
-        className="p-6 md:p-8 shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:border-yellow-500/35 transition-colors"
-      >
-        <p
-          class="text-[11px] uppercase tracking-[0.28em] text-yellow-400/80 mb-2"
-          data-i18n="downloads.relatedDocs.kicker"
-        >
-          {rd('kicker', 'Después de descargar')}
-        </p>
-        <h2
-          id="downloads-mas-info"
-          class="text-xl md:text-2xl font-bold text-yellow-400 font-display tracking-wide mb-3"
-          data-i18n="downloads.relatedDocs.title"
-        >
-          {rd('title', 'Documentación relacionada')}
-        </h2>
-        <p
-          class="text-gray-400 text-sm md:text-base leading-relaxed mb-6 max-w-2xl"
-          data-i18n="downloads.relatedDocs.subtitle"
-        >
-          {rd(
-            'subtitle',
-            'Instalá el cliente y seguí con rates, features y la comunidad; todo está enlazado para que no te pierdas.',
-          )}
-        </p>
-
-        <a
-          href="/info"
-          class="group flex flex-col gap-2 rounded-xl border border-white/10 bg-slate-900/40 p-4 md:flex-row md:items-center md:justify-between md:gap-4 md:p-5 transition-colors hover:border-yellow-500/30 hover:bg-yellow-500/5"
-        >
-          <div class="min-w-0">
-            <p class="font-display text-base font-bold text-white md:text-lg" data-i18n="downloads.relatedDocs.wikiCta">
-              {rd('wikiCta', 'Wiki del servidor')}
-            </p>
-            <p class="mt-1 text-xs text-gray-400 md:text-sm leading-relaxed" data-i18n="downloads.relatedDocs.wikiHint">
-              {rd('wikiHint', 'Índice en /info: rates, VIP, economía, comandos e instancias.')}
-            </p>
-          </div>
-          <span
-            class="inline-flex shrink-0 items-center gap-2 text-sm font-bold uppercase tracking-wider text-yellow-400 font-display"
-          >
-            <span data-i18n="downloads.relatedDocs.wikiAction">{rd('wikiAction', 'Ir al índice')}</span>
-            <svg
-              class="h-4 w-4 transition-transform group-hover:translate-x-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </span>
-        </a>
-
-        <nav
-          class="mt-6 border-t border-white/10 pt-6"
-          aria-label={rd('navAria', 'Enlaces útiles después de instalar el cliente')}
-        >
-          <p
-            class="text-[11px] uppercase tracking-[0.22em] text-gray-500 mb-3 font-display"
-            data-i18n="downloads.relatedDocs.quickLinksLabel"
-          >
-            {translate('downloads.relatedDocs.quickLinksLabel', lang, 'Enlaces rápidos')}
-          </p>
-          <ul class="grid grid-cols-2 gap-3 sm:grid-cols-4" role="list">
-            {relatedDocLinks.map((link) => {
-              const key = `downloads.relatedDocs.${link.i18nKey}` as const;
-              return (
-                <li class="min-w-0">
-                  <a
-                    href={link.href}
-                    class="flex min-h-12 items-center justify-center rounded-xl border border-white/10 bg-slate-900/30 px-3 py-2.5 text-center text-xs font-semibold leading-snug text-gray-200 font-display transition-colors hover:border-yellow-500/30 hover:bg-yellow-500/5 hover:text-yellow-200 sm:text-sm"
-                    data-i18n={key}
-                  >
-                    {translate(key, lang, link.fallback)}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-      </CardSurface>
-    </section>
+    <RelatedDocsSection
+      id="downloads-mas-info"
+      className="mt-10 md:mt-14"
+      kicker={rd('kicker', 'Después de descargar')}
+      kickerKey="downloads.relatedDocs.kicker"
+      title={rd('title', 'Documentación relacionada')}
+      titleKey="downloads.relatedDocs.title"
+      subtitle={rd(
+        'subtitle',
+        'Instalá el cliente y seguí con rates, features y la comunidad; todo está enlazado para que no te pierdas.',
+      )}
+      subtitleKey="downloads.relatedDocs.subtitle"
+      wikiTitle={rd('wikiCta', 'Wiki del servidor')}
+      wikiTitleKey="downloads.relatedDocs.wikiCta"
+      wikiHint={rd('wikiHint', 'Índice en /info: rates, VIP, economía, comandos e instancias.')}
+      wikiHintKey="downloads.relatedDocs.wikiHint"
+      wikiAction={rd('wikiAction', 'Ir al índice')}
+      wikiActionKey="downloads.relatedDocs.wikiAction"
+      quickLinksLabel={translate('downloads.relatedDocs.quickLinksLabel', lang, 'Enlaces rápidos')}
+      quickLinksLabelKey="downloads.relatedDocs.quickLinksLabel"
+      navAria={rd('navAria', 'Enlaces útiles después de instalar el cliente')}
+      links={relatedDocNavLinks}
+    />
   </div>
 </Layout>

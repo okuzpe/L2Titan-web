@@ -7,7 +7,7 @@ const lang = visitorLangFromPath(Astro.url.pathname);
 const economyLabel = (key: string) => translate(`info.economyTab.${key}`, lang, key);
 ---
 
-<div class="bg-slate-900/50 p-5 md:p-6 rounded-xl border border-yellow-500/20 mb-6">
+<div class="df-surface p-5 md:p-6 rounded-xl border border-yellow-500/20 mb-6">
   <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
     <div>
       <p class="text-[11px] uppercase tracking-[0.22em] text-yellow-400/75">Economy map</p>
@@ -20,16 +20,16 @@ const economyLabel = (key: string) => translate(`info.economyTab.${key}`, lang, 
 </div>
 
 <!-- Currencies -->
-<div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-8">
+<div class="df-surface p-6 rounded-xl border border-white/10 mb-8">
   <h3 class="text-2xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.economyTab.currencies">Monedas del Servidor</h3>
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
     {[
       { name: 'pvpCoin', source: 'pvpCoinSource', icon: '⚔️', color: 'border-red-500/20' },
       { name: 'eventMedal', source: 'eventMedalSource', icon: '🏅', color: 'border-blue-500/20' },
-      { name: 'raidToken', source: 'raidTokenSource', icon: '💀', color: 'border-purple-500/20' },
+      { name: 'raidToken', source: 'raidTokenSource', icon: '💀', color: 'border-yellow-500/20' },
       { name: 'voteCoin', source: 'voteCoinSource', icon: '🗳️', color: 'border-green-500/20' },
       { name: 'titanCoin', source: 'titanCoinSource', icon: '🏰', color: 'border-yellow-500/20' },
-      { name: 'vipToken', source: 'vipTokenSource', icon: '⭐', color: 'border-amber-500/20' },
+      { name: 'vipToken', source: 'vipTokenSource', icon: '⭐', color: 'border-yellow-500/20' },
     ].map((c) => (
       <div class={`p-4 bg-black/40 rounded border ${c.color} h-full`}>
         <div class="flex items-center gap-2 mb-1">
@@ -43,11 +43,11 @@ const economyLabel = (key: string) => translate(`info.economyTab.${key}`, lang, 
 </div>
 
 <!-- L2 Day Letters -->
-<div class="bg-slate-900/50 p-6 rounded-xl border border-cyan-500/20 mb-8">
-  <h3 class="text-2xl font-bold text-cyan-400 mb-2 font-display">L2 Letters</h3>
+<div class="df-surface p-6 rounded-xl border border-yellow-500/20 mb-8">
+  <h3 class="text-2xl font-bold text-yellow-400 mb-2 font-display">L2 Letters</h3>
   <div class="grid lg:grid-cols-3 gap-5 items-start">
     <div class="lg:col-span-1">
-      <div class="rounded-xl overflow-hidden border border-cyan-500/15 bg-black/30">
+      <div class="rounded-xl overflow-hidden border border-yellow-500/15 bg-black/30">
         <img
           src="/images/letters-exchange.png"
           alt="L2 Letters exchange example"
@@ -59,9 +59,9 @@ const economyLabel = (key: string) => translate(`info.economyTab.${key}`, lang, 
 
     <div class="lg:col-span-2">
       <p class="text-gray-400 text-sm mb-5">
-        La nueva daily <code class="bg-black/40 text-cyan-300 px-2 py-0.5 rounded text-xs">.daily enter 2</code> entrega Adena y letras L2 Day. Esas letras se cambian en <strong>Paul Merchant</strong> por multisells A-grade.
+        La nueva daily <code class="bg-black/40 text-yellow-400 px-2 py-0.5 rounded text-xs">.daily enter 2</code> entrega Adena y letras L2 Day. Esas letras se cambian en <strong>Paul Merchant</strong> por multisells A-grade.
       </p>
-      <div class="mb-5 rounded-xl border border-cyan-500/15 bg-black/30 p-4">
+      <div class="mb-5 rounded-xl border border-yellow-500/15 bg-black/30 p-4">
         <p class="text-sm text-gray-300">
           Junta letras para formar palabras y canjearlas directamente en Paul Merchant. Las combinaciones activas son <strong>WEAPON</strong>, <strong>SHIELD</strong>, <strong>YEWELLS</strong> y <strong>ARMORS</strong>. Algunas recetas top tambien piden el item especial <strong>II</strong>.
         </p>
@@ -69,7 +69,7 @@ const economyLabel = (key: string) => translate(`info.economyTab.${key}`, lang, 
       <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-3">
         {l2DayRecipes.map((recipe) => (
           <div class="p-4 bg-black/40 rounded border border-white/10">
-            <div class="text-cyan-300 font-semibold text-sm mb-1">{recipe.product}</div>
+            <div class="text-yellow-400 font-semibold text-sm mb-1">{recipe.product}</div>
             <div class="text-gray-400 text-xs uppercase tracking-[0.2em] mb-2">Letras requeridas</div>
             <div class="text-yellow-400 font-mono text-sm">{recipe.word}</div>
             <div class="mt-3 text-xs text-gray-400">Canje: {recipe.reward}</div>
@@ -86,7 +86,7 @@ const economyLabel = (key: string) => translate(`info.economyTab.${key}`, lang, 
 <!-- Crystal Scroll Shop + Raid Tokens -->
 <div class="grid xl:grid-cols-2 gap-8 mb-8">
   <!-- Crystal Scrolls -->
-  <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
+  <div class="df-surface p-6 rounded-xl border border-white/10">
     <h3 class="text-xl font-bold text-yellow-500 mb-2 font-display" data-i18n="info.economyTab.crystalScrollShop">Tienda de Crystal Scrolls</h3>
     <p class="text-gray-500 text-xs mb-4" data-i18n="info.economyTab.crystalScrollNote">Si falla no baja ni destruye el item; solo se consume el scroll. Requiere Vote Coins + Raid Tokens + Adena.</p>
 
@@ -143,7 +143,7 @@ const economyLabel = (key: string) => translate(`info.economyTab.${key}`, lang, 
 
   <!-- Raid Tokens -->
   <div class="space-y-6">
-    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
+    <div class="df-surface p-6 rounded-xl border border-white/10">
       <h3 class="text-xl font-bold text-yellow-500 mb-2 font-display" data-i18n="info.economyTab.raidTokens">Raid Tokens por Boss</h3>
       <p class="text-gray-500 text-xs mb-4" data-i18n="info.economyTab.raidTokensDesc">Todos los Raid Bosses y Grand Bosses dropean Raid Tokens.</p>
       <div class="overflow-x-auto">
@@ -169,7 +169,7 @@ const economyLabel = (key: string) => translate(`info.economyTab.${key}`, lang, 
     </div>
 
     <!-- Special Shop -->
-    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
+    <div class="df-surface p-6 rounded-xl border border-white/10">
       <h3 class="text-xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.economyTab.specialShop">Tienda Especial</h3>
 
       <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2" data-i18n="info.economyTab.withTitanCoins">Con Titan Coins</h4>
@@ -202,7 +202,7 @@ const economyLabel = (key: string) => translate(`info.economyTab.${key}`, lang, 
 </div>
 
 <!-- Titan's Box -->
-<div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-8">
+<div class="df-surface p-6 rounded-xl border border-white/10 mb-8">
   <h3 class="text-xl font-bold text-yellow-500 mb-2 font-display" data-i18n="info.economyTab.titansBoxTitle">Titan's Box Rewards</h3>
   <p class="text-gray-500 text-xs mb-4" data-i18n="info.economyTab.titansBoxDesc">
     Chance oficial de rewards por apertura de Titan's Box.
@@ -241,7 +241,7 @@ const economyLabel = (key: string) => translate(`info.economyTab.${key}`, lang, 
 </div>
 
 <!-- Shirts System -->
-<div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-8">
+<div class="df-surface p-6 rounded-xl border border-white/10 mb-8">
   <h3 class="text-xl font-bold text-yellow-500 mb-2 font-display" data-i18n="info.economyTab.shirtsTitle">Sistema de Shirts (Camisas)</h3>
   <p class="text-gray-500 text-xs mb-4" data-i18n="info.economyTab.shirtsDesc">Items equipables que dan bonificaciones progresivas de P.Atk, M.Atk y PvP Damage.</p>
   <div class="grid lg:grid-cols-2 gap-5 items-start">

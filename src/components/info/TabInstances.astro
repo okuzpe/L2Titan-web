@@ -28,23 +28,23 @@ const instanceCopy: Record<number, { maxEntriesKey: string; focusKey: string; dr
 };
 ---
 
-<div class="bg-slate-900/50 p-6 rounded-xl border border-purple-500/20 mb-8">
+<div class="df-surface p-6 rounded-xl border border-yellow-500/20 mb-8">
   <div class="mb-4">
-    <h2 class="text-xl md:text-2xl uppercase tracking-wide text-purple-300 font-display font-bold" data-i18n="info.instancesTab.instancesSectionTitle">Instancias diarias</h2>
+    <h2 class="text-xl md:text-2xl uppercase tracking-wide text-yellow-400 font-display font-bold" data-i18n="info.instancesTab.instancesSectionTitle">Instancias diarias</h2>
     <p class="text-sm text-gray-400 mt-1" data-i18n="info.instancesTab.instancesSectionDesc">Contenido con tiempo y reglas de instancia.</p>
   </div>
 
   <div class="grid gap-3 md:grid-cols-3 mb-5">
-    <div class="rounded-xl border border-purple-500/20 bg-purple-500/10 p-3">
-      <p class="text-[11px] uppercase tracking-[0.22em] text-purple-300" data-i18n="info.instancesTab.activeInstancesLabel">{instanceLabel('activeInstancesLabel')}</p>
+    <div class="rounded-xl border border-yellow-500/20 bg-yellow-500/10 p-3">
+      <p class="text-[11px] uppercase tracking-[0.22em] text-yellow-400" data-i18n="info.instancesTab.activeInstancesLabel">{instanceLabel('activeInstancesLabel')}</p>
       <p class="mt-1 text-lg font-bold text-white">{dailyInstances.length}</p>
     </div>
     <div class="rounded-xl border border-yellow-500/20 bg-yellow-500/10 p-3">
       <p class="text-[11px] uppercase tracking-[0.22em] text-yellow-300" data-i18n="info.instancesTab.dailyResetLabel">{instanceLabel('dailyResetLabel')}</p>
       <p class="mt-1 text-lg font-bold text-white">06:30 AM</p>
     </div>
-    <div class="rounded-xl border border-cyan-500/20 bg-cyan-500/10 p-3">
-      <p class="text-[11px] uppercase tracking-[0.22em] text-cyan-300" data-i18n="info.instancesTab.keyCommandLabel">{instanceLabel('keyCommandLabel')}</p>
+    <div class="rounded-xl border border-yellow-500/20 bg-yellow-500/10 p-3">
+      <p class="text-[11px] uppercase tracking-[0.22em] text-yellow-400" data-i18n="info.instancesTab.keyCommandLabel">{instanceLabel('keyCommandLabel')}</p>
       <p class="mt-1 text-lg font-bold text-white font-mono">.daily</p>
     </div>
   </div>
@@ -66,11 +66,11 @@ const instanceCopy: Record<number, { maxEntriesKey: string; focusKey: string; dr
     </div>
   </div>
 
-  <div class="bg-black/30 p-5 rounded-xl border border-cyan-500/20 mb-6">
+  <div class="bg-black/30 p-5 rounded-xl border border-yellow-500/20 mb-6">
     <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
       <div class="max-w-3xl">
-        <p class="text-[11px] uppercase tracking-[0.22em] text-cyan-300 mb-2" data-i18n="info.instancesTab.lettersKicker">{instanceLabel('lettersKicker')}</p>
-        <h3 class="text-xl font-bold text-cyan-400 mb-3 font-display" data-i18n="info.instancesTab.lettersTitle">{instanceLabel('lettersTitle')}</h3>
+        <p class="text-[11px] uppercase tracking-[0.22em] text-yellow-400 mb-2" data-i18n="info.instancesTab.lettersKicker">{instanceLabel('lettersKicker')}</p>
+        <h3 class="text-xl font-bold text-yellow-400 mb-3 font-display" data-i18n="info.instancesTab.lettersTitle">{instanceLabel('lettersTitle')}</h3>
         <p class="text-sm text-gray-300 mb-3" data-i18n="info.instancesTab.lettersIntro">
           {instanceLabel('lettersIntro')}
         </p>
@@ -78,8 +78,8 @@ const instanceCopy: Record<number, { maxEntriesKey: string; focusKey: string; dr
           {instanceLabel('lettersNote')}
         </p>
       </div>
-      <div class="rounded-xl border border-cyan-500/15 bg-cyan-500/10 px-4 py-3 text-sm text-cyan-200">
-        <span class="block text-[11px] uppercase tracking-[0.2em] text-cyan-300/80 mb-1" data-i18n="info.instancesTab.realAccessLabel">{instanceLabel('realAccessLabel')}</span>
+      <div class="rounded-xl border border-yellow-500/15 bg-yellow-500/10 px-4 py-3 text-sm text-yellow-200">
+        <span class="block text-[11px] uppercase tracking-[0.2em] text-yellow-400/80 mb-1" data-i18n="info.instancesTab.realAccessLabel">{instanceLabel('realAccessLabel')}</span>
         <code class="font-mono text-base text-white">.daily enter 2</code>
       </div>
     </div>
@@ -88,7 +88,7 @@ const instanceCopy: Record<number, { maxEntriesKey: string; focusKey: string; dr
   <div>
     <div class="flex flex-col gap-2 mb-4 md:flex-row md:items-end md:justify-between">
       <div>
-        <p class="text-[11px] uppercase tracking-[0.22em] text-gray-500" data-i18n="info.instancesTab.dailyRoutesKicker">{instanceLabel('dailyRoutesKicker')}</p>
+        <p class="df-kicker-muted" data-i18n="info.instancesTab.dailyRoutesKicker">{instanceLabel('dailyRoutesKicker')}</p>
         <h3 class="text-lg md:text-xl font-bold text-white font-display" data-i18n="info.instancesTab.dailyRoutesTitle">{instanceLabel('dailyRoutesTitle')}</h3>
       </div>
       <p class="max-w-xl text-sm text-gray-500" data-i18n="info.instancesTab.dailyRoutesDesc">
@@ -102,11 +102,11 @@ const instanceCopy: Record<number, { maxEntriesKey: string; focusKey: string; dr
           <div class="flex flex-wrap items-start justify-between gap-3 mb-4">
             <div>
               <p class="text-xs uppercase tracking-[0.22em] text-yellow-500">Daily #{instance.id}</p>
-              <h3 class="text-xl font-bold text-purple-300 font-display">{instance.name}</h3>
+              <h3 class="text-xl font-bold text-yellow-400 font-display">{instance.name}</h3>
             </div>
             <div class="flex flex-wrap gap-2">
               <code class="bg-yellow-500/10 text-yellow-400 px-3 py-1 rounded text-xs">{instance.access}</code>
-              <span class="rounded bg-purple-500/10 px-3 py-1 text-xs text-purple-300">{instance.focus}</span>
+              <span class="rounded bg-yellow-500/10 px-3 py-1 text-xs text-yellow-400">{instance.focus}</span>
             </div>
           </div>
 
@@ -136,8 +136,8 @@ const instanceCopy: Record<number, { maxEntriesKey: string; focusKey: string; dr
             </div>
           </div>
 
-          <div class="mt-4 p-3 bg-purple-500/10 rounded border border-purple-500/20">
-            <p class="text-xs uppercase tracking-wider text-purple-300 mb-1" data-i18n="info.instancesTab.primaryGoalLabel">{instanceLabel('primaryGoalLabel')}</p>
+          <div class="mt-4 p-3 bg-yellow-500/10 rounded border border-yellow-500/20">
+            <p class="text-xs uppercase tracking-wider text-yellow-400 mb-1" data-i18n="info.instancesTab.primaryGoalLabel">{instanceLabel('primaryGoalLabel')}</p>
             <p class="text-sm text-gray-300" data-i18n={`info.instancesTab.${instanceCopy[instance.id].focusKey}`}>{instanceLabel(instanceCopy[instance.id].focusKey)}</p>
           </div>
 
@@ -179,7 +179,7 @@ const instanceCopy: Record<number, { maxEntriesKey: string; focusKey: string; dr
   </div>
 </div>
 
-<div class="bg-slate-900/50 p-6 rounded-xl border border-yellow-500/20">
+<div class="df-surface p-6 rounded-xl border border-yellow-500/20">
   <div class="mb-4">
     <h2 class="text-xl md:text-2xl uppercase tracking-wide text-yellow-300 font-display font-bold" data-i18n="info.instancesTab.customZoneSectionTitle">Zona custom</h2>
     <p class="text-sm text-gray-400 mt-1" data-i18n="info.instancesTab.customZoneSectionDesc">Zona abierta de farmeo/PvP con balance propio.</p>

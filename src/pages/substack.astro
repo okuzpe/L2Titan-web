@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CardSurface from '../components/ui/CardSurface.astro';
+import HeroBanner from '../components/ui/HeroBanner.astro';
 import ActionButton from '../components/ui/ActionButton.astro';
 import Breadcrumbs from '../components/seo/Breadcrumbs.astro';
 import SubstackNextSection from '../components/info/SubstackNextSection.astro';
@@ -48,39 +49,42 @@ const structuredData = [
 				]}
 			/>
 		</div>
-		<section class="max-w-6xl mx-auto">
-			<CardSurface variant="strong" className="w-full p-6 md:p-8 lg:p-10">
-				<p class="text-[11px] uppercase tracking-[0.28em] text-yellow-400/80 mb-3" data-i18n="pages.substack.kicker">
-					{tk('pages.substack.kicker', '')}
-				</p>
-				<h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-yellow-400 font-display tracking-wide mb-4" data-i18n="pages.substack.h1">
-					{tk('pages.substack.h1', '')}
-				</h1>
-				<p class="text-lg md:text-xl text-gray-100 font-medium leading-relaxed mb-4 max-w-4xl" data-i18n="pages.substack.lead1">
-					{tk('pages.substack.lead1', '')}
-				</p>
-				<p class="text-sm md:text-base text-gray-400 leading-relaxed mb-6 max-w-4xl" data-i18n="pages.substack.lead2">
-					{tk('pages.substack.lead2', '')}
-				</p>
-				<div class="flex flex-wrap gap-3 mb-8 border-b border-white/10 pb-8">
-					<ActionButton href="/downloads" variant="primary" className="px-5 py-3 text-black" data-i18n="home.downloadClient">
-						{tk('home.downloadClient', 'Descargar cliente')}
-					</ActionButton>
-					<ActionButton
-						href="https://discord.gg/GunamUdGaQ"
-						target="_blank"
-						rel="noopener noreferrer"
-						variant="discord"
-						className="px-5 py-3"
-						data-i18n="pages.substack.discordCta"
-					>
-						{tk('pages.substack.discordCta', 'Discord oficial')}
-					</ActionButton>
-					<ActionButton href="/rates" variant="ghost" className="px-5 py-3" data-i18n="pages.substack.ratesCta">
-						{tk('pages.substack.ratesCta', 'Ver rates x25')}
-					</ActionButton>
+		<section class="max-w-6xl mx-auto space-y-8">
+			<HeroBanner
+				kicker={tk('pages.substack.kicker', '')}
+				kickerKey="pages.substack.kicker"
+				title={tk('pages.substack.h1', '')}
+				titleKey="pages.substack.h1"
+				intro=""
+			>
+				<div slot="intro" class="max-w-4xl space-y-4">
+					<p class="df-lead text-gray-100" data-i18n="pages.substack.lead1">
+						{tk('pages.substack.lead1', '')}
+					</p>
+					<p class="df-muted" data-i18n="pages.substack.lead2">
+						{tk('pages.substack.lead2', '')}
+					</p>
 				</div>
+				<ActionButton slot="actions" href="/downloads" variant="primary" className="px-5 py-3 text-black" data-i18n="home.downloadClient">
+					{tk('home.downloadClient', 'Descargar cliente')}
+				</ActionButton>
+				<ActionButton
+					slot="actions"
+					href="https://discord.gg/GunamUdGaQ"
+					target="_blank"
+					rel="noopener noreferrer"
+					variant="discord"
+					className="px-5 py-3"
+					data-i18n="pages.substack.discordCta"
+				>
+					{tk('pages.substack.discordCta', 'Discord oficial')}
+				</ActionButton>
+				<a slot="footer" href="/rates" class="mt-4 inline-block text-sm text-yellow-400 hover:text-yellow-300" data-i18n="pages.substack.ratesCta">
+					{tk('pages.substack.ratesCta', 'Ver rates x25')}
+				</a>
+			</HeroBanner>
 
+			<CardSurface variant="strong" className="w-full p-6 md:p-8 lg:p-10">
 				<div class="grid gap-10 lg:grid-cols-2 lg:gap-12">
 					<div>
 						<h2 class="text-xl md:text-2xl font-bold text-yellow-300 font-display mb-3" data-i18n="pages.substack.col1h">

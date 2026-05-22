@@ -1,0 +1,25 @@
+---
+interface Step {
+	n: number;
+	text: string;
+	i18nKey?: string;
+}
+
+interface Props {
+	steps: Step[];
+	className?: string;
+}
+
+const { steps, className = '' } = Astro.props;
+---
+
+<ol class={`space-y-4 ${className}`.trim()}>
+	{steps.map((step) => (
+		<li class="flex items-start gap-4">
+			<span class="df-step-num">{step.n}</span>
+			<p class="pt-0.5 text-sm md:text-base text-gray-300" {...step.i18nKey ? { 'data-i18n': step.i18nKey } : {}}>
+				{step.text}
+			</p>
+		</li>
+	))}
+</ol>

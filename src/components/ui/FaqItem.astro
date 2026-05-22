@@ -1,0 +1,17 @@
+---
+interface Props {
+	question: string;
+	answer: string;
+	questionKey?: string;
+	answerKey?: string;
+}
+
+const { question, answer, questionKey, answerKey } = Astro.props;
+---
+
+<details class="df-faq group">
+	<summary {...questionKey ? { 'data-i18n': questionKey } : {}}>{question}</summary>
+	<div class="df-faq-body" {...answerKey ? { 'data-i18n': answerKey } : {}}>
+		{answer}
+	</div>
+</details>

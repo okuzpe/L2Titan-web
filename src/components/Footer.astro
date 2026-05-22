@@ -63,7 +63,7 @@ const charPlaceholder = translate(
           />
         </a>
 
-        <!-- Banner L2Network: <a href> para SEO (enlaces rastreables); el modal sigue con preventDefault -->
+        <!-- L2Network: snippet oficial en HTML (recheck); clic → modal con &id=nombre PJ -->
         <a
           id="l2network-btn"
           href="https://l2network.eu/index.php?a=in&u=l2-titan"
@@ -73,10 +73,9 @@ const charPlaceholder = translate(
           title="L2Network"
         >
           <img
-            src="https://l2network.eu/images/sidebanner.png"
+            src="https://l2network.eu/button.php?u=l2-titan&buttontype=static"
             alt="L2Network"
-            class="border-0"
-            style="width: 145px; height: 122px;"
+            class="border-0 h-auto max-w-full"
             width="145"
             height="122"
             loading="lazy"
@@ -258,7 +257,7 @@ const charPlaceholder = translate(
       </div>
     </div>
 
-    <!-- L2Network Vote Modal -->
+    <!-- L2Network Vote Modal (voto web: u=l2-titan&id=nombre) -->
     <div
       id="l2network-modal"
       class="fixed inset-0 z-100 hidden items-center justify-center"
@@ -293,10 +292,13 @@ const charPlaceholder = translate(
         </button>
         <div class="text-center mb-5">
           <img
-            src="https://l2network.eu/images/sidebanner.png"
+            src="https://l2network.eu/button.php?u=l2-titan&buttontype=static"
             alt="L2Network"
-            style="width: 145px; height: 122px;"
-            class="mx-auto mb-3"
+            width="145"
+            height="122"
+            class="mx-auto mb-3 h-auto max-w-full border-0"
+            loading="lazy"
+            decoding="async"
           />
           <h4
             class="text-lg font-bold text-yellow-500 font-display uppercase tracking-wider"
@@ -559,7 +561,7 @@ const charPlaceholder = translate(
           href="https://www.facebook.com/l2titan.server/"
           target="_blank"
           rel="noopener noreferrer"
-          class="group relative inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-linear-to-r from-[#1b74e4] to-[#0f4ea8] text-white font-bold overflow-hidden shadow-[0_0_20px_rgba(27,116,228,0.3)] transition-all hover:shadow-[0_0_35px_rgba(27,116,228,0.55)] hover:scale-105"
+          class="group relative inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-linear-to-r from-[#1b74e4] to-[#0f4ea8] text-white font-bold overflow-hidden shadow-[0_0_20px_rgba(27,116,228,0.3)] transition-all hover:shadow-[0_0_35px_rgba(27,116,228,0.55)]"
         >
           <span class="sr-only">Facebook</span>
           <svg
@@ -578,7 +580,7 @@ const charPlaceholder = translate(
           href="https://www.instagram.com/l2titan_com/"
           target="_blank"
           rel="noopener noreferrer"
-          class="group relative inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-linear-to-r from-[#fd1d1d] via-[#d62976] to-[#f58529] text-white font-bold overflow-hidden shadow-[0_0_20px_rgba(214,41,118,0.3)] transition-all hover:shadow-[0_0_35px_rgba(214,41,118,0.55)] hover:scale-105"
+          class="group relative inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-linear-to-r from-[#fd1d1d] via-[#d62976] to-[#f58529] text-white font-bold overflow-hidden shadow-[0_0_20px_rgba(214,41,118,0.3)] transition-all hover:shadow-[0_0_35px_rgba(214,41,118,0.55)]"
         >
           <span class="sr-only">Instagram</span>
           <svg
@@ -597,7 +599,7 @@ const charPlaceholder = translate(
           href="https://discord.gg/GunamUdGaQ"
           target="_blank"
           rel="noopener noreferrer"
-          class="group relative inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-linear-to-r from-[#5865F2] to-[#3c45af] text-white font-bold overflow-hidden shadow-[0_0_20px_rgba(88,101,242,0.3)] transition-all hover:shadow-[0_0_35px_rgba(88,101,242,0.55)] hover:scale-105"
+          class="group relative inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-linear-to-r from-[#5865F2] to-[#3c45af] text-white font-bold overflow-hidden shadow-[0_0_20px_rgba(88,101,242,0.3)] transition-all hover:shadow-[0_0_35px_rgba(88,101,242,0.55)]"
         >
           <span class="sr-only">Discord</span>
           <svg

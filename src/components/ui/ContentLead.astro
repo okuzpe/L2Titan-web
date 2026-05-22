@@ -1,0 +1,33 @@
+---
+import CardSurface from './CardSurface.astro';
+import { visitorLangFromPath } from '../../utils/i18n-lang';
+import { translate } from '../../utils/translations';
+
+interface Props {
+	kicker?: string;
+	kickerKey?: string;
+	title: string;
+	titleKey?: string;
+	lead: string;
+	leadKey?: string;
+	className?: string;
+}
+
+const { kicker, kickerKey, title, titleKey, lead, leadKey, className = '' } = Astro.props;
+const lang = visitorLangFromPath(Astro.url.pathname);
+---
+
+<CardSurface className={`p-6 md:p-8 ${className}`.trim()}>
+	{kicker && (
+		<p class="df-kicker mb-2" {...kickerKey ? { 'data-i18n': kickerKey } : {}}>
+			{kickerKey ? translate(kickerKey, lang, kicker) : kicker}
+		</p>
+	)}
+	<h2 class="df-section-label mb-3 text-yellow-400" {...titleKey ? { 'data-i18n': titleKey } : {}}>
+		{titleKey ? translate(titleKey, lang, title) : title}
+	</h2>
+	<p class="df-muted mb-4" {...leadKey ? { 'data-i18n': leadKey } : {}}>
+		{leadKey ? translate(leadKey, lang, lead) : lead}
+	</p>
+	<slot />
+</CardSurface>

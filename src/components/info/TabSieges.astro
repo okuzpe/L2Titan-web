@@ -12,7 +12,7 @@ const lang = visitorLangFromPath(Astro.url.pathname);
 const siegeLabel = (key: string) => translate(`info.siegesTab.${key}`, lang, key);
 ---
 
-<div class="bg-slate-900/50 p-5 md:p-6 rounded-xl border border-yellow-500/20 mb-6">
+<div class="df-surface p-5 md:p-6 rounded-xl border border-yellow-500/20 mb-6">
   <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
     <div>
       <p class="text-[11px] uppercase tracking-[0.22em] text-yellow-400/75" data-i18n="info.siegesTab.introKicker">{siegeLabel('introKicker')}</p>
@@ -26,7 +26,7 @@ const siegeLabel = (key: string) => translate(`info.siegesTab.${key}`, lang, key
 
 <div class="grid xl:grid-cols-2 gap-8">
   <div>
-    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-6">
+    <div class="df-surface p-6 rounded-xl border border-white/10 mb-6">
       <h3 class="text-2xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.siegesTab.fortresses">Fortalezas</h3>
 
       <div class="space-y-2 text-sm mb-6">
@@ -84,7 +84,7 @@ const siegeLabel = (key: string) => translate(`info.siegesTab.${key}`, lang, key
   </div>
 
   <div>
-    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-6">
+    <div class="df-surface p-6 rounded-xl border border-white/10 mb-6">
       <h3 class="text-2xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.siegesTab.castleSieges">Asedios de Castillo</h3>
       <div class="space-y-2 text-sm">
         {[

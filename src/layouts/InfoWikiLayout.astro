@@ -55,22 +55,22 @@ const lang = visitorLangFromPath(Astro.url.pathname);
       <CardSurface variant="strong" className="max-w-7xl mx-auto mb-6 p-5 md:p-7">
         <div class="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
           <div class="max-w-4xl">
-            <p class="text-[11px] uppercase tracking-[0.3em] text-yellow-400/80 mb-2" data-i18n={activeSection.kickerKey}>
+            <p class="df-kicker mb-2" data-i18n={activeSection.kickerKey}>
               {translate(activeSection.kickerKey, lang, activeSection.kickerKey)}
             </p>
-            <h1 class="text-3xl md:text-4xl font-bold text-yellow-400 font-display mb-3" data-i18n={`info.tabs.${activeSection.slug}`}>
+            <h1 class="df-hero-title mb-3 text-3xl md:text-4xl" data-i18n={`info.tabs.${activeSection.slug}`}>
               {translate(`info.tabs.${activeSection.slug}`, lang, activeSection.slug)}
             </h1>
-            <p class="text-sm md:text-base text-gray-300 leading-relaxed" data-i18n={activeSection.summaryKey}>
+            <p class="df-lead text-sm md:text-base" data-i18n={activeSection.summaryKey}>
               {translate(activeSection.summaryKey, lang, activeSection.summaryKey)}
             </p>
           </div>
           <div class="flex flex-wrap gap-3">
-            <ActionButton href={activeConfig?.canonicalPath ?? '/info'} variant="ghost" className="px-5 py-3" data-i18n="info.wiki.layout.viewMore">
-              {translate('info.wiki.layout.viewMore', lang, 'Ver mas')}
-            </ActionButton>
             <ActionButton href="/downloads" variant="primary" className="px-5 py-3 text-black" data-i18n="home.downloadClient">
               {translate('home.downloadClient', lang, 'Descargar cliente')}
+            </ActionButton>
+            <ActionButton href={activeConfig?.canonicalPath ?? '/info'} variant="ghost" className="px-5 py-3" data-i18n="info.wiki.layout.viewMore">
+              {translate('info.wiki.layout.viewMore', lang, 'Ver mas')}
             </ActionButton>
           </div>
         </div>
@@ -115,7 +115,7 @@ const lang = visitorLangFromPath(Astro.url.pathname);
             >
               <span class="wiki-tree-index">00</span>
               <span class="wiki-tree-copy min-w-0">
-                <span class="block text-[11px] uppercase tracking-[0.22em] text-gray-500" data-i18n="info.wiki.layout.coverLabel">
+                <span class="block df-kicker-muted" data-i18n="info.wiki.layout.coverLabel">
                   {translate('info.wiki.layout.coverLabel', lang, 'Portada')}
                 </span>
                 <span class="block text-sm font-semibold text-slate-200" data-i18n="info.wiki.layout.railCenter">
@@ -137,7 +137,7 @@ const lang = visitorLangFromPath(Astro.url.pathname);
                   >
                     <span class="wiki-tree-index">{String(index + 1).padStart(2, '0')}</span>
                     <span class="wiki-tree-copy min-w-0">
-                      <span class="block text-[11px] uppercase tracking-[0.22em] text-gray-500" data-i18n={section.kickerKey}>
+                      <span class="block df-kicker-muted" data-i18n={section.kickerKey}>
                         {translate(section.kickerKey, lang, section.kickerKey)}
                       </span>
                       <span class="block text-sm font-semibold text-slate-200" data-i18n={`info.tabs.${section.slug}`}>

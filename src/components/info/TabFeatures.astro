@@ -13,7 +13,7 @@ const featureLabel = (key: string) => translate(`info.featuresTab.${key}`, lang,
 <!-- Custom NPCs -->
 <div class="mb-8">
   <div class="rounded-2xl border border-yellow-500/15 bg-linear-to-r from-yellow-500/10 via-slate-900/80 to-slate-950/90 p-5 md:p-6 mb-6">
-    <p class="text-[11px] uppercase tracking-[0.28em] text-yellow-400/80 mb-2" data-i18n="info.featuresTab.introKicker">
+    <p class="df-kicker mb-2" data-i18n="info.featuresTab.introKicker">
       {featureLabel('introKicker')}
     </p>
     <h3 class="text-2xl font-bold text-yellow-400 font-display mb-3" data-i18n="info.featuresTab.introTitle">
@@ -35,7 +35,7 @@ const featureLabel = (key: string) => translate(`info.featuresTab.${key}`, lang,
   <h3 class="text-2xl font-bold text-yellow-500 mb-6 font-display" data-i18n="info.featuresTab.customNpcs">NPCs Custom</h3>
   <div class="grid md:grid-cols-2 2xl:grid-cols-3 gap-6">
     <!-- Buffer NPC -->
-    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 h-full">
+    <div class="df-surface p-6 rounded-xl border border-white/10 h-full">
       <h4 class="text-lg font-bold text-yellow-400 mb-3 font-display" data-i18n="info.featuresTab.bufferNpc">Buffer NPC</h4>
       <ul class="space-y-2 text-sm text-gray-400">
         {['bufferDesc1', 'bufferDesc2', 'bufferDesc3', 'bufferDesc4', 'bufferDesc5', 'bufferDesc6'].map((key) => (
@@ -48,7 +48,7 @@ const featureLabel = (key: string) => translate(`info.featuresTab.${key}`, lang,
     </div>
 
     <!-- Substack Manager -->
-    <div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 h-full">
+    <div class="df-surface p-6 rounded-xl border border-white/10 h-full">
       <h4 class="text-lg font-bold text-yellow-400 mb-3 font-display" data-i18n="info.featuresTab.substackManager">Substack Manager</h4>
       <ul class="space-y-2 text-sm text-gray-400">
         {['substackDesc1', 'substackDesc2', 'substackDesc3', 'substackDesc4', 'substackDesc5'].map((key) => (
@@ -66,18 +66,18 @@ const featureLabel = (key: string) => translate(`info.featuresTab.${key}`, lang,
 </div>
 
 <!-- Community Board -->
-<div class="bg-slate-900/50 p-6 rounded-xl border border-cyan-500/20 mb-8">
+<div class="df-surface p-6 rounded-xl border border-yellow-500/20 mb-8">
   <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-5">
     <div>
-      <p class="text-[11px] uppercase tracking-[0.22em] text-cyan-300/80 mb-2" data-i18n="info.featuresTab.communityKicker">{featureLabel('communityKicker')}</p>
-      <h3 class="text-2xl font-bold text-cyan-400 font-display" data-i18n="info.featuresTab.communityTitle">{featureLabel('communityTitle')}</h3>
+      <p class="text-[11px] uppercase tracking-[0.22em] text-yellow-400/80 mb-2" data-i18n="info.featuresTab.communityKicker">{featureLabel('communityKicker')}</p>
+      <h3 class="text-2xl font-bold text-yellow-400 font-display" data-i18n="info.featuresTab.communityTitle">{featureLabel('communityTitle')}</h3>
     </div>
     <p class="max-w-2xl text-sm text-gray-400 leading-relaxed" data-i18n="info.featuresTab.communityIntro">
       {featureLabel('communityIntro')}
     </p>
   </div>
   <div class="grid gap-6 xl:grid-cols-[1.1fr_0.9fr] items-start">
-    <div class="rounded-xl overflow-hidden border border-cyan-500/15 bg-black/30">
+    <div class="rounded-xl overflow-hidden border border-yellow-500/15 bg-black/30">
       <img
         src="/images/comunity-board.png"
         alt={featureLabel('communityAlt')}
@@ -94,38 +94,38 @@ const featureLabel = (key: string) => translate(`info.featuresTab.${key}`, lang,
       </div>
       <div class="grid gap-3 sm:grid-cols-2">
         <div class="rounded-xl border border-white/10 bg-black/30 p-4">
-          <span class="inline-flex rounded-full border border-cyan-500/20 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-300" data-i18n="info.featuresTab.communityActivityTitle">{featureLabel('communityActivityTitle')}</span>
+          <span class="inline-flex rounded-full border border-yellow-500/20 bg-yellow-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-yellow-400" data-i18n="info.featuresTab.communityActivityTitle">{featureLabel('communityActivityTitle')}</span>
           <ul class="mt-3 space-y-2 text-sm text-gray-300">
             <li class="flex items-start gap-2">
-              <span class="text-cyan-300 mt-1 shrink-0">*</span>
+              <span class="text-yellow-400 mt-1 shrink-0">*</span>
               <span data-i18n="info.featuresTab.communityActivityItem1">{featureLabel('communityActivityItem1')}</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-cyan-300 mt-1 shrink-0">*</span>
+              <span class="text-yellow-400 mt-1 shrink-0">*</span>
               <span data-i18n="info.featuresTab.communityActivityItem2">{featureLabel('communityActivityItem2')}</span>
             </li>
           </ul>
         </div>
         <div class="rounded-xl border border-white/10 bg-black/30 p-4">
-          <span class="inline-flex rounded-full border border-cyan-500/20 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-300" data-i18n="info.featuresTab.communityAccountTitle">{featureLabel('communityAccountTitle')}</span>
+          <span class="inline-flex rounded-full border border-yellow-500/20 bg-yellow-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-yellow-400" data-i18n="info.featuresTab.communityAccountTitle">{featureLabel('communityAccountTitle')}</span>
           <ul class="mt-3 space-y-2 text-sm text-gray-300">
             <li class="flex items-start gap-2">
-              <span class="text-cyan-300 mt-1 shrink-0">*</span>
+              <span class="text-yellow-400 mt-1 shrink-0">*</span>
               <span data-i18n="info.featuresTab.communityAccountItem1">{featureLabel('communityAccountItem1')}</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-cyan-300 mt-1 shrink-0">*</span>
+              <span class="text-yellow-400 mt-1 shrink-0">*</span>
               <span data-i18n="info.featuresTab.communityAccountItem2">{featureLabel('communityAccountItem2')}</span>
             </li>
             <li class="flex items-start gap-2">
-              <span class="text-cyan-300 mt-1 shrink-0">*</span>
+              <span class="text-yellow-400 mt-1 shrink-0">*</span>
               <span data-i18n="info.featuresTab.communityAccountItem3">{featureLabel('communityAccountItem3')}</span>
             </li>
           </ul>
         </div>
       </div>
       <div class="rounded-xl border border-white/10 bg-black/30 p-4">
-        <span class="inline-flex rounded-full border border-cyan-500/20 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-300" data-i18n="info.featuresTab.communityActionsTitle">{featureLabel('communityActionsTitle')}</span>
+        <span class="inline-flex rounded-full border border-yellow-500/20 bg-yellow-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-yellow-400" data-i18n="info.featuresTab.communityActionsTitle">{featureLabel('communityActionsTitle')}</span>
         <div class="mt-3 grid gap-2 sm:grid-cols-2">
           <div class="rounded-lg border border-white/8 bg-white/5 px-3 py-2 text-sm text-gray-300" data-i18n="info.featuresTab.communityAction1">{featureLabel('communityAction1')}</div>
           <div class="rounded-lg border border-white/8 bg-white/5 px-3 py-2 text-sm text-gray-300" data-i18n="info.featuresTab.communityAction2">{featureLabel('communityAction2')}</div>
@@ -139,7 +139,7 @@ const featureLabel = (key: string) => translate(`info.featuresTab.${key}`, lang,
 
 <!-- PvP System -->
 <div class="grid xl:grid-cols-2 gap-8 mb-8">
-  <div class="bg-slate-900/50 p-6 rounded-xl border border-green-500/20">
+  <div class="df-surface p-6 rounded-xl border border-green-500/20">
     <h3 class="text-xl font-bold text-green-400 mb-4 font-display" data-i18n="info.featuresTab.pvpRewards">Recompensas PvP</h3>
     <div class="space-y-2 text-sm">
       <div class="p-3 bg-black/40 rounded border border-white/5 text-gray-300" data-i18n="info.featuresTab.pvpReward1">1 PVP Coin por cada PvP kill</div>
@@ -147,7 +147,7 @@ const featureLabel = (key: string) => translate(`info.featuresTab.${key}`, lang,
     </div>
   </div>
 
-  <div class="bg-slate-900/50 p-6 rounded-xl border border-red-500/20">
+  <div class="df-surface p-6 rounded-xl border border-red-500/20">
     <h3 class="text-xl font-bold text-red-400 mb-4 font-display" data-i18n="info.featuresTab.pkPenalties">Penalidades PK</h3>
     <p class="text-gray-400 text-sm mb-3" data-i18n="info.featuresTab.pkDesc1">No se dropean items al morir en PvP normal</p>
     <p class="text-red-400 text-sm font-bold mb-2" data-i18n="info.featuresTab.pkDesc2">Solo los PKs (con Karma) dropean items:</p>
@@ -165,7 +165,7 @@ const featureLabel = (key: string) => translate(`info.featuresTab.${key}`, lang,
 <FeatureOlympiadBlock />
 
 <!-- PvP Class Balance -->
-<div class="bg-slate-900/50 p-6 rounded-xl border border-white/10 mb-8">
+<div class="df-surface p-6 rounded-xl border border-white/10 mb-8">
   <h3 class="text-2xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.featuresTab.classBalanceTitle">Balance PvP v1.1.1</h3>
   <div class="grid md:grid-cols-2 gap-3">
     {classBalance.map((item) => (
@@ -186,7 +186,7 @@ const featureLabel = (key: string) => translate(`info.featuresTab.${key}`, lang,
 </div>
 
 <!-- Other Features -->
-<div class="bg-slate-900/50 p-6 rounded-xl border border-white/10">
+<div class="df-surface p-6 rounded-xl border border-white/10">
   <h3 class="text-xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.featuresTab.otherFeatures">Otras Features</h3>
   <div class="grid sm:grid-cols-2 gap-3">
     {['expToggle', 'topRanking', 'dropCommand', 'balanceUpdates', 'globalGkUpdate', 'autoLearn', 'subclassNoQuest', 'offlineShop', 'antiFarm', 'weight', 'shiftClick'].map((key) => (

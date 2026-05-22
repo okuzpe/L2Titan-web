@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import CardSurface from '../../components/ui/CardSurface.astro';
+import ActionButton from '../../components/ui/ActionButton.astro';
 import { buildBreadcrumb, absoluteUrl } from '../../utils/seo';
 import { visitorLangFromPath } from '../../utils/i18n-lang';
 import { translate } from '../../utils/translations';
@@ -79,38 +81,31 @@ const breadcrumbLd = buildBreadcrumb([
   articlePublishedTime={newsItem.publishedAt}
   structuredData={[breadcrumbLd, articleLd]}
 >
-  <div class="min-h-screen bg-gradient-to-b from-black via-slate-900 to-black">
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <a
-        href="/news"
-        class="inline-flex items-center gap-2 text-yellow-500 hover:text-yellow-400 mb-8 transition-colors group"
+  <div class="container mx-auto max-w-4xl px-4 py-12 md:py-16">
+    <a href="/news" class="df-link-back mb-8 group">
+      <svg
+        class="h-5 w-5 transition-transform group-hover:-translate-x-1"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
       >
-        <svg
-          class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M10 19l-7-7m0 0l7-7m-7 7h18"
-          ></path>
-        </svg>
-        <span data-i18n="news.articleBackToNews">{tk('news.articleBackToNews', '')}</span>
-      </a>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      <span data-i18n="news.articleBackToNews">{tk('news.articleBackToNews', '')}</span>
+    </a>
 
-      <header>
-        <time datetime={newsItem.publishedAt} class="text-yellow-500 text-sm font-bold uppercase tracking-wider mb-4 block">
+    <article>
+      <header class="mb-8">
+        <time datetime={newsItem.publishedAt} class="df-kicker mb-4 block">
           {newsItem.dateLabel}
         </time>
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 font-display">
+        <h1 class="df-article-title">
           {newsItem.titleKey ? <span data-i18n={newsItem.titleKey}>{resolvedTitle}</span> : resolvedTitle}
         </h1>
       </header>
 
-      <div class="mb-8 rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+      <CardSurface className="mb-8 overflow-hidden p-0">
         {newsItem.imageCard && articleWebpSrcset ? (
           <img
             src={newsItem.imageCard}
@@ -120,7 +115,7 @@ const breadcrumbLd = buildBreadcrumb([
             width="900"
             height="540"
             loading="lazy"
-            class="w-full h-48 sm:h-72 md:h-96 object-cover"
+            class="h-48 w-full object-cover sm:h-72 md:h-96"
           />
         ) : (
           <img
@@ -129,24 +124,22 @@ const breadcrumbLd = buildBreadcrumb([
             width="896"
             height="384"
             loading="lazy"
-            class="w-full h-48 sm:h-72 md:h-96 object-cover"
+            class="h-48 w-full object-cover sm:h-72 md:h-96"
           />
         )}
+      </CardSurface>
+
+      <div class="df-prose space-y-4">
+        <p>
+          {newsItem.contentKey ? <span data-i18n={newsItem.contentKey}>{resolvedContent}</span> : resolvedContent}
+        </p>
       </div>
 
-      <div class="prose prose-invert prose-lg max-w-none">
-        <div class="text-gray-300 leading-relaxed space-y-4 text-lg">
-          <p>
-            {newsItem.contentKey ? <span data-i18n={newsItem.contentKey}>{resolvedContent}</span> : resolvedContent}
-          </p>
-        </div>
-      </div>
-
-      <footer class="mt-12 pt-8 border-t border-white/10">
-        <h2 class="text-lg font-bold text-yellow-500 font-display mb-4 uppercase tracking-wider" data-i18n="news.articleContinueReading">
+      <footer class="df-divider mt-12 pt-8">
+        <h2 class="df-section-label mb-4 text-lg uppercase tracking-wider" data-i18n="news.articleContinueReading">
           {tk('news.articleContinueReading', '')}
         </h2>
-        <ul class="space-y-2 text-gray-300 mb-6 list-none p-0 m-0">
+        <ul class="mb-6 list-none space-y-2 p-0 text-gray-300">
           <li>
             <a href="/downloads" class="text-yellow-400 hover:text-yellow-300 font-medium" data-i18n="news.articleLinkDownloads">
               {tk('news.articleLinkDownloads', '')}
@@ -168,13 +161,9 @@ const breadcrumbLd = buildBreadcrumb([
             </a>
           </li>
         </ul>
-        <a
-          href="/downloads"
-          class="inline-flex items-center gap-2 px-6 py-3 bg-yellow-600 hover:bg-yellow-500 text-white font-bold rounded-lg transition-all hover:scale-105"
-          data-i18n="news.articleCtaDownload"
-        >
+        <ActionButton href="/downloads" variant="primary" className="px-6 py-3 text-black" data-i18n="news.articleCtaDownload">
           {tk('news.articleCtaDownload', '')}
-        </a>
+        </ActionButton>
       </footer>
     </article>
   </div>

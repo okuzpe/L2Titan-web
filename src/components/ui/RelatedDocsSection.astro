@@ -1,0 +1,94 @@
+---
+import CardSurface from './CardSurface.astro';
+import WikiLinkTile from './WikiLinkTile.astro';
+import NavTile from './NavTile.astro';
+
+export interface RelatedDocLink {
+	href: string;
+	label: string;
+	labelKey?: string;
+}
+
+interface Props {
+	id?: string;
+	kicker: string;
+	kickerKey?: string;
+	title: string;
+	titleKey?: string;
+	subtitle: string;
+	subtitleKey?: string;
+	wikiHref?: string;
+	wikiTitle: string;
+	wikiTitleKey?: string;
+	wikiHint: string;
+	wikiHintKey?: string;
+	wikiAction: string;
+	wikiActionKey?: string;
+	quickLinksLabel: string;
+	quickLinksLabelKey?: string;
+	navAria: string;
+	links: RelatedDocLink[];
+	className?: string;
+}
+
+const {
+	id = 'related-docs',
+	kicker,
+	kickerKey,
+	title,
+	titleKey,
+	subtitle,
+	subtitleKey,
+	wikiHref = '/info',
+	wikiTitle,
+	wikiTitleKey,
+	wikiHint,
+	wikiHintKey,
+	wikiAction,
+	wikiActionKey,
+	quickLinksLabel,
+	quickLinksLabelKey,
+	navAria,
+	links,
+	className = '',
+} = Astro.props;
+---
+
+<section class={`max-w-5xl mx-auto ${className}`.trim()} aria-labelledby={id}>
+	<CardSurface variant="strong" className="p-6 md:p-8">
+		<p class="df-kicker mb-2" {...kickerKey ? { 'data-i18n': kickerKey } : {}}>
+			{kicker}
+		</p>
+		<h2 id={id} class="df-section-label mb-3" {...titleKey ? { 'data-i18n': titleKey } : {}}>
+			{title}
+		</h2>
+		<p class="df-muted mb-6 max-w-2xl" {...subtitleKey ? { 'data-i18n': subtitleKey } : {}}>
+			{subtitle}
+		</p>
+
+		<WikiLinkTile
+			href={wikiHref}
+			title={wikiTitle}
+			titleKey={wikiTitleKey}
+			hint={wikiHint}
+			hintKey={wikiHintKey}
+			action={wikiAction}
+			actionKey={wikiActionKey}
+		/>
+
+		<nav class="df-divider mt-6 pt-6" aria-label={navAria}>
+			<p class="df-kicker-sub mb-3" {...quickLinksLabelKey ? { 'data-i18n': quickLinksLabelKey } : {}}>
+				{quickLinksLabel}
+			</p>
+			<ul class="grid grid-cols-2 gap-3 sm:grid-cols-4" role="list">
+				{
+					links.map((link) => (
+						<li class="min-w-0">
+							<NavTile href={link.href} label={link.label} labelKey={link.labelKey} />
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+	</CardSurface>
+</section>

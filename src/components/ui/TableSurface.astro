@@ -1,0 +1,14 @@
+---
+interface Props {
+	className?: string;
+	minWidth?: string;
+}
+
+const { className = '', minWidth = '280px' } = Astro.props;
+---
+
+<div class={`df-table-wrap ${className}`.trim()}>
+	<table class="w-full min-w-[var(--table-min)] text-left text-sm" style={`--table-min: ${minWidth}`}>
+		<slot />
+	</table>
+</div>

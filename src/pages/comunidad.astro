@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CardSurface from '../components/ui/CardSurface.astro';
+import HeroBanner from '../components/ui/HeroBanner.astro';
 import ActionButton from '../components/ui/ActionButton.astro';
 import { visitorLangFromPath } from '../utils/i18n-lang';
 import { translate } from '../utils/translations';
@@ -30,31 +31,36 @@ const structuredData = [
 	structuredData={structuredData}
 >
 	<div class="container mx-auto max-w-5xl px-4 py-12 md:py-20">
-		<CardSurface variant="strong" className="mb-10 p-6 md:p-10">
-			<p class="text-[11px] uppercase tracking-[0.28em] text-yellow-400/80 mb-3" data-i18n={`${p}.kicker`}>{tk(`${p}.kicker`, '')}</p>
-			<h1 class="text-3xl md:text-5xl font-extrabold text-yellow-400 font-display tracking-wide mb-4" data-i18n={`${p}.h1`}>
-				{tk(`${p}.h1`, '')}
-			</h1>
-			<p class="text-gray-300 text-base md:text-lg leading-relaxed mb-6" data-i18n={`${p}.intro`}>{tk(`${p}.intro`, '')}</p>
-			<div class="flex flex-wrap gap-3">
-				<ActionButton
-					href="https://discord.gg/GunamUdGaQ"
-					target="_blank"
-					rel="noopener noreferrer"
-					variant="discord"
-					className="px-5 py-3"
-					data-i18n={`${p}.ctaDiscord`}
-				>
-					{tk(`${p}.ctaDiscord`, '')}
-				</ActionButton>
-				<ActionButton href="/news" variant="ghost" className="px-5 py-3" data-i18n={`${p}.ctaNews`}>
+		<HeroBanner
+			className="mb-10"
+			kicker={tk(`${p}.kicker`, '')}
+			kickerKey={`${p}.kicker`}
+			title={tk(`${p}.h1`, '')}
+			titleKey={`${p}.h1`}
+			intro={tk(`${p}.intro`, '')}
+			introKey={`${p}.intro`}
+		>
+			<ActionButton
+				slot="actions"
+				href="https://discord.gg/GunamUdGaQ"
+				target="_blank"
+				rel="noopener noreferrer"
+				variant="discord"
+				className="px-5 py-3"
+				data-i18n={`${p}.ctaDiscord`}
+			>
+				{tk(`${p}.ctaDiscord`, '')}
+			</ActionButton>
+			<nav slot="footer" class="mt-4 flex flex-wrap gap-3 text-sm">
+				<a href="/news" class="text-yellow-400 hover:text-yellow-300" data-i18n={`${p}.ctaNews`}>
 					{tk(`${p}.ctaNews`, '')}
-				</ActionButton>
-				<ActionButton href="#vote-section" variant="ghost" className="px-5 py-3" data-i18n={`${p}.ctaVote`}>
+				</a>
+				<span class="text-gray-600" aria-hidden="true">·</span>
+				<a href="#vote-section" class="text-yellow-400 hover:text-yellow-300" data-i18n={`${p}.ctaVote`}>
 					{tk(`${p}.ctaVote`, '')}
-				</ActionButton>
-			</div>
-		</CardSurface>
+				</a>
+			</nav>
+		</HeroBanner>
 
 		<CardSurface variant="default" className="overflow-hidden p-0">
 			<div class="grid gap-0 lg:grid-cols-2">
@@ -76,10 +82,10 @@ const structuredData = [
 								href="https://www.facebook.com/l2titan.server/"
 								target="_blank"
 								rel="noopener noreferrer"
-								class="group flex items-start gap-4 rounded-xl border border-amber-500/15 bg-linear-to-br from-amber-500/6 to-black/30 p-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] ring-1 ring-black/25 transition hover:border-amber-500/30 hover:from-amber-500/9 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/45"
+								class="group flex items-start gap-4 rounded-xl border border-yellow-500/15 bg-linear-to-br from-yellow-500/6 to-black/30 p-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] ring-1 ring-black/25 transition hover:border-yellow-500/30 hover:from-yellow-500/9 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400/45"
 							>
 								<span
-									class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 ring-1 ring-amber-500/20"
+									class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-yellow-500/10 text-yellow-400 ring-1 ring-amber-500/20"
 									aria-hidden="true"
 								>
 									<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -90,7 +96,7 @@ const structuredData = [
 								</span>
 								<span class="min-w-0 flex-1">
 									<span
-										class="block font-semibold text-gray-100 transition group-hover:text-amber-200"
+										class="block font-semibold text-gray-100 transition group-hover:text-yellow-200"
 										data-i18n={`${p}.fbTitle`}
 									>
 										{tk(`${p}.fbTitle`, '')}
@@ -100,7 +106,7 @@ const structuredData = [
 									</span>
 								</span>
 								<svg
-									class="mt-0.5 h-5 w-5 shrink-0 text-gray-500 transition group-hover:text-amber-400/90"
+									class="mt-0.5 h-5 w-5 shrink-0 text-gray-500 transition group-hover:text-yellow-400/90"
 									viewBox="0 0 20 20"
 									fill="currentColor"
 									aria-hidden="true"
@@ -123,10 +129,10 @@ const structuredData = [
 								href="https://www.instagram.com/l2titan_com/"
 								target="_blank"
 								rel="noopener noreferrer"
-								class="group flex items-start gap-4 rounded-xl border border-amber-500/15 bg-linear-to-br from-amber-500/6 to-black/30 p-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] ring-1 ring-black/25 transition hover:border-amber-500/30 hover:from-amber-500/9 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/45"
+								class="group flex items-start gap-4 rounded-xl border border-yellow-500/15 bg-linear-to-br from-yellow-500/6 to-black/30 p-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] ring-1 ring-black/25 transition hover:border-yellow-500/30 hover:from-yellow-500/9 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400/45"
 							>
 								<span
-									class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 ring-1 ring-amber-500/20"
+									class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-yellow-500/10 text-yellow-400 ring-1 ring-amber-500/20"
 									aria-hidden="true"
 								>
 									<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -137,7 +143,7 @@ const structuredData = [
 								</span>
 								<span class="min-w-0 flex-1">
 									<span
-										class="block font-semibold text-gray-100 transition group-hover:text-amber-200"
+										class="block font-semibold text-gray-100 transition group-hover:text-yellow-200"
 										data-i18n={`${p}.igTitle`}
 									>
 										{tk(`${p}.igTitle`, '')}
@@ -147,7 +153,7 @@ const structuredData = [
 									</span>
 								</span>
 								<svg
-									class="mt-0.5 h-5 w-5 shrink-0 text-gray-500 transition group-hover:text-amber-400/90"
+									class="mt-0.5 h-5 w-5 shrink-0 text-gray-500 transition group-hover:text-yellow-400/90"
 									viewBox="0 0 20 20"
 									fill="currentColor"
 									aria-hidden="true"
@@ -188,9 +194,9 @@ const structuredData = [
 					>
 						<a
 							href="/info"
-							class="group flex flex-col rounded-xl border border-white/10 bg-black/20 p-4 ring-1 ring-black/30 transition hover:border-amber-500/25 hover:bg-amber-500/4 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/45"
+							class="group flex flex-col rounded-xl border border-white/10 bg-black/20 p-4 ring-1 ring-black/30 transition hover:border-yellow-500/25 hover:bg-yellow-500/4 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400/45"
 						>
-							<span class="font-display text-sm font-bold text-gray-100 group-hover:text-amber-200" data-i18n={`${p}.navWikiLabel`}>
+							<span class="font-display text-sm font-bold text-gray-100 group-hover:text-yellow-200" data-i18n={`${p}.navWikiLabel`}>
 								{tk(`${p}.navWikiLabel`, '')}
 							</span>
 							<span class="mt-1 text-xs leading-snug text-gray-500 group-hover:text-gray-400" data-i18n={`${p}.navWikiDesc`}>
@@ -199,10 +205,10 @@ const structuredData = [
 						</a>
 						<a
 							href="/features"
-							class="group flex flex-col rounded-xl border border-white/10 bg-black/20 p-4 ring-1 ring-black/30 transition hover:border-amber-500/25 hover:bg-amber-500/4 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/45"
+							class="group flex flex-col rounded-xl border border-white/10 bg-black/20 p-4 ring-1 ring-black/30 transition hover:border-yellow-500/25 hover:bg-yellow-500/4 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400/45"
 						>
 							<span
-								class="font-display text-sm font-bold text-gray-100 group-hover:text-amber-200"
+								class="font-display text-sm font-bold text-gray-100 group-hover:text-yellow-200"
 								data-i18n={`${p}.navFeaturesLabel`}
 							>
 								{tk(`${p}.navFeaturesLabel`, '')}
@@ -216,9 +222,9 @@ const structuredData = [
 						</a>
 						<a
 							href="/events"
-							class="group flex flex-col rounded-xl border border-white/10 bg-black/20 p-4 ring-1 ring-black/30 transition hover:border-amber-500/25 hover:bg-amber-500/4 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/45"
+							class="group flex flex-col rounded-xl border border-white/10 bg-black/20 p-4 ring-1 ring-black/30 transition hover:border-yellow-500/25 hover:bg-yellow-500/4 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400/45"
 						>
-							<span class="font-display text-sm font-bold text-gray-100 group-hover:text-amber-200" data-i18n={`${p}.navEventsLabel`}>
+							<span class="font-display text-sm font-bold text-gray-100 group-hover:text-yellow-200" data-i18n={`${p}.navEventsLabel`}>
 								{tk(`${p}.navEventsLabel`, '')}
 							</span>
 							<span
@@ -230,9 +236,9 @@ const structuredData = [
 						</a>
 						<a
 							href="/faq"
-							class="group flex flex-col rounded-xl border border-white/10 bg-black/20 p-4 ring-1 ring-black/30 transition hover:border-amber-500/25 hover:bg-amber-500/4 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/45"
+							class="group flex flex-col rounded-xl border border-white/10 bg-black/20 p-4 ring-1 ring-black/30 transition hover:border-yellow-500/25 hover:bg-yellow-500/4 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400/45"
 						>
-							<span class="font-display text-sm font-bold text-gray-100 group-hover:text-amber-200" data-i18n={`${p}.navFaqLabel`}>
+							<span class="font-display text-sm font-bold text-gray-100 group-hover:text-yellow-200" data-i18n={`${p}.navFaqLabel`}>
 								{tk(`${p}.navFaqLabel`, '')}
 							</span>
 							<span class="mt-1 text-xs leading-snug text-gray-500 group-hover:text-gray-400" data-i18n={`${p}.navFaqDesc`}>

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import CardSurface from '../components/ui/CardSurface.astro';
+import HeroBanner from '../components/ui/HeroBanner.astro';
+import FaqItem from '../components/ui/FaqItem.astro';
 import ActionButton from '../components/ui/ActionButton.astro';
 import { visitorLangFromPath } from '../utils/i18n-lang';
 import { translate } from '../utils/translations';
@@ -41,41 +42,38 @@ const structuredData = [
 	structuredData={structuredData}
 >
 	<div class="container mx-auto px-4 py-12 md:py-20 max-w-4xl">
-		<CardSurface variant="strong" className="p-6 md:p-10 mb-10">
-			<p class="text-[11px] uppercase tracking-[0.28em] text-yellow-400/80 mb-3" data-i18n="faqPage.kicker">
-				{tk('faqPage.kicker', '')}
-			</p>
-			<h1 class="text-3xl md:text-5xl font-extrabold text-yellow-400 font-display tracking-wide mb-4" data-i18n="faqPage.title">
-				{tk('faqPage.title', '')}
-			</h1>
-			<p class="text-gray-300 text-base md:text-lg leading-relaxed mb-6" data-i18n="faqPage.intro">
-				{tk('faqPage.intro', '')}
-			</p>
-			<div class="flex flex-wrap gap-3">
-				<ActionButton href="/downloads" variant="primary" className="px-5 py-3 text-black" data-i18n="faqPage.downloadCta">
-					{tk('faqPage.downloadCta', '')}
-				</ActionButton>
-				<ActionButton href="/registro" variant="ghost" className="px-5 py-3" data-i18n="faqPage.accountCta">
-					{tk('faqPage.accountCta', '')}
-				</ActionButton>
-				<ActionButton href="/features" variant="ghost" className="px-5 py-3" data-i18n="faqPage.featuresCta">
+		<HeroBanner
+			className="mb-10"
+			kicker={tk('faqPage.kicker', '')}
+			kickerKey="faqPage.kicker"
+			title={tk('faqPage.title', '')}
+			titleKey="faqPage.title"
+			intro={tk('faqPage.intro', '')}
+			introKey="faqPage.intro"
+		>
+			<ActionButton slot="actions" href="/downloads" variant="primary" className="px-5 py-3 text-black" data-i18n="faqPage.downloadCta">
+				{tk('faqPage.downloadCta', '')}
+			</ActionButton>
+			<ActionButton slot="actions" href="/registro" variant="ghost" className="px-5 py-3" data-i18n="faqPage.accountCta">
+				{tk('faqPage.accountCta', '')}
+			</ActionButton>
+			<nav slot="footer" class="mt-4 text-sm">
+				<a href="/features" class="text-yellow-400 hover:text-yellow-300" data-i18n="faqPage.featuresCta">
 					{tk('faqPage.featuresCta', '')}
-				</ActionButton>
-			</div>
-		</CardSurface>
+				</a>
+			</nav>
+		</HeroBanner>
 
 		<h2 class="sr-only" data-i18n="faqPage.srHeading">{tk('faqPage.srHeading', '')}</h2>
-		<div class="space-y-5">
+		<div class="space-y-3">
 			{
 				faqEntries.map(({ qKey, aKey }) => (
-					<CardSurface className="p-5 md:p-6">
-						<h3 class="text-lg md:text-xl font-bold text-yellow-400 font-display mb-2" data-i18n={qKey}>
-							{tk(qKey, '')}
-						</h3>
-						<p class="text-gray-300 text-sm md:text-base leading-relaxed" data-i18n={aKey}>
-							{tk(aKey, '')}
-						</p>
-					</CardSurface>
+					<FaqItem
+						question={tk(qKey, '')}
+						answer={tk(aKey, '')}
+						questionKey={qKey}
+						answerKey={aKey}
+					/>
 				))
 			}
 		</div>
