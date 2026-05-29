@@ -112,12 +112,6 @@ export const eventSchedule: EventSlot[] = [
   { hour: '21:00', type: 'TvT', active: true }, { hour: '22:00', type: 'CTF', active: false }, { hour: '23:00', type: 'DM', active: false },
 ];
 
-export const eventStatus = {
-  tvt: true,
-  ctf: false,
-  dm: false,
-};
-
 // ─── ECONOMY: SHOPS ─────────────────────────────────────────────────
 
 export const weaponCrystalScrolls = [
@@ -209,11 +203,11 @@ export const dailyInstances: DailyInstanceInfo[] = [
     maxTime: '60 min',
     maxEntries: '1 por dia',
     levelRange: '1 - 80',
-    focus: 'Farm rapido diario con Adena, Freya Rose y Titan`s Box.',
+    focus: 'Farm rapido diario con Adena, Freya Rose y Titan’s Box.',
     drops: [
       'Adena: 130k - 170k (70% chance)',
       'Freya Rose: 1 unidad base, 32.5% normal / 45.5% VIP',
-      'Titan`s Box: 10% normal / 14% VIP',
+      'Titan’s Box: 10% normal / 14% VIP',
     ],
     notes: [
       'Reset diario a las 06:30 del servidor.',
@@ -362,5 +356,5 @@ export const neutralZoneHighlights = [
 export const dailyRewards = [
   { key: 'rewardAdena', value: 'Adena' },
   { key: 'rewardFreyaRose', value: 'Freya Rose Red Potion' },
-  { key: 'rewardTitansBox', value: "Titan's Box" },
+  { key: 'rewardTitansBox', value: "Titan’s Box" },
 ];

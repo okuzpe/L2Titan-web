@@ -1,13 +1,13 @@
 ---
 import { classBalance } from '../../data/serverInfo';
 import { visitorLangFromPath } from '../../utils/i18n-lang';
-import { translate } from '../../utils/translations';
+import { createTabLabel } from '../../utils/translations';
 import FeatureAutofarmBlock from './FeatureAutofarmBlock.astro';
 import FeatureOlympiadBlock from './FeatureOlympiadBlock.astro';
 import FeatureRaidbossBlock from './FeatureRaidbossBlock.astro';
 
 const lang = visitorLangFromPath(Astro.url.pathname);
-const featureLabel = (key: string) => translate(`info.featuresTab.${key}`, lang, key);
+const featureLabel = createTabLabel('features', lang);
 ---
 
 <!-- Custom NPCs -->
@@ -79,7 +79,7 @@ const featureLabel = (key: string) => translate(`info.featuresTab.${key}`, lang,
   <div class="grid gap-6 xl:grid-cols-[1.1fr_0.9fr] items-start">
     <div class="rounded-xl overflow-hidden border border-yellow-500/15 bg-black/30">
       <img
-        src="/images/comunity-board.png"
+        src="/images/comunity-board.webp"
         alt={featureLabel('communityAlt')}
         data-i18n-alt="info.featuresTab.communityAlt"
         class="w-full h-full object-cover object-top"

@@ -6,10 +6,10 @@ import {
   castleRewardHighlights,
 } from '../../data/serverInfo';
 import { visitorLangFromPath } from '../../utils/i18n-lang';
-import { translate } from '../../utils/translations';
+import { createTabLabel } from '../../utils/translations';
 
 const lang = visitorLangFromPath(Astro.url.pathname);
-const siegeLabel = (key: string) => translate(`info.siegesTab.${key}`, lang, key);
+const siegeLabel = createTabLabel('sieges', lang);
 ---
 
 <div class="df-surface p-5 md:p-6 rounded-xl border border-yellow-500/20 mb-6">

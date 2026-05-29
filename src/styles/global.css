@@ -3,8 +3,10 @@
 @source not "../../dist";
 
 @theme {
-  --color-primary: #ffd700;
+  --color-primary: #facc15;
   --color-primary-dark: #b8860b;
+  /** Brand gold metálico: un solo gradiente para wordmark/títulos (coherencia de marca) */
+  --gold-gradient: linear-gradient(180deg, #fde68a 0%, #facc15 45%, #b8860b 100%);
   --color-secondary: #000000;
   --color-accent: #c0c0c0;
   --color-dark-bg: #050505;
@@ -36,12 +38,42 @@ body {
   background-image: radial-gradient(circle at top center, #1a1a1a 0%, #000000 100%);
 }
 
+/* Atmósfera dark-fantasy: grano sutil + viñeta fija. Quita el aspecto "plano de plantilla". */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(120% 90% at 50% -10%, transparent 55%, rgba(0, 0, 0, 0.55) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  background-repeat: no-repeat, repeat;
+}
+
+/* Marca dorada metálica reutilizable (wordmark, títulos clave) */
+.df-text-gold {
+  @apply bg-clip-text text-transparent;
+  background-image: var(--gold-gradient);
+}
+
+/* Cadencia vertical uniforme de secciones */
+.df-section {
+  @apply py-16 md:py-24;
+}
+
+/* Deriva lenta del hero (auto-desactivada por prefers-reduced-motion abajo) */
+@keyframes heroDrift {
+  from { transform: scale(1.06) translate3d(0, 0, 0); }
+  to { transform: scale(1.06) translate3d(-1.5%, -1%, 0); }
+}
+
 a,
 button,
 input,
 textarea,
 select {
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black;
 }
 
 h1,
@@ -54,8 +86,13 @@ h6 {
 }
 
 .df-surface {
-  @apply bg-slate-900/60 border border-white/10 backdrop-blur-sm;
+  @apply bg-slate-900/60 border border-white/10 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.04)];
   border-radius: var(--radius-card);
+}
+
+/* Tarjeta interactiva: elevación + sombra al hover (premium, consistente) */
+.df-card-interactive {
+  @apply transition-all duration-300 hover:-translate-y-1 hover:border-yellow-500/30 hover:shadow-[0_12px_32px_rgba(0,0,0,0.5)];
 }
 
 .df-surface-strong {
@@ -82,7 +119,12 @@ h6 {
 }
 
 .df-btn-primary {
-  @apply inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg font-bold text-sm uppercase tracking-wider transition-all duration-300 bg-linear-to-r from-yellow-700 to-yellow-500 text-white border border-yellow-500/35 hover:brightness-110;
+  @apply inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg font-bold text-sm uppercase tracking-wider transition-all duration-300
+    bg-linear-to-b from-yellow-400 to-yellow-600 text-black border border-yellow-300/40
+    shadow-[0_4px_14px_rgba(234,179,8,0.35),inset_0_1px_0_rgba(255,255,255,0.45)]
+    hover:from-yellow-300 hover:to-yellow-500
+    hover:shadow-[0_6px_22px_rgba(234,179,8,0.5),inset_0_1px_0_rgba(255,255,255,0.55)]
+    active:translate-y-px active:shadow-[0_2px_8px_rgba(234,179,8,0.3)];
 }
 
 .df-btn-ghost {
@@ -107,7 +149,7 @@ h6 {
 }
 
 .df-kicker-muted {
-  @apply text-[11px] uppercase tracking-[0.22em] text-gray-500;
+  @apply text-[11px] uppercase tracking-[0.22em] text-gray-400;
 }
 
 /* Sub-encabezado dentro de bloques dorados (p. ej. Quick links en descargas) */

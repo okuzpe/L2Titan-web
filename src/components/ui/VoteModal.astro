@@ -1,0 +1,116 @@
+---
+/**
+ * Modal de voto reutilizable. El cableado (abrir/cerrar/submit) vive en Footer.astro
+ * vía initVoteModal(prefix, ...), que localiza los nodos por id `${prefix}-*`.
+ */
+import { visitorLangFromPath } from "../../utils/i18n-lang";
+import { translate } from "../../utils/translations";
+
+interface Props {
+  prefix: string;
+  title: string;
+  badgeSrc: string;
+  badgeAlt: string;
+  badgeWidth?: number;
+  badgeHeight?: number;
+  badgeClass?: string;
+  /** Badge bajo demanda (remoto): lazy + async. Por defecto eager. */
+  badgeLazy?: boolean;
+  /** Clave i18n de una nota extra bajo el input (p. ej. regla de nombre exacto). */
+  noteKey?: string;
+}
+
+const {
+  prefix,
+  title,
+  badgeSrc,
+  badgeAlt,
+  badgeWidth,
+  badgeHeight,
+  badgeClass = "mx-auto mb-3",
+  badgeLazy = false,
+  noteKey,
+} = Astro.props;
+
+const lang = visitorLangFromPath(Astro.url.pathname);
+const voteLabel = translate("footer.voteSubmit", lang, "Vote");
+const closeLabel = translate("footer.closeModal", lang, "Close");
+const charPlaceholder = translate("footer.characterName", lang, "Character name");
+const noteText = noteKey ? translate(noteKey, lang, "") : "";
+---
+
+<div
+  id={`${prefix}-modal`}
+  class="fixed inset-0 z-100 hidden items-center justify-center"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={`${prefix}-title`}
+>
+  <div id={`${prefix}-backdrop`} class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+  <div
+    class="relative bg-slate-900 border border-yellow-500/30 rounded-xl shadow-2xl shadow-black/50 p-6 w-full max-w-sm mx-4"
+  >
+    <button
+      id={`${prefix}-close`}
+      type="button"
+      class="absolute top-2 right-2 p-2 text-gray-500 hover:text-white transition-colors"
+      aria-label={closeLabel}
+      data-i18n-aria-label="footer.closeModal"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    <div class="text-center mb-5">
+      <img
+        src={badgeSrc}
+        alt={badgeAlt}
+        width={badgeWidth}
+        height={badgeHeight}
+        class={badgeClass}
+        loading={badgeLazy ? "lazy" : undefined}
+        decoding={badgeLazy ? "async" : undefined}
+      />
+      <h4
+        id={`${prefix}-title`}
+        class="text-lg font-bold text-yellow-500 font-display uppercase tracking-wider"
+      >
+        {title}
+      </h4>
+    </div>
+    <form id={`${prefix}-form`}>
+      <label
+        for={`${prefix}-name`}
+        class="block text-sm text-gray-400 mb-2"
+        data-i18n="footer.enterCharName">Enter your character name</label
+      >
+      <input
+        id={`${prefix}-name`}
+        type="text"
+        required
+        maxlength="25"
+        placeholder={charPlaceholder}
+        data-i18n="footer.characterName"
+        aria-describedby={noteKey ? `${prefix}-note` : undefined}
+        class:list={[
+          "w-full px-4 py-3 bg-black/60 border border-white/10 rounded-lg text-sm text-gray-200 placeholder-gray-500 focus:border-yellow-500/50 focus:outline-none transition-colors",
+          noteKey ? "mb-3" : "mb-4",
+        ]}
+      />
+      {
+        noteKey && (
+          <p id={`${prefix}-note`} class="text-[11px] text-gray-500 mb-4" data-i18n={noteKey}>
+            {noteText}
+          </p>
+        )
+      }
+      <button
+        type="submit"
+        class="w-full df-btn-ghost px-4 py-3 text-sm"
+        data-i18n="footer.voteSubmit"
+      >
+        {voteLabel}
+      </button>
+    </form>
+  </div>
+</div>

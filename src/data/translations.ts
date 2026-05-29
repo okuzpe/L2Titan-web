@@ -57,7 +57,7 @@ const baseTranslations = {
       infoStrip: {
         title: "Quieres todo el detalle del servidor?",
         description:
-          "Rates, comandos, eventos, daily, economy, VIP y reglas claras en una sola pagina.",
+          "Rates, comandos, eventos, daily, economy, VIP y reglas claras en una sola página.",
         cta: "Ver Info completa",
       },
       features: {
@@ -96,10 +96,10 @@ const baseTranslations = {
           "No necesitas registrarte en una web. Tu cuenta se crea automaticamente cuando entras al juego por primera vez.",
       },
       quickStart: {
-        title: "Pasos rapidos para jugar",
+        title: "Pasos rápidos para jugar",
         step1: "Descarga el Cliente Completo o el Launcher.",
         step2: "Descomprime el juego y abre L2TitanLauncher.",
-        step3: "Inicia sesion en el juego con el usuario y clave que quieras.",
+        step3: "Inicia sesión en el juego con el usuario y clave que quieras.",
         step4:
           "Tu cuenta se crea automaticamente al primer login (Auto Create Account).",
       },
@@ -307,9 +307,9 @@ const baseTranslations = {
       vipTab: {
         title: "Sistema VIP",
         introKicker: "VIP loop",
-        introTitle: "Activacion, beneficios y comandos mas claros",
+        introTitle: "Activación, beneficios y comandos más claros",
         introDesc:
-          "Primero ves como se activa el VIP, despues que aporta al progreso y por ultimo los comandos utiles para gestionarlo sin dudas.",
+          "Primero ves cómo se activa el VIP, después qué aporta al progreso y por último los comandos útiles para gestionarlo sin dudas.",
         howToActivate: "Cómo activar VIP",
         step1:
           "Obtener un VIP Token (se compra con 20 Titan Coins en la tienda NPC)",
@@ -333,14 +333,14 @@ const baseTranslations = {
         howToGet: "Cómo obtener el VIP Token",
         howToGetDesc1: "Comprar con 20 Titan Coins en la tienda NPC",
         howToGetDesc2:
-          "Los Titan Coins se obtienen conquistando Fortalezas (4 por conquista) y Castillos (35 a 135 segun castillo) como lider del clan",
+          "Los Titan Coins se obtienen conquistando Fortalezas (4 por conquista) y Castillos (35 a 135 según castillo) como líder del clan",
       },
       // ── Events tab ──
       eventsTab: {
         introKicker: "Agenda PvP",
         introTitle: "Calendario, estado y reglas separados por evento",
         introDesc:
-          "La ficha queda organizada para leer rapido que evento esta activo, que reglas usa cada modo y que recompensas estan configuradas ahora mismo.",
+          "La ficha queda organizada para leer rápido qué evento está activo, qué reglas usa cada modo y qué recompensas están configuradas ahora mismo.",
         schedule: "Horario Completo",
         scheduleNote:
           "TvT activo por horario. CTF y DM quedan temporalmente en pausa.",
@@ -397,11 +397,11 @@ const baseTranslations = {
         ctfReward1: "Ganador: 25 Event Medals",
         ctfReward2: "Perdedor: 15 Event Medals",
         ctfReward3:
-          "Actualmente el evento automatico esta en pausa, pero la config guardada ya usa estos valores.",
+          "Actualmente el evento automático está en pausa, pero la config guardada ya usa estos valores.",
         dmReward1: "Ganador: 10 Event Medals",
         dmReward2: "Kill reward: 1 Event Medal por kill",
         dmReward3: "Top Killer: +20 Event Medals",
-        dmReward4: "Actualmente el evento automatico esta en pausa.",
+        dmReward4: "Actualmente el evento automático está en pausa.",
         generalKicker: "Antes de entrar",
         generalDesc:
           "Estas restricciones se aplican a todos los modos para evitar cruces con Olympiad, dual-box abusivo o ventanas de asedio.",
@@ -442,7 +442,7 @@ const baseTranslations = {
         drops: "Drops de la instancia",
         adena: "Adena: 130,000 - 170,000 por mob (70% chance)",
         freyaRose: "Freya Rose Red Potion: 32.5% normal / 45.5% VIP",
-        titansBoxDrop: "Titan's Box: 10% normal / 14% VIP",
+        titansBoxDrop: "Titan’s Box: 10% normal / 14% VIP",
         commands: "Comandos",
         restrictions: "Restricciones",
         restrict1:
@@ -469,9 +469,9 @@ const baseTranslations = {
         dailyRewardsTitle: "Rewards diarios actualizados",
         rewardAdena: "Adena",
         rewardFreyaRose: "Freya Rose Red Potion",
-        rewardTitansBox: "Titan's Box",
+        rewardTitansBox: "Titan’s Box",
         titansBoxExtractable:
-          "Titan's Box fue añadido al sistema de extractables del servidor.",
+          "Titan’s Box fue añadido al sistema de extractables del servidor.",
       },
       // ── Sieges tab ──
       siegesTab: {
@@ -514,7 +514,7 @@ const baseTranslations = {
         castleTeleportVal: "Permitido",
         castleConquestRewards: "Recompensas por conquista",
         castleReward1:
-          "35 a 135 Titan Coins para el lider del clan conquistador segun el castillo",
+          "35 a 135 Titan Coins para el líder del clan conquistador según el castillo",
         castleList: "Castillos",
       },
       // ── Economy tab ──
@@ -531,7 +531,7 @@ const baseTranslations = {
           "Votando en HopZone / TopZone / L2Network / L2JBrasil / Top100Arena",
         titanCoin: "Titan Coin",
         titanCoinSource:
-          "4 por Fortaleza y 35-135 por Castillo segun el castillo (lider del clan)",
+          "4 por Fortaleza y 35-135 por Castillo según el castillo (líder del clan)",
         vipToken: "VIP Token",
         vipTokenSource: "Comprando con 20 Titan Coins",
         crystalScrollShop: "Tienda de Crystal Scrolls",
@@ -556,8 +556,8 @@ const baseTranslations = {
         lifeStone67: "Life Stone Top-Grade Lv. 67",
         lifeStone76: "Life Stone Top-Grade Lv. 76",
         freyaRosePotion: "Freya Rose Red Potion",
-        titansBoxTitle: "Titan's Box Rewards",
-        titansBoxDesc: "Chance oficial de rewards por apertura de Titan's Box.",
+        titansBoxTitle: "Titan’s Box Rewards",
+        titansBoxDesc: "Chance oficial de rewards por apertura de Titan’s Box.",
         titansBoxItemId: "Item",
         titansBoxItemName: "Reward",
         titansBoxQty: "Qty",
@@ -596,7 +596,7 @@ const baseTranslations = {
         introKicker: "Features del servidor",
         introTitle: "SubStack, AutoFarm, PvP y utilidades in-game",
         introDesc:
-          "Esta pestaña resume NPCs custom, SubStack Manager, AutoFarm, anuncios de raid, Community Board, Olympiad y el resto de sistemas publicados. Si llegaste buscando un servidor Lineage 2 con SubStack, tambien tenemos una pagina dedicada con FAQ y enlaces rapidos.",
+          "Esta pestaña resume NPCs custom, SubStack Manager, AutoFarm, anuncios de raid, Community Board, Olympiad y el resto de sistemas publicados. Si llegaste buscando un servidor Lineage 2 con SubStack, también tenemos una página dedicada con FAQ y enlaces rápidos.",
         substackPageLink: "Página SubStack: qué es el sistema y enlaces útiles",
         customNpcs: "NPCs Custom",
         autoFarm: "AutoFarm avanzado",
@@ -697,7 +697,7 @@ const baseTranslations = {
           "Los Heroes reciben automáticamente el Wings of Destiny Circlet",
         otherFeatures: "Otras Features",
         expToggle:
-          "Control de EXP: usa .exp para activar o pausar ganancia segun tu objetivo",
+          "Control de EXP: usa .exp para activar o pausar ganancia según tu objetivo",
         topRanking:
           "Ranking in-game: .top muestra PvP/PK paginado para seguir tu progreso",
         dropCommand:
@@ -773,8 +773,8 @@ const baseTranslations = {
         intro1:
           "Un servidor pensado para jugadores que valoran una buena experiencia en Lineage 2.",
         intro2:
-          "Comunidad activa, herramientas utiles y un entorno competitivo para jugar en equipo.",
-        sectionTitle: "Lo mas importante para jugar mejor",
+          "Comunidad activa, herramientas útiles y un entorno competitivo para jugar en equipo.",
+        sectionTitle: "Lo más importante para jugar mejor",
         substackTitle: "SubStack",
         substackDesc:
           "Base +1: una subclase encima de tu clase base sin reemplazarla (ej. adventurer + Sword Muse). La base no muta; sumás skills. No-morph en servidor.",
@@ -786,7 +786,7 @@ const baseTranslations = {
           "Activa o pausa la EXP para controlar tu rango, objetivos y ritmo de progreso.",
         eventsTitle: "Eventos con .join/.leave",
         eventsDesc:
-          "TvT activo con entrada rapida. CTF y DM quedan temporalmente en pausa.",
+          "TvT activo con entrada rápida. CTF y DM quedan temporalmente en pausa.",
         dailyTitle: "Daily Instances",
         dailyDesc:
           "Con .daily ves info, tiempo restante y gestionas entrada/salida sin perder ciclos.",
@@ -801,15 +801,15 @@ const baseTranslations = {
           "Gestiona estado y tiempo con .vip/.vipinfo y aprovecha beneficios definidos.",
         bufferTitle: "Buffer Manager",
         bufferDesc:
-          "Presets Fighter/Mage, restore HP/CP/MP, cancel y schemes para prepararte rapido.",
+          "Presets Fighter/Mage, restore HP/CP/MP, cancel y schemes para prepararte rápido.",
         balanceTitle: "Balance y siege",
         balanceDesc:
           "Updates frecuentes para mantener peleas y asedios en movimiento.",
-        whyTitle: "Por que jugar aqui",
+        whyTitle: "Por que jugar aquí",
         whyClarity:
           "Herramientas claras que ahorran tiempo sin quitar profundidad.",
         whyCommands:
-          "Comandos utiles para progreso, eventos y competencia en un solo lugar.",
+          "Comandos útiles para progreso, eventos y competencia en un solo lugar.",
         whyUpdates:
           "Proyecto activo con ajustes frecuentes de balance y siege.",
         ctaTitle: "Listo para entrar?",
@@ -859,7 +859,7 @@ const baseTranslations = {
           summary:
             "La web ahora muestra la daily nueva de letras, su acceso real con .daily enter 2 y los cambios de Paul Merchant.",
           content:
-            "Se alineo la informacion publica con la configuracion real del servidor: Infinitum Tower aparece como daily activa, se explican las letras L2 Day y se aclaran los cambios de Paul Merchant para armas, sets, escudos y joyas A-grade.",
+            "Se alineo la información publica con la configuración real del servidor: Infinitum Tower aparece como daily activa, se explican las letras L2 Day y se aclaran los cambios de Paul Merchant para armas, sets, escudos y joyas A-grade.",
         },
         patchV1: {
           title: "Patch v1 - Combate, offline shop y estabilidad",
@@ -920,6 +920,9 @@ const baseTranslations = {
       login: "Login",
       online: "Online",
       offline: "Offline",
+    },
+    a11y: {
+      skipToContent: "Saltar al contenido",
     },
     error: {
       notFoundTitle: "Página no encontrada",
@@ -1333,7 +1336,7 @@ const baseTranslations = {
         drops: "Instance Drops",
         adena: "Adena: 130,000 - 170,000 per mob (70% chance)",
         freyaRose: "Freya Rose Red Potion: 32.5% normal / 45.5% VIP",
-        titansBoxDrop: "Titan's Box: 10% normal / 14% VIP",
+        titansBoxDrop: "Titan’s Box: 10% normal / 14% VIP",
         commands: "Commands",
         restrictions: "Restrictions",
         restrict1: "Cannot use Scroll of Escape or /unstuck (use .daily exit)",
@@ -1357,9 +1360,9 @@ const baseTranslations = {
         dailyRewardsTitle: "Updated daily rewards",
         rewardAdena: "Adena",
         rewardFreyaRose: "Freya Rose Red Potion",
-        rewardTitansBox: "Titan's Box",
+        rewardTitansBox: "Titan’s Box",
         titansBoxExtractable:
-          "Titan's Box has been added to the server extractable system.",
+          "Titan’s Box has been added to the server extractable system.",
       },
       siegesTab: {
         fortresses: "Fortresses",
@@ -1441,8 +1444,8 @@ const baseTranslations = {
         lifeStone67: "Life Stone Top-Grade Lv. 67",
         lifeStone76: "Life Stone Top-Grade Lv. 76",
         freyaRosePotion: "Freya Rose Red Potion",
-        titansBoxTitle: "Titan's Box Rewards",
-        titansBoxDesc: "Official reward chances per Titan's Box opening.",
+        titansBoxTitle: "Titan’s Box Rewards",
+        titansBoxDesc: "Official reward chances per Titan’s Box opening.",
         titansBoxItemId: "Item",
         titansBoxItemName: "Reward",
         titansBoxQty: "Qty",
@@ -1791,6 +1794,9 @@ const baseTranslations = {
       login: "Login",
       online: "Online",
       offline: "Offline",
+    },
+    a11y: {
+      skipToContent: "Skip to content",
     },
     error: {
       notFoundTitle: "Page not found",

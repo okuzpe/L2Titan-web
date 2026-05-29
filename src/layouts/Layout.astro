@@ -135,6 +135,13 @@ const robotsContent = robots ?? (noindex
 			)
 		)}
 
+		<!-- Resolución DNS anticipada para terceros bajo el fold (botones de voto, Pixel): ahorra ~100ms al primer clic sin abrir TCP/TLS eager innecesario. -->
+		<link rel="dns-prefetch" href="https://l2network.eu" />
+		<link rel="dns-prefetch" href="https://www.top100arena.com" />
+		<link rel="dns-prefetch" href="https://top.l2jbrasil.com" />
+		<link rel="dns-prefetch" href="https://l2.hopzone.net" />
+		<link rel="dns-prefetch" href="https://connect.facebook.net" />
+
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -155,7 +162,7 @@ const robotsContent = robots ?? (noindex
 
 		<!-- JSON-LD Structured Data -->
 		{structuredData.map((entry) => (
-			<script type="application/ld+json" set:html={JSON.stringify(entry)} />
+			<script is:inline type="application/ld+json" set:html={JSON.stringify(entry)} />
 		))}
 		<style is:inline>
 			/* Visible by default so FCP/LCP are not blocked waiting for i18n (PageSpeed / CrUX). */
@@ -330,8 +337,15 @@ const robotsContent = robots ?? (noindex
 	<body
 		class="min-h-screen flex flex-col bg-black text-slate-200 overflow-x-hidden"
 	>
+		<a
+			href="#main-content"
+			class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-lg focus:bg-yellow-500 focus:px-4 focus:py-2 focus:text-black focus:font-bold focus:shadow-lg"
+			data-i18n="a11y.skipToContent"
+		>
+			{translate("a11y.skipToContent", visitorLang, "Saltar al contenido")}
+		</a>
 		<Navbar />
-		<main class="grow pb-[4.25rem] md:pb-0">
+		<main id="main-content" tabindex="-1" class="grow pb-[4.25rem] md:pb-0 focus:outline-none">
 			<slot />
 		</main>
 		<a
@@ -394,15 +408,19 @@ const robotsContent = robots ?? (noindex
 							var loginClass = data.login === 'online' ? 'status-online' : 'status-offline';
 							applyStatus('status-game-dot', gameClass);
 							applyStatus('status-game-dot-mobile', gameClass);
+							applyStatus('status-game-dot-hero', gameClass);
 							applyStatus('status-login-dot', loginClass);
 							applyStatus('status-login-dot-mobile', loginClass);
+							applyStatus('status-login-dot-hero', loginClass);
 						})
 						.catch(function () {
 							var fallback = 'bg-gray-500';
 							applyStatus('status-game-dot', fallback);
 							applyStatus('status-game-dot-mobile', fallback);
+							applyStatus('status-game-dot-hero', fallback);
 							applyStatus('status-login-dot', fallback);
 							applyStatus('status-login-dot-mobile', fallback);
+							applyStatus('status-login-dot-hero', fallback);
 						});
 				}
 				function startStatusPolling() {

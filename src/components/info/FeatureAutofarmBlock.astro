@@ -1,9 +1,9 @@
 ---
 import { visitorLangFromPath } from '../../utils/i18n-lang';
-import { translate } from '../../utils/translations';
+import { createTabLabel } from '../../utils/translations';
 
 const lang = visitorLangFromPath(Astro.url.pathname);
-const featureLabel = (key: string) => translate(`info.featuresTab.${key}`, lang, key);
+const featureLabel = createTabLabel('features', lang);
 ---
 
 <div class="df-surface p-6 rounded-xl border border-white/10 h-full">

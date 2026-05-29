@@ -1,9 +1,9 @@
 ---
 import { visitorLangFromPath } from '../../utils/i18n-lang';
-import { translate } from '../../utils/translations';
+import { createTabLabel } from '../../utils/translations';
 
 const lang = visitorLangFromPath(Astro.url.pathname);
-const vipLabel = (key: string) => translate(`info.vipTab.${key}`, lang, key);
+const vipLabel = createTabLabel('vip', lang);
 ---
 
 <div class="grid md:grid-cols-2 gap-8">

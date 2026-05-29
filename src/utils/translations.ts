@@ -20,3 +20,12 @@ export function translate(
 
 	return typeof value === 'string' ? value : fallback ?? key;
 }
+
+/**
+ * Helper de etiquetas para componentes Tab/Feature.
+ * `createTabLabel('economy', lang)('intro')` → `translate('info.economyTab.intro', lang, 'intro')`.
+ * Elimina la definición repetida `const xLabel = (key) => translate(...)` en cada tab.
+ */
+export function createTabLabel(tab: string, lang: Language = DEFAULT_INDEXABLE_LANGUAGE) {
+	return (key: string) => translate(`info.${tab}Tab.${key}`, lang, key);
+}

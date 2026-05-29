@@ -1,10 +1,10 @@
 ---
 import { baseRates, bossRates, vipBonus } from '../../data/serverInfo';
 import { visitorLangFromPath } from '../../utils/i18n-lang';
-import { translate } from '../../utils/translations';
+import { createTabLabel } from '../../utils/translations';
 
 const lang = visitorLangFromPath(Astro.url.pathname);
-const ratesLabel = (key: string) => translate(`info.ratesTab.${key}`, lang, key);
+const ratesLabel = createTabLabel('rates', lang);
 ---
 
 <div class="grid md:grid-cols-3 gap-8">

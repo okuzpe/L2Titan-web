@@ -236,7 +236,7 @@ export const infoWikiTranslationOverrides = {
         introKicker: "Sistema custom",
         introTitle: "Features ordenadas por contexto",
         introDesc:
-          "Primero se explican los NPCs y utilidades clave, y despues las reglas PvP, Olympiad y extras para que la lectura dentro de la wiki sea mas clara y menos densa.",
+          "Primero se explican los NPCs y utilidades clave, y después las reglas PvP, Olympiad y extras para que la lectura dentro de la wiki sea más clara y menos densa.",
         communityKicker: "Panel central",
         communityTitle: "Community Board",
         communityIntro:
@@ -263,22 +263,22 @@ export const infoWikiTranslationOverrides = {
         communityAction4: "Progreso: bonus de EXP encendido o apagado.",
       },
       commandsTab: {
-        introKicker: "Referencia rapida",
+        introKicker: "Referencia rápida",
         introTitle: "Comandos agrupados por uso real",
         introDesc:
-          "Cada bloque responde a un contexto concreto para que el jugador encuentre rapido si busca comandos de VIP, daily, voto, ranking o utilidades.",
+          "Cada bloque responde a un contexto concreto para que el jugador encuentre rápido si busca comandos de VIP, daily, voto, ranking o utilidades.",
       },
       vipTab: {
         introKicker: "VIP loop",
-        introTitle: "Activacion, beneficios y comandos mas claros",
+        introTitle: "Activación, beneficios y comandos más claros",
         introDesc:
-          "Primero ves como se activa el VIP, despues que aporta al progreso y por ultimo los comandos utiles para gestionarlo sin dudas.",
+          "Primero ves cómo se activa el VIP, después qué aporta al progreso y por último los comandos útiles para gestionarlo sin dudas.",
       },
       eventsTab: {
         introKicker: "Agenda PvP",
         introTitle: "Calendario, estado y reglas separados por evento",
         introDesc:
-          "La ficha queda organizada para leer rapido que evento esta activo, que reglas usa cada modo y que recompensas estan configuradas ahora mismo.",
+          "La ficha queda organizada para leer rápido qué evento está activo, que reglas usa cada modo y que recompensas están configuradas ahora mismo.",
         configuredRewards: "Recompensas configuradas",
         tvtReward1: "Ganador: 25 Event Medals",
         tvtReward2: "Perdedor: 15 Event Medals",
@@ -287,11 +287,11 @@ export const infoWikiTranslationOverrides = {
         ctfReward1: "Ganador: 25 Event Medals",
         ctfReward2: "Perdedor: 15 Event Medals",
         ctfReward3:
-          "Actualmente el evento automatico esta en pausa, pero la config guardada ya usa estos valores.",
+          "Actualmente el evento automático está en pausa, pero la config guardada ya usa estos valores.",
         dmReward1: "Ganador: 10 Event Medals",
         dmReward2: "Kill reward: 1 Event Medal por kill",
         dmReward3: "Top Killer: +20 Event Medals",
-        dmReward4: "Actualmente el evento automatico esta en pausa.",
+        dmReward4: "Actualmente el evento automático está en pausa.",
         generalKicker: "Antes de entrar",
         generalDesc:
           "Estas restricciones se aplican a todos los modos para evitar cruces con Olympiad, dual-box abusivo o ventanas de asedio.",
@@ -311,20 +311,20 @@ export const infoWikiTranslationOverrides = {
         dailyRoutesTitle: "Daily 1 y Daily 2 a ancho completo",
         dailyRoutesDesc:
           "Cada instancia se muestra como una ficha larga y clara para comparar acceso, objetivo, drops y notas sin apretar la lectura.",
-        maxTimeLabel: "Tiempo maximo",
-        entriesPerDayLabel: "Entradas por dia",
+        maxTimeLabel: "Tiempo máximo",
+        entriesPerDayLabel: "Entradas por día",
         levelRangeLabel: "Rango de nivel",
         primaryGoalLabel: "Objetivo principal",
         mainDropsLabel: "Drops principales",
-        usefulNotesLabel: "Notas utiles",
-        daily1MaxEntries: "1 por dia",
-        daily1Focus: "Farm rapido diario con Adena, Freya Rose y Titan`s Box.",
+        usefulNotesLabel: "Notas útiles",
+        daily1MaxEntries: "1 por día",
+        daily1Focus: "Farm rápido diario con Adena, Freya Rose y Titan’s Box.",
         daily1Drop1: "Adena: 130k - 170k (70% chance)",
         daily1Drop2: "Freya Rose: 1 unidad base, 32.5% normal / 45.5% VIP",
-        daily1Drop3: "Titan`s Box: 10% normal / 14% VIP",
+        daily1Drop3: "Titan’s Box: 10% normal / 14% VIP",
         daily1Note1: "Reset diario a las 06:30 del servidor.",
         daily1Note2: "El tiempo se pausa al salir o desconectarte.",
-        daily2MaxEntries: "3 por dia",
+        daily2MaxEntries: "3 por día",
         daily2Focus:
           "Instancia nueva orientada a farmear letras L2 Day y Adena.",
         daily2Drop1: "Adena: 20k - 26k (70% chance)",
@@ -339,48 +339,48 @@ export const infoWikiTranslationOverrides = {
         introKicker: "Territorio",
         introTitle: "Fortalezas y castillos mejor diferenciados",
         introDesc:
-          "Separo visualmente las dos capas del endgame territorial para que sea mas rapido entender requisitos, flujo del asedio y recompensas reales.",
+          "Separo visualmente las dos capas del endgame territorial para que sea más rápido entender requisitos, flujo del asedio y recompensas reales.",
         realRewardsTitle: "Recompensas reales",
-        fortressRewardLeaderSuffix: "para el lider del clan conquistador",
+        fortressRewardLeaderSuffix: "para el líder del clan conquistador",
         fortressRewardConquerSuffix: "al conquistar",
         fortressRewardDefendSuffix: "si la defensa se mantiene",
         castleRewardsTitle: "Recompensas por castillo",
         castleRewardsDesc:
-          "La recompensa no es plana: varia segun el castillo conquistado.",
+          "La recompensa no es plana: varia según el castillo conquistado.",
         mapKicker: "Mapa territorial",
         mapTitle: "Fortalezas y castillos disponibles",
         mapDesc:
-          "Cerramos la ficha con todo el territorio reunido en un unico bloque, en vez de dos tarjetas sueltas al final.",
+          "Cerramos la ficha con todo el territorio reunido en un único bloque, en vez de dos tarjetas sueltas al final.",
       },
       wiki: {
         layout: {
-          viewMore: "Ver mas",
+          viewMore: "Ver más",
           railLabel: "Wiki",
-          railCenter: "Centro de informacion",
-          pinOpen: "Fijar arbol wiki abierto",
-          pinClose: "Colapsar arbol wiki",
-          desktopNavLabel: "Indice de informacion del servidor",
+          railCenter: "Centro de información",
+          pinOpen: "Fijar árbol wiki abierto",
+          pinClose: "Colapsar árbol wiki",
+          desktopNavLabel: "Índice de información del servidor",
           coverLabel: "Portada",
-          mobileNavLabel: "Indice movil de informacion",
+          mobileNavLabel: "Índice móvil de información",
           mobileCenter: "Centro",
         },
         home: {
-          kicker: "Centro de informacion",
+          kicker: "Centro de información",
           title: "Wiki del servidor para consultar todo por secciones",
           intro:
-            "Esta portada agrupa toda la informacion importante del servidor en una estructura tipo wiki. En lugar de volcarlo todo junto, eliges un tema y entras directo a su ficha dedicada.",
+            "Esta portada agrupa toda la información importante del servidor en una estructura tipo wiki. En lugar de volcarlo todo junto, eliges un tema y entras directo a su ficha dedicada.",
           summary:
-            "La idea es que un jugador nuevo pueda encontrar rapido rates, features, economy, eventos, comandos o progresion diaria sin perderse entre pantallas largas o tabs ocultos.",
+            "La idea es que un jugador nuevo pueda encontrar rápido rates, features, economy, eventos, comandos o progresión diaria sin perderse entre pantallas largas o tabs ocultos.",
           ctaRates: "Empezar por Rates",
           ctaFeatures: "Ver Features",
           featuredKicker: "Secciones destacadas",
-          featuredTitle: "Empieza por lo que mas consulta la gente",
+          featuredTitle: "Empieza por lo que más consulta la gente",
           featuredSummary:
-            "Rates y Features suelen resolver la mayor parte de las dudas iniciales. Desde ahi puedes saltar a VIP, Economy, Commands o cualquier otra ficha relacionada.",
-          indexKicker: "Indice completo",
+            "Rates y Features suelen resolver la mayor parte de las dudas iniciales. Desde ahí puedes saltar a VIP, Economy, Commands o cualquier otra ficha relacionada.",
+          indexKicker: "Índice completo",
           indexTitle: "Todas las fichas de la wiki",
           indexSummary:
-            "Cada ficha vive en su propia URL para que el arbol lateral sea claro y cada tema se pueda compartir de forma directa.",
+            "Cada ficha vive en su propia URL para que el árbol lateral sea claro y cada tema se pueda compartir de forma directa.",
         },
         sections: {
           rates: {
@@ -401,12 +401,12 @@ export const infoWikiTranslationOverrides = {
           economy: {
             kicker: "Monedas y shops",
             summary:
-              "PVP Coin, Event Medal, Raid Token, Vote Coin, Titan Coin y flujo economico.",
+              "PVP Coin, Event Medal, Raid Token, Vote Coin, Titan Coin y flujo económico.",
           },
           vip: {
             kicker: "Ventajas",
             summary:
-              "Activacion, beneficios y relacion del VIP con la economia del servidor.",
+              "Activación, beneficios y relacion del VIP con la economía del servidor.",
           },
           events: {
             kicker: "PvP activo",
@@ -426,7 +426,7 @@ export const infoWikiTranslationOverrides = {
           commands: {
             kicker: "Uso diario",
             summary:
-              "Referencia rapida de .vip, .daily, .top, .vote, .globalgk y utilidades.",
+              "Referencia rápida de .vip, .daily, .top, .vote, .globalgk y utilidades.",
           },
         },
       },
@@ -463,10 +463,10 @@ export const infoWikiTranslationOverrides = {
               "Revisa el sistema de enchant de L2Titan Interlude: safe enchant, max enchant, scrolls normales, blessed, crystal y augmentation.",
           },
           vip: {
-            heading: "VIP de L2Titan Interlude: como funciona y que bonus da",
+            heading: "VIP de L2Titan Interlude: cómo funciona y qué bonus da",
             intro:
               "Comandos .vip, duración, VIP Token y bonus (XP, Adena, drop, spoil, items) en el panel inferior; Titan Coins y asedios en tablas.",
-            metaTitle: "VIP de L2Titan Interlude: como funciona y que bonus da",
+            metaTitle: "VIP de L2Titan Interlude: cómo funciona y qué bonus da",
             metaDescription:
               "Descubre cómo funciona el VIP de L2Titan Interlude, qué bonus ofrece, cómo activarlo con .vip y cómo conseguir Titan Coins.",
           },
@@ -496,11 +496,11 @@ export const infoWikiTranslationOverrides = {
           },
           economy: {
             heading:
-              "Economia de L2Titan Interlude: monedas, shops y Titan Box",
+              "Economía de L2Titan Interlude: monedas, shops y Titan Box",
             intro:
               "Monedas, shops, Vote/Raid/Titan, Titan Box y tablas en la sección principal; un solo vistazo antes de profundizar.",
             metaTitle:
-              "Economia de L2Titan Interlude: monedas, shops y Titan Box",
+              "Economía de L2Titan Interlude: monedas, shops y Titan Box",
             metaDescription:
               "Consulta la economía de L2Titan Interlude: PVP Coin, Event Medal, Raid Token, Vote Coin, Titan Coin, Titan Box y shops del servidor.",
           },
@@ -514,11 +514,11 @@ export const infoWikiTranslationOverrides = {
               "Descubre las features de L2Titan Interlude: SubStack, AutoFarm configurable, Buffer, ranking .top, .drop, Olympiad y balance PvP.",
           },
           commands: {
-            heading: "Comandos de L2Titan Interlude: .vip, .daily, .top y mas",
+            heading: "Comandos de L2Titan Interlude: .vip, .daily, .top y más",
             intro:
               "Lista por categorías debajo (.vip, .daily, .top, voto, teleport, banco, etc.); entra directo al bloque útil.",
             metaTitle:
-              "Comandos de L2Titan Interlude: .vip, .daily, .top y mas",
+              "Comandos de L2Titan Interlude: .vip, .daily, .top y más",
             metaDescription:
               "Lista completa de comandos de L2Titan Interlude: .vip, .daily, .join, .leave, .top, .vote, .globalgk, .bank y utilidades.",
           },
@@ -895,10 +895,10 @@ export const infoWikiTranslationOverrides = {
         usefulNotesLabel: "Useful notes",
         daily1MaxEntries: "1 per day",
         daily1Focus:
-          "Fast daily farming for Adena, Freya Rose and Titan`s Box.",
+          "Fast daily farming for Adena, Freya Rose and Titan’s Box.",
         daily1Drop1: "Adena: 130k - 170k (70% chance)",
         daily1Drop2: "Freya Rose: base 1 unit, 32.5% normal / 45.5% VIP",
-        daily1Drop3: "Titan`s Box: 10% normal / 14% VIP",
+        daily1Drop3: "Titan’s Box: 10% normal / 14% VIP",
         daily1Note1: "Daily reset at 06:30 server time.",
         daily1Note2: "Time pauses when you leave or disconnect.",
         daily2MaxEntries: "3 per day",

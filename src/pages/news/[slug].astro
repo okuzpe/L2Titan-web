@@ -80,6 +80,9 @@ const breadcrumbLd = buildBreadcrumb([
   ogType="article"
   articlePublishedTime={newsItem.publishedAt}
   structuredData={[breadcrumbLd, articleLd]}
+  preloadLcpImage={newsItem.imageCard ?? newsItem.image}
+  preloadLcpImageSrcset={newsItem.imageCard && articleWebpSrcset ? articleWebpSrcset : undefined}
+  preloadLcpImageSizes="(max-width: 768px) 100vw, min(896px, 100vw)"
 >
   <div class="container mx-auto max-w-4xl px-4 py-12 md:py-16">
     <a href="/news" class="df-link-back mb-8 group">
@@ -114,7 +117,9 @@ const breadcrumbLd = buildBreadcrumb([
             alt={`${resolvedTitle} - L2Titan Lineage 2 Interlude`}
             width="900"
             height="540"
-            loading="lazy"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
             class="h-48 w-full object-cover sm:h-72 md:h-96"
           />
         ) : (
@@ -123,7 +128,9 @@ const breadcrumbLd = buildBreadcrumb([
             alt={`${resolvedTitle} - L2Titan Lineage 2 Interlude`}
             width="896"
             height="384"
-            loading="lazy"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
             class="h-48 w-full object-cover sm:h-72 md:h-96"
           />
         )}

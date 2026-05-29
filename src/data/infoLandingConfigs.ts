@@ -143,7 +143,7 @@ export const infoLandingConfigs: Record<InfoLandingTopicSlug, InfoLandingConfig>
     heading: 'Features de L2Titan Interlude: SubStack, AutoFarm y PvP',
     intro:
       'SubStack, AutoFarm, Buffer, .top, drop, QoL y balance: todo el detalle está en las secciones siguientes (misma wiki, vista landing).',
-    ogImage: '/images/interface.png',
+    ogImage: '/images/interface.jpg',
   },
   commands: {
     topicSlug: 'commands',
@@ -156,7 +156,7 @@ export const infoLandingConfigs: Record<InfoLandingTopicSlug, InfoLandingConfig>
     heading: 'Comandos de L2Titan Interlude: .vip, .daily, .top y mas',
     intro:
       'Lista por categorías debajo (.vip, .daily, .top, voto, teleport, banco, etc.); entra directo al bloque útil.',
-    ogImage: '/images/interface.png',
+    ogImage: '/images/interface.jpg',
   },
   autofarm: {
     topicSlug: 'autofarm',
@@ -169,7 +169,7 @@ export const infoLandingConfigs: Record<InfoLandingTopicSlug, InfoLandingConfig>
     heading: 'AutoFarm en L2Titan Interlude x25',
     intro:
       'Modos, radio y filtros en el panel de abajo; landing dedicada a la intención “autofarm Interlude” sin repetir el texto de /features.',
-    ogImage: '/images/interface.png',
+    ogImage: '/images/interface.jpg',
   },
   olympiad: {
     topicSlug: 'olympiad',
@@ -195,6 +195,6 @@ export const infoLandingConfigs: Record<InfoLandingTopicSlug, InfoLandingConfig>
     heading: 'Raid Bosses, anuncios y economía',
     intro:
       'Anuncios en cliente y tokens: números en /rates y /economy; aquí el panel específico sin repetir esos párrafos.',
-    ogImage: '/images/interface.png',
+    ogImage: '/images/interface.jpg',
   },
 };

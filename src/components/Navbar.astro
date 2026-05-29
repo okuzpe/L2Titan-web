@@ -3,6 +3,19 @@ import { visitorLangFromPath } from '../utils/i18n-lang';
 import { translate } from '../utils/translations';
 
 const lang = visitorLangFromPath(Astro.url.pathname);
+
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path === href || path.startsWith(href + '/');
+const navLinkBase =
+  'px-3 py-2 rounded-lg text-sm font-medium transition-all hover:bg-white/10';
+const navLinkCls = (href: string) =>
+  `${navLinkBase} ${isActive(href) ? 'text-white bg-white/10' : 'text-gray-300 hover:text-white'}`;
+const mobileLinkBase =
+  'mobile-nav-link block px-3 py-3 rounded-lg text-base font-medium transition-all hover:bg-white/10';
+const mobileLinkCls = (href: string) =>
+  `${mobileLinkBase} ${isActive(href) ? 'text-white bg-white/10' : 'text-gray-300 hover:text-white'}`;
+const DISCORD_URL = 'https://discord.gg/GunamUdGaQ';
 ---
 <nav class="df-surface-strong navbar-shell rounded-none border-x-0 sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,11 +27,11 @@ const lang = visitorLangFromPath(Astro.url.pathname);
       </div>
       <!-- Desktop nav: pocas rutas visibles + "Más" (sin JS) -->
       <div class="hidden md:flex md:items-center md:ml-6 lg:ml-10 md:gap-1 lg:gap-2">
-        <a href="/" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.home">{translate('navbar.home', lang, 'Inicio')}</a>
-        <a href="/downloads" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.downloads">{translate('navbar.downloads', lang, 'Descargas')}</a>
-        <a href="/info" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.info">{translate('navbar.info', lang, 'Info')}</a>
-        <a href="/news" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.news">{translate('navbar.news', lang, 'Noticias')}</a>
-        <a href="#vote-section" class="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all" data-i18n="navbar.vote">{translate('navbar.vote', lang, 'Votar')}</a>
+        <a href="/" class={navLinkCls('/')} aria-current={isActive('/') ? 'page' : undefined} data-i18n="navbar.home">{translate('navbar.home', lang, 'Inicio')}</a>
+        <a href="/downloads" class={navLinkCls('/downloads')} aria-current={isActive('/downloads') ? 'page' : undefined} data-i18n="navbar.downloads">{translate('navbar.downloads', lang, 'Descargas')}</a>
+        <a href="/info" class={navLinkCls('/info')} aria-current={isActive('/info') ? 'page' : undefined} data-i18n="navbar.info">{translate('navbar.info', lang, 'Info')}</a>
+        <a href="/news" class={navLinkCls('/news')} aria-current={isActive('/news') ? 'page' : undefined} data-i18n="navbar.news">{translate('navbar.news', lang, 'Noticias')}</a>
+        <a href="#vote-section" class={navLinkBase + ' text-gray-300 hover:text-white'} data-i18n="navbar.vote">{translate('navbar.vote', lang, 'Votar')}</a>
         <details class="relative group">
           <summary class="list-none cursor-pointer select-none text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1 [&::-webkit-details-marker]:hidden">
             <span data-i18n="navbar.more">{translate('navbar.more', lang, 'Más')}</span>
@@ -33,6 +46,10 @@ const lang = visitorLangFromPath(Astro.url.pathname);
             <a href="/comunidad" class="block px-4 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white" data-i18n="navbar.community">{translate('navbar.community', lang, 'Comunidad')}</a>
           </div>
         </details>
+        <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer" class="ml-1 inline-flex items-center gap-1.5 rounded-lg bg-[#5865F2] px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#4752c4]">
+          <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.5328-9.748-2.312-13.7083a.0765.0765 0 00-.0303-.0277zM6.4544 14.7698c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9355-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.9281 2.451-2.152 2.451zm6.585 0c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9354-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.928 2.451-2.152 2.451z"></path></svg>
+          <span>Discord</span>
+        </a>
         <div class="flex items-center gap-2 border-l border-white/10 pl-3 ml-1 shrink-0">
           <button id="language-toggle" type="button" class="text-gray-300 hover:text-white hover:bg-white/10 px-2.5 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1.5" data-i18n-aria-label="navbar.changeLanguage" aria-label={translate('navbar.changeLanguage', lang, 'Cambiar idioma')}>
             <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -66,11 +83,15 @@ const lang = visitorLangFromPath(Astro.url.pathname);
   <!-- Mobile menu panel -->
   <div id="mobile-menu" class="hidden md:hidden border-t border-white/10">
     <div class="px-4 py-3 space-y-1">
-      <a href="/" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all" data-i18n="navbar.home">{translate('navbar.home', lang, 'Inicio')}</a>
-      <a href="/downloads" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all" data-i18n="navbar.downloads">{translate('navbar.downloads', lang, 'Descargas')}</a>
-      <a href="/info" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all" data-i18n="navbar.info">{translate('navbar.info', lang, 'Info')}</a>
-      <a href="/news" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all" data-i18n="navbar.news">{translate('navbar.news', lang, 'Noticias')}</a>
-      <a href="#vote-section" class="mobile-nav-link block text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all" data-i18n="navbar.vote">{translate('navbar.vote', lang, 'Votar')}</a>
+      <a href="/" class={mobileLinkCls('/')} aria-current={isActive('/') ? 'page' : undefined} data-i18n="navbar.home">{translate('navbar.home', lang, 'Inicio')}</a>
+      <a href="/downloads" class={mobileLinkCls('/downloads')} aria-current={isActive('/downloads') ? 'page' : undefined} data-i18n="navbar.downloads">{translate('navbar.downloads', lang, 'Descargas')}</a>
+      <a href="/info" class={mobileLinkCls('/info')} aria-current={isActive('/info') ? 'page' : undefined} data-i18n="navbar.info">{translate('navbar.info', lang, 'Info')}</a>
+      <a href="/news" class={mobileLinkCls('/news')} aria-current={isActive('/news') ? 'page' : undefined} data-i18n="navbar.news">{translate('navbar.news', lang, 'Noticias')}</a>
+      <a href="#vote-section" class={mobileLinkBase + ' text-gray-300 hover:text-white'} data-i18n="navbar.vote">{translate('navbar.vote', lang, 'Votar')}</a>
+      <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer" class="mobile-nav-link flex items-center gap-2 rounded-lg bg-[#5865F2] px-3 py-3 text-base font-semibold text-white transition-colors hover:bg-[#4752c4]">
+        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.5328-9.748-2.312-13.7083a.0765.0765 0 00-.0303-.0277zM6.4544 14.7698c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9355-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.9281 2.451-2.152 2.451zm6.585 0c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9354-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.928 2.451-2.152 2.451z"></path></svg>
+        <span>Discord</span>
+      </a>
       <details class="group rounded-lg">
         <summary class="list-none cursor-pointer select-none text-gray-300 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all flex items-center justify-between [&::-webkit-details-marker]:hidden">
           <span data-i18n="navbar.more">{translate('navbar.more', lang, 'Más')}</span>
@@ -136,12 +157,30 @@ const lang = visitorLangFromPath(Astro.url.pathname);
       var closeIcon = document.getElementById('close-icon');
       if (!btn || !menu || !hamburgerIcon || !closeIcon) return;
 
+      function closeMenu(restoreFocus) {
+        menu.classList.add('hidden');
+        hamburgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+        if (restoreFocus) btn.focus();
+      }
+
       btn.addEventListener('click', function() {
-        var isOpen = !menu.classList.contains('hidden');
+        var willOpen = menu.classList.contains('hidden');
         menu.classList.toggle('hidden');
         hamburgerIcon.classList.toggle('hidden');
         closeIcon.classList.toggle('hidden');
-        btn.setAttribute('aria-expanded', String(!isOpen));
+        btn.setAttribute('aria-expanded', String(willOpen));
+        if (willOpen) {
+          var first = menu.querySelector('.mobile-nav-link');
+          if (first) first.focus();
+        }
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+          closeMenu(true);
+        }
       });
 
       var mobileLinks = menu.querySelectorAll('.mobile-nav-link');

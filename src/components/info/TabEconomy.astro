@@ -1,10 +1,10 @@
 ---
 import { weaponCrystalScrolls, armorCrystalScrolls, eventMedalShop, voteCoinShop, titansBoxRewards, shirts, raidTokenDrops, l2DayRecipes } from '../../data/serverInfo';
 import { visitorLangFromPath } from '../../utils/i18n-lang';
-import { translate } from '../../utils/translations';
+import { createTabLabel } from '../../utils/translations';
 
 const lang = visitorLangFromPath(Astro.url.pathname);
-const economyLabel = (key: string) => translate(`info.economyTab.${key}`, lang, key);
+const economyLabel = createTabLabel('economy', lang);
 ---
 
 <div class="df-surface p-5 md:p-6 rounded-xl border border-yellow-500/20 mb-6">
@@ -49,8 +49,10 @@ const economyLabel = (key: string) => translate(`info.economyTab.${key}`, lang, 
     <div class="lg:col-span-1">
       <div class="rounded-xl overflow-hidden border border-yellow-500/15 bg-black/30">
         <img
-          src="/images/letters-exchange.png"
-          alt="L2 Letters exchange example"
+          src="/images/letters-exchange.webp"
+          alt="Ejemplo de intercambio de cartas (L2 Day Letters) en L2Titan"
+          width="499"
+          height="384"
           class="w-full h-auto object-contain"
           loading="lazy"
         />
@@ -63,7 +65,7 @@ const economyLabel = (key: string) => translate(`info.economyTab.${key}`, lang, 
       </p>
       <div class="mb-5 rounded-xl border border-yellow-500/15 bg-black/30 p-4">
         <p class="text-sm text-gray-300">
-          Junta letras para formar palabras y canjearlas directamente en Paul Merchant. Las combinaciones activas son <strong>WEAPON</strong>, <strong>SHIELD</strong>, <strong>YEWELLS</strong> y <strong>ARMORS</strong>. Algunas recetas top tambien piden el item especial <strong>II</strong>.
+          Junta letras para formar palabras y canjearlas directamente en Paul Merchant. Las combinaciones activas son <strong>WEAPON</strong>, <strong>SHIELD</strong>, <strong>YEWELLS</strong> y <strong>ARMORS</strong>. Algunas recetas top también piden el item especial <strong>II</strong>.
         </p>
       </div>
       <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-3">
@@ -173,9 +175,9 @@ const economyLabel = (key: string) => translate(`info.economyTab.${key}`, lang, 
       <h3 class="text-xl font-bold text-yellow-500 mb-4 font-display" data-i18n="info.economyTab.specialShop">Tienda Especial</h3>
 
       <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2" data-i18n="info.economyTab.withTitanCoins">Con Titan Coins</h4>
-      <div class="p-2 bg-black/30 rounded text-sm mb-4">
+      <div class="flex justify-between p-2 bg-black/30 rounded text-sm mb-4">
         <span class="text-gray-300">VIP Token</span>
-        <span class="text-yellow-400 font-bold float-right">20 Titan Coins</span>
+        <span class="text-yellow-400 font-bold">20 Titan Coins</span>
       </div>
 
       <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2" data-i18n="info.economyTab.withEventMedals">Con Event Medals</h4>
@@ -211,7 +213,7 @@ const economyLabel = (key: string) => translate(`info.economyTab.${key}`, lang, 
     <div class="rounded-xl overflow-hidden border border-white/10 bg-black/40">
       <div class="aspect-4/3">
         <img
-          src="/images/Box.png"
+          src="/images/Box.webp"
           alt="Titan's Box rewards"
           class="w-full h-full object-contain object-center"
           loading="lazy"

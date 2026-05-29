@@ -70,7 +70,7 @@ const lang = visitorLangFromPath(Astro.url.pathname);
               {translate('home.downloadClient', lang, 'Descargar cliente')}
             </ActionButton>
             <ActionButton href={activeConfig?.canonicalPath ?? '/info'} variant="ghost" className="px-5 py-3" data-i18n="info.wiki.layout.viewMore">
-              {translate('info.wiki.layout.viewMore', lang, 'Ver mas')}
+              {translate('info.wiki.layout.viewMore', lang, 'Ver más')}
             </ActionButton>
           </div>
         </div>
@@ -88,7 +88,7 @@ const lang = visitorLangFromPath(Astro.url.pathname);
                 {translate('info.wiki.layout.railLabel', lang, 'Wiki')}
               </p>
               <p class="text-xs text-gray-500 mt-1" data-i18n="info.wiki.layout.railCenter">
-                {translate('info.wiki.layout.railCenter', lang, 'Centro de informacion')}
+                {translate('info.wiki.layout.railCenter', lang, 'Centro de información')}
               </p>
             </div>
             <button
@@ -97,7 +97,7 @@ const lang = visitorLangFromPath(Astro.url.pathname);
               data-wiki-toggle
               aria-expanded="false"
               data-i18n-aria-label="info.wiki.layout.pinOpen"
-              aria-label={translate('info.wiki.layout.pinOpen', lang, 'Fijar arbol wiki abierto')}
+              aria-label={translate('info.wiki.layout.pinOpen', lang, 'Fijar árbol wiki abierto')}
             >
               <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -105,13 +105,13 @@ const lang = visitorLangFromPath(Astro.url.pathname);
             </button>
           </div>
 
-          <nav data-i18n-aria-label="info.wiki.layout.desktopNavLabel" aria-label={translate('info.wiki.layout.desktopNavLabel', lang, 'Indice de informacion del servidor')}>
+          <nav data-i18n-aria-label="info.wiki.layout.desktopNavLabel" aria-label={translate('info.wiki.layout.desktopNavLabel', lang, 'Índice de información del servidor')}>
             <a
               href="/info"
               class={`wiki-tree-item mb-2 ${currentPath === '/info' ? 'is-active' : ''}`}
               aria-current={currentPath === '/info' ? 'page' : undefined}
               data-i18n-title="info.wiki.layout.railCenter"
-              title={translate('info.wiki.layout.railCenter', lang, 'Centro de informacion')}
+              title={translate('info.wiki.layout.railCenter', lang, 'Centro de información')}
             >
               <span class="wiki-tree-index">00</span>
               <span class="wiki-tree-copy min-w-0">
@@ -119,7 +119,7 @@ const lang = visitorLangFromPath(Astro.url.pathname);
                   {translate('info.wiki.layout.coverLabel', lang, 'Portada')}
                 </span>
                 <span class="block text-sm font-semibold text-slate-200" data-i18n="info.wiki.layout.railCenter">
-                  {translate('info.wiki.layout.railCenter', lang, 'Centro de informacion')}
+                  {translate('info.wiki.layout.railCenter', lang, 'Centro de información')}
                 </span>
               </span>
             </a>
@@ -154,7 +154,7 @@ const lang = visitorLangFromPath(Astro.url.pathname);
 
       <div class="min-w-0">
         <div class="lg:hidden sticky top-16 z-30 -mx-4 px-4 pb-4 pt-2 bg-linear-to-b from-black via-black/95 to-transparent">
-          <nav class="flex gap-2 overflow-x-auto scrollbar-hide pb-1" data-i18n-aria-label="info.wiki.layout.mobileNavLabel" aria-label={translate('info.wiki.layout.mobileNavLabel', lang, 'Indice movil de informacion')}>
+          <nav class="flex gap-2 overflow-x-auto scrollbar-hide pb-1" data-i18n-aria-label="info.wiki.layout.mobileNavLabel" aria-label={translate('info.wiki.layout.mobileNavLabel', lang, 'Índice móvil de información')}>
             <a href="/info" class={`wiki-chip ${currentPath === '/info' ? 'is-active' : ''}`} aria-current={currentPath === '/info' ? 'page' : undefined}>
               <span data-i18n="info.wiki.layout.mobileCenter">{translate('info.wiki.layout.mobileCenter', lang, 'Centro')}</span>
             </a>
@@ -336,7 +336,7 @@ const lang = visitorLangFromPath(Astro.url.pathname);
         if (toggle instanceof HTMLButtonElement) {
           toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
           const labelKey = rail.dataset.pinned === 'true' ? 'info.wiki.layout.pinClose' : 'info.wiki.layout.pinOpen';
-          const label = window.i18n?.getTranslation ? window.i18n.getTranslation(labelKey) : (rail.dataset.pinned === 'true' ? 'Colapsar arbol wiki' : 'Fijar arbol wiki abierto');
+          const label = window.i18n?.getTranslation ? window.i18n.getTranslation(labelKey) : (rail.dataset.pinned === 'true' ? 'Colapsar árbol wiki' : 'Fijar árbol wiki abierto');
           toggle.setAttribute('aria-label', label);
         }
       };

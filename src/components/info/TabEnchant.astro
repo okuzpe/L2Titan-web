@@ -11,7 +11,7 @@ import {
   augmentation,
 } from '../../data/serverInfo';
 import { visitorLangFromPath } from '../../utils/i18n-lang';
-import { translate } from '../../utils/translations';
+import { createTabLabel } from '../../utils/translations';
 
 function getCellBg(chance: number): string {
   if (chance >= 90) return 'bg-green-500/20 text-green-400 border-green-500/30';
@@ -95,16 +95,16 @@ const scrollTypes = [
 ];
 
 const lang = visitorLangFromPath(Astro.url.pathname);
-const enchantLabel = (key: string) => translate(`info.enchantTab.${key}`, lang, key);
+const enchantLabel = createTabLabel('enchant', lang);
 ---
 
 <!-- General Info -->
 <div class="grid sm:grid-cols-3 gap-4 mb-8">
   <div class="sm:col-span-3 rounded-2xl border border-yellow-500/15 bg-linear-to-r from-yellow-500/10 via-slate-900/80 to-slate-950/90 p-5 md:p-6">
     <p class="df-kicker mb-2">Sistema de enchant</p>
-    <h3 class="text-2xl font-bold text-yellow-400 font-display mb-3">Comparacion mas limpia por scroll</h3>
+    <h3 class="text-2xl font-bold text-yellow-400 font-display mb-3">Comparacion más limpia por scroll</h3>
     <p class="max-w-3xl text-sm md:text-base text-gray-300 leading-relaxed">
-      Mantuvimos toda la informacion tecnica, pero con mas respiracion visual para comparar riesgo,
+      Mantuvimos toda la información técnica, pero con más respiracion visual para comparar riesgo,
       rango y probabilidades sin que la tabla se sienta apretada.
     </p>
   </div>
