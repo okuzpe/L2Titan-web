@@ -426,7 +426,7 @@ const robotsContent = robots ?? (noindex
 					var gameDot = document.getElementById('status-game-dot');
 					var loginDot = document.getElementById('status-login-dot');
 					if (!gameDot || !loginDot) return;
-					fetch('/status')
+					fetch('/status.json')
 						.then(function (res) {
 							return res.json();
 						})
@@ -435,19 +435,15 @@ const robotsContent = robots ?? (noindex
 							var loginClass = data.login === 'online' ? 'status-online' : 'status-offline';
 							applyStatus('status-game-dot', gameClass);
 							applyStatus('status-game-dot-mobile', gameClass);
-							applyStatus('status-game-dot-hero', gameClass);
 							applyStatus('status-login-dot', loginClass);
 							applyStatus('status-login-dot-mobile', loginClass);
-							applyStatus('status-login-dot-hero', loginClass);
 						})
 						.catch(function () {
 							var fallback = 'bg-gray-500';
 							applyStatus('status-game-dot', fallback);
 							applyStatus('status-game-dot-mobile', fallback);
-							applyStatus('status-game-dot-hero', fallback);
 							applyStatus('status-login-dot', fallback);
 							applyStatus('status-login-dot-mobile', fallback);
-							applyStatus('status-login-dot-hero', fallback);
 						});
 				}
 				var pollingStarted = false;
