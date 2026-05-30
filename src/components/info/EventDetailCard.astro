@@ -1,0 +1,64 @@
+---
+/**
+ * Card de detalle de evento (TvT / CTF / DM). Dedup de 3 bloques casi idénticos en TabEvents.
+ * Claves i18n cortas bajo `info.eventsTab.*`. Paleta con strings Tailwind completos
+ * (no interpolar `text-${color}` — Tailwind no genera clases construidas dinámicamente).
+ */
+import { createTabLabel } from '../../utils/translations';
+import { visitorLangFromPath } from '../../utils/i18n-lang';
+
+export interface EventRow {
+  /** clave corta bajo info.eventsTab */
+  label: string;
+  /** clave corta del valor; si falta, se usa `value` literal (sin i18n, p. ej. "1 - 81") */
+  valueKey?: string;
+  value?: string;
+  /** clase Tailwind completa; por defecto text-gray-200 */
+  valueClass?: string;
+}
+export interface EventReward {
+  key: string;
+  /** clase Tailwind completa; por defecto text-gray-300 */
+  class?: string;
+}
+interface Props {
+  color: 'red' | 'blue' | 'orange';
+  titleKey: string;
+  rows: EventRow[];
+  rewards: EventReward[];
+}
+
+const { color, titleKey, rows, rewards } = Astro.props;
+const lang = visitorLangFromPath(Astro.url.pathname);
+const t = createTabLabel('events', lang);
+const k = (short: string) => `info.eventsTab.${short}`;
+
+const palette = {
+  red: { border: 'border-red-500/20', title: 'text-red-400', box: 'bg-red-500/10 border-red-500/20', boxTitle: 'text-red-400' },
+  blue: { border: 'border-blue-500/20', title: 'text-blue-400', box: 'bg-blue-500/10 border-blue-500/20', boxTitle: 'text-blue-400' },
+  orange: { border: 'border-orange-500/20', title: 'text-orange-400', box: 'bg-orange-500/10 border-orange-500/20', boxTitle: 'text-orange-400' },
+} as const;
+const p = palette[color];
+---
+
+<div class:list={['df-surface p-6 rounded-xl border', p.border]}>
+  <h3 class:list={['text-xl font-bold mb-4 font-display', p.title]} data-i18n={k(titleKey)}>{t(titleKey)}</h3>
+  <div class="space-y-2 text-sm">
+    {rows.map((row) => (
+      <div class="flex justify-between p-2 bg-black/30 rounded">
+        <span class="text-gray-400" data-i18n={k(row.label)}>{t(row.label)}</span>
+        {row.valueKey ? (
+          <span class:list={[row.valueClass ?? 'text-gray-200']} data-i18n={k(row.valueKey)}>{t(row.valueKey)}</span>
+        ) : (
+          <span class:list={[row.valueClass ?? 'text-gray-200']}>{row.value}</span>
+        )}
+      </div>
+    ))}
+    <div class:list={['mt-3 p-3 rounded border', p.box]}>
+      <p class:list={['text-xs font-bold uppercase tracking-wider mb-2', p.boxTitle]} data-i18n="info.eventsTab.configuredRewards">{t('configuredRewards')}</p>
+      {rewards.map((r) => (
+        <p class:list={[r.class ?? 'text-gray-300', 'text-xs']} data-i18n={k(r.key)}>{t(r.key)}</p>
+      ))}
+    </div>
+  </div>
+</div>
