@@ -102,8 +102,8 @@ const getDownloadFilename = (file: typeof downloads[0]) => {
 
 const structuredData = [
   buildBreadcrumb([
-    { name: 'Inicio', path: '/' },
-    { name: 'Descargas', path: '/downloads' },
+    { name: translate('navbar.home', lang, 'Inicio'), path: '/' },
+    { name: translate('navbar.downloads', lang, 'Descargas'), path: '/downloads' },
   ]),
   buildSoftwareApplicationSchema(),
   buildFaq([
@@ -171,7 +171,7 @@ const structuredData = [
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={file.icon.path} />
                     </svg>
                   )}
-                  {file.nameKey ? <span data-i18n={file.nameKey}>{file.name}</span> : file.name}
+                  {file.nameKey ? <span data-i18n={file.nameKey}>{translate(file.nameKey, lang, file.name)}</span> : file.name}
                   </span>
                 </td>
                 <td class="font-mono text-gray-400">{file.size}</td>
@@ -208,7 +208,7 @@ const structuredData = [
               </svg>
             )}
             <span class="font-medium text-white">
-              {file.nameKey ? <span data-i18n={file.nameKey}>{file.name}</span> : file.name}
+              {file.nameKey ? <span data-i18n={file.nameKey}>{translate(file.nameKey, lang, file.name)}</span> : file.name}
             </span>
           </div>
           <div class="flex items-center gap-3 mb-4">

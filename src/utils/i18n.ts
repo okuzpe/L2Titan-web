@@ -23,10 +23,14 @@ export function setLanguage(lang: Language): void {
 export function getTranslation(key: string, lang?: Language): string {
   const currentLang = lang || getLanguage();
   const keys = key.split('.');
-  let value: any = translations[currentLang];
+  let value: unknown = translations[currentLang];
   
   for (const k of keys) {
-    value = value?.[k];
+    if (typeof value !== 'object' || value === null) {
+      console.warn(`Translation key not found: ${key}`);
+      return key;
+    }
+    value = (value as Record<string, unknown>)[k];
     if (value === undefined) {
       console.warn(`Translation key not found: ${key}`);
       return key;

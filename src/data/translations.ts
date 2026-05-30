@@ -1250,6 +1250,10 @@ const baseTranslations = {
       },
       vipTab: {
         title: "VIP System",
+        introKicker: "VIP loop",
+        introTitle: "Activation, benefits and commands, made clearer",
+        introDesc:
+          "First you see how VIP is activated, then what it adds to your progress, and finally the useful commands to manage it without doubts.",
         howToActivate: "How to activate VIP",
         step1:
           "Obtain a VIP Token (purchase with 20 Titan Coins from NPC shop)",
@@ -1276,6 +1280,10 @@ const baseTranslations = {
           "Titan Coins are obtained by conquering Fortresses (4 per conquest) and Castles (35 to 135 depending on the castle) as clan leader",
       },
       eventsTab: {
+        introKicker: "PvP agenda",
+        introTitle: "Calendar, status and rules, split per event",
+        introDesc:
+          "The page is organized so you can quickly read which event is active, what rules each mode uses, and which rewards are currently configured.",
         schedule: "Full Schedule",
         scheduleNote:
           "TvT remains active by schedule. CTF and DM are temporarily paused.",
@@ -1324,6 +1332,22 @@ const baseTranslations = {
         townWarKarma: "No karma during event",
         townWarAdmin: "Activated by administrators",
         generalRules: "General Event Rules",
+        configuredRewards: "Configured rewards",
+        tvtReward1: "Winner: 25 Event Medals",
+        tvtReward2: "Loser: 15 Event Medals",
+        tvtReward3: "Kill reward: 1 Event Medal per enemy defeated",
+        tvtReward4: "Top Killer: +10 Event Medals",
+        ctfReward1: "Winner: 25 Event Medals",
+        ctfReward2: "Loser: 15 Event Medals",
+        ctfReward3:
+          "The automatic event is currently paused, but the saved config already uses these values.",
+        dmReward1: "Winner: 10 Event Medals",
+        dmReward2: "Kill reward: 1 Event Medal per kill",
+        dmReward3: "Top Killer: +20 Event Medals",
+        dmReward4: "The automatic event is currently paused.",
+        generalKicker: "Before you enter",
+        generalDesc:
+          "These restrictions apply to all modes to avoid clashes with Olympiad, abusive dual-box, or siege windows.",
         rule1: "Cannot participate if in Olympiad or another event",
         rule2: "Dual-box restriction in events",
         rule3: "Events do not run during castle sieges",

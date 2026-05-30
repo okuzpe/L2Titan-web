@@ -28,7 +28,7 @@ const faqForSchema = faqEntries.map(({ qKey, aKey }) => ({
 const structuredData = [
 	buildBreadcrumb([
 		{ name: tk('navbar.home', 'Inicio'), path: '/' },
-		{ name: 'FAQ', path: '/faq' },
+		{ name: tk('navbar.faq', 'FAQ'), path: '/faq' },
 	]),
 	buildFaq(faqForSchema),
 ];

@@ -13,8 +13,8 @@ const sectionName = (slug: string) => translate(`info.tabs.${slug}`, lang, slug)
 
 const structuredData = [
   buildBreadcrumb([
-    { name: 'Inicio', path: '/' },
-    { name: 'Información', path: '/info' },
+    { name: translate('navbar.home', lang, 'Inicio'), path: '/' },
+    { name: translate('info.landings.breadcrumbWiki', lang, 'Información'), path: '/info' },
   ]),
   buildFaq([
     {
