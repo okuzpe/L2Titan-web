@@ -1,48 +1,38 @@
 ---
 import { getImage } from "astro:assets";
-import Layout from "../layouts/Layout.astro";
-import ServerStats from "../components/ServerStats.astro";
-import FeatureCard from "../components/FeatureCard.astro";
-import NewsFeed from "../components/NewsFeed.astro";
-import ActionButton from "../components/ui/ActionButton.astro";
-import CardSurface from "../components/ui/CardSurface.astro";
-import SectionHeading from "../components/ui/SectionHeading.astro";
+import Layout from "../../layouts/Layout.astro";
+import ServerStats from "../../components/ServerStats.astro";
+import FeatureCard from "../../components/FeatureCard.astro";
+import NewsFeed from "../../components/NewsFeed.astro";
+import ActionButton from "../../components/ui/ActionButton.astro";
+import CardSurface from "../../components/ui/CardSurface.astro";
+import SectionHeading from "../../components/ui/SectionHeading.astro";
 import {
 	buildBreadcrumb,
 	buildFaq,
 	buildOrganizationSchema,
 	buildVideoGameSchema,
 	buildWebsiteSchema,
-} from "../utils/seo";
-import { visitorLangFromPath } from "../utils/i18n-lang";
-import { translate } from "../utils/translations";
-import { translations } from "../data/translations";
-import heroBackground from "../assets/hero-background.jpg";
+} from "../../utils/seo";
+import { visitorLangFromPath } from "../../utils/i18n-lang";
+import { translate } from "../../utils/translations";
+import { translations } from "../../data/translations";
+import heroBackground from "../../assets/hero-background.jpg";
 
 const lang = visitorLangFromPath(Astro.url.pathname);
 
-/** Variantes hero: 1440w encaja viewport ~1350px (Lighthouse desktop) sin forzar 1920w */
 const HERO_WIDTHS = [480, 640, 960, 1280, 1440, 1920] as const;
 const HERO_QUALITY = 70;
 const heroVariants = await Promise.all(
 	HERO_WIDTHS.map((w) =>
-		getImage({
-			src: heroBackground,
-			width: w,
-			format: "webp",
-			quality: HERO_QUALITY,
-		}),
+		getImage({ src: heroBackground, width: w, format: "webp", quality: HERO_QUALITY }),
 	),
 );
-const heroPreloadSrcset = heroVariants
-	.map((img, i) => `${img.src} ${HERO_WIDTHS[i]}w`)
-	.join(", ");
+const heroPreloadSrcset = heroVariants.map((img, i) => `${img.src} ${HERO_WIDTHS[i]}w`).join(", ");
 const heroPreloadHref = heroVariants[0].src;
-/** El `<img>` del hero usa EXACTAMENTE el mismo srcset que el preload → no doble descarga, sin "unused preload". */
 const heroImgSrcset = heroPreloadSrcset;
-const heroImgSrc = heroVariants[3].src; // 1280w como fallback; el navegador elige por srcset/sizes
+const heroImgSrc = heroVariants[3].src;
 
-/** Badges de rates reales (dato de decisión #1 para jugadores L2). */
 const heroRates = [
 	{ label: 'XP', value: 'x25' },
 	{ label: 'SP', value: 'x25' },
@@ -51,7 +41,6 @@ const heroRates = [
 	{ label: 'Party', value: 'x2' },
 ];
 
-// Variable para mostrar/ocultar información del servidor
 const showServerInfo = false;
 
 const overviewItems = [
@@ -64,35 +53,39 @@ const overviewItems = [
 ];
 
 const quickNavLinks = [
-	{ href: '/downloads', labelKey: 'home.quickNav.downloads', fallback: 'Descargar cliente' },
-	{ href: '/features', labelKey: 'home.quickNav.features', fallback: 'Features del servidor' },
-	{ href: '/rates', labelKey: 'home.quickNav.rates', fallback: 'Rates x25' },
-	{ href: '/faq', labelKey: 'home.quickNav.faq', fallback: 'FAQ' },
-	{ href: '/news', labelKey: 'home.quickNav.news', fallback: 'Noticias' },
-	{ href: '/comunidad', labelKey: 'home.quickNav.community', fallback: 'Comunidad' },
+	{ href: '/downloads', labelKey: 'home.quickNav.downloads', fallback: 'Download client' },
+	{ href: '/features', labelKey: 'home.quickNav.features', fallback: 'Server features' },
+	{ href: '/rates', labelKey: 'home.quickNav.rates', fallback: 'x25 rates' },
+	{ href: '/en/faq', labelKey: 'home.quickNav.faq', fallback: 'FAQ' },
+	{ href: '/news', labelKey: 'home.quickNav.news', fallback: 'News' },
+	{ href: '/comunidad', labelKey: 'home.quickNav.community', fallback: 'Community' },
 ] as const;
 
 const structuredData = [
 	buildWebsiteSchema(),
 	buildOrganizationSchema(),
 	buildVideoGameSchema(),
-	buildBreadcrumb([{ name: translate('navbar.home', lang, 'Inicio'), path: '/' }]),
+	buildBreadcrumb([{ name: translate('navbar.home', lang, 'Home'), path: '/' }]),
 	buildFaq(translations[lang].home.faq),
 ];
 ---
 
 <Layout
-	title="Servidor Lineage 2 Interlude x25 con SubStack y AutoFarm"
-	description="L2Titan: servidor privado Lineage II Interlude x25 con SubStack, AutoFarm, instancias diarias, TvT y economía documentada. Comunidad hispanohablante; cuenta al primer login sin formulario web."
-	keywords="lineage 2 interlude server, l2 interlude server, lineage 2 private server, l2 pvp server, lineage 2 autofarm server, lineage ii interlude, l2 substack, l2 titan"
-	canonicalPath="/"
-	alternateLocalePath="/en"
+	title="Lineage 2 Interlude x25 Private Server — SubStack & AutoFarm"
+	description="L2Titan: Lineage II Interlude x25 private server with SubStack, AutoFarm, daily instances, TvT and documented economy. Auto Create Account — no web registration needed."
+	keywords="lineage 2 private server x25, l2 interlude private server, l2 titan, l2 substack, lineage 2 cumulative subclasses, l2 interlude pvp server, l2 events tvt, l2 daily instances"
+	canonicalPath="/en"
+	alternateLocalePath="/"
 	structuredData={structuredData}
+	htmlLang="en"
+	ogLocale="en_US"
+	ogLocaleAlternate="es_ES"
+	defaultVisitorLang="en"
 	preloadLcpImage={heroPreloadHref}
 	preloadLcpImageSrcset={heroPreloadSrcset}
 	preloadLcpImageSizes="100vw"
 >
-	<section class="relative min-h-screen flex flex-col justify-center overflow-hidden">
+	<section class="relative min-h-[85vh] flex items-center pb-12 pt-24 md:pt-28 overflow-hidden" aria-label="Hero">
 		<div class="absolute inset-0 z-0">
 			<img
 				src={heroImgSrc}
@@ -100,13 +93,12 @@ const structuredData = [
 				sizes="100vw"
 				width="1920"
 				height="1080"
-				alt="Cabecera visual de L2Titan, servidor Lineage 2 Interlude x25"
+				alt="L2Titan visual header — Lineage 2 Interlude x25 private server"
 				loading="eager"
 				fetchpriority="high"
 				decoding="async"
 				class="w-full h-full object-cover opacity-80 [animation:heroDrift_26s_ease-in-out_infinite_alternate]"
 			/>
-			<!-- Viñeta superior + base sólida: el arte respira y el texto siempre contrasta -->
 			<div class="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_0%,transparent_25%,rgba(0,0,0,0.55)_100%)]"></div>
 			<div class="absolute inset-0 bg-linear-to-t from-black via-black/60 to-transparent"></div>
 			<div class="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-black to-transparent"></div>
@@ -116,11 +108,10 @@ const structuredData = [
 			<div class="mx-auto max-w-6xl">
 				<div class="grid lg:grid-cols-[1.25fr_1fr] gap-8 lg:gap-12 items-center">
 					<div class="text-center lg:text-left">
-						<!-- Barra "vivo": estado real de juego/login (no números inventados) -->
 						<div class="mb-5 flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
 							<span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/55 px-3 py-1.5 text-xs font-semibold text-gray-100 backdrop-blur-sm">
 								<span id="status-game-dot-hero" class="inline-block w-2 h-2 rounded-full bg-gray-500 transition-colors"></span>
-								<span data-i18n="status.game">{translate('status.game', lang, 'Juego')}</span>
+								<span data-i18n="status.game">{translate('status.game', lang, 'Game')}</span>
 							</span>
 							<span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/55 px-3 py-1.5 text-xs font-semibold text-gray-100 backdrop-blur-sm">
 								<span id="status-login-dot-hero" class="inline-block w-2 h-2 rounded-full bg-gray-500 transition-colors"></span>
@@ -134,17 +125,16 @@ const structuredData = [
 						<h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-3 drop-shadow-[0_3px_8px_rgba(0,0,0,0.85)] font-display tracking-widest">
 							<span class="block df-text-gold">L2TITAN</span>
 							<span class="mt-3 block text-base sm:text-lg md:text-xl font-semibold text-yellow-100/95 normal-case tracking-normal max-w-xl mx-auto lg:mx-0 font-sans leading-snug">
-								Servidor Lineage 2 Interlude x25 — SubStack, AutoFarm y PvP
+								Lineage 2 Interlude x25 Private Server — SubStack, AutoFarm & PvP
 							</span>
 						</h1>
 						<p class="text-lg sm:text-xl md:text-2xl text-yellow-200 font-semibold mb-3 font-sans max-w-xl mx-auto lg:mx-0" data-i18n="home.heroPromo.title">
-							Para clanes que quieren progreso real
+							{translate('home.heroPromo.title', lang, 'For clans that want real progression')}
 						</p>
 						<p class="text-sm md:text-base text-gray-200 max-w-xl mx-auto lg:mx-0 leading-relaxed" data-i18n="home.heroPromo.desc">
-							SubStack, AutoFarm, eventos y economía activa en un servidor pensado para durar. Entra con toda la información clara desde el día uno.
+							{translate('home.heroPromo.desc', lang, 'SubStack, AutoFarm, events and active economy in a server built to last. Join with all information clear from day one.')}
 						</p>
 
-						<!-- Rates reales como badges (decisión #1 del jugador) -->
 						<ul class="mt-5 flex flex-wrap justify-center lg:justify-start gap-2" role="list">
 							{heroRates.map((r) => (
 								<li class="inline-flex items-center gap-1.5 rounded-md border border-yellow-500/25 bg-yellow-500/5 px-2.5 py-1 text-xs font-semibold text-yellow-100">
@@ -156,13 +146,9 @@ const structuredData = [
 					</div>
 
 					<div class="space-y-4 df-surface-strong p-6 md:p-7">
-						<ActionButton
-							href="/downloads"
-							variant="primary"
-							className="w-full px-7 py-4 rounded-lg text-base"
-						>
+						<ActionButton href="/downloads" variant="primary" className="w-full px-7 py-4 rounded-lg text-base">
 							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-							<span class="uppercase tracking-wider" data-i18n="home.downloadClient">Descargar Cliente</span>
+							<span class="uppercase tracking-wider" data-i18n="home.downloadClient">{translate('home.downloadClient', lang, 'Download Client')}</span>
 						</ActionButton>
 						<p class="px-1 text-center">
 							<a
@@ -170,7 +156,7 @@ const structuredData = [
 								class="text-sm sm:text-[0.95rem] font-medium text-gray-300 transition-colors hover:text-yellow-200/95 focus:outline-none focus-visible:text-yellow-200 focus-visible:underline focus-visible:underline-offset-2"
 								data-i18n="home.heroPromo.registroCta"
 							>
-								{translate('home.heroPromo.registroCta', lang, 'Sin registro web: cómo crear cuenta al primer login')}
+								{translate('home.heroPromo.registroCta', lang, 'No web registration: create account on first login')}
 							</a>
 						</p>
 						<ActionButton
@@ -181,7 +167,7 @@ const structuredData = [
 							className="w-full px-6 py-3 rounded-lg text-sm"
 						>
 							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.5328-9.748-2.312-13.7083a.0765.0765 0 00-.0303-.0277zM6.4544 14.7698c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9355-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.9281 2.451-2.152 2.451zm6.585 0c-1.1985 0-2.152-1.1006-2.152-2.451 0-1.3504.9354-2.451 2.152-2.451 1.2238 0 2.1718 1.1006 2.152 2.451 0 1.3504-.928 2.451-2.152 2.451z"></path></svg>
-							<span class="uppercase tracking-wider" data-i18n="home.joinDiscord">Unirse a Discord</span>
+							<span class="uppercase tracking-wider" data-i18n="home.joinDiscord">{translate('home.joinDiscord', lang, 'Join Discord')}</span>
 						</ActionButton>
 						<p class="pt-1 text-center">
 							<a
@@ -189,7 +175,7 @@ const structuredData = [
 								class="inline-flex items-center gap-1.5 text-sm font-semibold text-yellow-400/90 transition-colors hover:text-yellow-300 focus-visible:underline"
 								data-i18n="home.heroPromo.cta"
 							>
-								{translate('home.heroPromo.cta', lang, 'Ver toda la info del servidor')}
+								{translate('home.heroPromo.cta', lang, 'View full server info')}
 								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
 							</a>
 						</p>
@@ -203,32 +189,28 @@ const structuredData = [
 
 	<div class="container mx-auto px-4 py-14 md:py-18 space-y-10 md:space-y-14">
 		<section class="relative z-10 mt-0" aria-labelledby="home-features-heading">
-			<h2
-				id="home-features-heading"
-				class="sr-only"
-				data-i18n="home.featuresSection.title"
-			>
-				{translate('home.featuresSection.title', lang, 'Destacados del servidor')}
+			<h2 id="home-features-heading" class="sr-only" data-i18n="home.featuresSection.title">
+				{translate('home.featuresSection.title', lang, 'Server highlights')}
 			</h2>
 			<div class="grid md:grid-cols-3 gap-5 md:gap-6">
 				<FeatureCard
-					title="SubStack real"
+					title="Real SubStack"
 					titleKey="home.features.cumulative.title"
-					description="Subclases acumulativas para armar builds más flexibles y competitivas."
+					description="Cumulative subclasses to build more flexible and competitive characters."
 					descriptionKey="home.features.cumulative.description"
 					icon="substack"
 				/>
 				<FeatureCard
-					title="AutoFarm configurable"
+					title="Configurable AutoFarm"
 					titleKey="home.features.events.title"
-					description="Modos, assist, filtros y radio para farmear con control total."
+					description="Modes, assist, filters and radius for full farming control."
 					descriptionKey="home.features.events.description"
 					icon="autofarm"
 				/>
 				<FeatureCard
-					title="Economía y progreso"
+					title="Economy & Progression"
 					titleKey="home.features.economy.title"
-					description="Monedas, Titan Box y tiendas con un circuito claro entre farm, PvP y bosses."
+					description="Currencies, Titan Box and shops with a clear loop between farming, PvP and bosses."
 					descriptionKey="home.features.economy.description"
 					icon="economy"
 				/>
@@ -239,25 +221,25 @@ const structuredData = [
 
 		<section id="server-info" class="max-w-6xl mx-auto scroll-mt-24">
 			<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
-				<SectionHeading text="INFORMACIÓN DEL SERVIDOR" i18nKey="info.title" className="text-left md:text-3xl" />
+				<SectionHeading text="SERVER INFORMATION" i18nKey="info.title" className="text-left md:text-3xl" />
 			</div>
 
 			<div class="space-y-5">
 				<CardSurface className="p-6 md:p-7">
 					<h3 class="text-2xl md:text-3xl font-bold text-yellow-400 mb-3 font-display" data-i18n="info.overview.title">
-						L2Titan Interlude x25 - Info clara, parche activo
+						{translate('info.overview.title', lang, 'L2Titan Interlude x25 — Clear info, active patch')}
 					</h3>
 					<p class="text-gray-300 text-sm md:text-base" data-i18n="info.overview.intro1">
-						Interlude x25 sobre base L2JFrozen para avanzar rápido sin perder estrategia.
+						{translate('info.overview.intro1', lang, 'Interlude x25 on L2JFrozen base for fast progression without losing strategy.')}
 					</p>
 					<p class="text-gray-400 text-sm md:text-base mt-2" data-i18n="info.overview.intro2">
-						Sistemas útiles dentro del juego para farmear mejor, organizarte y competir sin vueltas.
+						{translate('info.overview.intro2', lang, 'Useful in-game systems to farm better, get organized and compete without complications.')}
 					</p>
 				</CardSurface>
 
 				<div>
 					<h3 class="text-xl md:text-2xl font-bold text-yellow-500 mb-4 font-display tracking-tight" data-i18n="info.overview.sectionTitle">
-						Lo más importante para jugar mejor
+						{translate('info.overview.sectionTitle', lang, 'The most important things to play better')}
 					</h3>
 					<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
 						{overviewItems.map(([titleKey, descKey], idx) => (
@@ -270,72 +252,39 @@ const structuredData = [
 							</article>
 						))}
 					</div>
-					<CardSurface
-						variant="strong"
-						className="mt-6 p-6 md:p-8 shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:border-yellow-500/35 transition-colors"
-					>
+					<CardSurface variant="strong" className="mt-6 p-6 md:p-8 shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:border-yellow-500/35 transition-colors">
 						<div class="grid gap-8 lg:grid-cols-2 lg:gap-10 lg:items-start">
 							<div>
-								<p
-									class="df-kicker mb-2"
-									data-i18n="home.guidesDeepLink.kicker"
-								>
-									{translate('home.guidesDeepLink.kicker', lang, 'Documentación')}
+								<p class="df-kicker mb-2" data-i18n="home.guidesDeepLink.kicker">
+									{translate('home.guidesDeepLink.kicker', lang, 'Documentation')}
 								</p>
-								<h3
-									class="text-xl md:text-2xl font-bold text-yellow-400 font-display tracking-wide mb-3"
-									data-i18n="home.guidesDeepLink.headline"
-								>
-									{translate('home.guidesDeepLink.headline', lang, 'Centro de información')}
+								<h3 class="text-xl md:text-2xl font-bold text-yellow-400 font-display tracking-wide mb-3" data-i18n="home.guidesDeepLink.headline">
+									{translate('home.guidesDeepLink.headline', lang, 'Information hub')}
 								</h3>
 								<p class="text-gray-400 text-sm md:text-base leading-relaxed mb-6 max-w-xl" data-i18n="home.guidesDeepLink.hint">
-									{translate(
-										'home.guidesDeepLink.hint',
-										lang,
-										'Índice en /info: rates, features, economía, comandos e instancias. Cada tema tiene landing con URL propia para compartir.',
-									)}
+									{translate('home.guidesDeepLink.hint', lang, 'Index at /info: rates, features, economy, commands and instances. Each topic has its own landing URL to share.')}
 								</p>
-								<a
-									href="/info"
-									class="group flex flex-col gap-2 rounded-xl border border-white/10 bg-slate-900/40 p-4 md:flex-row md:items-center md:justify-between md:gap-4 md:p-5 transition-colors hover:border-yellow-500/30 hover:bg-yellow-500/5"
-								>
+								<a href="/info" class="group flex flex-col gap-2 rounded-xl border border-white/10 bg-slate-900/40 p-4 md:flex-row md:items-center md:justify-between md:gap-4 md:p-5 transition-colors hover:border-yellow-500/30 hover:bg-yellow-500/5">
 									<div class="min-w-0">
 										<p class="font-display text-base font-bold text-white md:text-lg" data-i18n="home.guidesDeepLink.cta">
-											{translate('home.guidesDeepLink.cta', lang, 'Wiki del servidor')}
+											{translate('home.guidesDeepLink.cta', lang, 'Server wiki')}
 										</p>
 										<p class="mt-1 text-xs text-gray-400 md:text-sm leading-relaxed" data-i18n="home.guidesDeepLink.linkSub">
-											{translate(
-												'home.guidesDeepLink.linkSub',
-												lang,
-												'Todo el índice y las landings por sección en un solo lugar.',
-											)}
+											{translate('home.guidesDeepLink.linkSub', lang, 'Full index and per-section landings in one place.')}
 										</p>
 									</div>
-									<span
-										class="inline-flex shrink-0 items-center gap-2 text-sm font-bold uppercase tracking-wider text-yellow-400 font-display"
-									>
-										<span data-i18n="home.guidesDeepLink.action">{translate('home.guidesDeepLink.action', lang, 'Ir al índice')}</span>
-										<svg
-											class="h-4 w-4 transition-transform group-hover:translate-x-1"
-											fill="none"
-											stroke="currentColor"
-											viewBox="0 0 24 24"
-											aria-hidden="true"
-										>
+									<span class="inline-flex shrink-0 items-center gap-2 text-sm font-bold uppercase tracking-wider text-yellow-400 font-display">
+										<span data-i18n="home.guidesDeepLink.action">{translate('home.guidesDeepLink.action', lang, 'Go to index')}</span>
+										<svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
 										</svg>
 									</span>
 								</a>
 							</div>
 
-							<div
-								class="pt-8 mt-2 border-t border-yellow-500/25 lg:mt-0 lg:pt-0 lg:border-t-0 lg:border-l lg:border-yellow-500/30 lg:pl-10"
-							>
-								<p
-									class="text-[11px] uppercase tracking-[0.28em] text-yellow-400/85 mb-3 font-display drop-shadow-[0_0_12px_rgba(250,204,21,0.12)]"
-									data-i18n="home.quickNav.title"
-								>
-									{translate('home.quickNav.title', lang, 'Accesos rápidos')}
+							<div class="pt-8 mt-2 border-t border-yellow-500/25 lg:mt-0 lg:pt-0 lg:border-t-0 lg:border-l lg:border-yellow-500/30 lg:pl-10">
+								<p class="text-[11px] uppercase tracking-[0.28em] text-yellow-400/85 mb-3 font-display" data-i18n="home.quickNav.title">
+									{translate('home.quickNav.title', lang, 'Quick links')}
 								</p>
 								<ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2" role="list">
 									{quickNavLinks.map((link) => (
@@ -356,7 +305,9 @@ const structuredData = [
 				</div>
 
 				<CardSurface className="p-6 md:p-7">
-					<h3 class="text-xl font-bold text-yellow-500 mb-3 font-display" data-i18n="info.overview.whyTitle">Por que jugar aquí</h3>
+					<h3 class="text-xl font-bold text-yellow-500 mb-3 font-display" data-i18n="info.overview.whyTitle">
+						{translate('info.overview.whyTitle', lang, 'Why play here')}
+					</h3>
 					<ul class="space-y-2 text-sm text-gray-300">
 						{['whyClarity', 'whyCommands', 'whyUpdates'].map((key) => (
 							<li class="flex items-start gap-2">
@@ -367,32 +318,24 @@ const structuredData = [
 					</ul>
 					<div class="mt-6 border-t border-white/10 pt-5 space-y-4">
 						<p class="text-sm leading-relaxed text-gray-300">
-							<strong class="font-semibold text-white" data-i18n="info.overview.ctaTitle">Listo para entrar?</strong>
+							<strong class="font-semibold text-white" data-i18n="info.overview.ctaTitle">
+								{translate('info.overview.ctaTitle', lang, 'Ready to join?')}
+							</strong>
 							{' '}
 							<span class="text-gray-400" data-i18n="info.overview.ctaDesc">
-								Unite al Discord para novedades y soporte. Descarga el cliente y empeza hoy.
+								{translate('info.overview.ctaDesc', lang, 'Join the Discord for news and support. Download the client and start today.')}
 							</span>
 						</p>
 						<p class="text-sm flex flex-wrap gap-x-5 gap-y-1">
-							<a
-								href="https://discord.gg/GunamUdGaQ"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="text-yellow-500/90 hover:text-yellow-400 font-medium underline underline-offset-2"
-								data-i18n="home.joinDiscord"
-							>
-								Unirse a Discord
+							<a href="https://discord.gg/GunamUdGaQ" target="_blank" rel="noopener noreferrer" class="text-yellow-500/90 hover:text-yellow-400 font-medium underline underline-offset-2" data-i18n="home.joinDiscord">
+								{translate('home.joinDiscord', lang, 'Join Discord')}
 							</a>
-							<a
-								href="/downloads"
-								class="text-gray-400 hover:text-gray-200 underline underline-offset-2"
-								data-i18n="navbar.downloads"
-							>
-								Descargas
+							<a href="/downloads" class="text-gray-400 hover:text-gray-200 underline underline-offset-2" data-i18n="navbar.downloads">
+								{translate('navbar.downloads', lang, 'Downloads')}
 							</a>
 						</p>
 						<ActionButton href="/info" variant="primary" className="px-4 py-2.5 w-full sm:w-auto">
-							Explorar centro de información
+							{translate('home.heroPromo.cta', lang, 'View full server info')}
 							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
 						</ActionButton>
 					</div>
@@ -400,5 +343,4 @@ const structuredData = [
 			</div>
 		</section>
 	</div>
-
 </Layout>

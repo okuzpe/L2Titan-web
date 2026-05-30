@@ -1,12 +1,12 @@
 ---
-import InfoWikiLayout from '../../layouts/InfoWikiLayout.astro';
-import CardSurface from '../../components/ui/CardSurface.astro';
-import ActionButton from '../../components/ui/ActionButton.astro';
-import { infoWikiSections } from '../../data/infoWiki';
-import { buildBreadcrumb, buildFaq, buildItemList } from '../../utils/seo';
-import { visitorLangFromPath } from '../../utils/i18n-lang';
-import { translate } from '../../utils/translations';
-import { translations } from '../../data/translations';
+import InfoWikiLayout from '../../../layouts/InfoWikiLayout.astro';
+import CardSurface from '../../../components/ui/CardSurface.astro';
+import ActionButton from '../../../components/ui/ActionButton.astro';
+import { infoWikiSections } from '../../../data/infoWiki';
+import { buildBreadcrumb, buildFaq, buildItemList } from '../../../utils/seo';
+import { visitorLangFromPath } from '../../../utils/i18n-lang';
+import { translate } from '../../../utils/translations';
+import { translations } from '../../../data/translations';
 
 const lang = visitorLangFromPath(Astro.url.pathname);
 const featuredSections = infoWikiSections.filter((section) => section.featured);
@@ -14,8 +14,8 @@ const sectionName = (slug: string) => translate(`info.tabs.${slug}`, lang, slug)
 
 const structuredData = [
   buildBreadcrumb([
-    { name: translate('navbar.home', lang, 'Inicio'), path: '/' },
-    { name: translate('info.landings.breadcrumbWiki', lang, 'Información'), path: '/info' },
+    { name: translate('navbar.home', lang, 'Home'), path: '/' },
+    { name: translate('info.landings.breadcrumbWiki', lang, 'Information'), path: '/en/info' },
   ]),
   buildFaq(translations[lang].info.faq),
   buildItemList(
@@ -29,35 +29,39 @@ const structuredData = [
 ---
 
 <InfoWikiLayout
-  title="Wiki y guías L2Titan — Lineage 2 Interlude x25"
-  description="Centro de información del servidor: rates, VIP, economía, eventos, features, comandos, enchant e instancias diarias, con URLs dedicadas para cada tema."
-  canonicalPath="/info"
-  alternateLocalePath="/en/info"
+  title="L2Titan Wiki & Guides — Lineage 2 Interlude x25"
+  description="Server information hub: rates, VIP, economy, events, features, commands, enchant and daily instances, with dedicated URLs for each topic."
+  canonicalPath="/en/info"
+  alternateLocalePath="/info"
   structuredData={structuredData}
+  htmlLang="en"
+  ogLocale="en_US"
+  ogLocaleAlternate="es_ES"
+  defaultVisitorLang="en"
 >
   <Fragment slot="intro">
     <CardSurface variant="strong" className="max-w-7xl mx-auto mb-6 p-5 md:p-7">
       <div class="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
         <div class="max-w-4xl">
           <p class="df-kicker mb-2" data-i18n="info.wiki.home.kicker">
-            {translate('info.wiki.home.kicker', lang, 'Centro de información')}
+            {translate('info.wiki.home.kicker', lang, 'Information hub')}
           </p>
           <h1 class="df-hero-title mb-3 text-3xl md:text-5xl" data-i18n="info.wiki.home.title">
-            {translate('info.wiki.home.title', lang, 'Wiki del servidor para consultar todo por secciones')}
+            {translate('info.wiki.home.title', lang, 'Server wiki to look up everything by section')}
           </h1>
           <p class="text-sm md:text-base text-gray-300 leading-relaxed mb-3" data-i18n="info.wiki.home.intro">
-            {translate('info.wiki.home.intro', lang, 'Esta portada agrupa toda la información importante del servidor en una estructura tipo wiki. En lugar de volcarlo todo junto, eliges un tema y entras directo a su ficha dedicada.')}
+            {translate('info.wiki.home.intro', lang, 'This hub groups all important server information in a wiki-like structure. Instead of dumping it all together, you pick a topic and go straight to its dedicated page.')}
           </p>
           <p class="text-sm md:text-base text-gray-400 leading-relaxed" data-i18n="info.wiki.home.summary">
-            {translate('info.wiki.home.summary', lang, 'La idea es que un jugador nuevo pueda encontrar rápido rates, features, economy, eventos, comandos o progresión diaria sin perderse entre pantallas largas o tabs ocultos.')}
+            {translate('info.wiki.home.summary', lang, 'The idea is that a new player can quickly find rates, features, economy, events, commands or daily progression without getting lost in long screens or hidden tabs.')}
           </p>
         </div>
         <div class="flex flex-wrap gap-3">
           <ActionButton href="/info/rates" variant="primary" className="px-5 py-3 text-black" data-i18n="info.wiki.home.ctaRates">
-            {translate('info.wiki.home.ctaRates', lang, 'Empezar por Rates')}
+            {translate('info.wiki.home.ctaRates', lang, 'Start with Rates')}
           </ActionButton>
           <ActionButton href="/info/features" variant="ghost" className="px-5 py-3" data-i18n="info.wiki.home.ctaFeatures">
-            {translate('info.wiki.home.ctaFeatures', lang, 'Ver Features')}
+            {translate('info.wiki.home.ctaFeatures', lang, 'View Features')}
           </ActionButton>
         </div>
       </div>
@@ -68,14 +72,14 @@ const structuredData = [
     <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-6">
       <div>
         <p class="df-kicker-muted mb-2" data-i18n="info.wiki.home.featuredKicker">
-          {translate('info.wiki.home.featuredKicker', lang, 'Secciones destacadas')}
+          {translate('info.wiki.home.featuredKicker', lang, 'Featured sections')}
         </p>
         <h2 class="text-2xl md:text-3xl font-bold text-yellow-400 font-display" data-i18n="info.wiki.home.featuredTitle">
-          {translate('info.wiki.home.featuredTitle', lang, 'Empieza por lo que más consulta la gente')}
+          {translate('info.wiki.home.featuredTitle', lang, 'Start with what people check most')}
         </h2>
       </div>
       <p class="max-w-2xl text-sm text-gray-400 leading-relaxed" data-i18n="info.wiki.home.featuredSummary">
-        {translate('info.wiki.home.featuredSummary', lang, 'Rates y Features suelen resolver la mayor parte de las dudas iniciales. Desde ahí puedes saltar a VIP, Economy, Commands o cualquier otra ficha relacionada.')}
+        {translate('info.wiki.home.featuredSummary', lang, 'Rates and Features usually answer most initial questions. From there you can jump to VIP, Economy, Commands or any other related page.')}
       </p>
     </div>
 
@@ -103,14 +107,14 @@ const structuredData = [
     <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-6">
       <div>
         <p class="text-[11px] uppercase tracking-[0.26em] text-gray-500 mb-2" data-i18n="info.wiki.home.indexKicker">
-          {translate('info.wiki.home.indexKicker', lang, 'Índice completo')}
+          {translate('info.wiki.home.indexKicker', lang, 'Full index')}
         </p>
         <h2 class="text-2xl md:text-3xl font-bold text-yellow-400 font-display" data-i18n="info.wiki.home.indexTitle">
-          {translate('info.wiki.home.indexTitle', lang, 'Todas las fichas de la wiki')}
+          {translate('info.wiki.home.indexTitle', lang, 'All wiki pages')}
         </h2>
       </div>
       <p class="max-w-2xl text-sm text-gray-400 leading-relaxed" data-i18n="info.wiki.home.indexSummary">
-        {translate('info.wiki.home.indexSummary', lang, 'Cada ficha vive en su propia URL para que el árbol lateral sea claro y cada tema se pueda compartir de forma directa.')}
+        {translate('info.wiki.home.indexSummary', lang, 'Each page lives at its own URL so the sidebar tree is clear and each topic can be shared directly.')}
       </p>
     </div>
 

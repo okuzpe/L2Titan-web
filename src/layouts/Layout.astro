@@ -26,6 +26,9 @@ interface Props {
 	ogLocaleAlternate?: string;
 	/** Force client i18n to this language on first paint (e.g. English SEO routes under `/en/`) */
 	defaultVisitorLang?: "es" | "en";
+	/** Canonical path of the alternate-language version of this page (used to emit hreflang pairs).
+	 *  ES page sets "/en/foo", EN page sets "/foo". x-default always points to the ES version. */
+	alternateLocalePath?: string;
 	/** Preload a same-origin image (e.g. home hero) to improve LCP */
 	preloadLcpImage?: string;
 	/** `imagesrcset` para preload responsive (móvil descarga ~480–640w, no 1920w) */
@@ -49,6 +52,7 @@ const {
 	ogLocale: ogLocaleProp,
 	ogLocaleAlternate: ogLocaleAlternateProp,
 	defaultVisitorLang,
+	alternateLocalePath,
 	preloadLcpImage,
 	preloadLcpImageSrcset,
 	preloadLcpImageSizes,
@@ -90,6 +94,19 @@ const robotsContent = robots ?? (noindex
 		<meta name="author" content="L2Titan" />
 		<meta name="robots" content={robotsContent} />
 		<link rel="canonical" href={canonicalURL} />
+
+		{alternateLocalePath && (() => {
+			const isEnPage = htmlLang === 'en';
+			const enPath  = isEnPage ? (canonicalPath ?? Astro.url.pathname) : alternateLocalePath;
+			const esPath  = isEnPage ? alternateLocalePath : (canonicalPath ?? Astro.url.pathname);
+			return (
+				<>
+					<link rel="alternate" hreflang="es" href={absoluteUrl(esPath)} />
+					<link rel="alternate" hreflang="en" href={absoluteUrl(enPath)} />
+					<link rel="alternate" hreflang="x-default" href={absoluteUrl(esPath)} />
+				</>
+			);
+		})()}
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content={ogType} />

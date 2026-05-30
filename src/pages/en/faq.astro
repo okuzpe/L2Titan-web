@@ -1,11 +1,11 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import HeroBanner from '../components/ui/HeroBanner.astro';
-import FaqItem from '../components/ui/FaqItem.astro';
-import ActionButton from '../components/ui/ActionButton.astro';
-import { visitorLangFromPath } from '../utils/i18n-lang';
-import { translate } from '../utils/translations';
-import { buildBreadcrumb, buildFaq } from '../utils/seo';
+import Layout from '../../layouts/Layout.astro';
+import HeroBanner from '../../components/ui/HeroBanner.astro';
+import FaqItem from '../../components/ui/FaqItem.astro';
+import ActionButton from '../../components/ui/ActionButton.astro';
+import { visitorLangFromPath } from '../../utils/i18n-lang';
+import { translate } from '../../utils/translations';
+import { buildBreadcrumb, buildFaq } from '../../utils/seo';
 
 const lang = visitorLangFromPath(Astro.url.pathname);
 const tk = (key: string, fb: string) => translate(key, lang, fb);
@@ -27,20 +27,24 @@ const faqForSchema = faqEntries.map(({ qKey, aKey }) => ({
 
 const structuredData = [
 	buildBreadcrumb([
-		{ name: tk('navbar.home', 'Inicio'), path: '/' },
-		{ name: tk('navbar.faq', 'FAQ'), path: '/faq' },
+		{ name: tk('navbar.home', 'Home'), path: '/' },
+		{ name: tk('navbar.faq', 'FAQ'), path: '/en/faq' },
 	]),
 	buildFaq(faqForSchema),
 ];
 ---
 
 <Layout
-	title={tk('faqPage.metaTitle', '')}
-	description={tk('faqPage.metaDescription', '')}
-	keywords="l2 interlude server faq, lineage 2 interlude private server, l2 titan substack, l2 autofarm interlude, crear cuenta l2 servidor"
-	canonicalPath="/faq"
-	alternateLocalePath="/en/faq"
+	title={tk('faqPage.metaTitle', 'FAQ — L2Titan')}
+	description={tk('faqPage.metaDescription', 'Frequently asked questions about L2Titan Lineage 2 Interlude x25 private server.')}
+	keywords="l2 interlude server faq, lineage 2 interlude private server, l2 titan substack, l2 autofarm interlude, l2 server account creation"
+	canonicalPath="/en/faq"
+	alternateLocalePath="/faq"
 	structuredData={structuredData}
+	htmlLang="en"
+	ogLocale="en_US"
+	ogLocaleAlternate="es_ES"
+	defaultVisitorLang="en"
 >
 	<div class="container mx-auto px-4 py-12 md:py-20 max-w-4xl">
 		<HeroBanner
@@ -65,7 +69,6 @@ const structuredData = [
 			</nav>
 		</HeroBanner>
 
-		<h2 class="sr-only" data-i18n="faqPage.srHeading">{tk('faqPage.srHeading', '')}</h2>
 		<div class="space-y-3">
 			{
 				faqEntries.map(({ qKey, aKey }) => (
@@ -79,14 +82,14 @@ const structuredData = [
 			}
 		</div>
 
-		<section class="mt-12 df-surface-strong p-6 md:p-8 rounded-xl border border-white/10" aria-labelledby="faq-más">
-			<h2 id="faq-más" class="text-xl font-bold text-white font-display mb-3" data-i18n="faqPage.nextTitle">
+		<section class="mt-12 df-surface-strong p-6 md:p-8 rounded-xl border border-white/10" aria-labelledby="faq-more">
+			<h2 id="faq-more" class="text-xl font-bold text-white font-display mb-3" data-i18n="faqPage.nextTitle">
 				{tk('faqPage.nextTitle', '')}
 			</h2>
 			<p class="text-gray-400 text-sm mb-4" data-i18n="faqPage.nextBody">
 				{tk('faqPage.nextBody', '')}
 			</p>
-			<nav class="flex flex-wrap gap-2 text-sm" aria-label="Enlaces relacionados">
+			<nav class="flex flex-wrap gap-2 text-sm" aria-label="Related links">
 				<a href="/news" class="text-yellow-400 hover:text-yellow-300" data-i18n="faqPage.linkNews">
 					{tk('faqPage.linkNews', '')}
 				</a>

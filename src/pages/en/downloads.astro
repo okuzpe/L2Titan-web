@@ -1,27 +1,27 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ActionButton from '../components/ui/ActionButton.astro';
-import CardSurface from '../components/ui/CardSurface.astro';
-import RelatedDocsSection from '../components/ui/RelatedDocsSection.astro';
-import RequirementCard from '../components/ui/RequirementCard.astro';
-import SectionHeading from '../components/ui/SectionHeading.astro';
-import StepList from '../components/ui/StepList.astro';
+import Layout from '../../layouts/Layout.astro';
+import ActionButton from '../../components/ui/ActionButton.astro';
+import CardSurface from '../../components/ui/CardSurface.astro';
+import RelatedDocsSection from '../../components/ui/RelatedDocsSection.astro';
+import RequirementCard from '../../components/ui/RequirementCard.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import StepList from '../../components/ui/StepList.astro';
 import {
   buildBreadcrumb,
   buildFaq,
   buildSoftwareApplicationSchema,
-} from '../utils/seo';
-import { visitorLangFromPath } from '../utils/i18n-lang';
-import { translate } from '../utils/translations';
+} from '../../utils/seo';
+import { visitorLangFromPath } from '../../utils/i18n-lang';
+import { translate } from '../../utils/translations';
 
 const lang = visitorLangFromPath(Astro.url.pathname);
 const rd = (key: string, fb: string) => translate(`downloads.relatedDocs.${key}`, lang, fb);
 
 const relatedDocLinks = [
-	{ href: '/features', i18nKey: 'features', fallback: 'Features del servidor' },
-	{ href: '/rates', i18nKey: 'rates', fallback: 'Rates x25' },
-	{ href: '/comunidad', i18nKey: 'community', fallback: 'Discord y comunidad' },
-	{ href: '/news', i18nKey: 'news', fallback: 'Noticias' },
+	{ href: '/features', i18nKey: 'features', fallback: 'Server Features' },
+	{ href: '/rates', i18nKey: 'rates', fallback: 'x25 Rates' },
+	{ href: '/comunidad', i18nKey: 'community', fallback: 'Discord & Community' },
+	{ href: '/news', i18nKey: 'news', fallback: 'News' },
 ] as const;
 
 const relatedDocNavLinks = relatedDocLinks.map((link) => ({
@@ -39,7 +39,7 @@ const quickStartSteps = [
 
 const downloads = [
   {
-    name: 'Cliente Completo',
+    name: translate('downloads.fileNames.fullClient', lang, 'Full Client'),
     nameKey: 'downloads.fileNames.fullClient',
     size: '2.8 GB',
     link: 'https://drive.google.com/file/d/12kuIp38V9BqX4MfRVMA_Kq7S5_MCIAp0/view?usp=sharing',
@@ -51,7 +51,7 @@ const downloads = [
     },
   },
   {
-    name: 'Cliente Completo',
+    name: translate('downloads.fileNames.fullClient', lang, 'Full Client'),
     nameKey: 'downloads.fileNames.fullClient',
     size: '2.8 GB',
     link: 'https://mega.nz/file/WfZjGTZb#n2P6GBrTGMmiAin6tM6SRPCEtEfe4q4jCFB3NVYbuY4',
@@ -63,7 +63,7 @@ const downloads = [
     },
   },
   {
-    name: 'Cliente Completo',
+    name: translate('downloads.fileNames.fullClient', lang, 'Full Client'),
     nameKey: 'downloads.fileNames.fullClient',
     size: '2.8 GB',
     link: 'https://downloads.l2-titan.com/zip/Lineage2.zip',
@@ -76,7 +76,7 @@ const downloads = [
     },
   },
   {
-    name: 'Launcher',
+    name: translate('downloads.fileNames.launcher', lang, 'Launcher'),
     nameKey: 'downloads.fileNames.launcher',
     size: '74 MB',
     link: 'https://downloads.l2-titan.com/zip/L2TitanLauncher.zip',
@@ -95,54 +95,57 @@ const isDirectDownload = (type: string) => type === 'Direct';
 const getDownloadFilename = (file: typeof downloads[0]) => {
   if (file.filename) return file.filename;
   const url = new URL(file.link);
-  const pathname = url.pathname;
-  const filename = pathname.split('/').pop() || '';
-  return filename || `${file.name.replace(/\s+/g, '')}.${file.link.match(/\.(\w+)$/)?.[1] || 'exe'}`;
+  const filename = url.pathname.split('/').pop() || '';
+  return filename || `${file.name.replace(/\s+/g, '')}.exe`;
 };
 
 const structuredData = [
   buildBreadcrumb([
-    { name: translate('navbar.home', lang, 'Inicio'), path: '/' },
-    { name: translate('navbar.downloads', lang, 'Descargas'), path: '/downloads' },
+    { name: translate('navbar.home', lang, 'Home'), path: '/' },
+    { name: translate('navbar.downloads', lang, 'Downloads'), path: '/en/downloads' },
   ]),
   buildSoftwareApplicationSchema(),
   buildFaq([
     {
-      question: 'Como descargar Lineage 2 Interlude para jugar en L2Titan?',
-      answer: 'Puedes bajar el cliente completo o el launcher oficial desde Google Drive, Mega o descarga directa en esta misma página.',
+      question: 'How do I download Lineage 2 Interlude to play on L2Titan?',
+      answer: 'You can download the full client or the official launcher from Google Drive, Mega or direct download on this page.',
     },
     {
-      question: 'Necesito registrarme antes de entrar al servidor?',
-      answer: 'No. L2Titan usa Auto Create Account, asi que tu cuenta se crea automaticamente al primer login dentro del juego.',
+      question: 'Do I need to register before entering the server?',
+      answer: 'No. L2Titan uses Auto Create Account, so your account is created automatically on your first login inside the game.',
     },
     {
-      question: 'Que requisitos necesita el cliente de L2Titan?',
-      answer: 'La página muestra requisitos minimos y recomendados para Windows, CPU, RAM, GPU y espacio libre antes de descargar.',
+      question: 'What are the requirements for the L2Titan client?',
+      answer: 'The page shows minimum and recommended requirements for Windows, CPU, RAM, GPU and free space before downloading.',
     },
   ]),
 ];
 ---
 
 <Layout
-  title="Descargar cliente Lineage 2 Interlude — L2Titan"
-  description="Cliente completo y launcher oficial de L2Titan para Windows: espejos Drive, Mega y descarga directa, requisitos y Auto Create Account al primer login."
-  keywords="descargar lineage 2 interlude, l2 interlude client download, l2 titan download, lineage 2 interlude launcher, l2 private server client"
-  canonicalPath="/downloads"
-  alternateLocalePath="/en/downloads"
+  title="Download Lineage 2 Interlude Client — L2Titan"
+  description="Full client and official launcher for L2Titan on Windows: Drive, Mega and direct download mirrors, requirements and Auto Create Account on first login."
+  keywords="download lineage 2 interlude, l2 interlude client download, l2 titan download, lineage 2 interlude launcher, l2 private server client"
+  canonicalPath="/en/downloads"
+  alternateLocalePath="/downloads"
   structuredData={structuredData}
+  htmlLang="en"
+  ogLocale="en_US"
+  ogLocaleAlternate="es_ES"
+  defaultVisitorLang="en"
 >
   <div class="container mx-auto px-4 py-12 md:py-24">
-    <SectionHeading text="CENTRO DE DESCARGAS" i18nKey="downloads.title" className="mb-6 md:mb-8" as="h1" />
+    <SectionHeading text="DOWNLOAD CENTER" i18nKey="downloads.title" className="mb-6 md:mb-8" as="h1" />
 
     <CardSurface className="max-w-5xl mx-auto mb-8 md:mb-10 df-notice-success p-5 md:p-6">
       <div class="flex items-start gap-3">
         <span class="text-2xl leading-none" aria-hidden="true">&#x2705;</span>
         <div>
           <h2 class="df-section-label mb-1 text-emerald-300" data-i18n="downloads.accountNotice.title">
-            Auto Create Account activado
+            Auto Create Account enabled
           </h2>
           <p class="df-muted text-emerald-100/90" data-i18n="downloads.accountNotice.description">
-            No necesitas registrarte en una web. Tu cuenta se crea automaticamente cuando entras al juego por primera vez.
+            No website registration needed. Your account is created automatically when you first log into the game.
           </p>
         </div>
       </div>
@@ -152,10 +155,10 @@ const structuredData = [
         <table class="w-full text-left">
           <thead>
             <tr>
-              <th data-i18n="downloads.table.file">Archivo</th>
-              <th data-i18n="downloads.table.size">Tamaño</th>
-              <th data-i18n="downloads.table.type">Tipo</th>
-              <th class="text-right" data-i18n="downloads.table.action">Acción</th>
+              <th data-i18n="downloads.table.file">File</th>
+              <th data-i18n="downloads.table.size">Size</th>
+              <th data-i18n="downloads.table.type">Type</th>
+              <th class="text-right" data-i18n="downloads.table.action">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -172,7 +175,7 @@ const structuredData = [
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={file.icon.path} />
                     </svg>
                   )}
-                  {file.nameKey ? <span data-i18n={file.nameKey}>{translate(file.nameKey, lang, file.name)}</span> : file.name}
+                  {file.nameKey ? <span data-i18n={file.nameKey}>{file.name}</span> : file.name}
                   </span>
                 </td>
                 <td class="font-mono text-gray-400">{file.size}</td>
@@ -186,7 +189,7 @@ const structuredData = [
                     variant="ghost"
                     className="px-6 py-2 text-sm"
                   >
-                    <span data-i18n="downloads.download">Descargar</span>
+                    <span data-i18n="downloads.download">Download</span>
                   </ActionButton>
                 </td>
               </tr>
@@ -209,7 +212,7 @@ const structuredData = [
               </svg>
             )}
             <span class="font-medium text-white">
-              {file.nameKey ? <span data-i18n={file.nameKey}>{translate(file.nameKey, lang, file.name)}</span> : file.name}
+              {file.nameKey ? <span data-i18n={file.nameKey}>{file.name}</span> : file.name}
             </span>
           </div>
           <div class="flex items-center gap-3 mb-4">
@@ -224,7 +227,7 @@ const structuredData = [
             variant="ghost"
             className="w-full px-6 py-3"
           >
-            <span data-i18n="downloads.download">Descargar</span>
+            <span data-i18n="downloads.download">Download</span>
           </ActionButton>
         </CardSurface>
       ))}
@@ -232,22 +235,22 @@ const structuredData = [
 
     <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
       <RequirementCard
-        accentLabel="MINIMOS"
+        accentLabel={translate('downloads.requirements.minimum', lang, 'MINIMUM')}
         accentKey="downloads.requirements.minimum"
-        titleLabel="REQUISITOS"
+        titleLabel={translate('downloads.requirements.requirements', lang, 'REQUIREMENTS')}
         titleKey="downloads.requirements.requirements"
         rows={[
           { label: 'OS:', value: 'Windows 7/8/10' },
           { label: 'CPU:', value: 'Intel Core i3' },
           { label: 'RAM:', value: '4 GB' },
           { label: 'GPU:', value: 'GeForce GT 630' },
-          { label: 'HDD:', value: '30 GB libres' },
+          { label: 'HDD:', value: '30 GB free' },
         ]}
       />
       <RequirementCard
-        accentLabel="RECOMENDADOS"
+        accentLabel={translate('downloads.requirements.recommended', lang, 'RECOMMENDED')}
         accentKey="downloads.requirements.recommended"
-        titleLabel="REQUISITOS"
+        titleLabel={translate('downloads.requirements.requirements', lang, 'REQUIREMENTS')}
         titleKey="downloads.requirements.requirements"
         rows={[
           { label: 'OS:', value: 'Windows 10/11' },
@@ -261,32 +264,29 @@ const structuredData = [
 
     <CardSurface className="max-w-5xl mx-auto mt-8 md:mt-10 p-5 md:p-8 hover:border-yellow-500/30 transition-colors">
       <h2 class="df-section-label mb-4" data-i18n="downloads.quickStart.title">
-        Pasos rápidos para jugar
+        Quick steps to play
       </h2>
       <StepList steps={quickStartSteps} />
     </CardSurface>
 
     <RelatedDocsSection
-      id="downloads-más-info"
+      id="downloads-more-info"
       className="mt-10 md:mt-14"
-      kicker={rd('kicker', 'Después de descargar')}
+      kicker={rd('kicker', 'After downloading')}
       kickerKey="downloads.relatedDocs.kicker"
-      title={rd('title', 'Documentación relacionada')}
+      title={rd('title', 'Related documentation')}
       titleKey="downloads.relatedDocs.title"
-      subtitle={rd(
-        'subtitle',
-        'Instalá el cliente y seguí con rates, features y la comunidad; todo está enlazado para que no te pierdas.',
-      )}
+      subtitle={rd('subtitle', 'Install the client and continue with rates, features and the community; everything is linked so you do not miss anything.')}
       subtitleKey="downloads.relatedDocs.subtitle"
-      wikiTitle={rd('wikiCta', 'Wiki del servidor')}
+      wikiTitle={rd('wikiCta', 'Server wiki')}
       wikiTitleKey="downloads.relatedDocs.wikiCta"
-      wikiHint={rd('wikiHint', 'Índice en /info: rates, VIP, economía, comandos e instancias.')}
+      wikiHint={rd('wikiHint', 'Index at /info: rates, VIP, economy, commands and instances.')}
       wikiHintKey="downloads.relatedDocs.wikiHint"
-      wikiAction={rd('wikiAction', 'Ir al índice')}
+      wikiAction={rd('wikiAction', 'Go to index')}
       wikiActionKey="downloads.relatedDocs.wikiAction"
-      quickLinksLabel={translate('downloads.relatedDocs.quickLinksLabel', lang, 'Enlaces rápidos')}
+      quickLinksLabel={translate('downloads.relatedDocs.quickLinksLabel', lang, 'Quick links')}
       quickLinksLabelKey="downloads.relatedDocs.quickLinksLabel"
-      navAria={rd('navAria', 'Enlaces útiles después de instalar el cliente')}
+      navAria={rd('navAria', 'Useful links after installing the client')}
       links={relatedDocNavLinks}
     />
   </div>
