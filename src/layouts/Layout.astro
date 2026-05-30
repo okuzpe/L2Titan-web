@@ -455,29 +455,17 @@ const robotsContent = robots ?? (noindex
 				}
 				function kick() {
 					if ('requestIdleCallback' in window) {
-						requestIdleCallback(function () { startStatusPolling(); }, { timeout: 8000 });
+						requestIdleCallback(function () { startStatusPolling(); }, { timeout: 3000 });
 					} else {
-						setTimeout(startStatusPolling, 1500);
+						setTimeout(startStatusPolling, 800);
 					}
 				}
-				function onFirstInteraction() {
-					window.removeEventListener('scroll', onFirstInteraction, { capture: true });
-					window.removeEventListener('click', onFirstInteraction, { capture: true });
-					kick();
-				}
-				var afterLoadDelayMs = 4000;
+				// status.json es estático y barato: arrancar al cargar (sin esperar interacción)
+				// para que los dots muestren el estado real ya en el primer paint útil.
 				if (document.readyState === 'complete') {
-					setTimeout(function () {
-						window.addEventListener('scroll', onFirstInteraction, { capture: true, once: true });
-						window.addEventListener('click', onFirstInteraction, { capture: true, once: true });
-					}, afterLoadDelayMs);
+					kick();
 				} else {
-					window.addEventListener('load', function () {
-						setTimeout(function () {
-							window.addEventListener('scroll', onFirstInteraction, { capture: true, once: true });
-							window.addEventListener('click', onFirstInteraction, { capture: true, once: true });
-						}, afterLoadDelayMs);
-					}, { once: true });
+					window.addEventListener('load', kick, { once: true });
 				}
 			})();
 		</script>
