@@ -152,12 +152,11 @@ const robotsContent = robots ?? (noindex
 			)
 		)}
 
-		<!-- Resolución DNS anticipada para terceros bajo el fold (botones de voto, Pixel): ahorra ~100ms al primer clic sin abrir TCP/TLS eager innecesario. -->
+		<!-- Resolución DNS anticipada para terceros bajo el fold (botones de voto): ahorra ~100ms al primer clic sin abrir TCP/TLS eager innecesario. -->
 		<link rel="dns-prefetch" href="https://l2network.eu" />
 		<link rel="dns-prefetch" href="https://www.top100arena.com" />
 		<link rel="dns-prefetch" href="https://top.l2jbrasil.com" />
 		<link rel="dns-prefetch" href="https://l2.hopzone.net" />
-		<link rel="dns-prefetch" href="https://connect.facebook.net" />
 
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -305,61 +304,6 @@ const robotsContent = robots ?? (noindex
 			})();
 		</script>
 
-		<!-- Meta Pixel: sin `scroll` como disparador — Lighthouse desktop suele simular scroll y cargaba el pixel a mitad del trace (LCP/TBT). Clic/toque/tecla + fallback. -->
-		<script is:inline>
-			(function () {
-				var pixelDone = false;
-				var fallbackTimer;
-				function loadPixel() {
-					if (pixelDone || window.fbq) return;
-					pixelDone = true;
-					if (fallbackTimer) clearTimeout(fallbackTimer);
-					try {
-						var pc = document.createElement('link');
-						pc.rel = 'preconnect';
-						pc.href = 'https://connect.facebook.net';
-						pc.crossOrigin = '';
-						document.head.appendChild(pc);
-					} catch (e) {}
-					!(function (f, b, e, v, n, t, s) {
-						if (f.fbq) return;
-						n = f.fbq = function () {
-							n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-						};
-						if (!f._fbq) f._fbq = n;
-						n.push = n;
-						n.loaded = !0;
-						n.version = '2.0';
-						n.queue = [];
-						t = b.createElement(e);
-						t.async = !0;
-						t.src = v;
-						s = b.getElementsByTagName(e)[0];
-						s.parentNode.insertBefore(t, s);
-					})(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-					fbq('init', '802270496211593');
-					fbq('track', 'PageView');
-				}
-				function onFirstEngagement() {
-					loadPixel();
-				}
-				['pointerdown', 'touchstart', 'keydown'].forEach(function (ev) {
-					document.addEventListener(ev, onFirstEngagement, { capture: true, passive: true, once: true });
-				});
-				function armFallback() {
-					fallbackTimer = window.setTimeout(loadPixel, 28000);
-				}
-				if (document.readyState === 'complete') {
-					armFallback();
-				} else {
-					window.addEventListener('load', armFallback, { once: true });
-				}
-			})();
-		</script>
-		<noscript><img height="1" width="1" style="display:none"
-			src="https://www.facebook.com/tr?id=802270496211593&ev=PageView&noscript=1"
-		/></noscript>
-		<!-- End Meta Pixel Code -->
 	</head>
 	<body
 		class="min-h-screen flex flex-col bg-black text-slate-200 overflow-x-hidden"
@@ -451,7 +395,7 @@ const robotsContent = robots ?? (noindex
 					if (pollingStarted) return;
 					pollingStarted = true;
 					fetchServerStatus();
-					setInterval(fetchServerStatus, 300000);
+					setInterval(fetchServerStatus, 60000);
 				}
 				function kick() {
 					if ('requestIdleCallback' in window) {
