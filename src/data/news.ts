@@ -66,7 +66,8 @@ export const news: NewsItem[] = [
     summaryKey: 'news.items.patchV1.summary',
     content: 'El patch v1 corrige interacciones criticas de combate (heal, lethal, CP, MP reflect, revive en asedio y cancel), habilita offline shop con persistencia en DB y suma mejoras de estabilidad de servidor, anti-DoS y geodata base.',
     contentKey: 'news.items.patchV1.content',
-    image: '/images/background.jpg',
+    image: '/images/background.webp',
+    imageCard: '/images/background-card.webp',
   },
   {
     slug: 'patch-v1-qol-voto-buffer',
@@ -78,7 +79,8 @@ export const news: NewsItem[] = [
     summaryKey: 'news.items.patchV1Qol.summary',
     content: 'Se optimizo el flujo de progreso con .drop mas claro, voto mas justo por plataforma, mejoras de UI en Buffer/Substack, CTF/DM en pausa temporal (TvT activo), y ajustes de estabilidad para movimientos invalidos.',
     contentKey: 'news.items.patchV1Qol.content',
-    image: '/images/interface.jpg',
+    image: '/images/interface.webp',
+    imageCard: '/images/interface-card.webp',
   },
   {
     slug: 'patch-1-3-gameplay',
@@ -90,7 +92,8 @@ export const news: NewsItem[] = [
     summaryKey: 'news.items.patch13.summary',
     content: 'Gameplay update activo: Global GK con navegación simplificada, menú de utilidades y farm zones (Neutral Zone/Beast Farm), además de navegador de Raid Boss por rangos (sin épicos). Neutral Zone recibió rework de flujo PvP, mobs custom y economía drop/spoil ajustada. Daily ahora recompensa Adena, Freya Rose y Titan’s Box (integrada a extractables). Noblesse ahora soporta ruta de quest completa o progresión alternativa por Barakiel según configuración del servidor.',
     contentKey: 'news.items.patch13.content',
-    image: '/images/NeutralZone.jpg',
+    image: '/images/NeutralZone.webp',
+    imageCard: '/images/NeutralZone-card.webp',
   },
   {
     slug: 'patch-1-1-1-balance',
@@ -102,7 +105,8 @@ export const news: NewsItem[] = [
     summaryKey: 'news.items.patch111.summary',
     content: 'Tanques y lineas melee recibieron ajustes especificos contra ciertos arquetipos. Totems de Grand Khavatari ya no quedan bloqueados fuera de fist, con bonus escalado. Tambien se ajusto M.Crit (cap 350, power 2.8x) y se desactivaron fallos magicos para mejorar consistencia.',
     contentKey: 'news.items.patch111.content',
-    image: '/images/balance-pvp.jpg',
+    image: '/images/balance-pvp.webp',
+    imageCard: '/images/balance-pvp-card.webp',
   },
   {
     slug: 'patch-qol-economy',
@@ -114,7 +118,8 @@ export const news: NewsItem[] = [
     summaryKey: 'news.items.patchQol.summary',
     content: 'La web y el servidor reflejan mejoras de QoL: .drop con mejor lectura, control de voto mas justo, ajustes de shop Event/Vote/Titan, Class Master con 3ra clase y mejoras de estabilidad en movimiento/geodata.',
     contentKey: 'news.items.patchQol.content',
-    image: '/images/background.jpg',
+    image: '/images/background.webp',
+    imageCard: '/images/background-card.webp',
   },
   {
     slug: 'conquista-castillo-7-marzo-2026',
@@ -127,7 +132,8 @@ export const news: NewsItem[] = [
     summaryKey: '',
     content: 'La conquista de castillo del 7 de marzo de 2026 queda registrada con recompensas reales de Titan Coins para el líder del clan ganador. Este tipo de entrada ayuda a reforzar la visibilidad del ciclo competitivo, la economía y la actividad de clanes en la temporada.',
     contentKey: '',
-    image: '/images/GiranCastle.jpg',
+    image: '/images/GiranCastle.webp',
+    imageCard: '/images/GiranCastle-card.webp',
   },
 ];
 

@@ -15,6 +15,11 @@ const sources: { input: string; base: string; dir?: string }[] = [
   { input: 'BaiumEvent.png', base: 'BaiumEvent', dir: sourcesDir },
   { input: 'valakas-past-event.png', base: 'valakas-past-event', dir: sourcesDir },
   { input: 'infinitum-tower.jpg', base: 'infinitum-tower' },
+  { input: 'background.jpg', base: 'background' },
+  { input: 'interface.jpg', base: 'interface' },
+  { input: 'NeutralZone.jpg', base: 'NeutralZone' },
+  { input: 'balance-pvp.jpg', base: 'balance-pvp' },
+  { input: 'GiranCastle.jpg', base: 'GiranCastle' },
 ];
 
 const qualityCard = 64;

@@ -433,33 +433,38 @@ const robotsContent = robots ?? (noindex
 							applyStatus('status-login-dot-hero', fallback);
 						});
 				}
+				var pollingStarted = false;
 				function startStatusPolling() {
+					if (pollingStarted) return;
+					pollingStarted = true;
 					fetchServerStatus();
-					setInterval(fetchServerStatus, 60000);
+					setInterval(fetchServerStatus, 300000);
 				}
 				function kick() {
 					if ('requestIdleCallback' in window) {
-						requestIdleCallback(
-							function () {
-								startStatusPolling();
-							},
-							{ timeout: 8000 },
-						);
+						requestIdleCallback(function () { startStatusPolling(); }, { timeout: 8000 });
 					} else {
 						setTimeout(startStatusPolling, 1500);
 					}
 				}
+				function onFirstInteraction() {
+					window.removeEventListener('scroll', onFirstInteraction, { capture: true });
+					window.removeEventListener('click', onFirstInteraction, { capture: true });
+					kick();
+				}
 				var afterLoadDelayMs = 4000;
 				if (document.readyState === 'complete') {
-					setTimeout(kick, afterLoadDelayMs);
+					setTimeout(function () {
+						window.addEventListener('scroll', onFirstInteraction, { capture: true, once: true });
+						window.addEventListener('click', onFirstInteraction, { capture: true, once: true });
+					}, afterLoadDelayMs);
 				} else {
-					window.addEventListener(
-						'load',
-						function () {
-							setTimeout(kick, afterLoadDelayMs);
-						},
-						{ once: true },
-					);
+					window.addEventListener('load', function () {
+						setTimeout(function () {
+							window.addEventListener('scroll', onFirstInteraction, { capture: true, once: true });
+							window.addEventListener('click', onFirstInteraction, { capture: true, once: true });
+						}, afterLoadDelayMs);
+					}, { once: true });
 				}
 			})();
 		</script>

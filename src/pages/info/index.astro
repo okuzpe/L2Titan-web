@@ -6,6 +6,7 @@ import { infoWikiSections } from '../../data/infoWiki';
 import { buildBreadcrumb, buildFaq, buildItemList } from '../../utils/seo';
 import { visitorLangFromPath } from '../../utils/i18n-lang';
 import { translate } from '../../utils/translations';
+import { translations } from '../../data/translations';
 
 const lang = visitorLangFromPath(Astro.url.pathname);
 const featuredSections = infoWikiSections.filter((section) => section.featured);
@@ -16,16 +17,7 @@ const structuredData = [
     { name: translate('navbar.home', lang, 'Inicio'), path: '/' },
     { name: translate('info.landings.breadcrumbWiki', lang, 'Información'), path: '/info' },
   ]),
-  buildFaq([
-    {
-      question: 'Donde puedo consultar la información del servidor de forma ordenada?',
-      answer: 'En /info tienes el centro de información con navegación por temas como rates, features, VIP, economy, events e instances.',
-    },
-    {
-      question: 'La wiki reemplaza las landings SEO del sitio?',
-      answer: 'No. La wiki funciona como centro de consulta para jugadores y las landings separadas siguen existiendo para SEO tematico y enlaces compartibles.',
-    },
-  ]),
+  buildFaq(translations[lang].info.faq),
   buildItemList(
     infoWikiSections.map((section) => ({
       name: sectionName(section.slug),

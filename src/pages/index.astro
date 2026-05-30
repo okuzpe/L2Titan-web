@@ -16,6 +16,7 @@ import {
 } from "../utils/seo";
 import { visitorLangFromPath } from "../utils/i18n-lang";
 import { translate } from "../utils/translations";
+import { translations } from "../data/translations";
 import heroBackground from "../assets/hero-background.jpg";
 
 const lang = visitorLangFromPath(Astro.url.pathname);
@@ -75,23 +76,8 @@ const structuredData = [
 	buildWebsiteSchema(),
 	buildOrganizationSchema(),
 	buildVideoGameSchema(),
-	buildBreadcrumb([{ name: 'Inicio', path: '/' }]),
-	buildFaq([
-		{
-			question: '¿Qué tipo de servidor es L2Titan?',
-			answer:
-				'L2Titan es un servidor privado de Lineage II Interlude x25 con SubStack, AutoFarm configurable, daily instances y eventos PvP. La información detallada está en /features, /rates y /faq.',
-		},
-		{
-			question: '¿Tiene Auto Create Account?',
-			answer:
-				'Sí. No hace falta registro web: la cuenta se crea al primer login. Pasos en /registro y cliente en /downloads.',
-		},
-		{
-			question: '¿Dónde sigo parches y novedades?',
-			answer: 'En /news y en el Discord oficial; la web mantiene landings por tema (economía, instancias, eventos) para enlazar con contexto.',
-		},
-	]),
+	buildBreadcrumb([{ name: translate('navbar.home', lang, 'Inicio'), path: '/' }]),
+	buildFaq(translations[lang].home.faq),
 ];
 ---
 

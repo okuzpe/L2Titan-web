@@ -77,6 +77,20 @@ const baseTranslations = {
             "Modos, assist, filtros y radio para farmear con control total.",
         },
       },
+      faq: [
+        {
+          question: "¿Qué tipo de servidor es L2Titan?",
+          answer: "L2Titan es un servidor privado de Lineage II Interlude x25 con SubStack, AutoFarm configurable, daily instances y eventos PvP. La información detallada está en /features, /rates y /faq.",
+        },
+        {
+          question: "¿Tiene Auto Create Account?",
+          answer: "Sí. No hace falta registro web: la cuenta se crea al primer login. Pasos en /registro y cliente en /downloads.",
+        },
+        {
+          question: "¿Dónde sigo parches y novedades?",
+          answer: "En /news y en el Discord oficial; la web mantiene landings por tema (economía, instancias, eventos) para enlazar con contexto.",
+        },
+      ],
     },
     countdown: {
       title: "Servidor en linea",
@@ -205,6 +219,16 @@ const baseTranslations = {
     // ─── NEW: Info page translations ────────────────────────────────
     info: {
       title: "INFORMACIÓN DEL SERVIDOR",
+      faq: [
+        {
+          question: "¿Dónde puedo consultar la información del servidor de forma ordenada?",
+          answer: "En /info tienes el centro de información con navegación por temas como rates, features, VIP, economy, events e instances.",
+        },
+        {
+          question: "¿La wiki reemplaza las landings SEO del sitio?",
+          answer: "No. La wiki funciona como centro de consulta para jugadores y las landings separadas siguen existiendo para SEO temático y enlaces compartibles.",
+        },
+      ],
       tabs: {
         rates: "Rates",
         enchant: "Enchant",
@@ -1022,6 +1046,20 @@ const baseTranslations = {
             "Modes, assist, filters and radius controls for full farming control.",
         },
       },
+      faq: [
+        {
+          question: "What kind of server is L2Titan?",
+          answer: "L2Titan is a Lineage II Interlude x25 private server with SubStack, configurable AutoFarm, daily instances and PvP events. Full details at /features, /rates and /faq.",
+        },
+        {
+          question: "Does it have Auto Create Account?",
+          answer: "Yes. No web registration needed — your account is created on first login. Steps at /registro and the client at /downloads.",
+        },
+        {
+          question: "Where can I follow patches and news?",
+          answer: "At /news and the official Discord; the site keeps themed landing pages (economy, instances, events) for easy linking with context.",
+        },
+      ],
     },
     countdown: {
       title: "Server Online",
@@ -1149,6 +1187,16 @@ const baseTranslations = {
     // ─── NEW: Info page translations (EN) ───────────────────────────
     info: {
       title: "SERVER INFORMATION",
+      faq: [
+        {
+          question: "Where can I find server information in an organized way?",
+          answer: "At /info you have the information hub with navigation by topic: rates, features, VIP, economy, events and instances.",
+        },
+        {
+          question: "Does the wiki replace the SEO landing pages?",
+          answer: "No. The wiki works as a reference center for players, and the separate landings still exist for thematic SEO and shareable links.",
+        },
+      ],
       tabs: {
         rates: "Rates",
         enchant: "Enchant",
