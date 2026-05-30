@@ -10,11 +10,11 @@ const economyLabel = createTabLabel('economy', lang);
 <div class="df-surface p-5 md:p-6 rounded-xl border border-yellow-500/20 mb-6">
   <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
     <div>
-      <p class="text-[11px] uppercase tracking-[0.22em] text-yellow-400/75">Economy map</p>
-      <h3 class="text-xl md:text-2xl font-bold text-yellow-400 font-display">Monedas, loops y tiendas mejor separadas</h3>
+      <p class="text-[11px] uppercase tracking-[0.22em] text-yellow-400/75" data-i18n="info.economyTab.introKicker">{economyLabel('introKicker')}</p>
+      <h3 class="text-xl md:text-2xl font-bold text-yellow-400 font-display" data-i18n="info.economyTab.introTitle">{economyLabel('introTitle')}</h3>
     </div>
-    <p class="max-w-2xl text-sm text-gray-400 leading-relaxed">
-      La lectura empieza por la moneda, sigue por la tienda o reward asociada y termina con los loops que conectan PvP, bosses, voting y progression.
+    <p class="max-w-2xl text-sm text-gray-400 leading-relaxed" data-i18n="info.economyTab.introDesc">
+      {economyLabel('introDesc')}
     </p>
   </div>
 </div>
@@ -60,27 +60,21 @@ const economyLabel = createTabLabel('economy', lang);
     </div>
 
     <div class="lg:col-span-2">
-      <p class="text-gray-400 text-sm mb-5">
-        La nueva daily <code class="bg-black/40 text-yellow-400 px-2 py-0.5 rounded text-xs">.daily enter 2</code> entrega Adena y letras L2 Day. Esas letras se cambian en <strong>Paul Merchant</strong> por multisells A-grade.
-      </p>
+      <p class="text-gray-400 text-sm mb-5" data-i18n-html="info.economyTab.lettersIntro" set:html={economyLabel('lettersIntro')}></p>
       <div class="mb-5 rounded-xl border border-yellow-500/15 bg-black/30 p-4">
-        <p class="text-sm text-gray-300">
-          Junta letras para formar palabras y canjearlas directamente en Paul Merchant. Las combinaciones activas son <strong>WEAPON</strong>, <strong>SHIELD</strong>, <strong>YEWELLS</strong> y <strong>ARMORS</strong>. Algunas recetas top también piden el item especial <strong>II</strong>.
-        </p>
+        <p class="text-sm text-gray-300" data-i18n-html="info.economyTab.lettersCombos" set:html={economyLabel('lettersCombos')}></p>
       </div>
       <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-3">
         {l2DayRecipes.map((recipe) => (
           <div class="p-4 bg-black/40 rounded border border-white/10">
             <div class="text-yellow-400 font-semibold text-sm mb-1">{recipe.product}</div>
-            <div class="text-gray-400 text-xs uppercase tracking-[0.2em] mb-2">Letras requeridas</div>
+            <div class="text-gray-400 text-xs uppercase tracking-[0.2em] mb-2" data-i18n="info.economyTab.lettersRequired">{economyLabel('lettersRequired')}</div>
             <div class="text-yellow-400 font-mono text-sm">{recipe.word}</div>
-            <div class="mt-3 text-xs text-gray-400">Canje: {recipe.reward}</div>
+            <div class="mt-3 text-xs text-gray-400"><span data-i18n="info.economyTab.lettersExchange">{economyLabel('lettersExchange')}</span> {recipe.reward}</div>
           </div>
         ))}
       </div>
-      <p class="text-xs text-gray-500 mt-4">
-        La receta top usa el item especial <strong>II</strong>. No existe letra J en cliente.
-      </p>
+      <p class="text-xs text-gray-500 mt-4" data-i18n-html="info.economyTab.lettersFootnote" set:html={economyLabel('lettersFootnote')}></p>
     </div>
   </div>
 </div>

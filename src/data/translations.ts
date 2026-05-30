@@ -256,6 +256,10 @@ const baseTranslations = {
       },
       // ── Enchant tab ──
       enchantTab: {
+        introKicker: "Sistema de enchant",
+        introTitle: "Comparación más limpia por scroll",
+        introDesc:
+          "Mantuvimos toda la información técnica, pero con más respiración visual para comparar riesgo, rango y probabilidades sin que la tabla se sienta apretada.",
         generalInfo: "Información General",
         safeEnchant: "Safe Enchant",
         safeEnchantDesc: "+3 para todo (+4 para full body armor)",
@@ -519,6 +523,18 @@ const baseTranslations = {
       },
       // ── Economy tab ──
       economyTab: {
+        introKicker: "Mapa de economía",
+        introTitle: "Monedas, loops y tiendas mejor separadas",
+        introDesc:
+          "La lectura empieza por la moneda, sigue por la tienda o reward asociada y termina con los loops que conectan PvP, bosses, voting y progresión.",
+        lettersIntro:
+          'La nueva daily <code class="bg-black/40 text-yellow-400 px-2 py-0.5 rounded text-xs">.daily enter 2</code> entrega Adena y letras L2 Day. Esas letras se cambian en <strong>Paul Merchant</strong> por multisells A-grade.',
+        lettersCombos:
+          'Junta letras para formar palabras y canjearlas directamente en Paul Merchant. Las combinaciones activas son <strong>WEAPON</strong>, <strong>SHIELD</strong>, <strong>YEWELLS</strong> y <strong>ARMORS</strong>. Algunas recetas top también piden el item especial <strong>II</strong>.',
+        lettersRequired: "Letras requeridas",
+        lettersExchange: "Canje:",
+        lettersFootnote:
+          'La receta top usa el item especial <strong>II</strong>. No existe letra J en cliente.',
         currencies: "Monedas del Servidor",
         pvpCoin: "PVP Coin",
         pvpCoinSource: "1 por cada PvP kill",
@@ -1182,6 +1198,10 @@ const baseTranslations = {
         spoilAmount: "Spoil Amount",
       },
       enchantTab: {
+        introKicker: "Enchant system",
+        introTitle: "A cleaner per-scroll comparison",
+        introDesc:
+          "We kept all the technical detail, just with more visual breathing room to compare risk, range and odds without the table feeling cramped.",
         generalInfo: "General Information",
         safeEnchant: "Safe Enchant",
         safeEnchantDesc: "+3 for all (+4 for full body armor)",
@@ -1407,6 +1427,18 @@ const baseTranslations = {
         castleList: "Castles",
       },
       economyTab: {
+        introKicker: "Economy map",
+        introTitle: "Currencies, loops and shops, cleanly separated",
+        introDesc:
+          "Start with the currency, move on to its shop or linked reward, and finish with the loops that connect PvP, bosses, voting and progression.",
+        lettersIntro:
+          'The new daily <code class="bg-black/40 text-yellow-400 px-2 py-0.5 rounded text-xs">.daily enter 2</code> grants Adena and L2 Day letters. Those letters are exchanged at <strong>Paul Merchant</strong> for A-grade multisells.',
+        lettersCombos:
+          'Collect letters to spell words and redeem them directly at Paul Merchant. The active combinations are <strong>WEAPON</strong>, <strong>SHIELD</strong>, <strong>YEWELLS</strong> and <strong>ARMORS</strong>. Some top recipes also require the special item <strong>II</strong>.',
+        lettersRequired: "Required letters",
+        lettersExchange: "Exchange:",
+        lettersFootnote:
+          'The top recipe uses the special item <strong>II</strong>. There is no letter J in the client.',
         currencies: "Server Currencies",
         pvpCoin: "PVP Coin",
         pvpCoinSource: "1 per PvP kill",

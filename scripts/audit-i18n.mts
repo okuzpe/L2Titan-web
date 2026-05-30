@@ -40,6 +40,7 @@ function isResolvableString(lang: Language, key: string): boolean {
 const KEY_PATTERNS: RegExp[] = [
 	/translate\s*\(\s*[`'"]([^`'"]+)[`'"]/g,
 	/data-i18n=["']([^"']+)["']/g,
+	/data-i18n-html=["']([^"']+)["']/g,
 	/data-i18n-aria-label=["']([^"']+)["']/g,
 	/data-i18n-title=["']([^"']+)["']/g,
 	/data-i18n-alt=["']([^"']+)["']/g,

@@ -23,7 +23,7 @@ export function translate(
 
 /**
  * Helper de etiquetas para componentes Tab/Feature.
- * `createTabLabel('economy', lang)('intro')` → `translate('info.economyTab.intro', lang, 'intro')`.
+ * `createTabLabel('economy', lang)('introTitle')` → `translate('info.economyTab.introTitle', lang, 'introTitle')`.
  * Elimina la definición repetida `const xLabel = (key) => translate(...)` en cada tab.
  */
 export function createTabLabel(tab: string, lang: Language = DEFAULT_INDEXABLE_LANGUAGE) {
