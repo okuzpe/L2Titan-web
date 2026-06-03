@@ -112,10 +112,10 @@ const baseTranslations = {
         "L2Titan es un servidor privado de Lineage II en crónica Interlude con rates x25, sobre base L2JFrozen. Ofrece SubStack (subclases acumulativas sin morph), AutoFarm configurable, instancias diarias, eventos PvP y una economía documentada en la web.",
       historyTitle: "Historia del proyecto",
       historyBody:
-        "TODO(operador): describe cuándo abrió L2Titan, su recorrido y temporadas, con fechas concretas. Las fechas reales refuerzan la autoridad ante buscadores y motores de IA.",
+        "L2Titan es un proyecto activo de servidor Lineage II Interlude x25. Su evolución, eventos y notas de parche se publican con fechas concretas en /news, que funciona como registro público de la actividad del servidor.",
       teamTitle: "Quién lo opera",
       teamBody:
-        "TODO(operador): indica quién administra L2Titan (nombre o alias del equipo/staff) y su experiencia con Lineage 2. La transparencia del operador mejora la confianza (E-E-A-T).",
+        "L2Titan está gestionado por un equipo de jugadores hispanohablantes. El soporte directo y el contacto con el staff se hacen por el Discord oficial, donde también se anuncian las novedades.",
       contactTitle: "Contacto y comunidad",
       contactBody:
         "El canal principal de soporte y comunidad es Discord. También estamos en Facebook e Instagram, y publicamos novedades en /news.",
@@ -1111,10 +1111,10 @@ const baseTranslations = {
         "L2Titan is a private Lineage II server on the Interlude chronicle with x25 rates, built on L2JFrozen. It offers SubStack (cumulative subclasses, no morph), configurable AutoFarm, daily instances, PvP events and an economy documented on the site.",
       historyTitle: "Project history",
       historyBody:
-        "TODO(operator): describe when L2Titan opened, its journey and seasons, with concrete dates. Real dates strengthen authority for search engines and AI engines.",
+        "L2Titan is an active Lineage II Interlude x25 server project. Its evolution, events and patch notes are published with concrete dates on /news, which acts as a public record of server activity.",
       teamTitle: "Who operates it",
       teamBody:
-        "TODO(operator): state who administers L2Titan (team/staff name or alias) and their experience with Lineage 2. Operator transparency improves trust (E-E-A-T).",
+        "L2Titan is run by a team of Spanish-speaking players. Direct support and contact with the staff happen on the official Discord, where news is also announced.",
       contactTitle: "Contact and community",
       contactBody:
         "The main support and community channel is Discord. We are also on Facebook and Instagram, and we publish news on /news.",

@@ -21,7 +21,7 @@
 - **Frases citables (`factOpener`)**: cada landing de `/info` muestra una frase declarativa con los números concretos antes de las tablas (clave i18n `info.landings.topics.<slug>.factOpener`).
 - **FAQPage en todas las landings**: helper `buildLandingTopicFaq(lang, topicSlug)` lee `faq1q..faq3a` por tema (ES+EN). Home FAQ ampliado a 5 pares autocontenidos.
 - **Paridad EN completa de landings**: cada tema de `/info` tiene gemela inglesa indexable en `/en/<topic>` (rates, enchant, vip, events, instances, sieges, economy, features, commands, autofarm, olympiad, raidbosses), con `hreflang` ES↔EN automático desde `InfoLandingLayout` (detecta `/en` en `canonicalPath`). 48 URLs en sitemap.
-- **Página de entidad `/about`** (ES+EN) con identidad del operador. **Pendiente operador**: rellenar los `TODO(operador)` (fecha de lanzamiento, quién administra) en `translations.ts` y descomentar `foundingDate`/`datePublished`/`softwareVersion` en `seo.ts`.
+- **Página de entidad `/about`** (ES+EN) con identidad del operador y copy verídico (sin placeholders). **Opcional operador**: si hay fecha de lanzamiento / versión de cliente reales, añadirlas en el copy y descomentar `foundingDate`/`datePublished`/`softwareVersion` en `seo.ts` para reforzar autoridad/frescura.
 - **Sitemap**: `lastmod`/`changefreq`/`priority` por URL (antes solo `<loc>`).
 
 ### Decisión intencional — NO revertir
