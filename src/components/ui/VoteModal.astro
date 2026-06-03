@@ -36,6 +36,7 @@ const lang = visitorLangFromPath(Astro.url.pathname);
 const voteLabel = translate("footer.voteSubmit", lang, "Vote");
 const closeLabel = translate("footer.closeModal", lang, "Close");
 const charPlaceholder = translate("footer.characterName", lang, "Character name");
+const enterCharLabel = translate("footer.enterCharName", lang, "Enter your character name");
 const noteText = noteKey ? translate(noteKey, lang, "") : "";
 ---
 
@@ -82,7 +83,7 @@ const noteText = noteKey ? translate(noteKey, lang, "") : "";
       <label
         for={`${prefix}-name`}
         class="block text-sm text-gray-400 mb-2"
-        data-i18n="footer.enterCharName">Enter your character name</label
+        data-i18n="footer.enterCharName">{enterCharLabel}</label
       >
       <input
         id={`${prefix}-name`}

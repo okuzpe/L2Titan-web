@@ -34,6 +34,22 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) => !legacyRedirectPaths.has(page) && !isInfoWikiDetail(page),
+      // Señales de frescura/prioridad para crawlers y motores generativos (antes solo <loc>).
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+      serialize(item) {
+        const path = new URL(item.url).pathname.replace(/\/+$/, '') || '/';
+        if (path === '/') {
+          item.priority = 1.0;
+        } else if (['/downloads', '/rates', '/substack', '/registro'].includes(path)) {
+          item.priority = 0.9;
+        } else if (path.startsWith('/news') || path === '/info') {
+          item.changefreq = 'daily';
+          item.priority = 0.8;
+        }
+        return item;
+      },
     }),
   ],
   vite: {

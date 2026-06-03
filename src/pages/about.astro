@@ -1,0 +1,105 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroBanner from '../components/ui/HeroBanner.astro';
+import CardSurface from '../components/ui/CardSurface.astro';
+import ActionButton from '../components/ui/ActionButton.astro';
+import { visitorLangFromPath } from '../utils/i18n-lang';
+import { translate } from '../utils/translations';
+import {
+  SITE_URL,
+  absoluteUrl,
+  buildBreadcrumb,
+  buildOrganizationSchema,
+} from '../utils/seo';
+
+const lang = visitorLangFromPath(Astro.url.pathname);
+const tk = (key: string, fb: string) => translate(`about.${key}`, lang, fb);
+
+const sections = [
+  { key: 'what', titleFb: 'Qué es L2Titan' },
+  { key: 'history', titleFb: 'Historia del proyecto' },
+  { key: 'team', titleFb: 'Quién lo opera' },
+  { key: 'contact', titleFb: 'Contacto y comunidad' },
+] as const;
+
+const aboutLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: tk('metaTitle', 'Sobre L2Titan'),
+  description: tk('metaDescription', ''),
+  url: absoluteUrl('/about'),
+  inLanguage: lang,
+  about: {
+    '@type': 'Organization',
+    name: 'L2Titan',
+    url: SITE_URL,
+  },
+};
+
+const structuredData = [
+  buildBreadcrumb([
+    { name: translate('navbar.home', lang, 'Inicio'), path: '/' },
+    { name: tk('heading', 'Sobre L2Titan'), path: '/about' },
+  ]),
+  buildOrganizationSchema(),
+  aboutLd,
+];
+---
+
+<Layout
+  title={tk('metaTitle', 'Sobre L2Titan — quiénes somos')}
+  description={tk('metaDescription', '')}
+  keywords="sobre l2titan, quién opera l2titan, l2 interlude servidor privado, equipo l2titan, l2titan historia"
+  canonicalPath="/about"
+  alternateLocalePath="/en/about"
+  structuredData={structuredData}
+>
+  <div class="container mx-auto px-4 py-12 md:py-20 max-w-4xl">
+    <HeroBanner
+      className="mb-10"
+      title={tk('heading', 'Sobre L2Titan')}
+      titleKey="about.heading"
+      intro={tk('intro', '')}
+      introKey="about.intro"
+    >
+      <ActionButton
+        slot="actions"
+        href="https://discord.gg/GunamUdGaQ"
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="discord"
+        className="px-5 py-3"
+        data-i18n="about.contactCta"
+      >
+        {tk('contactCta', 'Unirse a Discord')}
+      </ActionButton>
+      <ActionButton slot="actions" href="/downloads" variant="ghost" className="px-5 py-3" data-i18n="home.downloadClient">
+        {translate('home.downloadClient', lang, 'Descargar cliente')}
+      </ActionButton>
+    </HeroBanner>
+
+    <div class="space-y-5">
+      {sections.map((section) => (
+        <CardSurface className="p-6 md:p-7">
+          <h2
+            class="text-xl md:text-2xl font-bold text-yellow-400 font-display mb-3"
+            data-i18n={`about.${section.key}Title`}
+          >
+            {tk(`${section.key}Title`, section.titleFb)}
+          </h2>
+          <p class="text-gray-300 leading-relaxed text-sm md:text-base" data-i18n={`about.${section.key}Body`}>
+            {tk(`${section.key}Body`, '')}
+          </p>
+        </CardSurface>
+      ))}
+    </div>
+
+    <nav class="mt-12 flex flex-wrap gap-2 text-sm" aria-label="Enlaces relacionados">
+      <a href="/info" class="text-yellow-400 hover:text-yellow-300" data-i18n="navbar.info">{translate('navbar.info', lang, 'Info')}</a>
+      <span class="text-gray-600" aria-hidden="true">·</span>
+      <a href="/faq" class="text-yellow-400 hover:text-yellow-300" data-i18n="navbar.faq">{translate('navbar.faq', lang, 'FAQ')}</a>
+      <span class="text-gray-600" aria-hidden="true">·</span>
+      <a href="/news" class="text-yellow-400 hover:text-yellow-300" data-i18n="navbar.news">{translate('navbar.news', lang, 'Noticias')}</a>
+    </nav>
+  </div>
+</Layout>

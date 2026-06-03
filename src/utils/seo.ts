@@ -84,6 +84,19 @@ export function buildFaq(items: FaqItem[]) {
 	};
 }
 
+/** FAQPage JSON-LD de una landing de tema, leyendo `faq1q..faq3a` de las traducciones (ES/EN).
+ *  Devuelve `null` si el tema no tiene FAQ definido, para filtrar con `.filter(Boolean)`. */
+export function buildLandingTopicFaq(lang: Language, topicSlug: InfoLandingTopicSlug) {
+	const base = `info.landings.topics.${topicSlug}`;
+	const items: FaqItem[] = [];
+	for (let i = 1; i <= 3; i++) {
+		const question = translate(`${base}.faq${i}q`, lang, '');
+		const answer = translate(`${base}.faq${i}a`, lang, '');
+		if (question && answer) items.push({ question, answer });
+	}
+	return items.length ? buildFaq(items) : null;
+}
+
 export function buildItemList(items: ItemListEntry[]) {
 	return {
 		'@context': 'https://schema.org',
@@ -119,11 +132,25 @@ export function buildOrganizationSchema() {
 		alternateName: ['L2 Titan', 'L2Titan x25'],
 		url: SITE_URL,
 		logo: absoluteUrl('/favicon.svg'),
+		// TODO(operator): fecha de lanzamiento real del servidor para reforzar autoridad (E-E-A-T).
+		// foundingDate: '2026-01-01',
 		sameAs: [
 			'https://discord.gg/GunamUdGaQ',
 			'https://www.facebook.com/l2titan.server/',
 			'https://www.instagram.com/l2titan_com/',
+			// Listados externos que describen la misma entidad (asociación de entidad para motores generativos).
+			'https://l2.hopzone.net/site/vote/107098/1',
+			'https://l2network.eu/index.php?a=in&u=l2-titan',
+			'https://www.top100arena.com/listing/102116',
+			'https://top.l2jbrasil.com/index.php?a=in&u=Titan',
+			'https://l2topzone.com/vote/id/13387',
 		],
+		contactPoint: {
+			'@type': 'ContactPoint',
+			contactType: 'customer support',
+			url: 'https://discord.gg/GunamUdGaQ',
+			availableLanguage: ['es', 'en'],
+		},
 		description:
 			'L2Titan: servidor Lineage 2 Interlude x25 con rates publicados, PvP, daily instances y soporte en Discord para jugadores hispanohablantes.',
 	};
@@ -136,12 +163,21 @@ export function buildVideoGameSchema() {
 		name: 'L2Titan Interlude x25',
 		alternateName: ['L2Titan', 'L2 Titan x25'],
 		url: SITE_URL,
+		image: absoluteUrl(DEFAULT_OG_IMAGE),
 		description:
 			'Servidor privado de Lineage 2 Interlude para PC con SubStack, AutoFarm configurable, eventos y progreso PvP.',
 		gamePlatform: 'PC',
 		applicationCategory: 'Game',
 		operatingSystem: 'Windows',
 		genre: ['MMORPG', 'PvP', 'Fantasy'],
+		inLanguage: ['es', 'en'],
+		// TODO(operator): fecha de lanzamiento real del servidor (ISO 8601) para señal de frescura/autoridad.
+		// datePublished: '2026-01-01',
+		publisher: {
+			'@type': 'Organization',
+			name: 'L2Titan',
+			url: SITE_URL,
+		},
 		offers: {
 			'@type': 'Offer',
 			price: '0',
@@ -160,6 +196,10 @@ export function buildSoftwareApplicationSchema() {
 		applicationCategory: 'GameApplication',
 		description:
 			'Cliente completo de L2Titan para jugar Lineage 2 Interlude x25 con launcher oficial y descarga gratuita.',
+		fileSize: '2.8 GB',
+		screenshot: absoluteUrl('/images/interface.jpg'),
+		// TODO(operator): versión/patch actual del cliente para señal de frescura.
+		// softwareVersion: '1.0',
 		offers: {
 			'@type': 'Offer',
 			price: '0',

@@ -3,11 +3,14 @@ import InfoLandingLayout from '../layouts/InfoLandingLayout.astro';
 import TabEvents from '../components/info/TabEvents.astro';
 import { infoLandingConfigs } from '../data/infoLandingConfigs';
 import { visitorLangFromPath } from '../utils/i18n-lang';
-import { buildLocalizedInfoTopicBreadcrumb } from '../utils/seo';
+import { buildLocalizedInfoTopicBreadcrumb, buildLandingTopicFaq } from '../utils/seo';
 
 const lang = visitorLangFromPath(Astro.url.pathname);
 const config = infoLandingConfigs.events;
-const structuredData = [buildLocalizedInfoTopicBreadcrumb(lang, config.topicSlug, config.heading, config.canonicalPath)];
+const structuredData = [
+  buildLocalizedInfoTopicBreadcrumb(lang, config.topicSlug, config.heading, config.canonicalPath),
+  buildLandingTopicFaq(lang, config.topicSlug),
+].filter(Boolean);
 ---
 
 <InfoLandingLayout {...config} structuredData={structuredData}>

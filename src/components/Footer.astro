@@ -15,7 +15,7 @@ const year = new Date().getFullYear();
         class="text-sm font-semibold text-yellow-500 uppercase tracking-wider mb-4 text-center font-display"
         data-i18n="footer.voteForUs"
       >
-        Vota por nosotros
+        {translate("footer.voteForUs", lang, "Vota por nosotros")}
       </h3>
       <div class="flex flex-wrap justify-center items-center gap-4">
         <!-- Banner HopZone -->
@@ -336,6 +336,12 @@ const year = new Date().getFullYear();
         class="hover:text-yellow-400 transition-colors"
         data-i18n="footer.linkCommunity"
         >{translate("footer.linkCommunity", lang, "Comunidad")}</a
+      >
+      <a
+        href={lang === "en" ? "/en/about" : "/about"}
+        class="hover:text-yellow-400 transition-colors"
+        data-i18n="about.heading"
+        >{translate("about.heading", lang, "Sobre L2Titan")}</a
       >
       <a
         href="/substack"

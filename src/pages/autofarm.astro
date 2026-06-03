@@ -5,13 +5,16 @@ import CardSurface from '../components/ui/CardSurface.astro';
 import { infoLandingConfigs } from '../data/infoLandingConfigs';
 import { visitorLangFromPath } from '../utils/i18n-lang';
 import { translate } from '../utils/translations';
-import { buildLocalizedInfoTopicBreadcrumb } from '../utils/seo';
+import { buildLocalizedInfoTopicBreadcrumb, buildLandingTopicFaq } from '../utils/seo';
 
 const lang = visitorLangFromPath(Astro.url.pathname);
 const tk = (key: string, fb: string) => translate(key, lang, fb);
 
 const config = infoLandingConfigs.autofarm;
-const structuredData = [buildLocalizedInfoTopicBreadcrumb(lang, config.topicSlug, config.heading, config.canonicalPath)];
+const structuredData = [
+  buildLocalizedInfoTopicBreadcrumb(lang, config.topicSlug, config.heading, config.canonicalPath),
+  buildLandingTopicFaq(lang, config.topicSlug),
+].filter(Boolean);
 const base = 'info.landings.topics.autofarm';
 ---
 

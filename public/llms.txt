@@ -1,0 +1,51 @@
+# L2Titan
+
+> L2Titan es un servidor privado de Lineage II en crónica Interlude, sobre base L2JFrozen, con experiencia x25. Ofrece SubStack (subclases acumulativas sin morph), AutoFarm configurable, instancias diarias, eventos PvP (TvT/CTF/DM), asedios y una economía documentada. Comunidad y soporte principalmente en español; resúmenes en inglés disponibles bajo /en. Sitio oficial: https://l2-titan.com — Discord: https://discord.gg/GunamUdGaQ
+
+## Datos clave del servidor
+
+- Crónica: Interlude · Base: L2JFrozen · Plataforma: PC (Windows)
+- Rates base: XP x25, SP x25, Adena x10, Drop x10, Spoil x15, Party XP/SP x2, Quest x1.20, Pet XP x20
+- Rates de bosses: RB drop x5, RB spoil x5, RB adena x10, GB drop x1, GB adena x10
+- Enchant: safe +3 (+4 armadura completa), máximo +25
+- VIP: bonus +40% XP/SP, Adena, drop y spoil chance (+30% en cantidad)
+- Eventos: TvT cada hora (ON); CTF y DM disponibles
+- Instancias diarias: Pagan Temple (.daily enter 1) e Infinitum Tower (.daily enter 2)
+- Cuenta: se crea en el primer login del juego, sin formulario web
+
+## Páginas principales
+
+- [Inicio](https://l2-titan.com/): visión general del servidor, rates destacados y accesos rápidos.
+- [Descargas](https://l2-titan.com/downloads): cliente completo de L2Titan Interlude y requisitos para jugar.
+- [Crear cuenta](https://l2-titan.com/registro): cómo entrar al servidor creando la cuenta en el primer login.
+- [FAQ](https://l2-titan.com/faq): preguntas frecuentes sobre crónica, rates, SubStack, AutoFarm y cuentas.
+- [Centro de información](https://l2-titan.com/info): índice de toda la documentación del servidor por sección.
+- [Sobre L2Titan](https://l2-titan.com/about): qué es el proyecto, su base técnica y cómo contactar al equipo.
+
+## Información del juego (landings canónicas)
+
+- [Rates x25](https://l2-titan.com/rates): XP, SP, Adena, drop, spoil, party, quest, Raid Boss y Grand Boss, bonus VIP.
+- [Enchant](https://l2-titan.com/enchant): safe, máximo y probabilidades de scrolls normal, blessed y crystal.
+- [VIP](https://l2-titan.com/vip): cómo funciona el VIP, bonus, comando .vip y Titan Coins.
+- [Eventos PvP](https://l2-titan.com/events): horarios y reglas de TvT, CTF y DM, y comandos para entrar.
+- [Instancias diarias](https://l2-titan.com/instances): Pagan Temple, Infinitum Tower, drops y comando .daily.
+- [Economía](https://l2-titan.com/economy): monedas, Titan Box, tiendas y circuito entre farm, PvP y bosses.
+- [Asedios](https://l2-titan.com/sieges): castillos, fortalezas, recompensas y Titan Coins por conquista.
+- [Features](https://l2-titan.com/features): SubStack, AutoFarm, balance de clases y sistemas del servidor.
+- [Comandos](https://l2-titan.com/commands): lista de comandos in-game (.vip, .daily, .join, .top, etc.).
+
+## Comunidad y novedades
+
+- [Noticias](https://l2-titan.com/news): novedades, eventos y notas de parche con fechas absolutas.
+- [Comunidad](https://l2-titan.com/comunidad): canales de Discord, Facebook e Instagram.
+- [SubStack](https://l2-titan.com/substack): hub del sistema de subclases acumulativas.
+
+## English
+
+- [Home (EN)](https://l2-titan.com/en): English overview of the L2Titan Interlude x25 server.
+- [FAQ (EN)](https://l2-titan.com/en/faq): frequently asked questions in English.
+- [Downloads (EN)](https://l2-titan.com/en/downloads): English client download and requirements.
+
+## Opcional
+
+- [Sitemap](https://l2-titan.com/sitemap-index.xml): índice completo de URLs indexables.

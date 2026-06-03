@@ -444,6 +444,8 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "Rates x25 de L2Titan para Lineage 2 Interlude",
             metaDescription:
               "Consulta los rates x25 de L2Titan para Lineage 2 Interlude: XP, SP, Adena, drop, spoil, Raid Boss, Grand Boss y bonus VIP.",
+            factOpener:
+              "Rates base de L2Titan: XP x25, SP x25, Adena x10, Drop x10, Spoil x15, Party XP/SP x2, Quest x1.20 y Pet XP x20.",
             faq1q: "¿Qué rates tiene L2Titan Interlude x25?",
             faq1a:
               "L2Titan usa XP x25 y SP x25, con Adena x10, Drop x10, Spoil x15, Party XP/SP x2 y Quest Reward x1.20.",
@@ -461,6 +463,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "Enchant de L2Titan Interlude: safe, max y chances",
             metaDescription:
               "Revisa el sistema de enchant de L2Titan Interlude: safe enchant, max enchant, scrolls normales, blessed, crystal y augmentation.",
+            factOpener:
+              "Enchant en L2Titan: safe +3 (+4 en armadura completa) y enchant máximo +25, con scrolls normal, blessed y crystal.",
+            faq1q: "¿Cuál es el safe enchant y el máximo en L2Titan?",
+            faq1a:
+              "El safe enchant es +3 (+4 en armadura completa) y el enchant máximo es +25. Por encima del safe, fallar puede destruir el ítem según el tipo de scroll.",
+            faq2q: "¿Qué tipos de scroll de enchant existen?",
+            faq2a:
+              "Hay scrolls normales (al fallar el ítem se destruye), blessed (al fallar vuelve a +0) y crystal, que van de +13 a +25 y al fallar solo pierden el scroll.",
+            faq3q: "¿Qué probabilidad tienen los crystal scrolls?",
+            faq3a:
+              "Los crystal scrolls empiezan en torno al 74% en armas y armaduras y bajan de forma gradual hasta cerca del 30% en +25; las joyas tienen unos 5 puntos menos.",
           },
           vip: {
             heading: "VIP de L2Titan Interlude: cómo funciona y qué bonus da",
@@ -469,6 +482,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "VIP de L2Titan Interlude: cómo funciona y qué bonus da",
             metaDescription:
               "Descubre cómo funciona el VIP de L2Titan Interlude, qué bonus ofrece, cómo activarlo con .vip y cómo conseguir Titan Coins.",
+            factOpener:
+              "El VIP de L2Titan da +40% en XP/SP, Adena, drop chance y spoil chance, más +30% en cantidad de drop y spoil; se activa con .vip.",
+            faq1q: "¿Cómo se activa el VIP en L2Titan?",
+            faq1a:
+              "El VIP se activa con el comando .vip usando un VIP Token, y puedes consultar su estado y duración con .vipinfo.",
+            faq2q: "¿Qué bonus da el VIP?",
+            faq2a:
+              "El VIP otorga +40% en XP/SP, Adena, drop chance y spoil chance, además de +30% en cantidad de drop y spoil sobre las rates base.",
+            faq3q: "¿Cómo consigo Titan Coins?",
+            faq3a:
+              "Los Titan Coins se obtienen sobre todo en asedios de castillos y fortalezas y forman parte de la economía del servidor.",
           },
           events: {
             heading: "Eventos PvP de L2Titan Interlude: TvT, CTF y DM",
@@ -477,6 +501,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "Eventos PvP de L2Titan Interlude: TvT, CTF y DM",
             metaDescription:
               "Consulta los eventos PvP de L2Titan Interlude: horarios, estado de TvT, CTF y DM, reglas generales y comandos para entrar.",
+            factOpener:
+              "Eventos PvP de L2Titan: TvT activo cada hora; CTF y DM también disponibles, con .join para entrar y .leave para salir.",
+            faq1q: "¿Qué eventos PvP hay en L2Titan?",
+            faq1a:
+              "Hay Team vs Team (TvT), Capture the Flag (CTF) y Death Match (DM). Actualmente el TvT está activo cada hora y CTF y DM también están disponibles.",
+            faq2q: "¿Cómo entro a un evento?",
+            faq2a:
+              "Cuando el evento está abierto, usa el comando .join para registrarte y .leave para salir antes de que empiece.",
+            faq3q: "¿Cada cuánto se ejecuta el TvT?",
+            faq3a:
+              "El TvT corre en franjas horarias a lo largo del día (cada hora en las horas activas), según el calendario de eventos del servidor.",
           },
           instances: {
             heading: "Daily Instances de L2Titan Interlude y Neutral Zone",
@@ -485,6 +520,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "Daily Instances de L2Titan Interlude y Neutral Zone",
             metaDescription:
               "Explora las daily instances de L2Titan Interlude: Pagan Temple, Infinitum Tower, drops, comandos .daily y detalles de Neutral Zone.",
+            factOpener:
+              "Instancias diarias de L2Titan: Pagan Temple (.daily enter 1, 1 vez/día) e Infinitum Tower (.daily enter 2, 3 veces/día), con reset a las 06:30.",
+            faq1q: "¿Qué instancias diarias tiene L2Titan?",
+            faq1a:
+              "Las dailies principales son Pagan Temple (acceso con .daily enter 1, una vez al día) e Infinitum Tower (.daily enter 2, hasta tres veces al día).",
+            faq2q: "¿Cuándo resetean las dailies?",
+            faq2a:
+              "El reset diario es a las 06:30 hora del servidor. El tiempo dentro de la instancia se pausa si sales o te desconectas.",
+            faq3q: "¿Qué se consigue en Infinitum Tower?",
+            faq3a:
+              "Infinitum Tower deja Adena y letras L2 Day que se canjean en Paul Merchant por armas, sets y joyas A-grade.",
           },
           sieges: {
             heading: "Asedios de castillo y fortalezas en L2Titan Interlude",
@@ -493,6 +539,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "Asedios de castillo y fortalezas en L2Titan Interlude",
             metaDescription:
               "Mira cómo funcionan los asedios de fortalezas y castillos en L2Titan Interlude, con recompensas reales, Titan Coins y beneficios por conquista.",
+            factOpener:
+              "Asedios de L2Titan: 9 castillos (de Gludio a Schuttgart) y 21 fortalezas, con recompensas en Titan Coins (Aden da 135) y reputación de clan por conquista.",
+            faq1q: "¿Cuántos castillos y fortalezas hay?",
+            faq1a:
+              "Hay 9 castillos (Gludio, Dion, Giran, Oren, Aden, Innadril, Goddard, Rune y Schuttgart) y 21 fortalezas conquistables.",
+            faq2q: "¿Qué recompensas dan los asedios?",
+            faq2a:
+              "Conquistar castillos da Titan Coins (por ejemplo Aden otorga 135) y reputación de clan: +500 al conquistador y +250 al defensor.",
+            faq3q: "¿Para qué sirven los Titan Coins?",
+            faq3a:
+              "Los Titan Coins son una moneda de endgame que se usa en la economía del servidor y se consigue principalmente con asedios.",
           },
           economy: {
             heading:
@@ -503,6 +560,17 @@ export const infoWikiTranslationOverrides = {
               "Economía de L2Titan Interlude: monedas, shops y Titan Box",
             metaDescription:
               "Consulta la economía de L2Titan Interlude: PVP Coin, Event Medal, Raid Token, Vote Coin, Titan Coin, Titan Box y shops del servidor.",
+            factOpener:
+              "Economía de L2Titan: monedas PvP Coin, Event Medal, Raid Token, Vote Coin y Titan Coin, más la Titan’s Box y shops para armas y armaduras.",
+            faq1q: "¿Qué monedas usa la economía de L2Titan?",
+            faq1a:
+              "La economía usa PvP Coin, Event Medal, Raid Token, Vote Coin y Titan Coin, cada una con sus fuentes y tiendas propias.",
+            faq2q: "¿Qué es la Titan’s Box?",
+            faq2a:
+              "La Titan’s Box es una caja con probabilidades publicadas que entrega scrolls de enchant grado B, A y S (normales y blessed) y life stones.",
+            faq3q: "¿Cómo se consiguen Raid Tokens?",
+            faq3a:
+              "Los Raid Tokens caen al matar Raid Boss y Grand Boss; por ejemplo Valakas da 600, Antharas 500 y Baium 200, repartidos en varios drops.",
           },
           features: {
             heading: "Features de L2Titan Interlude: SubStack, AutoFarm y PvP",
@@ -512,6 +580,17 @@ export const infoWikiTranslationOverrides = {
               "Features de L2Titan Interlude: SubStack, AutoFarm y PvP",
             metaDescription:
               "Descubre las features de L2Titan Interlude: SubStack, AutoFarm configurable, Buffer, ranking .top, .drop, Olympiad y balance PvP.",
+            factOpener:
+              "Features de L2Titan: SubStack (subclases acumulativas sin morph), AutoFarm configurable, Buffer, ranking .top, Olympiad y balance PvP por tipo de clase.",
+            faq1q: "¿Qué es el SubStack de L2Titan?",
+            faq1a:
+              "El SubStack son subclases acumulativas: puedes sumar habilidades de varias subclases sin morph, para armar builds más flexibles y competitivas.",
+            faq2q: "¿Tiene AutoFarm el servidor?",
+            faq2a:
+              "Sí. El AutoFarm es configurable (.farm o .autofarm) con modos, asistencia, filtros y radio, para farmear según las reglas del servidor.",
+            faq3q: "¿Cómo está el balance PvP?",
+            faq3a:
+              "El balance ajusta el daño PvP por tipo de clase (por ejemplo tanques +30% frente a fighters), con cap de crítico mágico 350 y fallos mágicos desactivados.",
           },
           commands: {
             heading: "Comandos de L2Titan Interlude: .vip, .daily, .top y más",
@@ -521,6 +600,17 @@ export const infoWikiTranslationOverrides = {
               "Comandos de L2Titan Interlude: .vip, .daily, .top y más",
             metaDescription:
               "Lista completa de comandos de L2Titan Interlude: .vip, .daily, .join, .leave, .top, .vote, .globalgk, .bank y utilidades.",
+            factOpener:
+              "Comandos in-game de L2Titan: .vip, .daily, .join/.leave, .top, .vote, .globalgk, .bank y utilidades como .farm/.autofarm y .drop.",
+            faq1q: "¿Cuáles son los comandos principales de L2Titan?",
+            faq1a:
+              "Los más usados son .vip, .daily, .join y .leave (eventos), .top (ranking), .vote, .globalgk (teleport) y .bank/.deposit/.withdraw.",
+            faq2q: "¿Cómo se controla el AutoFarm por comando?",
+            faq2a:
+              "El AutoFarm se controla con .farm o .autofarm; también existen .exp y .drop para gestionar experiencia y drops dentro del juego.",
+            faq3q: "¿Hay comando para ver el ranking?",
+            faq3a:
+              "Sí. El comando .top muestra el ranking del servidor, y .vote y .voteTime ayudan a gestionar los votos y sus recompensas.",
           },
           autofarm: {
             heading: "AutoFarm en L2Titan Interlude x25",
@@ -529,6 +619,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "AutoFarm Lineage 2 Interlude en L2Titan",
             metaDescription:
               "AutoFarm avanzado en L2Titan Interlude x25: qué hace, cómo se configura y cómo enlaza con comandos y calidad de vida del servidor.",
+            factOpener:
+              "AutoFarm de L2Titan: se activa con .farm o .autofarm y permite configurar modos, asistencia, filtros y radio para farmear con las reglas del servidor.",
+            faq1q: "¿Cómo activo el AutoFarm en L2Titan?",
+            faq1a:
+              "El AutoFarm se activa con .farm o .autofarm dentro del juego y permite ajustar modos, asistencia, filtros y radio de farmeo.",
+            faq2q: "¿El AutoFarm reemplaza el juego en grupo?",
+            faq2a:
+              "No. Convive con SubStack, instancias diarias y zonas de farm documentadas; no sustituye el contenido de grupo ni los eventos.",
+            faq3q: "¿Funciona con las rates x25?",
+            faq3a:
+              "Sí. El AutoFarm farmea con las rates base del servidor (XP x25, Drop x10, etc.) y aplica el bonus VIP cuando corresponde.",
             glanceTitle: "En pocas líneas",
             glanceB1:
               "Configurás radio, asistencia y filtros in-game para que el personaje farmee con reglas del servidor, no “a ciegas”.",
@@ -546,6 +647,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "Olympiad en L2Titan Interlude — horario y reglas",
             metaDescription:
               "Datos del Olympiad en L2Titan: horario de inicio, duración, periodo, categorías, encantamiento máximo, augment, restricciones y recompensas.",
+            factOpener:
+              "Olympiad de L2Titan: competición de clases con horario, periodo y categorías propios, y reglas publicadas de encantamiento máximo y augment.",
+            faq1q: "¿Cómo funciona el Olympiad en L2Titan?",
+            faq1a:
+              "El Olympiad es una competición de clases con horario y periodo definidos; las categorías y el calendario están publicados en esta página.",
+            faq2q: "¿Hay tope de encantamiento en Olympiad?",
+            faq2a:
+              "Sí. El Olympiad aplica un tope de encantamiento y reglas de augment propias que conviene revisar antes de armar la build de arena.",
+            faq3q: "¿Dónde se anuncian los cambios de temporada?",
+            faq3a:
+              "Los cambios de temporada del Olympiad se anuncian en /news; esta landing es la URL estable para enlazar la información.",
             glanceTitle: "Qué mirar primero",
             glanceB1:
               "Horario de inicio, duración y periodo están en la tabla inferior (hora del servidor).",
@@ -563,6 +675,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "Raid Bosses y Raid Tokens en L2Titan Interlude",
             metaDescription:
               "Anuncios de Raid Boss en el cliente, rates de RB/GB en L2Titan y uso de Raid Tokens en la economía del servidor.",
+            factOpener:
+              "Raid Bosses de L2Titan: anuncios en el cliente y Raid Tokens; RB drop/spoil x5 y RB adena x10, con tokens según el boss (Valakas 600, Antharas 500).",
+            faq1q: "¿Qué rates tienen los Raid Boss y Grand Boss?",
+            faq1a:
+              "Los Raid Boss usan drop x5, spoil x5 y adena x10; los Grand Boss usan drop x1 y adena x10. Las tablas completas están en /rates.",
+            faq2q: "¿Para qué sirven los Raid Tokens?",
+            faq2a:
+              "Los Raid Tokens caen de los bosses y se usan en la economía, por ejemplo para crystal scrolls de armas y armaduras en las tiendas del servidor.",
+            faq3q: "¿Cuántos Raid Tokens dan los bosses?",
+            faq3a:
+              "Depende del boss: Valakas da 600, Antharas 500, Baium 200, Orfen 180 y Zaken 100, repartidos en varios drops.",
             glanceTitle: "Dónde está cada dato",
             glanceB1:
               "Anuncios de aparición y navegación in-game se explican en la sección de features (cliente y utilidades).",
@@ -1020,6 +1143,8 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "L2Titan x25 rates for Lineage 2 Interlude",
             metaDescription:
               "See L2Titan x25 rates for Lineage 2 Interlude: XP, SP, Adena, drop, spoil, Raid Boss, Grand Boss and VIP bonus.",
+            factOpener:
+              "L2Titan base rates: XP x25, SP x25, Adena x10, Drop x10, Spoil x15, Party XP/SP x2, Quest x1.20 and Pet XP x20.",
             faq1q: "What rates does L2Titan Interlude x25 use?",
             faq1a:
               "L2Titan runs XP x25 and SP x25, with Adena x10, Drop x10, Spoil x15, Party XP/SP x2 and Quest Reward x1.20.",
@@ -1037,6 +1162,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "L2Titan Interlude enchant: safe, max and chances",
             metaDescription:
               "Review L2Titan Interlude enchant: safe enchant, max enchant, normal, blessed and crystal scrolls, and augmentation.",
+            factOpener:
+              "Enchant on L2Titan: safe +3 (+4 on a full armor set) and max enchant +25, with normal, blessed and crystal scrolls.",
+            faq1q: "What is the safe enchant and the maximum on L2Titan?",
+            faq1a:
+              "Safe enchant is +3 (+4 on a full armor set) and the maximum enchant is +25. Above safe, a failure can destroy the item depending on the scroll type.",
+            faq2q: "What enchant scroll types are there?",
+            faq2a:
+              "There are normal scrolls (the item is destroyed on failure), blessed (item returns to +0 on failure) and crystal, which run from +13 to +25 and only lose the scroll on failure.",
+            faq3q: "What chances do crystal scrolls have?",
+            faq3a:
+              "Crystal scrolls start around 74% on weapons and armor and drop gradually to about 30% at +25; jewelry is roughly 5 points lower.",
           },
           vip: {
             heading: "L2Titan Interlude VIP: how it works and what it gives",
@@ -1045,6 +1181,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "L2Titan Interlude VIP: how it works and what it gives",
             metaDescription:
               "Learn how L2Titan Interlude VIP works, what bonuses it gives, how to activate it with .vip and how to earn Titan Coins.",
+            factOpener:
+              "L2Titan VIP gives +40% XP/SP, Adena, drop chance and spoil chance, plus +30% on drop and spoil amount; activate it with .vip.",
+            faq1q: "How do I activate VIP on L2Titan?",
+            faq1a:
+              "VIP is activated with the .vip command using a VIP Token, and you can check its status and duration with .vipinfo.",
+            faq2q: "What bonuses does VIP give?",
+            faq2a:
+              "VIP grants +40% XP/SP, Adena, drop chance and spoil chance, plus +30% on drop and spoil amount over the base rates.",
+            faq3q: "How do I earn Titan Coins?",
+            faq3a:
+              "Titan Coins are earned mainly through castle and fortress sieges and are part of the server economy.",
           },
           events: {
             heading: "L2Titan Interlude PvP events: TvT, CTF and DM",
@@ -1053,6 +1200,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "L2Titan Interlude PvP events: TvT, CTF and DM",
             metaDescription:
               "Check L2Titan Interlude PvP events: schedules, TvT, CTF and DM status, general rules and join commands.",
+            factOpener:
+              "L2Titan PvP events: TvT runs every hour; CTF and DM are also available, with .join to enter and .leave to exit.",
+            faq1q: "What PvP events are there on L2Titan?",
+            faq1a:
+              "There are Team vs Team (TvT), Capture the Flag (CTF) and Death Match (DM). TvT is currently active every hour and CTF and DM are also available.",
+            faq2q: "How do I join an event?",
+            faq2a:
+              "When the event is open, use the .join command to register and .leave to exit before it starts.",
+            faq3q: "How often does TvT run?",
+            faq3a:
+              "TvT runs in time slots throughout the day (every hour during active hours), following the server event schedule.",
           },
           instances: {
             heading: "L2Titan Interlude daily instances and Neutral Zone",
@@ -1061,6 +1219,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "L2Titan Interlude daily instances and Neutral Zone",
             metaDescription:
               "Explore L2Titan Interlude daily instances: Pagan Temple, Infinitum Tower, drops, .daily commands and Neutral Zone details.",
+            factOpener:
+              "L2Titan daily instances: Pagan Temple (.daily enter 1, once/day) and Infinitum Tower (.daily enter 2, 3 times/day), with a 06:30 reset.",
+            faq1q: "What daily instances does L2Titan have?",
+            faq1a:
+              "The main dailies are Pagan Temple (access with .daily enter 1, once per day) and Infinitum Tower (.daily enter 2, up to three times per day).",
+            faq2q: "When do the dailies reset?",
+            faq2a:
+              "The daily reset is at 06:30 server time. The instance timer pauses if you leave or disconnect.",
+            faq3q: "What do you get in Infinitum Tower?",
+            faq3a:
+              "Infinitum Tower drops Adena and L2 Day letters that are exchanged at Paul Merchant for A-grade weapons, sets and jewelry.",
           },
           sieges: {
             heading: "Castle and fortress sieges on L2Titan Interlude",
@@ -1069,6 +1238,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "Castle and fortress sieges on L2Titan Interlude",
             metaDescription:
               "How fortress and castle sieges work on L2Titan Interlude, with real rewards, Titan Coins and conquest benefits.",
+            factOpener:
+              "L2Titan sieges: 9 castles (Gludio to Schuttgart) and 21 fortresses, with Titan Coin rewards (Aden gives 135) and clan reputation per conquest.",
+            faq1q: "How many castles and fortresses are there?",
+            faq1a:
+              "There are 9 castles (Gludio, Dion, Giran, Oren, Aden, Innadril, Goddard, Rune and Schuttgart) and 21 conquerable fortresses.",
+            faq2q: "What rewards do sieges give?",
+            faq2a:
+              "Conquering castles gives Titan Coins (for example Aden grants 135) and clan reputation: +500 to the conqueror and +250 to the defender.",
+            faq3q: "What are Titan Coins used for?",
+            faq3a:
+              "Titan Coins are an endgame currency used across the server economy and earned mainly through sieges.",
           },
           economy: {
             heading:
@@ -1079,6 +1259,17 @@ export const infoWikiTranslationOverrides = {
               "L2Titan Interlude economy: currencies, shops and Titan Box",
             metaDescription:
               "L2Titan Interlude economy: PVP Coin, Event Medal, Raid Token, Vote Coin, Titan Coin, Titan Box and server shops.",
+            factOpener:
+              "L2Titan economy: PvP Coin, Event Medal, Raid Token, Vote Coin and Titan Coin currencies, plus the Titan’s Box and weapon/armor shops.",
+            faq1q: "What currencies does the L2Titan economy use?",
+            faq1a:
+              "The economy uses PvP Coin, Event Medal, Raid Token, Vote Coin and Titan Coin, each with its own sources and shops.",
+            faq2q: "What is the Titan’s Box?",
+            faq2a:
+              "The Titan’s Box is a reward box with published chances that grants grade B, A and S enchant scrolls (normal and blessed) and life stones.",
+            faq3q: "How do you get Raid Tokens?",
+            faq3a:
+              "Raid Tokens drop from Raid Bosses and Grand Bosses; for example Valakas gives 600, Antharas 500 and Baium 200, spread across several drops.",
           },
           features: {
             heading: "L2Titan Interlude features: SubStack, AutoFarm and PvP",
@@ -1087,6 +1278,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "L2Titan Interlude features: SubStack, AutoFarm and PvP",
             metaDescription:
               "L2Titan Interlude features: SubStack, configurable AutoFarm, Buffer, .top ranking, .drop, Olympiad and PvP balance.",
+            factOpener:
+              "L2Titan features: SubStack (cumulative subclasses, no morph), configurable AutoFarm, Buffer, .top ranking, Olympiad and PvP balance by class type.",
+            faq1q: "What is L2Titan's SubStack?",
+            faq1a:
+              "SubStack means cumulative subclasses: you can stack skills from several subclasses without morphing, for more flexible and competitive builds.",
+            faq2q: "Does the server have AutoFarm?",
+            faq2a:
+              "Yes. AutoFarm is configurable (.farm or .autofarm) with modes, assist, filters and radius, to farm under the server rules.",
+            faq3q: "How is PvP balance handled?",
+            faq3a:
+              "Balance tunes PvP damage by class type (for example tanks +30% vs fighters), with a magic crit cap of 350 and magic failures disabled.",
           },
           commands: {
             heading: "L2Titan Interlude commands: .vip, .daily, .top and more",
@@ -1096,6 +1298,17 @@ export const infoWikiTranslationOverrides = {
               "L2Titan Interlude commands: .vip, .daily, .top and more",
             metaDescription:
               "Full L2Titan Interlude command list: .vip, .daily, .join, .leave, .top, .vote, .globalgk, .bank and utilities.",
+            factOpener:
+              "L2Titan in-game commands: .vip, .daily, .join/.leave, .top, .vote, .globalgk, .bank and utilities like .farm/.autofarm and .drop.",
+            faq1q: "What are the main L2Titan commands?",
+            faq1a:
+              "The most used are .vip, .daily, .join and .leave (events), .top (ranking), .vote, .globalgk (teleport) and .bank/.deposit/.withdraw.",
+            faq2q: "How is AutoFarm controlled by command?",
+            faq2a:
+              "AutoFarm is controlled with .farm or .autofarm; there are also .exp and .drop to manage experience and drops in-game.",
+            faq3q: "Is there a command to see the ranking?",
+            faq3a:
+              "Yes. The .top command shows the server ranking, and .vote and .voteTime help manage votes and their rewards.",
           },
           autofarm: {
             heading: "AutoFarm on L2Titan Interlude x25",
@@ -1104,6 +1317,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "AutoFarm on L2Titan Interlude x25",
             metaDescription:
               "Advanced AutoFarm on L2Titan Interlude x25: what it does, how to configure it, and how it ties into commands and QoL.",
+            factOpener:
+              "L2Titan AutoFarm: activate it with .farm or .autofarm and configure modes, assist, filters and radius to farm under the server rules.",
+            faq1q: "How do I activate AutoFarm on L2Titan?",
+            faq1a:
+              "AutoFarm is activated with .farm or .autofarm in-game and lets you set modes, assist, filters and farming radius.",
+            faq2q: "Does AutoFarm replace group play?",
+            faq2a:
+              "No. It works alongside SubStack, daily instances and documented farm zones; it does not replace group content or events.",
+            faq3q: "Does it work with the x25 rates?",
+            faq3a:
+              "Yes. AutoFarm farms with the server base rates (XP x25, Drop x10, etc.) and applies the VIP bonus where applicable.",
             glanceTitle: "At a glance",
             glanceB1:
               "You set radius, assist and in-game filters so your character farms under server rules, not blindly.",
@@ -1121,6 +1345,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "Olympiad on L2Titan Interlude — schedule and rules",
             metaDescription:
               "Olympiad on L2Titan: start time, duration, period, categories, max enchant, augment, restrictions and rewards.",
+            factOpener:
+              "L2Titan Olympiad: a class competition with its own schedule, period and categories, plus published rules for max enchant and augment.",
+            faq1q: "How does the Olympiad work on L2Titan?",
+            faq1a:
+              "The Olympiad is a class competition with a defined schedule and period; the categories and calendar are published on this page.",
+            faq2q: "Is there an enchant cap in Olympiad?",
+            faq2a:
+              "Yes. The Olympiad applies an enchant cap and its own augment rules, worth reviewing before you build for the arena.",
+            faq3q: "Where are season changes announced?",
+            faq3a:
+              "Olympiad season changes are announced on /news; this landing is the stable URL to link the information.",
             glanceTitle: "What to check first",
             glanceB1:
               "Start time, duration and period are in the lower table (server time).",
@@ -1138,6 +1373,17 @@ export const infoWikiTranslationOverrides = {
             metaTitle: "Raid bosses and Raid Tokens on L2Titan Interlude",
             metaDescription:
               "Raid Boss announcements in the client, RB/GB rates on L2Titan and Raid Tokens in the server economy.",
+            factOpener:
+              "L2Titan raid bosses: client announcements and Raid Tokens; RB drop/spoil x5 and RB adena x10, with tokens by boss (Valakas 600, Antharas 500).",
+            faq1q: "What rates do Raid Bosses and Grand Bosses have?",
+            faq1a:
+              "Raid Bosses use drop x5, spoil x5 and adena x10; Grand Bosses use drop x1 and adena x10. The full tables are on /rates.",
+            faq2q: "What are Raid Tokens used for?",
+            faq2a:
+              "Raid Tokens drop from bosses and are used in the economy, for example for weapon and armor crystal scrolls in the server shops.",
+            faq3q: "How many Raid Tokens do bosses give?",
+            faq3a:
+              "It depends on the boss: Valakas gives 600, Antharas 500, Baium 200, Orfen 180 and Zaken 100, spread across several drops.",
             glanceTitle: "Where each fact lives",
             glanceB1:
               "Spawn announcements and in-game navigation are explained in the features section (client and utilities).",

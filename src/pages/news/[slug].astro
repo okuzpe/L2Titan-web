@@ -44,8 +44,10 @@ const articleLd = {
   headline: resolvedTitle,
   description: resolvedSummary,
   image: articleImageURL,
+  inLanguage: lang,
+  articleSection: 'News',
   datePublished: newsItem.publishedAt,
-  dateModified: newsItem.publishedAt,
+  dateModified: newsItem.updatedAt ?? newsItem.publishedAt,
   author: {
     '@type': 'Organization',
     name: 'L2Titan',

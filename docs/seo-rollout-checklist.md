@@ -10,7 +10,21 @@
 - Noticias con slugs mas claros, fechas absolutas y pagina indice en `/news`.
 - Configuracion nginx versionada en `ops/nginx/l2-titan.conf` (301 a slugs de noticias antiguas, `/favicon.ico` sirve el SVG, `/sitemap.xml` redirige al indice).
 - `astro.config.mjs` define `redirects` para los mismos slugs legacy (util si el hosting no usa nginx).
-- Layout admite `htmlLang`, `ogLocale`, `defaultVisitorLang` para rutas EN sin `hreflang` falso.
+- Layout admite `htmlLang`, `ogLocale`, `defaultVisitorLang` para rutas EN.
+- **hreflang activo**: las parejas ES↔EN (home, faq, downloads, substack, about) emiten `hreflang es/en/x-default` desde `Layout.astro` cuando la página pasa `alternateLocalePath`. `x-default` siempre apunta a la versión ES. (Nota histórica: antes no había rutas EN reales; ahora sí, por eso el hreflang es legítimo y no falso.)
+
+## GEO (motores generativos: ChatGPT/GPTBot, Claude/ClaudeBot, Perplexity, AI Overviews)
+
+- **Contenido server-rendered**: todo el texto (rates, FAQ, tablas, openers) se hornea en el HTML estático en build vía `translate()`; `data-i18n` solo conmuta idioma en runtime. Los crawlers AI que ignoran JS ven los datos completos.
+- **`public/llms.txt`**: guía curada para LLMs (resumen, datos clave del servidor, páginas principales, `Sitemap:`). `robots.txt` añade stanzas `Allow` explícitas para GPTBot/ClaudeBot/PerplexityBot/Google-Extended/etc. `ops/nginx/l2-titan.conf` sirve `/llms.txt` como `text/plain`.
+- **JSON-LD ampliado** (`src/utils/seo.ts`): `VideoGame` (image, inLanguage, publisher), `Organization` (contactPoint Discord, `sameAs` con listados externos), `SoftwareApplication` (fileSize 2.8 GB, screenshot), `Article` de noticias (dateModified vía `updatedAt`, inLanguage, articleSection), `ItemList` en `/news`, `AboutPage` en `/about`.
+- **Frases citables (`factOpener`)**: cada landing de `/info` muestra una frase declarativa con los números concretos antes de las tablas (clave i18n `info.landings.topics.<slug>.factOpener`).
+- **FAQPage en todas las landings**: helper `buildLandingTopicFaq(lang, topicSlug)` lee `faq1q..faq3a` por tema (ES+EN). Home FAQ ampliado a 5 pares autocontenidos.
+- **Página de entidad `/about`** (ES+EN) con identidad del operador. **Pendiente operador**: rellenar los `TODO(operador)` (fecha de lanzamiento, quién administra) en `translations.ts` y descomentar `foundingDate`/`datePublished`/`softwareVersion` en `seo.ts`.
+- **Sitemap**: `lastmod`/`changefreq`/`priority` por URL (antes solo `<loc>`).
+
+### Decisión intencional — NO revertir
+- **`/info/[slug]` es `noindex` y está excluido del sitemap** (`isInfoWikiDetail` en `astro.config.mjs`). Es deduplicación canónica deliberada: las landings `/rates`, `/economy`, … (mismo componente `Tab*`, `InfoLandingLayout`) son las versiones canónicas, indexables y ricas. `/info/<slug>` es la vista wiki con `canonicalPath` apuntando a la landing. No quitar el `noindex` ni el filtro: duplicaría contenido.
 
 ## Verificacion post-deploy (indexacion y prod)
 

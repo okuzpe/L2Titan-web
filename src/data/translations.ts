@@ -80,17 +80,46 @@ const baseTranslations = {
       faq: [
         {
           question: "¿Qué tipo de servidor es L2Titan?",
-          answer: "L2Titan es un servidor privado de Lineage II Interlude x25 con SubStack, AutoFarm configurable, daily instances y eventos PvP. La información detallada está en /features, /rates y /faq.",
+          answer: "L2Titan es un servidor privado de Lineage II en crónica Interlude con experiencia x25, sobre base L2JFrozen. Incluye SubStack (subclases acumulativas sin morph), AutoFarm configurable, instancias diarias y eventos PvP como TvT. La comunidad y el soporte son principalmente en español.",
+        },
+        {
+          question: "¿Qué rates tiene L2Titan?",
+          answer: "Las rates base son XP x25, SP x25, Adena x10, Drop x10, Spoil x15, Party XP/SP x2 y Quest x1.20. El VIP añade hasta +40% en XP/SP, Adena, drop y spoil. Las tablas completas, incluidos Raid Boss y Grand Boss, están en /rates.",
+        },
+        {
+          question: "¿Qué es el SubStack de L2Titan?",
+          answer: "El SubStack son subclases acumulativas: puedes sumar habilidades de varias subclases sin morph para armar builds más flexibles y competitivas. Es uno de los sistemas centrales de L2Titan y se detalla en /substack y /features.",
         },
         {
           question: "¿Tiene Auto Create Account?",
-          answer: "Sí. No hace falta registro web: la cuenta se crea al primer login. Pasos en /registro y cliente en /downloads.",
+          answer: "Sí. No hace falta un formulario de registro en la web: la cuenta se crea automáticamente en el primer login dentro del juego. Los pasos están en /registro y el cliente completo se descarga en /downloads.",
         },
         {
           question: "¿Dónde sigo parches y novedades?",
-          answer: "En /news y en el Discord oficial; la web mantiene landings por tema (economía, instancias, eventos) para enlazar con contexto.",
+          answer: "Las novedades y notas de parche se publican en /news con fechas absolutas, y también en el Discord oficial. La web mantiene landings por tema (rates, economía, instancias, eventos) para enlazar cada cambio con su contexto.",
         },
       ],
+    },
+    about: {
+      metaTitle: "Sobre L2Titan — quiénes somos",
+      metaDescription:
+        "Quién está detrás de L2Titan, servidor privado de Lineage 2 Interlude x25: qué es el proyecto, su base técnica, filosofía y cómo contactar al equipo.",
+      heading: "Sobre L2Titan",
+      intro:
+        "L2Titan es un servidor privado de Lineage II Interlude x25 mantenido por un equipo de jugadores hispanohablantes, con foco en información clara y progreso justo.",
+      whatTitle: "Qué es L2Titan",
+      whatBody:
+        "L2Titan es un servidor privado de Lineage II en crónica Interlude con rates x25, sobre base L2JFrozen. Ofrece SubStack (subclases acumulativas sin morph), AutoFarm configurable, instancias diarias, eventos PvP y una economía documentada en la web.",
+      historyTitle: "Historia del proyecto",
+      historyBody:
+        "TODO(operador): describe cuándo abrió L2Titan, su recorrido y temporadas, con fechas concretas. Las fechas reales refuerzan la autoridad ante buscadores y motores de IA.",
+      teamTitle: "Quién lo opera",
+      teamBody:
+        "TODO(operador): indica quién administra L2Titan (nombre o alias del equipo/staff) y su experiencia con Lineage 2. La transparencia del operador mejora la confianza (E-E-A-T).",
+      contactTitle: "Contacto y comunidad",
+      contactBody:
+        "El canal principal de soporte y comunidad es Discord. También estamos en Facebook e Instagram, y publicamos novedades en /news.",
+      contactCta: "Unirse a Discord",
     },
     countdown: {
       title: "Servidor en linea",
@@ -1049,17 +1078,47 @@ const baseTranslations = {
       faq: [
         {
           question: "What kind of server is L2Titan?",
-          answer: "L2Titan is a Lineage II Interlude x25 private server with SubStack, configurable AutoFarm, daily instances and PvP events. Full details at /features, /rates and /faq.",
+          answer: "L2Titan is a private Lineage II server on the Interlude chronicle with x25 experience, built on L2JFrozen. It features SubStack (cumulative subclasses, no morph), configurable AutoFarm, daily instances and PvP events such as TvT. The community and support are mainly in Spanish.",
+        },
+        {
+          question: "What rates does L2Titan use?",
+          answer: "Base rates are XP x25, SP x25, Adena x10, Drop x10, Spoil x15, Party XP/SP x2 and Quest x1.20. VIP adds up to +40% on XP/SP, Adena, drop and spoil. The full tables, including Raid Boss and Grand Boss, are on /rates.",
+        },
+        {
+          question: "What is L2Titan's SubStack?",
+          answer: "SubStack means cumulative subclasses: you can stack skills from several subclasses without morphing, for more flexible and competitive builds. It is one of L2Titan's core systems and is detailed on /substack and /features.",
         },
         {
           question: "Does it have Auto Create Account?",
-          answer: "Yes. No web registration needed — your account is created on first login. Steps at /registro and the client at /downloads.",
+          answer: "Yes. No web registration form is needed — your account is created automatically on your first in-game login. The steps are on /registro and the full client downloads at /downloads.",
         },
         {
           question: "Where can I follow patches and news?",
-          answer: "At /news and the official Discord; the site keeps themed landing pages (economy, instances, events) for easy linking with context.",
+          answer: "Patch notes and news are published on /news with absolute dates, and on the official Discord. The site keeps themed landing pages (rates, economy, instances, events) so each change links back to its context.",
         },
       ],
+
+    },
+    about: {
+      metaTitle: "About L2Titan — who we are",
+      metaDescription:
+        "Who is behind L2Titan, a private Lineage 2 Interlude x25 server: what the project is, its technical base, philosophy and how to contact the team.",
+      heading: "About L2Titan",
+      intro:
+        "L2Titan is a private Lineage II Interlude x25 server maintained by a team of Spanish-speaking players, focused on clear information and fair progression.",
+      whatTitle: "What L2Titan is",
+      whatBody:
+        "L2Titan is a private Lineage II server on the Interlude chronicle with x25 rates, built on L2JFrozen. It offers SubStack (cumulative subclasses, no morph), configurable AutoFarm, daily instances, PvP events and an economy documented on the site.",
+      historyTitle: "Project history",
+      historyBody:
+        "TODO(operator): describe when L2Titan opened, its journey and seasons, with concrete dates. Real dates strengthen authority for search engines and AI engines.",
+      teamTitle: "Who operates it",
+      teamBody:
+        "TODO(operator): state who administers L2Titan (team/staff name or alias) and their experience with Lineage 2. Operator transparency improves trust (E-E-A-T).",
+      contactTitle: "Contact and community",
+      contactBody:
+        "The main support and community channel is Discord. We are also on Facebook and Instagram, and we publish news on /news.",
+      contactCta: "Join Discord",
     },
     countdown: {
       title: "Server Online",

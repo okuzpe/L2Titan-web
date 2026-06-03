@@ -4,6 +4,8 @@ export interface NewsItem {
   title: string;
   titleKey: string;
   publishedAt: string;
+  /** Fecha ISO de última actualización; si falta, se usa `publishedAt` como `dateModified`. */
+  updatedAt?: string;
   dateLabel: string;
   summary: string;
   summaryKey: string;
