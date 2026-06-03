@@ -1,0 +1,42 @@
+---
+import InfoLandingLayout from '../../layouts/InfoLandingLayout.astro';
+import FeatureOlympiadBlock from '../../components/info/FeatureOlympiadBlock.astro';
+import CardSurface from '../../components/ui/CardSurface.astro';
+import { infoLandingConfigs } from '../../data/infoLandingConfigs';
+import { visitorLangFromPath } from '../../utils/i18n-lang';
+import { translate } from '../../utils/translations';
+import { buildBreadcrumb, buildLandingTopicFaq } from '../../utils/seo';
+
+const lang = visitorLangFromPath(Astro.url.pathname);
+const tk = (key: string, fb: string) => translate(key, lang, fb);
+
+const config = infoLandingConfigs.olympiad;
+const base = 'info.landings.topics.olympiad';
+const structuredData = [
+  buildBreadcrumb([
+    { name: translate('navbar.home', lang, 'Home'), path: '/en' },
+    { name: translate('info.landings.breadcrumbWiki', lang, 'Information'), path: '/en/info' },
+    { name: translate(`${base}.heading`, lang, config.heading), path: `/en${config.canonicalPath}` },
+  ]),
+  buildLandingTopicFaq(lang, config.topicSlug),
+].filter(Boolean);
+---
+
+<InfoLandingLayout {...config} canonicalPath="/en/olympiad" structuredData={structuredData}>
+	<section class="max-w-5xl mx-auto mb-8" aria-labelledby="olympiad-at-a-glance">
+		<CardSurface className="p-6 md:p-7">
+			<h2 id="olympiad-at-a-glance" class="text-xl font-bold text-yellow-400 font-display mb-4" data-i18n={`${base}.glanceTitle`}>
+				{tk(`${base}.glanceTitle`, '')}
+			</h2>
+			<ul class="list-disc pl-5 space-y-2 text-sm md:text-base text-gray-300 leading-relaxed">
+				<li data-i18n={`${base}.glanceB1`}>{tk(`${base}.glanceB1`, '')}</li>
+				<li data-i18n={`${base}.glanceB2`}>{tk(`${base}.glanceB2`, '')}</li>
+				<li data-i18n={`${base}.glanceB3`}>{tk(`${base}.glanceB3`, '')}</li>
+				<li data-i18n={`${base}.glanceB4`}>{tk(`${base}.glanceB4`, '')}</li>
+			</ul>
+		</CardSurface>
+	</section>
+	<div class="max-w-5xl mx-auto">
+		<FeatureOlympiadBlock />
+	</div>
+</InfoLandingLayout>

@@ -1,0 +1,23 @@
+---
+import InfoLandingLayout from '../../layouts/InfoLandingLayout.astro';
+import TabCommands from '../../components/info/TabCommands.astro';
+import { infoLandingConfigs } from '../../data/infoLandingConfigs';
+import { visitorLangFromPath } from '../../utils/i18n-lang';
+import { translate } from '../../utils/translations';
+import { buildBreadcrumb, buildLandingTopicFaq } from '../../utils/seo';
+
+const lang = visitorLangFromPath(Astro.url.pathname);
+const config = infoLandingConfigs.commands;
+const structuredData = [
+  buildBreadcrumb([
+    { name: translate('navbar.home', lang, 'Home'), path: '/en' },
+    { name: translate('info.landings.breadcrumbWiki', lang, 'Information'), path: '/en/info' },
+    { name: translate(`info.landings.topics.${config.topicSlug}.heading`, lang, config.heading), path: `/en${config.canonicalPath}` },
+  ]),
+  buildLandingTopicFaq(lang, config.topicSlug),
+].filter(Boolean);
+---
+
+<InfoLandingLayout {...config} canonicalPath="/en/commands" structuredData={structuredData}>
+  <TabCommands />
+</InfoLandingLayout>

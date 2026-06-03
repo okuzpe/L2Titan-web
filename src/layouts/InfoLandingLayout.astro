@@ -40,6 +40,13 @@ const {
 } = Astro.props;
 
 const lang = visitorLangFromPath(Astro.url.pathname);
+/** Landing en inglés: `canonicalPath` empieza por `/en`. Prefija enlaces internos y emite hreflang/lang EN. */
+const isEn = canonicalPath === '/en' || canonicalPath.startsWith('/en/');
+/** Prefija una ruta ES con `/en` cuando la landing es inglesa (enlaces internos coherentes con el idioma). */
+const L = (p: string) => (isEn ? (p === '/' ? '/en' : `/en${p}`) : p);
+/** Pareja hreflang: ES↔EN. La ruta canónica EN es la ES con prefijo `/en`. */
+const esCanonical = isEn ? canonicalPath.replace(/^\/en/, '') || '/' : canonicalPath;
+const alternateLocalePath = isEn ? esCanonical : `/en${canonicalPath}`;
 const headingKey = `info.landings.topics.${topicSlug}.heading`;
 const introKey = `info.landings.topics.${topicSlug}.intro`;
 const metaTitleKey = `info.landings.topics.${topicSlug}.metaTitle`;
@@ -52,15 +59,16 @@ const descriptionDisplay = translate(metaDescKey, lang, description);
 /** Frase declarativa con los datos concretos (rates, números): texto citable por motores generativos antes de las tablas. */
 const factOpenerDisplay = translate(factOpenerKey, lang, '');
 
-const normalizedCanonical = canonicalPath.replace(/^\/+|\/+$/g, '');
+const normalizedCanonical = esCanonical.replace(/^\/+|\/+$/g, '');
 const wikiSectionMatch = infoWikiSections.find((s) => s.slug === normalizedCanonical);
-const wikiPath = wikiSectionMatch ? `/info/${wikiSectionMatch.slug}` : '/info';
+/** Las páginas wiki detalle (`/info/<slug>`) solo existen en ES; en EN se enlaza al índice `/en/info`. */
+const wikiPath = isEn ? '/en/info' : wikiSectionMatch ? `/info/${wikiSectionMatch.slug}` : '/info';
 
 const breadcrumbItems = [
-	{ name: translate('navbar.home', lang, 'Inicio'), href: '/', i18nKey: 'navbar.home' },
+	{ name: translate('navbar.home', lang, 'Inicio'), href: L('/'), i18nKey: 'navbar.home' },
 	{
 		name: translate('info.landings.breadcrumbWiki', lang, 'Información'),
-		href: '/info',
+		href: L('/info'),
 		i18nKey: 'info.landings.breadcrumbWiki',
 	},
 	{ name: headingDisplay, href: canonicalPath, i18nKey: headingKey },
@@ -84,6 +92,8 @@ if (landingCtaPreset === 'economy') {
 	secondaryCta = { href: '/economy', labelKey: 'info.landings.ctaEconomy', fallback: 'Ver economía y monedas' };
 	wikiAsTextLink = true;
 }
+// En inglés, los CTAs internos apuntan a las landings EN equivalentes.
+if (secondaryCta) secondaryCta.href = L(secondaryCta.href);
 ---
 
 <Layout
@@ -93,6 +103,11 @@ if (landingCtaPreset === 'economy') {
 	canonicalPath={canonicalPath}
 	ogImage={ogImage}
 	structuredData={structuredData}
+	htmlLang={isEn ? 'en' : 'es'}
+	ogLocale={isEn ? 'en_US' : 'es_ES'}
+	ogLocaleAlternate={isEn ? 'es_ES' : 'en_US'}
+	defaultVisitorLang={isEn ? 'en' : undefined}
+	alternateLocalePath={alternateLocalePath}
 >
 	<div class="container mx-auto px-4 py-12 md:py-20">
 		{showBreadcrumbs && (
@@ -108,7 +123,7 @@ if (landingCtaPreset === 'economy') {
 				intro={introDisplay}
 				introKey={introKey}
 			>
-				<ActionButton slot="actions" href="/downloads" variant="primary" className="px-5 py-3 text-black" data-i18n="home.downloadClient">
+				<ActionButton slot="actions" href={L('/downloads')} variant="primary" className="px-5 py-3 text-black" data-i18n="home.downloadClient">
 					{translate('home.downloadClient', lang, 'Descargar cliente')}
 				</ActionButton>
 				{

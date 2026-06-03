@@ -45,6 +45,9 @@
 - [Home (EN)](https://l2-titan.com/en): English overview of the L2Titan Interlude x25 server.
 - [FAQ (EN)](https://l2-titan.com/en/faq): frequently asked questions in English.
 - [Downloads (EN)](https://l2-titan.com/en/downloads): English client download and requirements.
+- [Info hub (EN)](https://l2-titan.com/en/info): English index of the server documentation.
+- [About (EN)](https://l2-titan.com/en/about): about the project in English.
+- Every info topic has an English landing under `/en/`: /en/rates, /en/enchant, /en/vip, /en/events, /en/instances, /en/sieges, /en/economy, /en/features, /en/commands, /en/autofarm, /en/olympiad, /en/raidbosses.
 
 ## Opcional
 
