@@ -1,6 +1,7 @@
 ---
 import type { Language } from '../../data/translations';
 import { translate } from '../../utils/translations';
+import { DISCORD_URL } from '../../utils/seo';
 
 interface Props {
 	lang: Language;
@@ -12,7 +13,7 @@ const { lang, keyPrefix } = Astro.props;
 const t = (key: string, fallback: string) => translate(`${keyPrefix}.${key}`, lang, fallback);
 const dk = (key: string) => `${keyPrefix}.${key}`;
 
-const DISCORD_HREF = 'https://discord.gg/GunamUdGaQ';
+const DISCORD_HREF = DISCORD_URL;
 
 const linkClass =
 	'inline-flex items-center gap-1.5 text-sm font-semibold text-yellow-400/95 transition hover:text-yellow-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400/45 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c0a09] rounded-sm';

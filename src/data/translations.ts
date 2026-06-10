@@ -118,7 +118,7 @@ const baseTranslations = {
         "L2Titan está gestionado por un equipo de jugadores hispanohablantes. El soporte directo y el contacto con el staff se hacen por el Discord oficial, donde también se anuncian las novedades.",
       contactTitle: "Contacto y comunidad",
       contactBody:
-        "El canal principal de soporte y comunidad es Discord. También estamos en Facebook e Instagram, y publicamos novedades en /news.",
+        "El canal principal de soporte y comunidad es Discord. También estamos en Facebook, Instagram y TikTok, y publicamos novedades en /news.",
       contactCta: "Unirse a Discord",
     },
     countdown: {
@@ -923,6 +923,13 @@ const baseTranslations = {
       articleLinkWiki: "Wiki / centro de información",
       articleCtaDownload: "Descargar cliente",
       items: {
+        patch14: {
+          title: "Patch 1.4 - Joyas Épicas Lvl 2, TVT Coin y rebalance",
+          summary:
+            "Llegan las Joyas Épicas Nivel 2 con iconos exclusivos, la nueva TVT Coin como recompensa del evento TvT y un rebalance completo de las joyas de boss.",
+          content:
+            "Las 8 joyas épicas fueron rebalanceadas con stats exactos visibles en el item: Antharas ahora es defensiva (P.Def +7%), Frintezza anti-mago (M.Def +7%), Orfen y Core orientadas a healers/soporte, y todas pasan a Grado S. El evento TvT premia con la nueva TVT Coin (ganador 25, perdedor 15, +1 por kill, +10 top killer). En el Titan Shop puedes mejorar cada joya a su versión Nivel 2 (~25-35% más fuerte, con icono exclusivo y pasiva visible) entregando la joya, 250-500 TVT Coins y adena. Además: skills de 3ra profesión ahora aparecen en el grupo correcto de la ventana de skills y los slots de Auto Skill se restauran bien tras relog.",
+        },
         infinitumTower: {
           title: "Infinitum Tower y letras L2 Day ya visibles en la web",
           summary:
@@ -1117,7 +1124,7 @@ const baseTranslations = {
         "L2Titan is run by a team of Spanish-speaking players. Direct support and contact with the staff happen on the official Discord, where news is also announced.",
       contactTitle: "Contact and community",
       contactBody:
-        "The main support and community channel is Discord. We are also on Facebook and Instagram, and we publish news on /news.",
+        "The main support and community channel is Discord. We are also on Facebook, Instagram and TikTok, and we publish news on /news.",
       contactCta: "Join Discord",
     },
     countdown: {
@@ -1891,6 +1898,13 @@ const baseTranslations = {
       articleLinkWiki: "Wiki / information hub",
       articleCtaDownload: "Download client",
       items: {
+        patch14: {
+          title: "Patch 1.4 - Epic Jewels Lvl 2, TVT Coin and rebalance",
+          summary:
+            "Epic Jewels Level 2 arrive with exclusive icons, the new TVT Coin as TvT event reward, and a full boss jewel rebalance.",
+          content:
+            "All 8 epic jewels were rebalanced with exact stats now visible on the item: Antharas is now defensive (P.Def +7%), Frintezza anti-mage (M.Def +7%), Orfen and Core are healer/support oriented, and every epic jewel is now S-Grade. The TvT event now rewards the new TVT Coin (winner 25, loser 15, +1 per kill, +10 top killer). At the Titan Shop you can upgrade each jewel to its Level 2 version (~25-35% stronger, with exclusive icon and visible passive) by handing in the jewel, 250-500 TVT Coins and adena. Also: 3rd profession skills now appear in the correct skill window group and Auto Skill slots restore correctly after relog.",
+        },
         infinitumTower: {
           title: "Infinitum Tower and L2 Day letters now shown on the website",
           summary:

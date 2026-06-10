@@ -1,6 +1,7 @@
 ---
 import { visitorLangFromPath } from "../utils/i18n-lang";
 import { translate } from "../utils/translations";
+import { DISCORD_URL, FACEBOOK_URL, INSTAGRAM_URL, TIKTOK_URL } from "../utils/seo";
 import VoteModal from "./ui/VoteModal.astro";
 
 const lang = visitorLangFromPath(Astro.url.pathname);
@@ -371,7 +372,7 @@ const year = new Date().getFullYear();
         class="flex flex-wrap items-center justify-center gap-3"
       >
         <a
-          href="https://www.facebook.com/l2titan.server/"
+          href={FACEBOOK_URL}
           target="_blank"
           rel="noopener noreferrer"
           class="group relative inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-linear-to-r from-[#1b74e4] to-[#0f4ea8] text-white font-bold overflow-hidden shadow-[0_0_20px_rgba(27,116,228,0.3)] transition-all hover:shadow-[0_0_35px_rgba(27,116,228,0.55)]"
@@ -390,7 +391,7 @@ const year = new Date().getFullYear();
           <span class="text-sm tracking-wide">Facebook</span>
         </a>
         <a
-          href="https://www.instagram.com/l2titan_com/"
+          href={INSTAGRAM_URL}
           target="_blank"
           rel="noopener noreferrer"
           class="group relative inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-linear-to-r from-[#fd1d1d] via-[#d62976] to-[#f58529] text-white font-bold overflow-hidden shadow-[0_0_20px_rgba(214,41,118,0.3)] transition-all hover:shadow-[0_0_35px_rgba(214,41,118,0.55)]"
@@ -409,7 +410,26 @@ const year = new Date().getFullYear();
           <span class="text-sm tracking-wide">Instagram</span>
         </a>
         <a
-          href="https://discord.gg/GunamUdGaQ"
+          href={TIKTOK_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-linear-to-r from-[#fe2c55] to-[#00c9d6] text-white font-bold overflow-hidden shadow-[0_0_20px_rgba(254,44,85,0.3)] transition-all hover:shadow-[0_0_35px_rgba(254,44,85,0.55)]"
+        >
+          <span class="sr-only">TikTok</span>
+          <svg
+            class="w-5 h-5"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"
+            ></path>
+          </svg>
+          <span class="text-sm tracking-wide">TikTok</span>
+        </a>
+        <a
+          href={DISCORD_URL}
           target="_blank"
           rel="noopener noreferrer"
           class="group relative inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-linear-to-r from-[#5865F2] to-[#3c45af] text-white font-bold overflow-hidden shadow-[0_0_20px_rgba(88,101,242,0.3)] transition-all hover:shadow-[0_0_35px_rgba(88,101,242,0.55)]"

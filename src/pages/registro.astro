@@ -5,7 +5,7 @@ import HeroBanner from '../components/ui/HeroBanner.astro';
 import ActionButton from '../components/ui/ActionButton.astro';
 import { visitorLangFromPath } from '../utils/i18n-lang';
 import { translate } from '../utils/translations';
-import { buildBreadcrumb, buildFaq } from '../utils/seo';
+import { buildBreadcrumb, buildFaq, DISCORD_URL } from '../utils/seo';
 
 const lang = visitorLangFromPath(Astro.url.pathname);
 const tk = (key: string, fb: string) => translate(key, lang, fb);
@@ -50,7 +50,7 @@ const structuredData = [
 			</ActionButton>
 			<ActionButton
 				slot="actions"
-				href="https://discord.gg/GunamUdGaQ"
+				href={DISCORD_URL}
 				target="_blank"
 				rel="noopener noreferrer"
 				variant="discord"

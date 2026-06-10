@@ -1,6 +1,6 @@
 # L2Titan
 
-> L2Titan es un servidor privado de Lineage II en crónica Interlude, sobre base L2JFrozen, con experiencia x25. Ofrece SubStack (subclases acumulativas sin morph), AutoFarm configurable, instancias diarias, eventos PvP (TvT/CTF/DM), asedios y una economía documentada. Comunidad y soporte principalmente en español; resúmenes en inglés disponibles bajo /en. Sitio oficial: https://l2-titan.com — Discord: https://discord.gg/GunamUdGaQ
+> L2Titan es un servidor privado de Lineage II en crónica Interlude, sobre base L2JFrozen, con experiencia x25. Ofrece SubStack (subclases acumulativas sin morph), AutoFarm configurable, instancias diarias, eventos PvP (TvT/CTF/DM), asedios y una economía documentada. Comunidad y soporte principalmente en español; resúmenes en inglés disponibles bajo /en. Sitio oficial: https://l2-titan.com — Discord: https://discord.gg/xH76F9vsGf
 
 ## Datos clave del servidor
 
@@ -9,7 +9,8 @@
 - Rates de bosses: RB drop x5, RB spoil x5, RB adena x10, GB drop x1, GB adena x10
 - Enchant: safe +3 (+4 armadura completa), máximo +25
 - VIP: bonus +40% XP/SP, Adena, drop y spoil chance (+30% en cantidad)
-- Eventos: TvT cada hora (ON); CTF y DM disponibles
+- Eventos: TvT cada hora (ON) con recompensa en TVT Coins (ganador 25, perdedor 15, +1 por kill, +10 top killer); CTF y DM disponibles
+- Joyas épicas: rebalanceadas (Antharas defensiva, Frintezza anti-mago, Orfen/Core soporte), todas Grado S; versiones Nivel 2 (~25-35% más fuertes) en el Titan Shop a cambio de la joya + 250-500 TVT Coins + adena
 - Instancias diarias: Pagan Temple (.daily enter 1) e Infinitum Tower (.daily enter 2)
 - Cuenta: se crea en el primer login del juego, sin formulario web
 
@@ -37,7 +38,7 @@
 ## Comunidad y novedades
 
 - [Noticias](https://l2-titan.com/news): novedades, eventos y notas de parche con fechas absolutas.
-- [Comunidad](https://l2-titan.com/comunidad): canales de Discord, Facebook e Instagram.
+- [Comunidad](https://l2-titan.com/comunidad): canales de Discord, Facebook, Instagram y TikTok.
 - [SubStack](https://l2-titan.com/substack): hub del sistema de subclases acumulativas.
 
 ## English

@@ -5,6 +5,12 @@ import { translate } from './translations';
 export const SITE_URL = 'https://l2-titan.com';
 export const DEFAULT_OG_IMAGE = '/images/background.jpg';
 
+// Canales oficiales — única fuente de verdad; importar desde aquí, no hardcodear.
+export const DISCORD_URL = 'https://discord.gg/xH76F9vsGf';
+export const FACEBOOK_URL = 'https://www.facebook.com/l2titan.server/';
+export const INSTAGRAM_URL = 'https://www.instagram.com/l2titan_com/';
+export const TIKTOK_URL = 'https://www.tiktok.com/@omar781002';
+
 export interface BreadcrumbItem {
 	name: string;
 	path: string;
@@ -135,9 +141,10 @@ export function buildOrganizationSchema() {
 		// TODO(operator): fecha de lanzamiento real del servidor para reforzar autoridad (E-E-A-T).
 		// foundingDate: '2026-01-01',
 		sameAs: [
-			'https://discord.gg/GunamUdGaQ',
-			'https://www.facebook.com/l2titan.server/',
-			'https://www.instagram.com/l2titan_com/',
+			DISCORD_URL,
+			FACEBOOK_URL,
+			INSTAGRAM_URL,
+			TIKTOK_URL,
 			// Listados externos que describen la misma entidad (asociación de entidad para motores generativos).
 			'https://l2.hopzone.net/site/vote/107098/1',
 			'https://l2network.eu/index.php?a=in&u=l2-titan',
@@ -148,7 +155,7 @@ export function buildOrganizationSchema() {
 		contactPoint: {
 			'@type': 'ContactPoint',
 			contactType: 'customer support',
-			url: 'https://discord.gg/GunamUdGaQ',
+			url: DISCORD_URL,
 			availableLanguage: ['es', 'en'],
 		},
 		description:

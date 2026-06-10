@@ -70,9 +70,9 @@ export const infoWikiTranslationOverrides = {
         breadcrumb: "Comunidad",
         metaTitle: "Comunidad L2Titan — Discord, redes y votos",
         metaDescription:
-          "Únete a la comunidad de L2Titan: Discord oficial, Facebook, Instagram, votos en listas L2 y enlaces a noticias y guías del servidor Interlude x25.",
+          "Únete a la comunidad de L2Titan: Discord oficial, Facebook, Instagram, TikTok, votos en listas L2 y enlaces a noticias y guías del servidor Interlude x25.",
         metaKeywords:
-          "l2 titan discord, lineage 2 interlude community, servidor l2 hispano, l2 titan facebook",
+          "l2 titan discord, lineage 2 interlude community, servidor l2 hispano, l2 titan facebook, l2 titan tiktok",
         kicker: "Lineage 2 Interlude x25",
         h1: "Comunidad y canales oficiales",
         intro:
@@ -87,6 +87,8 @@ export const infoWikiTranslationOverrides = {
         fbDesc: "Anuncios, capturas y novedades públicas.",
         igTitle: "Instagram — @l2titan_com",
         igDesc: "Clips e imágenes del servidor y la comunidad.",
+        ttTitle: "TikTok — @omar781002",
+        ttDesc: "Vídeos cortos del servidor y la comunidad.",
         docsTitle: "Guías y documentación en la web",
         docsIntroBefore:
           "Para sistemas concretos (rates, economía, instancias, asedios) usa las landings y la wiki: cada tema tiene ",
@@ -220,7 +222,7 @@ export const infoWikiTranslationOverrides = {
       q6: "¿Hay TvT u otros eventos automáticos?",
       a6: "Sí. TvT está en el calendario publicado; CTF y DM pueden activarse o pausarse según temporada. Horarios, NPC de registro y comandos están en /events.",
       q7: "¿Cómo entro a la comunidad y al soporte?",
-      a7: "El Discord oficial es el canal principal para dudas rápidas y anuncios. También hay Facebook e Instagram enlazados desde /comunidad y el pie de página.",
+      a7: "El Discord oficial es el canal principal para dudas rápidas y anuncios. También hay Facebook, Instagram y TikTok enlazados desde /comunidad y el pie de página.",
       nextTitle: "Siguiente paso",
       nextBody:
         "Si ya leíste rates y features, el camino habitual es bajar el cliente, crear cuenta al primer login y unirte al Discord si necesitas ayuda en vivo.",
@@ -770,9 +772,9 @@ export const infoWikiTranslationOverrides = {
         breadcrumb: "Community",
         metaTitle: "L2Titan community — Discord, social and L2 toplists",
         metaDescription:
-          "Join the L2Titan community: official Discord, Facebook, Instagram, L2 listing votes and links to news and Interlude x25 guides.",
+          "Join the L2Titan community: official Discord, Facebook, Instagram, TikTok, L2 listing votes and links to news and Interlude x25 guides.",
         metaKeywords:
-          "l2 titan discord, lineage 2 interlude community, l2 private server, l2 titan facebook",
+          "l2 titan discord, lineage 2 interlude community, l2 private server, l2 titan facebook, l2 titan tiktok",
         kicker: "Lineage 2 Interlude x25",
         h1: "Official community channels",
         intro:
@@ -787,6 +789,8 @@ export const infoWikiTranslationOverrides = {
         fbDesc: "Announcements, screenshots and public updates.",
         igTitle: "Instagram — @l2titan_com",
         igDesc: "Clips and images from the server and community.",
+        ttTitle: "TikTok — @omar781002",
+        ttDesc: "Short videos from the server and community.",
         docsTitle: "Guides and docs on the site",
         docsIntroBefore:
           "For concrete systems (rates, economy, instances, sieges) use the landings and wiki: each topic has its own ",
@@ -919,7 +923,7 @@ export const infoWikiTranslationOverrides = {
       q6: "Is there TvT or other automatic events?",
       a6: "Yes. TvT is on the published calendar; CTF and DM may be enabled or paused by season. Schedules, registration NPCs and commands are on /events.",
       q7: "How do I join the community and get support?",
-      a7: "The official Discord is the main channel for quick questions and announcements. Facebook and Instagram are linked from /comunidad and the site footer.",
+      a7: "The official Discord is the main channel for quick questions and announcements. Facebook, Instagram and TikTok are linked from /comunidad and the site footer.",
       nextTitle: "Next step",
       nextBody:
         "If you already read rates and features, the usual path is to download the client, create your account on first login and join Discord if you need live help.",

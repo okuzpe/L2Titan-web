@@ -1,6 +1,7 @@
 ---
 import { visitorLangFromPath } from '../utils/i18n-lang';
 import { translate } from '../utils/translations';
+import { DISCORD_URL } from '../utils/seo';
 
 const lang = visitorLangFromPath(Astro.url.pathname);
 
@@ -15,7 +16,6 @@ const mobileLinkBase =
   'mobile-nav-link block px-3 py-3 rounded-lg text-base font-medium transition-all hover:bg-white/10';
 const mobileLinkCls = (href: string) =>
   `${mobileLinkBase} ${isActive(href) ? 'text-white bg-white/10' : 'text-gray-300 hover:text-white'}`;
-const DISCORD_URL = 'https://discord.gg/GunamUdGaQ';
 ---
 <nav class="df-surface-strong navbar-shell rounded-none border-x-0 sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -8,6 +8,7 @@ import ActionButton from "../../components/ui/ActionButton.astro";
 import CardSurface from "../../components/ui/CardSurface.astro";
 import SectionHeading from "../../components/ui/SectionHeading.astro";
 import {
+	DISCORD_URL,
 	buildBreadcrumb,
 	buildFaq,
 	buildOrganizationSchema,
@@ -152,7 +153,7 @@ const structuredData = [
 							</a>
 						</p>
 						<ActionButton
-							href="https://discord.gg/GunamUdGaQ"
+							href={DISCORD_URL}
 							target="_blank"
 							rel="noopener noreferrer"
 							variant="discord"
@@ -319,7 +320,7 @@ const structuredData = [
 							</span>
 						</p>
 						<p class="text-sm flex flex-wrap gap-x-5 gap-y-1">
-							<a href="https://discord.gg/GunamUdGaQ" target="_blank" rel="noopener noreferrer" class="text-yellow-500/90 hover:text-yellow-400 font-medium underline underline-offset-2" data-i18n="home.joinDiscord">
+							<a href={DISCORD_URL} target="_blank" rel="noopener noreferrer" class="text-yellow-500/90 hover:text-yellow-400 font-medium underline underline-offset-2" data-i18n="home.joinDiscord">
 								{translate('home.joinDiscord', lang, 'Join Discord')}
 							</a>
 							<a href="/downloads" class="text-gray-400 hover:text-gray-200 underline underline-offset-2" data-i18n="navbar.downloads">

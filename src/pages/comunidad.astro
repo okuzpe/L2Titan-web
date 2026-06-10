@@ -5,7 +5,7 @@ import HeroBanner from '../components/ui/HeroBanner.astro';
 import ActionButton from '../components/ui/ActionButton.astro';
 import { visitorLangFromPath } from '../utils/i18n-lang';
 import { translate } from '../utils/translations';
-import { buildBreadcrumb, buildFaq } from '../utils/seo';
+import { buildBreadcrumb, buildFaq, DISCORD_URL, FACEBOOK_URL, INSTAGRAM_URL, TIKTOK_URL } from '../utils/seo';
 
 const lang = visitorLangFromPath(Astro.url.pathname);
 const tk = (key: string, fb: string) => translate(key, lang, fb);
@@ -42,7 +42,7 @@ const structuredData = [
 		>
 			<ActionButton
 				slot="actions"
-				href="https://discord.gg/GunamUdGaQ"
+				href={DISCORD_URL}
 				target="_blank"
 				rel="noopener noreferrer"
 				variant="discord"
@@ -79,7 +79,7 @@ const structuredData = [
 					<ul class="mt-5 list-none space-y-3 p-0">
 						<li>
 							<a
-								href="https://www.facebook.com/l2titan.server/"
+								href={FACEBOOK_URL}
 								target="_blank"
 								rel="noopener noreferrer"
 								class="group flex items-start gap-4 rounded-xl border border-yellow-500/15 bg-linear-to-br from-yellow-500/6 to-black/30 p-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] ring-1 ring-black/25 transition hover:border-yellow-500/30 hover:from-yellow-500/9 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400/45"
@@ -126,7 +126,7 @@ const structuredData = [
 						</li>
 						<li>
 							<a
-								href="https://www.instagram.com/l2titan_com/"
+								href={INSTAGRAM_URL}
 								target="_blank"
 								rel="noopener noreferrer"
 								class="group flex items-start gap-4 rounded-xl border border-yellow-500/15 bg-linear-to-br from-yellow-500/6 to-black/30 p-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] ring-1 ring-black/25 transition hover:border-yellow-500/30 hover:from-yellow-500/9 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400/45"
@@ -150,6 +150,53 @@ const structuredData = [
 									</span>
 									<span class="mt-0.5 block text-sm leading-snug text-gray-400" data-i18n={`${p}.igDesc`}>
 										{tk(`${p}.igDesc`, '')}
+									</span>
+								</span>
+								<svg
+									class="mt-0.5 h-5 w-5 shrink-0 text-gray-500 transition group-hover:text-yellow-400/90"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+									aria-hidden="true"
+								>
+									<path
+										fill-rule="evenodd"
+										d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h5a.75.75 0 010 1.5h-5z"
+										clip-rule="evenodd"
+									/>
+									<path
+										fill-rule="evenodd"
+										d="M6.194 12.753a.75.75 0 001.06.053L16.5 4.44v2.81a.75.75 0 001.5 0v-4.5a.75.75 0 00-.75-.75h-4.5a.75.75 0 000 1.5h2.553l-9.056 8.32a.75.75 0 00-.053 1.06z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+							</a>
+						</li>
+						<li>
+							<a
+								href={TIKTOK_URL}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="group flex items-start gap-4 rounded-xl border border-yellow-500/15 bg-linear-to-br from-yellow-500/6 to-black/30 p-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] ring-1 ring-black/25 transition hover:border-yellow-500/30 hover:from-yellow-500/9 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400/45"
+							>
+								<span
+									class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-yellow-500/10 text-yellow-400 ring-1 ring-amber-500/20"
+									aria-hidden="true"
+								>
+									<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+										<path
+											d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"
+										/>
+									</svg>
+								</span>
+								<span class="min-w-0 flex-1">
+									<span
+										class="block font-semibold text-gray-100 transition group-hover:text-yellow-200"
+										data-i18n={`${p}.ttTitle`}
+									>
+										{tk(`${p}.ttTitle`, '')}
+									</span>
+									<span class="mt-0.5 block text-sm leading-snug text-gray-400" data-i18n={`${p}.ttDesc`}>
+										{tk(`${p}.ttDesc`, '')}
 									</span>
 								</span>
 								<svg

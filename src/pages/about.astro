@@ -6,6 +6,7 @@ import ActionButton from '../components/ui/ActionButton.astro';
 import { visitorLangFromPath } from '../utils/i18n-lang';
 import { translate } from '../utils/translations';
 import {
+  DISCORD_URL,
   SITE_URL,
   absoluteUrl,
   buildBreadcrumb,
@@ -64,7 +65,7 @@ const structuredData = [
     >
       <ActionButton
         slot="actions"
-        href="https://discord.gg/GunamUdGaQ"
+        href={DISCORD_URL}
         target="_blank"
         rel="noopener noreferrer"
         variant="discord"
