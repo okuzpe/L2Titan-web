@@ -18,6 +18,19 @@ export interface NewsItem {
 
 export const news: NewsItem[] = [
   {
+    slug: 'patch-1-4-joyas-epicas-lvl2-tvt-coin',
+    title: 'Patch 1.4 - Joyas Épicas Lvl 2, TVT Coin y rebalance',
+    titleKey: 'news.items.patch14.title',
+    publishedAt: '2026-06-06',
+    dateLabel: '6 de junio de 2026',
+    summary: 'Llegan las Joyas Épicas Nivel 2 con iconos exclusivos, la nueva TVT Coin como recompensa del evento TvT y un rebalance completo de las joyas de boss.',
+    summaryKey: 'news.items.patch14.summary',
+    content: 'Las 8 joyas épicas fueron rebalanceadas con stats exactos visibles en el item: Antharas ahora es defensiva (P.Def +7%), Frintezza anti-mago (M.Def +7%), Orfen y Core orientadas a healers/soporte, y todas pasan a Grado S. El evento TvT premia con la nueva TVT Coin (ganador 25, perdedor 15, +1 por kill, +10 top killer). En el Titan Shop puedes mejorar cada joya a su versión Nivel 2 (~25-35% más fuerte, con icono exclusivo y pasiva visible) entregando la joya, 250-500 TVT Coins y adena. Además: skills de 3ra profesión ahora aparecen en el grupo correcto de la ventana de skills y los slots de Auto Skill se restauran bien tras relog.',
+    contentKey: 'news.items.patch14.content',
+    image: '/images/jewells-lvl2.webp',
+    imageCard: '/images/jewells-lvl2-card.webp',
+  },
+  {
     slug: 'infinitum-tower-l2day',
     title: 'Infinitum Tower y letras L2 Day ya visibles en la web',
     titleKey: 'news.items.infinitumTower.title',

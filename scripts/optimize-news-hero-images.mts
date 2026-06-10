@@ -12,6 +12,7 @@ const imagesDir = path.resolve(__dirname, '../public/images');
 const sourcesDir = path.resolve(__dirname, 'img-src');
 
 const sources: { input: string; base: string; dir?: string }[] = [
+  { input: 'jewells-lvl2.png', base: 'jewells-lvl2', dir: sourcesDir },
   { input: 'BaiumEvent.png', base: 'BaiumEvent', dir: sourcesDir },
   { input: 'valakas-past-event.png', base: 'valakas-past-event', dir: sourcesDir },
   { input: 'infinitum-tower.jpg', base: 'infinitum-tower' },
