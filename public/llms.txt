@@ -1,6 +1,6 @@
 # L2Titan
 
-> L2Titan es un servidor privado de Lineage II en crónica Interlude, sobre base L2JFrozen, con experiencia x25. Ofrece SubStack (subclases acumulativas sin morph), AutoFarm configurable, instancias diarias, eventos PvP (TvT/CTF/DM), asedios y una economía documentada. Comunidad y soporte principalmente en español; resúmenes en inglés disponibles bajo /en. Sitio oficial: https://l2-titan.com — Discord: https://discord.gg/xH76F9vsGf
+> L2Titan es un servidor privado de Lineage II en crónica Interlude, sobre base L2JFrozen, con experiencia x25. Ofrece SubStack (subclases acumulativas sin morph; el sistema conocido como stack sub o multiskill), AutoFarm configurable, instancias diarias, eventos PvP (TvT/CTF/DM), asedios y una economía documentada. Comunidad y soporte principalmente en español; resúmenes en inglés disponibles bajo /en. Sitio oficial: https://l2-titan.com — Discord: https://discord.gg/xH76F9vsGf
 
 ## Datos clave del servidor
 
@@ -39,7 +39,7 @@
 
 - [Noticias](https://l2-titan.com/news): novedades, eventos y notas de parche con fechas absolutas.
 - [Comunidad](https://l2-titan.com/comunidad): canales de Discord, Facebook, Instagram y TikTok.
-- [SubStack](https://l2-titan.com/substack): hub del sistema de subclases acumulativas.
+- [SubStack](https://l2-titan.com/substack): hub del sistema de subclases acumulativas (stack sub / multiskill).
 
 ## English
 

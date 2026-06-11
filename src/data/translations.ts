@@ -88,7 +88,7 @@ const baseTranslations = {
         },
         {
           question: "¿Qué es el SubStack de L2Titan?",
-          answer: "El SubStack son subclases acumulativas: puedes sumar habilidades de varias subclases sin morph para armar builds más flexibles y competitivas. Es uno de los sistemas centrales de L2Titan y se detalla en /substack y /features.",
+          answer: "El SubStack son subclases acumulativas: puedes sumar habilidades de varias subclases sin morph para armar builds más flexibles y competitivas. También se le conoce como stack sub, sub acumulativa o multiskill. Es uno de los sistemas centrales de L2Titan y se detalla en /substack y /features.",
         },
         {
           question: "¿Tiene Auto Create Account?",
@@ -1093,7 +1093,7 @@ const baseTranslations = {
         },
         {
           question: "What is L2Titan's SubStack?",
-          answer: "SubStack means cumulative subclasses: you can stack skills from several subclasses without morphing, for more flexible and competitive builds. It is one of L2Titan's core systems and is detailed on /substack and /features.",
+          answer: "SubStack means cumulative subclasses: you can stack skills from several subclasses without morphing, for more flexible and competitive builds. Also known as stack sub, stackable subclass or multiskill. It is one of L2Titan's core systems and is detailed on /substack and /features.",
         },
         {
           question: "Does it have Auto Create Account?",

@@ -13,14 +13,14 @@ export const infoWikiTranslationOverrides = {
         lead1:
           "Si buscas un servidor privado de Lineage 2 con SubStack y te interesa jugar con comunidad y soporte en español, esta es la página correcta: L2Titan es Interlude x25 con SubStack, temporadas activas, web y Discord orientados al público hispanohablante.",
         lead2:
-          "SubStack aquí es clase base +1: sumás una subclase encima de tu clase principal sin reemplazarla (ej. adventurer + Sword Muse). Tu clase base no “muta”; se acumulan skills de la subclase. No confundir con la plataforma de newsletters homónima.",
+          "SubStack aquí es clase base +1: sumás una subclase encima de tu clase principal sin reemplazarla (ej. adventurer + Sword Muse). Tu clase base no “muta”; se acumulan skills de la subclase. Es el sistema que en otros servidores se llama stack sub, sub acumulativa o multiskill. No confundir con la plataforma de newsletters homónima.",
         discordCta: "Discord oficial",
         ratesCta: "Ver rates x25",
         col1h: "Qué es el SubStack en L2Titan",
         col1p:
           "Reglas del servidor: modelo Base +1 (una subclase activa sobre la base). Ejemplo ilustrativo adventurer + Sword Muse: ampliás utilidad y skills sin convertir tu personaje en otra clase base. Con no-morph, el cuerpo/visual no cambia al aplicar SubStack; el foco es el kit de habilidades. Combinado con AutoFarm, instancias y eventos para progreso y PvP.",
         col2h:
-          "Por qué encaja si buscabas “servidor l2 substack”, “lineage 2 español” o términos mezclados",
+          "Por qué encaja si buscabas “servidor l2 substack”, “l2 multiskill”, “l2 stack sub”, “sub acumulativa” o “lineage 2 español”",
         col2li1:
           "Crónica Interlude — punto de encuentro clásico para muchos jugadores de Lineage 2 en Latinoamérica y España.",
         col2li2: "Experiencia x25 — ritmo de subida publicado en /rates.",
@@ -45,14 +45,14 @@ export const infoWikiTranslationOverrides = {
         footnoteKicker: "Si publicas el servidor en un top / listado",
         footnote:
           "Para sitios como HopZone o TopZone: si tu anuncio habla de SubStack y tu público es hispanohablante, conviene enlazar https://l2-titan.com/substack. Así quien hace clic entiende de qué va el sistema y no aterriza en una página genérica.",
-        metaTitle: "Servidor Lineage 2 con SubStack (Interlude x25)",
+        metaTitle: "Servidor Lineage 2 SubStack — stack sub / multiskill",
         metaDescription:
-          "Servidor privado Lineage 2 Interlude x25 con SubStack, pensado para quien busca jugar en español: comunidad y soporte principalmente hispanohablantes, subclases acumulativas, AutoFarm, instancias y PvP. Cliente y Discord oficiales.",
+          "Servidor privado Lineage 2 Interlude x25 con SubStack: subclases acumulativas (stack sub / multiskill), comunidad y soporte en español, AutoFarm, instancias y PvP.",
         metaKeywords:
-          "servidor lineage 2 substack, servidor l2 substack español, lineage 2 servidor privado español, l2 interlude servidor latino, servidor privado lineage 2 hispano, l2 substack, lineage 2 substack, l2 titan substack, l2 interlude x25",
+          "servidor lineage 2 substack, servidor l2 substack español, lineage 2 servidor privado español, l2 interlude servidor latino, servidor privado lineage 2 hispano, l2 substack, lineage 2 substack, l2 titan substack, l2 interlude x25, l2 multiskill, lineage 2 multiskill, l2 stack sub, lineage 2 stack sub, sub acumulativa l2, subclases acumulativas lineage 2, l2 stackable subclass",
         faq1q: "¿L2Titan es un servidor Lineage 2 con SubStack?",
         faq1a:
-          "Sí. L2Titan es Interlude x25 con SubStack en modelo clase base +1: una subclase encima de tu clase principal sin reemplazarla (ej. adventurer + Sword Muse). La base no muta; se acumulan skills de la subclase (no-morph).",
+          "Sí. L2Titan es Interlude x25 con SubStack en modelo clase base +1: una subclase encima de tu clase principal sin reemplazarla (ej. adventurer + Sword Muse). La base no muta; se acumulan skills de la subclase (no-morph). Si venís de otros servidores, es el sistema conocido como stack sub, sub acumulativa o multiskill.",
         faq2q: "¿Qué crónica y rates usa el servidor SubStack de L2Titan?",
         faq2a:
           "Crónica Interlude con experiencia x25 y rates publicados en la landing de /rates. El SubStack se combina con esa curva de progreso y con el resto de features del servidor.",
@@ -163,7 +163,7 @@ export const infoWikiTranslationOverrides = {
         lead1:
           "If you searched for an L2 SubStack server or a private Lineage 2 server with SubStack, here is the straight answer: L2Titan runs Interlude x25 with SubStack, clear published rates, live seasons and an active Discord.",
         lead2:
-          "Here SubStack is base +1: you add a subclass on top of your main class without replacing it (e.g. adventurer + Sword Muse). Your base does not “mutate”; subclass skills stack. Not related to the newsletter product with a similar name.",
+          "Here SubStack is base +1: you add a subclass on top of your main class without replacing it (e.g. adventurer + Sword Muse). Your base does not “mutate”; subclass skills stack. On other servers this system is called stack sub, stackable subclass or multiskill. Not related to the newsletter product with a similar name.",
         headsUp:
           "Heads up: L2Titan is aimed at players who want to play with a Spanish-speaking community. The canonical page is the Spanish hub at /substack; this English page is a short mirror for international search.",
         discordCta: "Official Discord",
@@ -173,7 +173,7 @@ export const infoWikiTranslationOverrides = {
         col1h: "What SubStack means on L2Titan",
         col1p:
           "Server rules: Base +1 model (one active subclass on top of base). Illustrative example adventurer + Sword Muse: you gain utility and skills without turning your character into a different base class. With no-morph, body/visual does not change when applying SubStack—the focus is the skill kit. Paired with AutoFarm, daily instances and events so progression stays meaningful over time.",
-        col2h: "Why this page matches “lineage2 substack” intent",
+        col2h: "Why this page matches “lineage2 substack”, “l2 multiskill” or “stack sub” intent",
         col2li1:
           "Interlude — the classic chronicle many Lineage 2 players filter for.",
         col2li2: "x25 XP — mid-rate pace; details on /rates.",
@@ -214,7 +214,7 @@ export const infoWikiTranslationOverrides = {
       q2: "¿Necesito registrarme en la web para jugar?",
       a2: "No. El servidor usa Auto Create Account: la primera vez que entras al juego con un usuario y contraseña que elijas, la cuenta se crea sola. Los pasos están en /registro y /downloads.",
       q3: "¿Qué es SubStack y por qué importa?",
-      a3: "Es el modelo clase base +1: una subclase encima de tu clase principal sin reemplazarla (ej. adventurer + Sword Muse). La base no muta; sumás skills de la subclase (no-morph en L2Titan). Cambia builds y sinergias de clan. Más en /substack y /features.",
+      a3: "Es el modelo clase base +1: una subclase encima de tu clase principal sin reemplazarla (ej. adventurer + Sword Muse). La base no muta; sumás skills de la subclase (no-morph en L2Titan). En otros servidores se le llama stack sub, sub acumulativa o multiskill. Cambia builds y sinergias de clan. Más en /substack y /features.",
       q4: "¿Cómo funciona el AutoFarm?",
       a4: "Es un sistema configurable dentro del juego (radio, asistencia, filtros) para farmear sin estar pendiente de cada mob. No reemplaza el PvP ni las instancias; convive con daily instances y eventos.",
       q5: "¿Dónde veo rates, economía y comandos?",
@@ -586,7 +586,7 @@ export const infoWikiTranslationOverrides = {
               "Features de L2Titan: SubStack (subclases acumulativas sin morph), AutoFarm configurable, Buffer, ranking .top, Olympiad y balance PvP por tipo de clase.",
             faq1q: "¿Qué es el SubStack de L2Titan?",
             faq1a:
-              "El SubStack son subclases acumulativas: puedes sumar habilidades de varias subclases sin morph, para armar builds más flexibles y competitivas.",
+              "El SubStack son subclases acumulativas: puedes sumar habilidades de varias subclases sin morph, para armar builds más flexibles y competitivas. También se le conoce como stack sub o multiskill.",
             faq2q: "¿Tiene AutoFarm el servidor?",
             faq2a:
               "Sí. El AutoFarm es configurable (.farm o .autofarm) con modos, asistencia, filtros y radio, para farmear según las reglas del servidor.",
@@ -715,14 +715,14 @@ export const infoWikiTranslationOverrides = {
         lead1:
           "If you want a private Lineage 2 server with SubStack and prefer a Spanish-speaking community and support, this is the right page: L2Titan is Interlude x25 with SubStack, active seasons, and a site and Discord focused on Spanish-speaking players.",
         lead2:
-          "SubStack here is base +1: you add a subclass on your main class without replacing it (e.g. adventurer + Sword Muse). Your base does not mutate; subclass skills stack. Not related to the newsletter product with a similar name.",
+          "SubStack here is base +1: you add a subclass on your main class without replacing it (e.g. adventurer + Sword Muse). Your base does not mutate; subclass skills stack. On other servers this system is called stack sub, stackable subclass or multiskill. Not related to the newsletter product with a similar name.",
         discordCta: "Official Discord",
         ratesCta: "View x25 rates",
         col1h: "What SubStack means on L2Titan",
         col1p:
           "Server rules: Base +1 (one active subclass on the base). Illustrative example adventurer + Sword Muse: extra utility and skills without converting your character to another base class. With no-morph, body/visual does not change on SubStack; the point is stacking abilities. Together with AutoFarm, daily instances and events for progression and PvP.",
         col2h:
-          "Why it fits if you searched “l2 substack server”, “lineage 2 Spanish” or mixed terms",
+          "Why it fits if you searched “l2 substack server”, “l2 multiskill”, “stack sub”, “stackable subclass” or mixed terms",
         col2li1:
           "Interlude chronicle — a classic reference point for many Lineage 2 players in Latin America and Spain.",
         col2li2: "x25 experience — published leveling pace on /rates.",
@@ -747,14 +747,14 @@ export const infoWikiTranslationOverrides = {
         footnoteKicker: "For server listings / promos",
         footnote:
           "If you advertise SubStack on sites like HopZone or TopZone and your audience is mostly Spanish-speaking, prefer linking https://l2-titan.com/substack so clicks land on the right explanation.",
-        metaTitle: "Lineage 2 server with SubStack (Interlude x25)",
+        metaTitle: "Lineage 2 SubStack server — stack sub / multiskill",
         metaDescription:
-          "Private Lineage 2 Interlude x25 server with SubStack. L2Titan is primarily Spanish-speaking: website, Discord and support target Hispanic players. English summary; main hub is /substack.",
+          "Private Lineage 2 Interlude x25 server with SubStack (stackable subclass / multiskill-style). Spanish-first community; English summary, main hub at /substack.",
         metaKeywords:
-          "l2 substack server, lineage 2 substack, lineage2 substack, private lineage 2 server substack, l2 interlude substack, l2 titan",
+          "l2 substack server, lineage 2 substack, lineage2 substack, private lineage 2 server substack, l2 interlude substack, l2 titan, l2 multiskill, lineage 2 multiskill server, l2 stack sub, l2 stackable subclass, lineage 2 stacked subclass",
         faq1q: "Is L2Titan a Lineage 2 server with SubStack?",
         faq1a:
-          "Yes. L2Titan is Interlude x25 with SubStack as base +1: a subclass on your main class without replacing it (e.g. adventurer + Sword Muse). The base does not mutate; subclass skills stack (no-morph).",
+          "Yes. L2Titan is Interlude x25 with SubStack as base +1: a subclass on your main class without replacing it (e.g. adventurer + Sword Muse). The base does not mutate; subclass skills stack (no-morph). If you come from other servers, this is the system usually called stack sub, stackable subclass or multiskill.",
         faq2q: "What chronicle and rates does L2Titan use?",
         faq2a:
           "Interlude with x25 experience; full rates are published on /rates. SubStack is designed to fit that progression curve together with the rest of the server features.",
@@ -864,7 +864,7 @@ export const infoWikiTranslationOverrides = {
         lead1:
           "If you searched for an L2 SubStack server or a private Lineage 2 server with SubStack, here is the straight answer: L2Titan runs Interlude x25 with SubStack, clear published rates, live seasons and an active Discord.",
         lead2:
-          "Here SubStack is base +1: you add a subclass on top of your main class without replacing it (e.g. adventurer + Sword Muse). Your base does not “mutate”; subclass skills stack. Not related to the newsletter product with a similar name.",
+          "Here SubStack is base +1: you add a subclass on top of your main class without replacing it (e.g. adventurer + Sword Muse). Your base does not “mutate”; subclass skills stack. On other servers this system is called stack sub, stackable subclass or multiskill. Not related to the newsletter product with a similar name.",
         headsUp:
           "Heads up: L2Titan is aimed at players who want to play with a Spanish-speaking community. The canonical page is the Spanish hub at /substack; this English page is a short mirror for international search.",
         discordCta: "Official Discord",
@@ -874,7 +874,7 @@ export const infoWikiTranslationOverrides = {
         col1h: "What SubStack means on L2Titan",
         col1p:
           "Server rules: Base +1 model (one active subclass on top of base). Illustrative example adventurer + Sword Muse: you gain utility and skills without turning your character into a different base class. With no-morph, body/visual does not change when applying SubStack—the focus is the skill kit. Paired with AutoFarm, daily instances and events so progression stays meaningful over time.",
-        col2h: "Why this page matches “lineage2 substack” intent",
+        col2h: "Why this page matches “lineage2 substack”, “l2 multiskill” or “stack sub” intent",
         col2li1:
           "Interlude — the classic chronicle many Lineage 2 players filter for.",
         col2li2: "x25 XP — mid-rate pace; details on /rates.",
@@ -915,7 +915,7 @@ export const infoWikiTranslationOverrides = {
       q2: "Do I need to register on the website to play?",
       a2: "No. The server uses Auto Create Account: the first time you log in with a username and password you choose, the account is created automatically. Steps are on /registro and /downloads.",
       q3: "What is SubStack and why does it matter?",
-      a3: "It is the base +1 model: a subclass on top of your main class without replacing it (e.g. adventurer + Sword Muse). The base does not mutate; you add subclass skills (no-morph on L2Titan). That changes builds and clan synergies. More on /substack and /features.",
+      a3: "It is the base +1 model: a subclass on top of your main class without replacing it (e.g. adventurer + Sword Muse). The base does not mutate; you add subclass skills (no-morph on L2Titan). On other servers this is called stack sub, stackable subclass or multiskill. That changes builds and clan synergies. More on /substack and /features.",
       q4: "How does AutoFarm work?",
       a4: "It is an in-game configurable system (radius, assist, filters) to farm without clicking every mob. It does not replace PvP or instances; it works alongside daily instances and events.",
       q5: "Where do I see rates, economy and commands?",
@@ -1286,7 +1286,7 @@ export const infoWikiTranslationOverrides = {
               "L2Titan features: SubStack (cumulative subclasses, no morph), configurable AutoFarm, Buffer, .top ranking, Olympiad and PvP balance by class type.",
             faq1q: "What is L2Titan's SubStack?",
             faq1a:
-              "SubStack means cumulative subclasses: you can stack skills from several subclasses without morphing, for more flexible and competitive builds.",
+              "SubStack means cumulative subclasses: you can stack skills from several subclasses without morphing, for more flexible and competitive builds. Also known as stack sub or multiskill.",
             faq2q: "Does the server have AutoFarm?",
             faq2a:
               "Yes. AutoFarm is configurable (.farm or .autofarm) with modes, assist, filters and radius, to farm under the server rules.",

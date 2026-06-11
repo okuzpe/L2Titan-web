@@ -172,7 +172,9 @@ export function buildVideoGameSchema() {
 		url: SITE_URL,
 		image: absoluteUrl(DEFAULT_OG_IMAGE),
 		description:
-			'Servidor privado de Lineage 2 Interlude para PC con SubStack, AutoFarm configurable, eventos y progreso PvP.',
+			'Servidor privado de Lineage 2 Interlude para PC con SubStack (subclases acumulativas, también llamado stack sub o multiskill), AutoFarm configurable, eventos y progreso PvP.',
+		keywords:
+			'l2 substack, subclases acumulativas, l2 stack sub, l2 multiskill, lineage 2 stackable subclass, l2 interlude x25',
 		gamePlatform: 'PC',
 		applicationCategory: 'Game',
 		operatingSystem: 'Windows',
