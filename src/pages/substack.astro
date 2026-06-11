@@ -20,7 +20,7 @@ const keywords = tk(`${p}.metaKeywords`, '');
 const structuredData = [
 	buildBreadcrumb([
 		{ name: tk('navbar.home', 'Inicio'), path: '/' },
-		{ name: tk(`${p}.crumb`, 'SubStack'), path: '/substack' },
+		{ name: tk(`${p}.crumb`, 'MultiSkill'), path: '/substack' },
 	]),
 	buildFaq([
 		{ question: tk(`${p}.faq1q`, ''), answer: tk(`${p}.faq1a`, '') },
@@ -46,7 +46,7 @@ const structuredData = [
 			<Breadcrumbs
 				items={[
 					{ name: tk('navbar.home', 'Inicio'), href: '/', i18nKey: 'navbar.home' },
-					{ name: tk(`${p}.crumb`, 'SubStack'), href: '/substack', i18nKey: `${p}.crumb` },
+					{ name: tk(`${p}.crumb`, 'MultiSkill'), href: '/substack', i18nKey: `${p}.crumb` },
 				]}
 			/>
 		</div>

@@ -125,7 +125,7 @@ export function buildWebsiteSchema() {
 		alternateName: ['L2 Titan', 'L2Titan x25', 'Lineage 2 Titan'],
 		url: SITE_URL,
 		description:
-			'Servidor privado Lineage 2 Interlude x25 con SubStack, AutoFarm, instancias diarias, TvT y economía documentada. Comunidad y soporte principalmente en español.',
+			'Servidor privado Lineage 2 Interlude x25 con MultiSkill, AutoFarm, instancias diarias, TvT y economía documentada. Comunidad y soporte principalmente en español.',
 		inLanguage: 'es',
 	};
 }
@@ -172,7 +172,7 @@ export function buildVideoGameSchema() {
 		url: SITE_URL,
 		image: absoluteUrl(DEFAULT_OG_IMAGE),
 		description:
-			'Servidor privado de Lineage 2 Interlude para PC con SubStack (subclases acumulativas, también llamado stack sub o multiskill), AutoFarm configurable, eventos y progreso PvP.',
+			'Servidor privado de Lineage 2 Interlude para PC con MultiSkill (subclases acumulativas, también llamado SubStack o stack sub), AutoFarm configurable, eventos y progreso PvP.',
 		keywords:
 			'l2 substack, subclases acumulativas, l2 stack sub, l2 multiskill, lineage 2 stackable subclass, l2 interlude x25',
 		gamePlatform: 'PC',

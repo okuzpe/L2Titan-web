@@ -134,15 +134,15 @@ export const infoLandingConfigs: Record<InfoLandingTopicSlug, InfoLandingConfig>
   },
   features: {
     topicSlug: 'features',
-    title: 'Features de L2Titan Interlude: SubStack, AutoFarm y PvP',
+    title: 'Features de L2Titan Interlude: MultiSkill, AutoFarm y PvP',
     description:
-      'Descubre las features de L2Titan Interlude: SubStack, AutoFarm configurable, Buffer, ranking .top, .drop, Olympiad y balance PvP.',
+      'Descubre las features de L2Titan Interlude: MultiSkill, AutoFarm configurable, Buffer, ranking .top, .drop, Olympiad y balance PvP.',
     keywords:
       'l2 interlude features, substack lineage 2, l2 autofarm interlude, l2 titan features, lineage 2 pvp server features',
     canonicalPath: '/features',
-    heading: 'Features de L2Titan Interlude: SubStack, AutoFarm y PvP',
+    heading: 'Features de L2Titan Interlude: MultiSkill, AutoFarm y PvP',
     intro:
-      'SubStack, AutoFarm, Buffer, .top, drop, QoL y balance: todo el detalle está en las secciones siguientes (misma wiki, vista landing).',
+      'MultiSkill, AutoFarm, Buffer, .top, drop, QoL y balance: todo el detalle está en las secciones siguientes (misma wiki, vista landing).',
     ogImage: '/images/interface.jpg',
   },
   commands: {

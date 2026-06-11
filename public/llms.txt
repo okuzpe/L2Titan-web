@@ -1,6 +1,6 @@
 # L2Titan
 
-> L2Titan es un servidor privado de Lineage II en crónica Interlude, sobre base L2JFrozen, con experiencia x25. Ofrece SubStack (subclases acumulativas sin morph; el sistema conocido como stack sub o multiskill), AutoFarm configurable, instancias diarias, eventos PvP (TvT/CTF/DM), asedios y una economía documentada. Comunidad y soporte principalmente en español; resúmenes en inglés disponibles bajo /en. Sitio oficial: https://l2-titan.com — Discord: https://discord.gg/xH76F9vsGf
+> L2Titan es un servidor privado de Lineage II en crónica Interlude, sobre base L2JFrozen, con experiencia x25. Ofrece MultiSkill (subclases acumulativas sin morph; también conocido como SubStack o stack sub), AutoFarm configurable, instancias diarias, eventos PvP (TvT/CTF/DM), asedios y una economía documentada. Comunidad y soporte principalmente en español; resúmenes en inglés disponibles bajo /en. Sitio oficial: https://l2-titan.com — Discord: https://discord.gg/xH76F9vsGf
 
 ## Datos clave del servidor
 
@@ -19,7 +19,7 @@
 - [Inicio](https://l2-titan.com/): visión general del servidor, rates destacados y accesos rápidos.
 - [Descargas](https://l2-titan.com/downloads): cliente completo de L2Titan Interlude y requisitos para jugar.
 - [Crear cuenta](https://l2-titan.com/registro): cómo entrar al servidor creando la cuenta en el primer login.
-- [FAQ](https://l2-titan.com/faq): preguntas frecuentes sobre crónica, rates, SubStack, AutoFarm y cuentas.
+- [FAQ](https://l2-titan.com/faq): preguntas frecuentes sobre crónica, rates, MultiSkill, AutoFarm y cuentas.
 - [Centro de información](https://l2-titan.com/info): índice de toda la documentación del servidor por sección.
 - [Sobre L2Titan](https://l2-titan.com/about): qué es el proyecto, su base técnica y cómo contactar al equipo.
 
@@ -32,14 +32,14 @@
 - [Instancias diarias](https://l2-titan.com/instances): Pagan Temple, Infinitum Tower, drops y comando .daily.
 - [Economía](https://l2-titan.com/economy): monedas, Titan Box, tiendas y circuito entre farm, PvP y bosses.
 - [Asedios](https://l2-titan.com/sieges): castillos, fortalezas, recompensas y Titan Coins por conquista.
-- [Features](https://l2-titan.com/features): SubStack, AutoFarm, balance de clases y sistemas del servidor.
+- [Features](https://l2-titan.com/features): MultiSkill, AutoFarm, balance de clases y sistemas del servidor.
 - [Comandos](https://l2-titan.com/commands): lista de comandos in-game (.vip, .daily, .join, .top, etc.).
 
 ## Comunidad y novedades
 
 - [Noticias](https://l2-titan.com/news): novedades, eventos y notas de parche con fechas absolutas.
 - [Comunidad](https://l2-titan.com/comunidad): canales de Discord, Facebook, Instagram y TikTok.
-- [SubStack](https://l2-titan.com/substack): hub del sistema de subclases acumulativas (stack sub / multiskill).
+- [MultiSkill](https://l2-titan.com/substack): hub del sistema de subclases acumulativas (también llamado SubStack o stack sub).
 
 ## English
 

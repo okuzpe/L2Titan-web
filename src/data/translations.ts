@@ -6,7 +6,7 @@ const baseTranslations = {
       home: "Inicio",
       downloads: "Descargas",
       more: "Más",
-      substack: "SubStack",
+      substack: "MultiSkill",
       info: "Info",
       news: "Noticias",
       faq: "FAQ",
@@ -24,7 +24,7 @@ const baseTranslations = {
       heroPromo: {
         badge: "Temporada activa",
         title: "Para clanes que quieren progreso real",
-        desc: "SubStack, AutoFarm, eventos y economía activa en un servidor pensado para durar. Entra con toda la información clara desde el día uno.",
+        desc: "MultiSkill, AutoFarm, eventos y economía activa en un servidor pensado para durar. Entra con toda la información clara desde el día uno.",
         cta: "Ver Info completa",
         registroCta: "Sin registro web: cómo crear cuenta al primer login",
         trust: {
@@ -62,7 +62,7 @@ const baseTranslations = {
       },
       features: {
         cumulative: {
-          title: "SubStack real",
+          title: "MultiSkill real",
           description:
             "Modelo clase base +1: sumás una subclase sin reemplazar la base (ej. adventurer + Sword Muse). La base no muta; se acumulan skills de la subclase.",
         },
@@ -80,15 +80,15 @@ const baseTranslations = {
       faq: [
         {
           question: "¿Qué tipo de servidor es L2Titan?",
-          answer: "L2Titan es un servidor privado de Lineage II en crónica Interlude con experiencia x25, sobre base L2JFrozen. Incluye SubStack (subclases acumulativas sin morph), AutoFarm configurable, instancias diarias y eventos PvP como TvT. La comunidad y el soporte son principalmente en español.",
+          answer: "L2Titan es un servidor privado de Lineage II en crónica Interlude con experiencia x25, sobre base L2JFrozen. Incluye MultiSkill (subclases acumulativas sin morph), AutoFarm configurable, instancias diarias y eventos PvP como TvT. La comunidad y el soporte son principalmente en español.",
         },
         {
           question: "¿Qué rates tiene L2Titan?",
           answer: "Las rates base son XP x25, SP x25, Adena x10, Drop x10, Spoil x15, Party XP/SP x2 y Quest x1.20. El VIP añade hasta +40% en XP/SP, Adena, drop y spoil. Las tablas completas, incluidos Raid Boss y Grand Boss, están en /rates.",
         },
         {
-          question: "¿Qué es el SubStack de L2Titan?",
-          answer: "El SubStack son subclases acumulativas: puedes sumar habilidades de varias subclases sin morph para armar builds más flexibles y competitivas. También se le conoce como stack sub, sub acumulativa o multiskill. Es uno de los sistemas centrales de L2Titan y se detalla en /substack y /features.",
+          question: "¿Qué es el MultiSkill de L2Titan?",
+          answer: "El MultiSkill son subclases acumulativas: puedes sumar habilidades de varias subclases sin morph para armar builds más flexibles y competitivas. También se le conoce como SubStack, stack sub o sub acumulativa. Es uno de los sistemas centrales de L2Titan y se detalla en /substack y /features.",
         },
         {
           question: "¿Tiene Auto Create Account?",
@@ -109,7 +109,7 @@ const baseTranslations = {
         "L2Titan es un servidor privado de Lineage II Interlude x25 mantenido por un equipo de jugadores hispanohablantes, con foco en información clara y progreso justo.",
       whatTitle: "Qué es L2Titan",
       whatBody:
-        "L2Titan es un servidor privado de Lineage II en crónica Interlude con rates x25, sobre base L2JFrozen. Ofrece SubStack (subclases acumulativas sin morph), AutoFarm configurable, instancias diarias, eventos PvP y una economía documentada en la web.",
+        "L2Titan es un servidor privado de Lineage II en crónica Interlude con rates x25, sobre base L2JFrozen. Ofrece MultiSkill (subclases acumulativas sin morph), AutoFarm configurable, instancias diarias, eventos PvP y una economía documentada en la web.",
       historyTitle: "Historia del proyecto",
       historyBody:
         "L2Titan es un proyecto activo de servidor Lineage II Interlude x25. Su evolución, eventos y notas de parche se publican con fechas concretas en /news, que funciona como registro público de la actividad del servidor.",
@@ -188,10 +188,10 @@ const baseTranslations = {
       voteSubmit: "Votar",
       closeModal: "Cerrar",
       copyright: "L2Titan.com.",
-      linkSubstack: "SubStack",
+      linkSubstack: "MultiSkill",
       linkRates: "Rates",
       linkDownloads: "Descargas",
-      linkSubstackEn: "SubStack (EN)",
+      linkSubstackEn: "MultiSkill (EN)",
       linkFaq: "FAQ para jugadores",
       linkAccount: "Crear cuenta (Auto Create)",
       linkCommunity: "Comunidad y Discord",
@@ -222,7 +222,7 @@ const baseTranslations = {
         sieges: "Sieges: Semanales",
         olympiad: "Olympiad: Cada 2 semanas",
         subStack:
-          "SubStack: clase base +1 (una subclase encima de la base, sin reemplazarla; ej. adventurer + Sword Muse). No muta tu clase base: se suman skills de la subclase.",
+          "MultiSkill: clase base +1 (una subclase encima de la base, sin reemplazarla; ej. adventurer + Sword Muse). No muta tu clase base: se suman skills de la subclase.",
       },
       philosophy: {
         title: "Filosofía L2Titan",
@@ -663,10 +663,10 @@ const baseTranslations = {
       // ── Features tab ──
       featuresTab: {
         introKicker: "Features del servidor",
-        introTitle: "SubStack, AutoFarm, PvP y utilidades in-game",
+        introTitle: "MultiSkill, AutoFarm, PvP y utilidades in-game",
         introDesc:
-          "Esta pestaña resume NPCs custom, SubStack Manager, AutoFarm, anuncios de raid, Community Board, Olympiad y el resto de sistemas publicados. Si llegaste buscando un servidor Lineage 2 con SubStack, también tenemos una página dedicada con FAQ y enlaces rápidos.",
-        substackPageLink: "Página SubStack: qué es el sistema y enlaces útiles",
+          "Esta pestaña resume NPCs custom, SubStack Manager, AutoFarm, anuncios de raid, Community Board, Olympiad y el resto de sistemas publicados. Si llegaste buscando un servidor Lineage 2 con MultiSkill, también tenemos una página dedicada con FAQ y enlaces rápidos.",
+        substackPageLink: "Página MultiSkill: qué es el sistema y enlaces útiles",
         customNpcs: "NPCs Custom",
         autoFarm: "AutoFarm avanzado",
         autoFarmDesc1: "Modos disponibles: Auto / Fighter / Mage",
@@ -686,7 +686,7 @@ const baseTranslations = {
           "Restauración de CP/HP/MP y opción de cancelar todos los buffs",
         substackManager: "Substack Manager",
         substackDesc1:
-          "SubStack = clase base +1: agregás una subclase sobre tu clase actual sin que la base deje de ser tu clase principal.",
+          "MultiSkill = clase base +1: agregás una subclase sobre tu clase actual sin que la base deje de ser tu clase principal.",
         substackDesc2: "Nivel mínimo: 76",
         substackDesc3: "Quest gestionada por el SubStack Manager en Giran",
         substackDesc4:
@@ -844,7 +844,7 @@ const baseTranslations = {
         intro2:
           "Comunidad activa, herramientas útiles y un entorno competitivo para jugar en equipo.",
         sectionTitle: "Lo más importante para jugar mejor",
-        substackTitle: "SubStack",
+        substackTitle: "MultiSkill",
         substackDesc:
           "Base +1: una subclase encima de tu clase base sin reemplazarla (ej. adventurer + Sword Muse). La base no muta; sumás skills. No-morph en servidor.",
         autofarmTitle: "AutoFarm avanzado",
@@ -918,7 +918,7 @@ const baseTranslations = {
       articleBackToNews: "Volver a noticias",
       articleContinueReading: "Seguir leyendo",
       articleLinkDownloads: "Descargar cliente Lineage 2 Interlude",
-      articleLinkFeatures: "Features: SubStack, AutoFarm y herramientas",
+      articleLinkFeatures: "Features: MultiSkill, AutoFarm y herramientas",
       articleLinkFaq: "FAQ para jugadores nuevos",
       articleLinkWiki: "Wiki / centro de información",
       articleCtaDownload: "Descargar cliente",
@@ -1011,7 +1011,7 @@ const baseTranslations = {
       home: "Home",
       downloads: "Downloads",
       more: "More",
-      substack: "SubStack",
+      substack: "MultiSkill",
       info: "Info",
       news: "News",
       faq: "FAQ",
@@ -1029,7 +1029,7 @@ const baseTranslations = {
       heroPromo: {
         badge: "Season live",
         title: "For clans that want real progression",
-        desc: "SubStack, AutoFarm, events and an active economy in a server built to last. Join with clear information from day one.",
+        desc: "MultiSkill, AutoFarm, events and an active economy in a server built to last. Join with clear information from day one.",
         cta: "View Full Info",
         registroCta: "No web registration: create your account on first login",
         trust: {
@@ -1067,7 +1067,7 @@ const baseTranslations = {
       },
       features: {
         cumulative: {
-          title: "Real SubStack",
+          title: "Real MultiSkill",
           description:
             "Base +1 model: you add a subclass on top of your base without replacing it (e.g. adventurer + Sword Muse). Your base does not mutate—subclass skills stack.",
         },
@@ -1085,15 +1085,15 @@ const baseTranslations = {
       faq: [
         {
           question: "What kind of server is L2Titan?",
-          answer: "L2Titan is a private Lineage II server on the Interlude chronicle with x25 experience, built on L2JFrozen. It features SubStack (cumulative subclasses, no morph), configurable AutoFarm, daily instances and PvP events such as TvT. The community and support are mainly in Spanish.",
+          answer: "L2Titan is a private Lineage II server on the Interlude chronicle with x25 experience, built on L2JFrozen. It features MultiSkill (cumulative subclasses, no morph), configurable AutoFarm, daily instances and PvP events such as TvT. The community and support are mainly in Spanish.",
         },
         {
           question: "What rates does L2Titan use?",
           answer: "Base rates are XP x25, SP x25, Adena x10, Drop x10, Spoil x15, Party XP/SP x2 and Quest x1.20. VIP adds up to +40% on XP/SP, Adena, drop and spoil. The full tables, including Raid Boss and Grand Boss, are on /rates.",
         },
         {
-          question: "What is L2Titan's SubStack?",
-          answer: "SubStack means cumulative subclasses: you can stack skills from several subclasses without morphing, for more flexible and competitive builds. Also known as stack sub, stackable subclass or multiskill. It is one of L2Titan's core systems and is detailed on /substack and /features.",
+          question: "What is L2Titan's MultiSkill?",
+          answer: "MultiSkill means cumulative subclasses: you can stack skills from several subclasses without morphing, for more flexible and competitive builds. Also known as SubStack, stack sub or stackable subclass. It is one of L2Titan's core systems and is detailed on /substack and /features.",
         },
         {
           question: "Does it have Auto Create Account?",
@@ -1115,7 +1115,7 @@ const baseTranslations = {
         "L2Titan is a private Lineage II Interlude x25 server maintained by a team of Spanish-speaking players, focused on clear information and fair progression.",
       whatTitle: "What L2Titan is",
       whatBody:
-        "L2Titan is a private Lineage II server on the Interlude chronicle with x25 rates, built on L2JFrozen. It offers SubStack (cumulative subclasses, no morph), configurable AutoFarm, daily instances, PvP events and an economy documented on the site.",
+        "L2Titan is a private Lineage II server on the Interlude chronicle with x25 rates, built on L2JFrozen. It offers MultiSkill (cumulative subclasses, no morph), configurable AutoFarm, daily instances, PvP events and an economy documented on the site.",
       historyTitle: "Project history",
       historyBody:
         "L2Titan is an active Lineage II Interlude x25 server project. Its evolution, events and patch notes are published with concrete dates on /news, which acts as a public record of server activity.",
@@ -1194,10 +1194,10 @@ const baseTranslations = {
       voteSubmit: "Vote",
       closeModal: "Close",
       copyright: "L2Titan.com.",
-      linkSubstack: "SubStack",
+      linkSubstack: "MultiSkill",
       linkRates: "Rates",
       linkDownloads: "Downloads",
-      linkSubstackEn: "SubStack (EN)",
+      linkSubstackEn: "MultiSkill (EN)",
       linkFaq: "Player FAQ",
       linkAccount: "Create account (Auto Create)",
       linkCommunity: "Community & Discord",
@@ -1227,7 +1227,7 @@ const baseTranslations = {
         sieges: "Sieges: Weekly",
         olympiad: "Olympiad: Every 2 weeks",
         subStack:
-          "SubStack: base class +1 (subclass on top of base without replacing it; e.g. adventurer + Sword Muse). Base does not mutate—skills from the subclass stack.",
+          "MultiSkill: base class +1 (subclass on top of base without replacing it; e.g. adventurer + Sword Muse). Base does not mutate—skills from the subclass stack.",
       },
       philosophy: {
         title: "L2Titan Philosophy",
@@ -1650,10 +1650,10 @@ const baseTranslations = {
       },
       featuresTab: {
         introKicker: "Server features",
-        introTitle: "SubStack, AutoFarm, PvP and in-game utilities",
+        introTitle: "MultiSkill, AutoFarm, PvP and in-game utilities",
         introDesc:
-          "This tab summarizes custom NPCs, SubStack Manager, AutoFarm, raid announcements, Community Board, Olympiad and other published systems. If you searched for a Lineage 2 private server with SubStack, we also have a dedicated landing with FAQs and quick links.",
-        substackPageLink: "SubStack page — how it works and useful links",
+          "This tab summarizes custom NPCs, SubStack Manager, AutoFarm, raid announcements, Community Board, Olympiad and other published systems. If you searched for a Lineage 2 private server with MultiSkill, we also have a dedicated landing with FAQs and quick links.",
+        substackPageLink: "MultiSkill page — how it works and useful links",
         customNpcs: "Custom NPCs",
         autoFarm: "Advanced AutoFarm",
         autoFarmDesc1: "Available modes: Auto / Fighter / Mage",
@@ -1672,7 +1672,7 @@ const baseTranslations = {
         bufferDesc6: "CP/HP/MP restoration and option to cancel all buffs",
         substackManager: "Substack Manager",
         substackDesc1:
-          "SubStack = base +1: you add a subclass on your current class without your base ceasing to be your main class.",
+          "MultiSkill = base +1: you add a subclass on your current class without your base ceasing to be your main class.",
         substackDesc2: "Minimum level: 76",
         substackDesc3: "Quest managed by SubStack Manager in Giran",
         substackDesc4:
@@ -1822,7 +1822,7 @@ const baseTranslations = {
         intro2:
           "Active community, practical systems and a competitive environment built for team play.",
         sectionTitle: "What matters most when you play",
-        substackTitle: "SubStack",
+        substackTitle: "MultiSkill",
         substackDesc:
           "Base +1: a subclass on top of your base without replacing it (e.g. adventurer + Sword Muse). Base does not mutate—you add skills. Server uses no-morph.",
         autofarmTitle: "Advanced AutoFarm",
@@ -1893,7 +1893,7 @@ const baseTranslations = {
       articleBackToNews: "Back to news",
       articleContinueReading: "Keep reading",
       articleLinkDownloads: "Download Lineage 2 Interlude client",
-      articleLinkFeatures: "Features: SubStack, AutoFarm and tools",
+      articleLinkFeatures: "Features: MultiSkill, AutoFarm and tools",
       articleLinkFaq: "FAQ for new players",
       articleLinkWiki: "Wiki / information hub",
       articleCtaDownload: "Download client",
