@@ -78,8 +78,8 @@ const downloads = [
   {
     name: 'Launcher',
     nameKey: 'downloads.fileNames.launcher',
-    size: '74 MB',
-    link: 'https://downloads.l2-titan.com/zip/L2TitanLauncher.zip',
+    size: '136 MB',
+    link: 'https://downloads.l2-titan.com/launcher/L2TitanLauncher.exe',
     type: 'Direct',
     filename: 'L2TitanLauncher.exe',
     icon: {
@@ -229,6 +229,12 @@ const structuredData = [
         </CardSurface>
       ))}
     </div>
+
+    <p class="max-w-5xl mx-auto mb-12 text-center df-muted text-sm text-gray-400">
+      El launcher oficial (<code>L2TitanLauncher.exe</code>) se firma digitalmente mediante la
+      <a href="https://signpath.org/" target="_blank" rel="noopener noreferrer" class="text-yellow-400 hover:underline">SignPath Foundation</a>.
+      <span class="block mt-1">This launcher is code-signed via the SignPath Foundation (free code signing for open-source projects).</span>
+    </p>
 
     <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
       <RequirementCard
